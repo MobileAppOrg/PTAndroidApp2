@@ -10,18 +10,15 @@ namespace PTAndroidApp
 	public class MainPage
 	{
 
-	public static Page GetMasterPage ()
-	{
-		return new MasterPage();
-
-
-	}
-
+		public static Page GetMasterPage ()
+		{
+			return new NavigationPage ( new MasterPage());
+			//return new MasterPage();
+		}
 
 		public static Page SearchPatientPage ()
 		{
-			return new SearchPatientPage();
-
+			return new NavigationPage(new SearchPatientPage());
 		}
 
 	}
@@ -30,7 +27,7 @@ namespace PTAndroidApp
 
 
 
-	public class MasterPage : MasterDetailPage 
+	public class MasterPage : ContentPage 
 	{
 
 		public MasterPage(){
@@ -66,6 +63,7 @@ namespace PTAndroidApp
 				TextColor = Color.Gray ,
 				BackgroundColor = Color.Silver 
 			};
+
 			var btnSoap = new Button {
 				Text = "List Of SOAPs",
 				TextColor = Color.Gray ,
@@ -74,38 +72,47 @@ namespace PTAndroidApp
 
 			};
 
-	
-
 			btnPatient.Clicked += delegate {
-			Navigation.PushModalAsync(new SearchPatientPage ());
+				Navigation.PushAsync(new SearchPatientPage ());
 			};
 
 
-			Master = new ContentPage 
-			{
-				Content = new StackLayout
-				{
-					Children = 
-					{
-						lblHeader
-					}
-				},
-					Title = "Master˚"
-			};
-
-
-			Detail = new NavigationPage(new ContentPage 
-				{ Content = new StackLayout
-					{
-						Children = 
-						{
-							lblHeader,
-							btnPatient,
-							btnSoap
-						},
-					}
+			Content = new StackLayout {
+				Children = {
+					lblHeader,
+					btnPatient,
+					btnSoap
 				}
-			);
+			};
+				
+
+
+
+//			Master = new ContentPage 
+//			{
+//				Content = new StackLayout
+//				{
+//					Children = 
+//					{
+//						lblHeader
+//					}
+//				},
+//					Title = "Master˚"
+//			};
+
+
+//			Detail = new NavigationPage(new ContentPage 
+//				{ Content = new StackLayout
+//					{
+//						Children = 
+//						{
+//							lblHeader,
+//							btnPatient,
+//							btnSoap
+//						},
+//					}
+//				}
+//			);
 				
 
 		}

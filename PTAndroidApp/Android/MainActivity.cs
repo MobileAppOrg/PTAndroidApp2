@@ -14,7 +14,7 @@ using Xamarin.Forms.Platform.Android;
 namespace PTAndroidApp.Android
 {
 	[Activity (Label = "PTAndroidApp.Android.Android", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, Theme = "@style/HoloTheme")]
-	public class MainActivity : AndroidActivity
+	public class MainActivity : FormsApplicationActivity
 
 	{
 		protected override void OnCreate (Bundle bundle)
@@ -25,7 +25,7 @@ namespace PTAndroidApp.Android
 			 
 			//SetPage (App.GetMasterPage ());
 	
-				//SetPage (MainPage.GetMasterPage());
+			SetPage (MainPage.GetMasterPage());
 
 		}
 
