@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PTAndroidApp", "PTAndroidApp\PTAndroidApp.shproj", "{A84C7E87-1C72-4132-BD99-8802C9FA771A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTAndroidApp.Android", "Android\PTAndroidApp.Android.csproj", "{D983C67B-486F-466B-B09D-02012BB1211B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D983C67B-486F-466B-B09D-02012BB1211B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D983C67B-486F-466B-B09D-02012BB1211B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D983C67B-486F-466B-B09D-02012BB1211B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D983C67B-486F-466B-B09D-02012BB1211B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Android\PTAndroidApp.Android.csproj
+	EndGlobalSection
+EndGlobal
