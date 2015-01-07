@@ -154,7 +154,8 @@ namespace PTAndroidApp
 					}
 				};
 		
-			
+
+
 			//content of the page
 			Content = new StackLayout {
 
