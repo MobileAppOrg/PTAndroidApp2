@@ -115,10 +115,11 @@ namespace PTAndroidApp.Android
 		{
 			
 			// aapt resource value: 0x7f050000
+<<<<<<< HEAD
+			public const int Mono_Android_Theme_Splash = 2131034112;
+=======
 			public const int HoloTheme = 2131034112;
-			
-			// aapt resource value: 0x7f050001
-			public const int Mono_Android_Theme_Splash = 2131034113;
+>>>>>>> origin/master
 			
 			static Style()
 			{

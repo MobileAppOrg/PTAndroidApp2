@@ -25,7 +25,7 @@ namespace PTAndroidApp.Android
 			 
 			//SetPage (App.GetMasterPage ());
 	
-				SetPage (MainPage.GetMasterPage());
+				//SetPage (MainPage.GetMasterPage());
 
 		}
 
