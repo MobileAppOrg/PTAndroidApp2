@@ -13,6 +13,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)DAL\DataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\PatientModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PatientPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
