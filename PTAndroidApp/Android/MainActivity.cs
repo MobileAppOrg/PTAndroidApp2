@@ -23,7 +23,7 @@ namespace PTAndroidApp.Android
 
 			Xamarin.Forms.Forms.Init (this, bundle);
 			 
-			//SetPage (App.GetMasterPage ());
+			SetPage (App.GetMasterPage ());
 	
 				//SetPage (MainPage.GetMasterPage());
 

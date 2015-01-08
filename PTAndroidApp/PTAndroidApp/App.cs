@@ -25,6 +25,21 @@ namespace PTAndroidApp
 
 	
 
+		public static Page GetMasterPage ()
+		{
+			return new MasterPage();
+
+
+		}
+
+
+		public static Page SearchPatientPage ()
+		{
+			return new SearchPatientPage();
+
+		}
+
+
 
 	}
 
