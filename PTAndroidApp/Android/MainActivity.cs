@@ -14,12 +14,16 @@ using Xamarin.Forms.Platform.Android;
 namespace PTAndroidApp.Android
 {
 	[Activity (Label = "PTAndroidApp.Android.Android", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, Theme = "@style/HoloTheme")]
+
 	public class MainActivity : AndroidActivity
 
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+
+			//ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
+		
 
 			Xamarin.Forms.Forms.Init (this, bundle);
 			 

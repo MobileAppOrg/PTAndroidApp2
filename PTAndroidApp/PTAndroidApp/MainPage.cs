@@ -47,6 +47,7 @@ namespace PTAndroidApp
 			};
 
 			Content = new StackLayout {
+
 				Children = {
 					lblHeader,
 					btnPatient,

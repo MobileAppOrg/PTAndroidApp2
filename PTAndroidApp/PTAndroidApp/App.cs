@@ -17,6 +17,13 @@ namespace PTAndroidApp
 
 		}
 
+		public static Page SearchSoapPatientPage ()
+		{
+			return new NavigationPage(new SearchSoapPatientPage());
+
+		}
+
+
 	}
 }
 
