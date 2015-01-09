@@ -41,11 +41,6 @@ namespace PTAndroidApp
 			var btnAddPatient = new Button {
 				Text = "Add Patient",
 				HorizontalOptions =LayoutOptions .Start, 
-
-			};
-			var btnDelPatient = new Button {
-				Text = "Delete Patient",
-				HorizontalOptions  =LayoutOptions .End  
 			};
 
 			//content of the page
@@ -55,8 +50,7 @@ namespace PTAndroidApp
 					header,
 					scrlview,
 					btnAddPatient,
-					btnDelPatient
-				}
+					}
 			};
 
 			//this.Content = RelativeLayout;
