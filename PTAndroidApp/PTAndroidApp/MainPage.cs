@@ -27,13 +27,13 @@ namespace PTAndroidApp
 
 		    var btnPatient = new Button {
 				Text = "List Of Patients",
-				TextColor = Color.Gray ,
+				TextColor = Color.Black ,
 				BackgroundColor = Color.Silver 
 			};
 
 			var btnSoap = new Button {
 				Text = "List Of SOAPs",
-				TextColor = Color.Gray ,
+				TextColor = Color.Black ,
 				//Text = TextAlignment .Center 
 				BackgroundColor = Color.Silver
 			};
