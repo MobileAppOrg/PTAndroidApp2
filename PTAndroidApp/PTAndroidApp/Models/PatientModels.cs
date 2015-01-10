@@ -16,6 +16,12 @@ namespace PTAndroidApp
 		public string Religion { get; set; }
 		public string Nationality { get; set; }
 	}
-		
+
+	public class PatientListItemModel
+	{
+		public int PatientId {get;set;}
+		public string DisplayName {get;set;}
+		public string Address {get;set;}
+	}
 }
 
