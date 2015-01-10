@@ -24,7 +24,7 @@ namespace PTAndroidApp
 			};
 
 			var patients = new Patient ();
-			List <PatientModel> plist = patients.GetPatient ();
+			List <PatientListItemModel> plist = patients.getPatientsList ();
 
 			ListView lstpatient = new ListView {
 				RowHeight = 40 
@@ -44,6 +44,7 @@ namespace PTAndroidApp
 				Navigation .PushModalAsync (new AddPatients (0,"","",DateTime .Today,"","","","","","",""));
 
 			};
+
 			//content of the page
 			Content = new StackLayout {
 				Children = {

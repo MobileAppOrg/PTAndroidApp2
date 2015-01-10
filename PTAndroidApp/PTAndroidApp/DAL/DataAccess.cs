@@ -70,6 +70,59 @@ namespace PTAndroidApp
 			return listPatients;
 
 		}
+
+		//get patient
+		public PatientModel GetPatient(int id)
+		{
+			// Put code to communicate to web service here
+			var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
+			var request = new RestRequest("api/Patients/{id}", Method.GET);
+			request.AddParameter("id",id);
+
+			RestSharp.Deserializers.JsonDeserializer deserial= new JsonDeserializer();
+
+			// send request
+			var patient = deserial.Deserialize<PatientModel> (client.Execute (request));
+
+			return patient;
+		}
+	}
+
+	public class SoapManager {
+
+		public List<SoapListItemModel> GetSoapList(int PatientId){
+			// Put code to communicate to web service here
+			var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
+			var request = new RestRequest("api/SoapList/{id}", Method.GET);
+			request.AddParameter("id",PatientId);
+
+			RestSharp.Deserializers.JsonDeserializer deserial= new JsonDeserializer();
+
+			// send request
+			var listSoap = deserial.Deserialize<List<SoapListItemModel>> (client.Execute (request));
+
+			return listSoap;
+		}
+
+		public bool Add(SoapModel soap){
+			// Put code to communicate to web service here
+			var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
+			// 
+			var request = new RestRequest("api/PatientVisits", Method.POST );
+
+			// add parameters for all properties on an object
+			request.AddObject(soap);
+
+			// send request
+			client.ExecuteAsync (request, response => {
+				// we need to handle errors here
+				// if server encountered an error while adding patient record it will be indicated in the content
+				// Notify user if error
+				 Console.WriteLine (response.Content);
+			});
+
+			return true;
+		}
 	}
 }
 

@@ -14,7 +14,7 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <AssemblyName>PTAndroidApp.Android</AssemblyName>
-    <TargetFrameworkVersion>v4.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -78,6 +78,10 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
     <AndroidResource Include="Resources\values\Styles.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_new.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_new.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_new.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_new.png" />
   </ItemGroup>
   <Import Project="..\PTAndroidApp\PTAndroidApp.projitems" Label="Shared" Condition="Exists('..\PTAndroidApp\PTAndroidApp.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
@@ -87,5 +91,11 @@
       <Version>104.4.0.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\drawable-hdpi\" />
+    <Folder Include="Resources\drawable-mdpi\" />
+    <Folder Include="Resources\drawable-xhdpi\" />
+    <Folder Include="Resources\drawable-xxhdpi\" />
   </ItemGroup>
 </Project>
