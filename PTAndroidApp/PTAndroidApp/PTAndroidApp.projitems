@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PatientPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SoapModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />

@@ -1,7 +1,7 @@
 ﻿using System;
 using RestSharp;
 using System.Collections.Generic;
-
+using RestSharp.Deserializers;
 
 namespace PTAndroidApp
 {
@@ -52,28 +52,24 @@ namespace PTAndroidApp
 			return true;
 		}
 
-
-
 		//Get patient
-
-		public List<PatientModel> GetPatient()
+		public List<PatientListItemModel> getPatientsList()
 		{
 			// Put code to communicate to web service here
 			var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
 			// 
-			var request = new RestRequest("api/Patients", Method.GET );
-			request.RequestFormat = DataFormat.Json;
-		
-			var responses = client.Execute (request);
-			var deserial= new RestSharp.Deserializers.JsonDeserializer ();
-			var obj = deserial.Deserialize<List<PatientModel>>(responses);
-			//PatientModel  people =  deserial.Deserialize<PatientModel> (responses);  
+			var request = new RestRequest("api/PatientsList", Method.GET );
+			List<PatientListItemModel> listPatients = new List<PatientListItemModel> ();
 
-			return obj;
+
+			RestSharp.Deserializers.JsonDeserializer deserial= new JsonDeserializer();
+
+			// send request
+			listPatients = deserial.Deserialize<List<PatientListItemModel>> (client.Execute (request));
+
+			return listPatients;
 
 		}
-
-
 	}
 }
 

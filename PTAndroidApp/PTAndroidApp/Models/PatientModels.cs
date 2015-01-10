@@ -16,8 +16,6 @@ namespace PTAndroidApp
 		public string Religion { get; set; }
 		public string Nationality { get; set; }
 	}
-
-
-
+		
 }
 
