@@ -53,6 +53,28 @@ namespace PTAndroidApp
 		}
 
 		//Get patient
+		public List<PatientModel> GetPatient()
+		{
+			// Put code to communicate to web service here
+			var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
+			// 
+			var request = new RestRequest("api/PatientsList", Method.GET );
+			List<PatientModel> listPatients = new List<PatientModel> ();
+
+
+			RestSharp.Deserializers.JsonDeserializer deserial= new JsonDeserializer();
+
+			// send request
+			listPatients = deserial.Deserialize<List<PatientModel>> (client.Execute (request));
+
+			return listPatients;
+
+		}
+
+
+
+
+
 		public List<PatientListItemModel> getPatientsList()
 		{
 			// Put code to communicate to web service here

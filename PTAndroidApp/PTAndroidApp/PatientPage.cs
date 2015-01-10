@@ -112,6 +112,8 @@ namespace PTAndroidApp
 
 	public class AddPatients: ContentPage 
 	{
+
+		//-------//disregard try kemu
 		public AddPatients(int PatientId,
 			string FirstName, 
 			string LastName,
@@ -124,7 +126,7 @@ namespace PTAndroidApp
 			string Religion,
 			string Nationality)
 		{
-
+		//------	//
 			var Header = new Label
 			{
 				Text = "Add Patient Info",
