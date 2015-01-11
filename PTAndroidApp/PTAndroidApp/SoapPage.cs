@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using System.Collections.Generic;
+using PTAndroidApp.Models;
 
 namespace PTAndroidApp
 {
@@ -10,7 +11,7 @@ namespace PTAndroidApp
 		public SearchSoapPatientPage()
 		{
 
-			Patient pmgr = new Patient ();
+			PatientManager pmgr = new PatientManager ();
 			List<PatientListItemModel> pList = pmgr.getPatientsList ();
 			ListView lstpatient = new ListView { RowHeight = 40 };
 
@@ -137,10 +138,10 @@ namespace PTAndroidApp
 	public class SoapPage:ContentPage
 	{
 		public SoapPage(int patientId){
-			Patient patientMgr = new Patient ();
+			PatientManager patientMgr = new PatientManager ();
 			SoapManager soapMgr = new SoapManager ();
 			PatientVisit soap = new PatientVisit ();
-			PatientModel patient = new PatientModel ();
+			Patient patient = new Patient ();
 
 			BindingContext = soap;
 

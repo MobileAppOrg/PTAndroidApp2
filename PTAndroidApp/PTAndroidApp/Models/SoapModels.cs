@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PTAndroidApp.Models;
 
 namespace PTAndroidApp
 {
@@ -8,7 +9,6 @@ namespace PTAndroidApp
 		public PatientVisit(){
 			PMHx = new PMHx();
 			FMHx = new FMHx();
-			Patient = new Patient();
 		}
 
 		//[Key]
