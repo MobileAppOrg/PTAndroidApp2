@@ -3,8 +3,14 @@ using System.Collections.Generic;
 
 namespace PTAndroidApp
 {
-	public class SoapModel
+	public class PatientVisit
 	{
+		public PatientVisit(){
+			PMHx = new PMHx();
+			FMHx = new FMHx();
+			Patient = new Patient();
+		}
+
 		//[Key]
 		public int PatientVisitId { get; set; }
 

@@ -56,8 +56,9 @@ namespace PTAndroidApp
 		public List<PatientListItemModel> getPatientsList()
 		{
 			// Put code to communicate to web service here
-			var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
-			// 
+			//var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
+			var client = new RestClient ("https://localhost:44301/");
+
 			var request = new RestRequest("api/PatientsList", Method.GET );
 			List<PatientListItemModel> listPatients = new List<PatientListItemModel> ();
 
@@ -75,7 +76,8 @@ namespace PTAndroidApp
 		public PatientModel GetPatient(int id)
 		{
 			// Put code to communicate to web service here
-			var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
+			//var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
+			var client = new RestClient ("https://localhost:44301/");
 			var request = new RestRequest("api/Patients/{id}", Method.GET);
 			request.AddParameter("id",id);
 
@@ -104,7 +106,7 @@ namespace PTAndroidApp
 			return listSoap;
 		}
 
-		public bool Add(SoapModel soap){
+		public bool Add(PatientVisit soap){
 			// Put code to communicate to web service here
 			var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
 			// 
