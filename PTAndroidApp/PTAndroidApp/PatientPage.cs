@@ -46,7 +46,7 @@ namespace PTAndroidApp
 
 
 			var ID = new Label {};
-			ID.SetBinding(Label.TextProperty, "LastName");
+			ID.SetBinding(Label.TextProperty, "PatientId");
 
 
 			/////edit
@@ -59,10 +59,12 @@ namespace PTAndroidApp
 			lstp.ItemsSource = plt;
 			//set data template for the listview
 			//lstp.ItemTemplate = new DataTemplate(typeof(SpecificPatientView));
-		
+			var name = new Label {};
+			name.SetBinding(Label.TextProperty, "FirstName");
+
 			lstpatient.ItemTapped += delegate {
 
-				Navigation .PushModalAsync (new AddPatients  ("",1,"","",
+				Navigation .PushModalAsync (new AddPatients  ("",1,name.Text ,"",
 					DateTime .Now ,"","","","","","",""));
 
 			};
