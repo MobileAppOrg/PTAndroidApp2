@@ -32,7 +32,7 @@ namespace PTAndroidApp
 			PatientManager patient = new PatientManager ();
 			List <Patient> plists = patient.GetPatient();
 
-			var patients = new Patient ();
+			var patients = new PatientManager ();
 			List <PatientListItemModel> plist = patient.getPatientsList ();
 
 
