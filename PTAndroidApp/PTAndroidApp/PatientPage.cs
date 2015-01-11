@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using System.Collections.Generic;
 using Android;
 using System.Threading.Tasks;
+using PTAndroidApp.Models;
 
 
 namespace PTAndroidApp
@@ -28,11 +29,11 @@ namespace PTAndroidApp
 			};
 
 
-			Patient patient = new Patient ();
-			List <PatientModel> plists = patient.GetPatient();
+			PatientManager patient = new PatientManager ();
+			List <Patient> plists = patient.GetPatient();
 
 			var patients = new Patient ();
-			List <PatientListItemModel> plist = patients.getPatientsList ();
+			List <PatientListItemModel> plist = patient.getPatientsList ();
 
 
 			ListView lstpatient = new ListView {
@@ -55,8 +56,8 @@ namespace PTAndroidApp
 
 
 			/////edit
-			Patient pat = new Patient ();
-			List <PatientModel> plt = patients.GetPatientbyID(int.Parse (ID.Text.ToString ()));
+			PatientManager pat = new PatientManager ();
+			List <Patient> plt = patient.GetPatientbyID(int.Parse (ID.Text.ToString ()));
 
 			ListView lstp = new ListView {
 				RowHeight = 40 
@@ -251,7 +252,7 @@ namespace PTAndroidApp
 					//txtHandedNess.Text,txtGender.Text,txtOccupation.Text,
 					//txtAddress.Text,txtReligion.Text,
 				//	txtNationality.Text);
-					PatientModel patientModel = new PatientModel {
+				Patient patientModel = new Patient {
 						PatientId = PtId,
 						FirstName = txtFName.Text,
 						LastName = txtLName.Text,
@@ -266,7 +267,7 @@ namespace PTAndroidApp
 					};
 
 
-					Patient patient = new Patient ();
+				PatientManager patient = new PatientManager ();
 					var success = patient.Add (patientModel);
 				};
 			
@@ -316,7 +317,7 @@ namespace PTAndroidApp
 
 
 
-	public class patientModels: PatientModel 
+	public class patientModels: Patient 
 	{
 
 		public patientModels  (string mode,int PtId,
@@ -331,7 +332,7 @@ namespace PTAndroidApp
 			string Religion,
 			string Nationality) {
 
-			PatientModel patientModel = new PatientModel {
+			Patient patientModel = new Patient {
 				FirstName = FirstName,
 				LastName = LastName,
 				DateOfBirth = DateOfBirth,

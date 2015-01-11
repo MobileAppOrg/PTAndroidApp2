@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace PTAndroidApp
+namespace PTAndroidApp.Models
 {
-	public class PatientModel
+	public class Patient
 	{
 		public int PatientId { get; set; }
 		public string FirstName { get; set; }
