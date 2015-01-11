@@ -114,10 +114,6 @@ namespace PTAndroidApp
 			// 
 			var request = new RestRequest("api/PatientsList", Method.GET);
 
-			//var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
-			var client = new RestClient ("https://localhost:44301/");
-
-			var request = new RestRequest("api/PatientsList", Method.GET );
 
 			List<PatientListItemModel> listPatients = new List<PatientListItemModel> ();
 

@@ -50,25 +50,27 @@ namespace PTAndroidApp
 			};
 
 
-			var ID = new Label {};
-			ID.SetBinding(Label.TextProperty, "PatientId");
-
 
 			/////edit
-			Patient pat = new Patient ();
-			List <PatientModel> plt = patients.GetPatientbyID(int.Parse (ID.Text.ToString ()));
 
-			ListView lstp = new ListView {
-				RowHeight = 40 
-			};
-			lstp.ItemsSource = plt;
-			//set data template for the listview
-			//lstp.ItemTemplate = new DataTemplate(typeof(SpecificPatientView));
-			var name = new Label {};
-			name.SetBinding(Label.TextProperty, "FirstName");
 
 			lstpatient.ItemTapped += delegate {
+				/// 
 
+				var ID = new Label {
+					Text  = lstpatient .SelectedItem.ToString () 
+					
+				};
+
+				     
+				Patient pat = new Patient ();
+				List <PatientModel> plt = patients.GetPatientbyID(int.Parse (ID.Text.ToString ()));
+
+				ListView lstp = new ListView {
+					RowHeight = 40 
+				};		lstp.ItemsSource = plt;
+				var name = new Label {};
+				name.SetBinding(Label.TextProperty, "FirstName");
 				Navigation .PushModalAsync (new AddPatients  ("",1,name.Text ,"",
 					DateTime .Now ,"","","","","","",""));
 
