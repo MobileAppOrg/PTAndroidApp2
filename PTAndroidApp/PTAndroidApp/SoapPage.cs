@@ -139,7 +139,7 @@ namespace PTAndroidApp
 		public SoapPage(int patientId){
 			Patient patientMgr = new Patient ();
 			SoapManager soapMgr = new SoapManager ();
-			SoapModel soap = new SoapModel ();
+			PatientVisit soap = new PatientVisit ();
 			PatientModel patient = new PatientModel ();
 
 			BindingContext = soap;
