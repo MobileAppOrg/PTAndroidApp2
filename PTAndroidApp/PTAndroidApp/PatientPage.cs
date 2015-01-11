@@ -27,8 +27,13 @@ namespace PTAndroidApp
 				Placeholder = "Search Patient"
 			};
 
-			Patient patients = new Patient ();
-			List <PatientModel> plist = patients.GetPatient();
+
+			Patient patient = new Patient ();
+			List <PatientModel> plists = patient.GetPatient();
+
+			var patients = new Patient ();
+			List <PatientListItemModel> plist = patients.getPatientsList ();
+
 
 			ListView lstpatient = new ListView {
 				RowHeight = 40 
@@ -36,7 +41,7 @@ namespace PTAndroidApp
 			};
 
 
-			lstpatient.ItemsSource = plist;
+			lstpatient.ItemsSource = plists;
 			//set data template for the listview
 			lstpatient.ItemTemplate = new DataTemplate(typeof(PatientView));
 			var btnAddPatient = new Button{
@@ -81,7 +86,6 @@ namespace PTAndroidApp
 			};
 
 
-		
 			//content of the page
 			Content = new StackLayout {
 				Children = {
