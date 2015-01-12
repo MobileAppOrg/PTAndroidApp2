@@ -32,21 +32,20 @@ namespace PTAndroidApp
 
 		// EDIT Patient: Requires Updated Patient Model with Patient Id
 
-		public bool Edit(Patient Patient){
+		public bool Edit(int id,Patient patient){
 			// Put code to communicate to web service here
 			var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
 			// 
-			var request = new RestRequest("api/Patients", Method.PUT );
+			var request = new RestRequest("api/Patients/Edit", Method.POST );
 			 
 			// edit parameters for all properties on an object
 
-
-			request.AddObject (Patient);
+			request.AddObject(new {id,patient});
 			client.ExecuteAsync (request, response => {
 				// we need to handle errors here
 				// if server encountered an error while adding patient record it will be indicated in the content
 				// Notify user if error
-				// Console.WriteLine (response.Content);
+				Console.WriteLine (response.Content);
 			}); 
 
 			return true;
@@ -170,6 +169,7 @@ namespace PTAndroidApp
 
 			// add parameters for all properties on an object
 			request.AddObject(soap);
+			request.RequestFormat = DataFormat.Json;
 
 			// send request
 			client.ExecuteAsync (request, response => {

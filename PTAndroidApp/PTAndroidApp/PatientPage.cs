@@ -28,64 +28,30 @@ namespace PTAndroidApp
 				Placeholder = "Search Patient"
 			};
 
+			PatientManager pmgr = new PatientManager ();
+			List <PatientListItemModel> plist = pmgr.getPatientsList ();
 
-			PatientManager patient = new PatientManager ();
-			List <Patient> plists = patient.GetPatient();
+			ListView lstpatient = new ListView { RowHeight = 40 };
 
-			var patients = new PatientManager ();
-			List <PatientListItemModel> plist = patient.getPatientsList ();
+			lstpatient.ItemsSource = plist;
+			//set data template for the listview
+			lstpatient.ItemTemplate = new DataTemplate(typeof(PatientView));
 
-
-			ListView lstpatient = new ListView {
-				RowHeight = 40 
+			/////edit
+			lstpatient.ItemSelected += async (sender, e) => {
+				PatientListItemModel selectedItem = (PatientListItemModel)e.SelectedItem;
+				var ID = selectedItem.PatientId;
+				Navigation.PushAsync (new AddPatients  ("Edit",ID));
 
 			};
 
-
-			lstpatient.ItemsSource = plists;
-			//set data template for the listview
-			lstpatient.ItemTemplate = new DataTemplate(typeof(PatientView));
 			var btnAddPatient = new Button{
 				Text = "Add Patient",
 				HorizontalOptions =LayoutOptions.Start
 			};
 
-
-
-			/////edit
-
-
-			lstpatient.ItemTapped += delegate {
-				/// 
-
-				var ID = new Label {
-					Text  = lstpatient .SelectedItem.ToString () 
-					
-				};
-
-				     
-				PatientManager patientManager = new PatientManager ();
-				List <Patient> plt = patientManager.GetPatientbyID(int.Parse (ID.Text.ToString ()));
-
-
-				ListView lstp = new ListView {
-					RowHeight = 40 
-				};		lstp.ItemsSource = plt;
-				var name = new Label {};
-				name.SetBinding(Label.TextProperty, "FirstName");
-				Navigation .PushModalAsync (new AddPatients  ("",1,name.Text ,"",
-					DateTime .Now ,"","","","","","",""));
-
-			};
-
-
-
-
-
-
 			btnAddPatient .Clicked += delegate {
-				Navigation .PushModalAsync (new AddPatients  ("",1,"","",
-					DateTime .Now ,"","","","","","",""));
+				Navigation .PushModalAsync (new AddPatients  ("Add"));
 
 			};
 
@@ -111,22 +77,17 @@ namespace PTAndroidApp
 		{
 			public PatientView()
 			{
-				var FName = new Label
-				{};
+				var DisplayName = new Label{};
+				DisplayName.SetBinding(Label.TextProperty, "DisplayName");
+				DisplayName.HeightRequest = 40;
 
-				FName .SetBinding(Label.TextProperty, "FirstName");
-				FName.HeightRequest = 40;
-				var LName = new Label
-				{};
-				LName .SetBinding(Label.TextProperty, "LastName");
-				LName.HeightRequest = 40;
 				var FieldData = CreateNameLayout();
 
 
 				var DataView = new StackLayout()
 				{
 					Orientation = StackOrientation.Horizontal,
-					Children = { FName,LName,  FieldData }
+					Children = { DisplayName, FieldData }
 				};
 				View = DataView ;
 			}
@@ -155,170 +116,91 @@ namespace PTAndroidApp
 
 	public class AddPatients: ContentPage 
 	{
-		public AddPatients(string mode,int PtId,
-			string FirstName, 
-			string LastName,
-			DateTime DateOfBirth,
-			string CivilStatus,
-			string HandedNess,
-			string Gender,
-			string Occupation,
-			string Address,
-			string Religion,
-			string Nationality) 
+		static Patient patient;
+		static PatientManager pmgr;
+
+		public AddPatients(string mode,int patientId=0) 
 		{
+			pmgr = new PatientManager ();
+			patient = new Patient ();
+
+			if (mode=="Edit")
+				patient = pmgr.GetPatient (patientId);
+
+			BindingContext = patient;
+
 			var Header = new Label
 			{
 				Text = "Add Patient Info",
 				HorizontalOptions= LayoutOptions.CenterAndExpand,
 			};
-			var pstControlLayout = lstPatientControls ("",PtId,FirstName,LastName,
-				DateOfBirth ,CivilStatus,HandedNess,Gender,Occupation,Address,Religion,
-				Nationality);
+
+			var pstControlLayout = lstPatientControls (mode);
+
 			Content = new StackLayout {
-				Children = {
-					Header,
-					pstControlLayout
-				
+				Children = { Header, pstControlLayout }
+			};
+		}
+		
+		static ScrollView  lstPatientControls (string mode) 
+		{
+			var txtPatientId = new Entry {};
+			txtPatientId.SetBinding (Entry.TextProperty, "PatientId");
+
+			var txtFName = new Entry { Placeholder = "First Name" };
+			txtFName.SetBinding (Entry.TextProperty, "FirstName");
+
+			var txtLName = new Entry { Placeholder = "Last Name" };
+			txtLName.SetBinding (Entry.TextProperty, "LastName");
+
+			var DtOfBirth = new DatePicker { Format = "D" };
+			DtOfBirth.SetBinding (DatePicker.DateProperty, "DateOfBirth");
+
+			//change to spinner
+			var txtCivilStatus = new Entry { Placeholder = "Civil Status" };
+			txtCivilStatus.SetBinding(Entry.TextProperty,"CivilStatus");
+
+			var txtHandedNess = new Entry { Placeholder = "Handedness" };
+			txtHandedNess.SetBinding (Entry.TextProperty, "HandedNess");
+
+			var txtGender = new Entry { Placeholder = "Gender" };
+			txtGender.SetBinding (Entry.TextProperty, "Gender");
+
+			var txtOccupation = new Entry { Placeholder = "Occupation" };
+			txtOccupation.SetBinding (Entry.TextProperty, "Occupation");
+
+			var txtAddress = new Entry { Placeholder = "Address" };
+			txtAddress.SetBinding (Entry.TextProperty, "Address");
+
+			var txtReligion = new Entry { Placeholder = "Religion" };
+			txtReligion.SetBinding (Entry.TextProperty, "Religion");
+
+			var txtNationality = new Entry { Placeholder = "Nationality" };
+			txtNationality.SetBinding (Entry.TextProperty, "Nationality");
+
+			var btnSave = new Button { Text = "Save", VerticalOptions = LayoutOptions.End };
+			
+			btnSave.Clicked += delegate {
+				if (mode=="Add")
+					pmgr.Add(patient);
+				else
+					pmgr.Edit(patient.PatientId,patient);
+			};
+			
+			var pstControlsLayout = new ScrollView {
+				VerticalOptions = LayoutOptions.FillAndExpand,
+				Content = new StackLayout {
+					Children = {
+						txtFName, txtLName, DtOfBirth, txtCivilStatus,
+						txtHandedNess, txtGender, txtOccupation, txtAddress, txtReligion,
+						txtNationality, btnSave
+					}
 				}
 			};
 		
+			return pstControlsLayout;
 		}
-		
-		static ScrollView  lstPatientControls (string mode,int PtId,
-			string FirstName, 
-			string LastName,
-			DateTime DateOfBirth,
-			string CivilStatus,
-			string HandedNess,
-			string Gender,
-			string Occupation,
-			string Address,
-			string Religion,
-			string Nationality) 
-		{
-
-			//if (mode == "new") {
-				var txtFName = new Entry {
-					Placeholder = "First Name",
-					Text = FirstName,
-					};
-
-
-				var txtLName = new Entry {
-					Placeholder = "Last Name",
-					Text = LastName
-				};
-				var DtOfBirth = new DatePicker {
-					Format = "D",
-					Date  = DateOfBirth.Date,
-
-				};
-				//change to spinner
-				var txtCivilStatus = new Entry {
-					Placeholder = "Civil Status",
-					Text = CivilStatus
-				};
-				var txtHandedNess = new Entry {
-					Placeholder = "Handedness",
-					Text = HandedNess
-				};
-				var txtGender = new Entry {
-					Placeholder = "Gender",
-					Text = Gender
-				};
-				var txtOccupation = new Entry {
-					Placeholder = "Occupation",
-					Text = Occupation
-				};
-				var txtAddress = new Entry {
-					Placeholder = "Address",
-					Text = Address
-				};
-				var txtReligion = new Entry {
-					Placeholder = "Religion",
-					Text = Religion
-				};
-				var txtNationality = new Entry {
-					Placeholder = "Nationality",
-					Text = Religion
-				};
-				var btnSave = new Button {
-					Text = "Save",
-					//HorizontalOptions = LayoutOptions.End,
-					VerticalOptions =LayoutOptions .End 
-				};
-			
-				btnSave.Clicked += delegate {
-				//patientModels ptmodel = new patientModels ("",0,txtFName.Text,
-					//txtLName.Text,DateOfBirth.Date,txtCivilStatus.Text,
-					//txtHandedNess.Text,txtGender.Text,txtOccupation.Text,
-					//txtAddress.Text,txtReligion.Text,
-				//	txtNationality.Text);
-				Patient patientModel = new Patient {
-						PatientId = PtId,
-						FirstName = txtFName.Text,
-						LastName = txtLName.Text,
-						DateOfBirth = DateOfBirth.Date,
-						CivilStatus = txtCivilStatus.Text,
-						HandedNess = txtHandedNess.Text,
-						Gender = txtGender.Text,
-						Occupation = txtOccupation.Text,
-						Address = txtAddress.Text,
-						Religion = txtReligion.Text,
-						Nationality = txtNationality.Text  
-					};
-
-
-				PatientManager patient = new PatientManager ();
-					var success = patient.Add (patientModel);
-				};
-			
-				var pstControlsLayout = new ScrollView {
-					VerticalOptions = LayoutOptions.FillAndExpand,
-					Content = new StackLayout {
-						Children = {
-							txtFName, txtLName, DtOfBirth, txtCivilStatus,
-							txtHandedNess, txtGender, txtOccupation, txtAddress, txtReligion,
-							txtNationality, btnSave
-						}
-					}
-				};
-				return pstControlsLayout;
-
-			//};
-		}
-
-
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	public class patientModels: Patient 
 	{
