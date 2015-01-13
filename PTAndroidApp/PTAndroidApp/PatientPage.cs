@@ -16,7 +16,7 @@ namespace PTAndroidApp
 
 		public SearchPatientPage()
 		{		
-
+			int IDs = 0;
 			var label = new Label ();
 			label.Text = "List of Patients";
 			label.Font = Font.SystemFontOfSize (15);
@@ -41,8 +41,16 @@ namespace PTAndroidApp
 			lstpatient.ItemSelected += async (sender, e) => {
 				PatientListItemModel selectedItem = (PatientListItemModel)e.SelectedItem;
 				var ID = selectedItem.PatientId;
-				Navigation.PushAsync (new AddPatients  ("Edit",ID));
+				 Navigation.PushAsync  (new AddPatients  ("Edit",ID));
+				IDs = ID;
+			};
 
+
+			SrchbarPatient.TextChanged += async (sender, e) => {
+				//trial
+				//List <Patient> pp = pmgr.GetPatientbyID (IDs);
+				//lstpatient .ItemsSource = pp;
+				//lstpatient.ItemTemplate = new DataTemplate(typeof(PatientView));
 			};
 
 			var btnAddPatient = new Button{
@@ -127,7 +135,7 @@ namespace PTAndroidApp
 			if (mode=="Edit")
 				patient = pmgr.GetPatient (patientId);
 
-			BindingContext = patient;
+				BindingContext = patient;
 
 			var Header = new Label
 			{
@@ -142,7 +150,7 @@ namespace PTAndroidApp
 			};
 		}
 		
-		static ScrollView  lstPatientControls (string mode) 
+		public ScrollView  lstPatientControls (string mode) 
 		{
 			var txtPatientId = new Entry {};
 			txtPatientId.SetBinding (Entry.TextProperty, "PatientId");
@@ -178,22 +186,46 @@ namespace PTAndroidApp
 			var txtNationality = new Entry { Placeholder = "Nationality" };
 			txtNationality.SetBinding (Entry.TextProperty, "Nationality");
 
-			var btnSave = new Button { Text = "Save", VerticalOptions = LayoutOptions.End };
-			
-			btnSave.Clicked += delegate {
+			var btnSave = new Button { Text = "Save", VerticalOptions = LayoutOptions.Start  };
+
+			var btnDel = new Button { Text = "Delete", VerticalOptions = LayoutOptions.End };
+
+			btnSave.Clicked  += async (sender, e) => {
 				if (mode=="Add")
+				{
 					pmgr.Add(patient);
+					await DisplayAlert ( txtFName.Text  + " " + txtLName.Text , "has been added!", "Ok");
+				}
 				else
+				{
 					pmgr.Edit(patient.PatientId,patient);
+				}
+					
 			};
-			
+
+
+			var btn = new bool ();
+			btnDel.Clicked += async (sender, e) => {
+
+					if (mode=="Add")
+						pmgr.Add(patient);
+					else
+						 btn = await DisplayAlert ("Question?", "Are you sure you want to delete " + txtFName.Text  + " " + txtLName.Text  , "Yes", "No");
+							if (btn)
+							{
+								pmgr.Delete(patient.PatientId);
+								await DisplayAlert ( txtFName.Text  + " " + txtLName.Text , "has been deleted!", "Ok");
+							}
+			};
+
+
 			var pstControlsLayout = new ScrollView {
 				VerticalOptions = LayoutOptions.FillAndExpand,
 				Content = new StackLayout {
 					Children = {
 						txtFName, txtLName, DtOfBirth, txtCivilStatus,
 						txtHandedNess, txtGender, txtOccupation, txtAddress, txtReligion,
-						txtNationality, btnSave
+						txtNationality, btnSave,btnDel
 					}
 				}
 			};
