@@ -41,12 +41,14 @@ namespace PTAndroidApp
 			// edit parameters for all properties on an object
 
 			request.AddObject(new {id,patient});
-			client.ExecuteAsync (request, response => {
+			//client.ExecuteAsync (request, response => {
 				// we need to handle errors here
 				// if server encountered an error while adding patient record it will be indicated in the content
 				// Notify user if error
-				Console.WriteLine (response.Content);
-			}); 
+				//Console.WriteLine (response.Content);
+			//}); 
+			client.Execute (request);
+
 
 			return true;
 		}
@@ -55,6 +57,17 @@ namespace PTAndroidApp
 
 		public bool Delete(int PatientId){
 			// Put code to communicate to web service here
+			var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
+			// 
+			var request = new RestRequest("api/Patients/{id}", Method.DELETE  );
+
+		
+			request.AddParameter("id",PatientId);
+			RestSharp.Deserializers.JsonDeserializer deserial= new JsonDeserializer();
+
+			// send request
+			var patient = deserial.Deserialize<Patient> (client.Execute (request));
+
 			return true;
 		}
 
@@ -74,7 +87,7 @@ namespace PTAndroidApp
 			RestSharp.Deserializers.JsonDeserializer deserial= new JsonDeserializer();
 
 			// send request
-			listPatients = deserial.Deserialize<List<Patient>> (client.Execute (request));
+			client.Execute (request);
 
 			return listPatients;
 
@@ -86,7 +99,7 @@ namespace PTAndroidApp
 			// Put code to communicate to web service here
 			var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
 			// 
-			var request = new RestRequest("api/Patients/5", Method.GET );
+			var request = new RestRequest("api/Patients/", Method.GET );
 			List<Patient> listPatients = new List<Patient> ();
 
 
@@ -112,8 +125,6 @@ namespace PTAndroidApp
 			var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
 
 			var request = new RestRequest("api/PatientsList", Method.GET);
-
-
 
 			List<PatientListItemModel> listPatients = new List<PatientListItemModel> ();
 
