@@ -258,8 +258,7 @@ namespace PTAndroidApp
 				Gender = Gender,
 				Occupation =Occupation,
 				Address = Address,
-				Religion = Religion,
-				Nationality = Nationality  
+				Religion = Religion  
 				};	 
 
 
