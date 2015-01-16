@@ -15,14 +15,15 @@ namespace PTAndroidApp.Android
 {
 	[Activity (Label = "PTAndroidApp.Android.Android", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, Theme = "@android:style/Theme.Holo.Light")]
 
-	public class MainActivity : AndroidActivity
+	public class MainActivity : AndroidActivity  
 
 	{
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
-			//ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
+			//ActionBar.NavigationMode = ActionBarNavigationMode.Standard ;
 		
 
 			Xamarin.Forms.Forms.Init (this, bundle);
