@@ -42,11 +42,11 @@ namespace PTAndroidApp
 		//[MaxLength(11)]
 		public string PatientType { get; set; }
 
-		public DateTime DateOfAdmission { get; set; }
-		public DateTime DateOfConsultation { get; set; }
+		public DateTime? DateOfAdmission { get; set; }
+		public DateTime? DateOfConsultation { get; set; }
 		//[MaxLength(50)]
 		public string Surgeon { get; set; }
-		public DateTime DateOfSurgery { get; set; }
+		public DateTime? DateOfSurgery { get; set; }
 
 		//[MaxLength(50)]
 		public string GeneralPhysician { get; set; }
@@ -65,8 +65,8 @@ namespace PTAndroidApp
 
 		//[MaxLength(50)]
 		public string ReferringDoctor { get; set; }
-		public DateTime DateOfReferral { get; set; }
-		public DateTime DateOfInitialEvaluation { get; set; }
+		public DateTime? DateOfReferral { get; set; }
+		public DateTime? DateOfInitialEvaluation { get; set; }
 
 		public string Diagnosis { get; set; }
 

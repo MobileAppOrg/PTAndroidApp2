@@ -13,12 +13,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)DAL\DataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\PatientModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SoapPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PatientPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SoapModels.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomControls.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
     <Folder Include="$(MSBuildThisFileDirectory)DAL\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
   </ItemGroup>
 </Project>
