@@ -7,11 +7,16 @@ namespace PTAndroidApp
 	{
 		public MainPage()
 		{
-			//set date to display
-			DateTime dtToday = DateTime.Today;
-			string tt = "";
 
-			if(dtToday .ToString ("tt") == "AM")
+			BackgroundColor = Color.White; 
+			Title = "SOAP APPLICATION";
+			//set date to display
+
+			DateTime dtToday = DateTime.Now;
+			string tt = "";
+			tt = dtToday.ToString ("tt");
+
+				if( tt == "AM")
 				tt = "Good Morning!";
 			else
 				tt= "Good Afternoon!";
@@ -19,23 +24,27 @@ namespace PTAndroidApp
 			//control/views
 			var lblHeader = new Label {
 				Text = tt + "\n" + dtToday.ToString ("yy-MMM-dd ddd"),
-				BackgroundColor = Color.Black,
+				BackgroundColor = Color.Transparent,
 				Font = Font.SystemFontOfSize (20),
-				TextColor = Color.Silver ,
-				HorizontalOptions = LayoutOptions.CenterAndExpand,
+				TextColor = Color.Black ,
+				HorizontalOptions = LayoutOptions.Center,
+				VerticalOptions = LayoutOptions.CenterAndExpand,
 			};
 
 		    var btnPatient = new Button {
 				Text = "List Of Patients",
 				TextColor = Color.Black ,
-				BackgroundColor = Color.Silver 
+				HorizontalOptions = LayoutOptions.Center,
+				//VerticalOptions = LayoutOptions.Center,
+				BackgroundColor = Color.Silver ,
 			};
-
+			 
 			var btnSoap = new Button {
 				Text = "List Of SOAPs",
 				TextColor = Color.Black ,
-				//Text = TextAlignment .Center 
-				BackgroundColor = Color.Silver
+				HorizontalOptions = LayoutOptions.Center,
+				VerticalOptions = LayoutOptions.CenterAndExpand,
+				BackgroundColor = Color.Silver,
 			};
 
 			btnPatient.Clicked += delegate {
@@ -57,3 +66,4 @@ namespace PTAndroidApp
 		}
 	}
 }
+

@@ -14,7 +14,9 @@ namespace PTAndroidApp.Models
 		public string Occupation { get; set; }
 		public string Address { get; set; }
 		public string Religion { get; set; }
-		public string Nationality { get; set; }
+		public string CityTown { get; set; }
+		public string Province { get; set; }
+
 	}
 
 	public class PatientListItemModel
@@ -23,5 +25,9 @@ namespace PTAndroidApp.Models
 		public string DisplayName {get;set;}
 		public string Address { get; set;}
 	}
+
+
+
+
 }
 
