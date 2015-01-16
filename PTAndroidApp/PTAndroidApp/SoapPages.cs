@@ -143,12 +143,12 @@ namespace PTAndroidApp
 		protected override void OnAppearing ()
 		{
 			base.OnAppearing ();
-			DisplayAlert ("Carousel Page Main", "OnAppearing", "OK");
+			//DisplayAlert ("Carousel Page Main", "OnAppearing", "OK");
 		}
 
 		public SoapPage(int patientId){
 			Title = "Add SOAP";
-			DisplayAlert ("Carousel Page Main", "Constructor", "OK");
+			//DisplayAlert ("Carousel Page Main", "Constructor", "OK");
 			PatientManager patientMgr = new PatientManager ();
 			SoapManager soapMgr = new SoapManager ();
 			PatientVisit soap = new PatientVisit ();
