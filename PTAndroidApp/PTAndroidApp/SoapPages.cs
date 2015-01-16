@@ -162,7 +162,7 @@ namespace PTAndroidApp
 			soap.Address = patient.Address;
 			soap.CityTown = patient.CityTown;
 			soap.Province = patient.Province;
-			soap.CityTown = patient.CivilStatus;
+			soap.CivilStatus = patient.CivilStatus;
 			soap.HandedNess = patient.HandedNess;
 			soap.Sex = patient.Gender;
 			soap.Occupation = patient.Occupation;
@@ -195,24 +195,28 @@ namespace PTAndroidApp
 			var FirstName = new EntryCell (){ Label = "First Name: "};
 			var LastName = new EntryCell (){ Label = "Last Name: "};
 			var Age = new EntryCell (){ Label = "Age: ", Keyboard = Keyboard.Numeric };
-			var genderPicker = new Picker (){ Items = { "M", "F" }, Title = "Gender" };
+			var genderPicker = new Picker (){ Items = { "M", "F" }, Title = "Gender", HorizontalOptions = LayoutOptions.FillAndExpand };
 			var Gender = new Entry (){ IsVisible = false  };
 			var Address = new EntryCell (){ Label = "Address: " };
 			var CityTown = new EntryCell (){ Label = "City/Town: "};
 			var Province = new EntryCell (){ Label = "Province: "};
-			var civilStatusPicker = new Picker (){ Items = { "Single", "Married", "Divorced", "Widowed" }, Title = "Civil Status" };
+			var civilStatusPicker = new Picker (){ Items = { "Single", "Married", "Divorced", "Widowed" }, Title = "Civil Status", HorizontalOptions = LayoutOptions.FillAndExpand };
 			var CivilStatus = new Entry (){ IsVisible = false };
-			var handedNessPicker = new Picker (){ Items = { "Right","Left" }, Title = "Handedness" };
+			var handedNessPicker = new Picker (){ Items = { "Right","Left" }, Title = "Handedness", HorizontalOptions = LayoutOptions.FillAndExpand };
 			var HandedNess = new Entry (){ IsVisible = false };
 			var Occupation = new EntryCell (){ Label = "Occupation: "};
 			var Religion = new EntryCell (){ Label = "Religion: "};
 
-			ViewCell gendercell = new ViewCell{View = new StackLayout(){
+			ViewCell gendercell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
 					Children = {
-						new Label (){ FontSize = 20, Text = "Gender: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
-						new ContentView { Content = genderPicker, HorizontalOptions = LayoutOptions.FillAndExpand },
+						new Label (){ FontSize = 22, Text = "Gender: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
+						genderPicker,
 						Gender
 					},
+					Padding = new Thickness(5,1,1,1),
+					HorizontalOptions = LayoutOptions.Fill,
 					Orientation = StackOrientation.Horizontal
 				}
 			};
@@ -224,12 +228,16 @@ namespace PTAndroidApp
 					Gender.Text = genderPicker.Items[genderPicker.SelectedIndex];
 			};
 
-			ViewCell civilstatuscell = new ViewCell{View = new StackLayout(){
+			ViewCell civilstatuscell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
 					Children = {
-						new Label (){ FontSize = 20, Text = "Civil Status: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
-						new ContentView { Content = civilStatusPicker, HorizontalOptions = LayoutOptions.FillAndExpand },
+						new Label (){ FontSize = 20, Text = "Civil Status: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
+						civilStatusPicker,
 						CivilStatus
 					},
+					Padding = new Thickness(5,1,1,1),
+					HorizontalOptions = LayoutOptions.Fill,
 					Orientation = StackOrientation.Horizontal
 				}
 			};
@@ -241,12 +249,16 @@ namespace PTAndroidApp
 					CivilStatus.Text = civilStatusPicker.Items [civilStatusPicker.SelectedIndex];
 			};
 
-			ViewCell handednesscell = new ViewCell{View = new StackLayout(){
+			ViewCell handednesscell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
 					Children = {
-						new Label (){ FontSize = 20, Text = "Handedness: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
-						new ContentView { Content = handedNessPicker, HorizontalOptions = LayoutOptions.FillAndExpand },
+						new Label (){ FontSize = 20, Text = "Handedness: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
+						handedNessPicker,
 						HandedNess
 					},
+					Padding = new Thickness(5,1,1,1),
+					HorizontalOptions = LayoutOptions.Fill,
 					Orientation = StackOrientation.Horizontal
 				}
 			};
@@ -308,12 +320,12 @@ namespace PTAndroidApp
 		}
 
 		static TableView CreateTable(){
-			var patientTypePicker = new Picker (){ Items = { "In-Patient","Out-Patient" }, Title = "Patient Type" };
+			var patientTypePicker = new Picker (){ Items = { "In-Patient","Out-Patient" }, Title = "Patient Type", HorizontalOptions = LayoutOptions.FillAndExpand };
 			var PatientType = new Entry (){ IsVisible = false };
-			var DateOfAdmission = new MyDatePicker ();
-			var DateOfConsultation = new MyDatePicker ();
+			var DateOfAdmission = new MyDatePicker (){ HorizontalOptions = LayoutOptions.FillAndExpand };
+			var DateOfConsultation = new MyDatePicker (){ HorizontalOptions = LayoutOptions.FillAndExpand };
 			var Surgeon = new EntryCell (){ Label = "Surgeon: "};
-			var DateOfSurgery = new MyDatePicker ();
+			var DateOfSurgery = new MyDatePicker (){ HorizontalOptions = LayoutOptions.FillAndExpand };
 			var GeneralPhysician = new EntryCell (){ Label = "General Physician: "};
 			var Orthopedic = new EntryCell (){ Label = "Orthopedic: "};
 			var Neurologist = new EntryCell (){ Label = "Neurologist: "};
@@ -322,16 +334,20 @@ namespace PTAndroidApp
 			var Pulmonologist = new EntryCell (){ Label = "Pulmonologist: "};
 			var OtherDoctor = new EntryCell (){ Label = "OtherDoctor: "};
 			var ReferringDoctor = new EntryCell (){ Label = "Referring Doctor: "};
-			var DateOfReferral = new MyDatePicker ();
-			var DateOfInitialEvaluation = new MyDatePicker ();
+			var DateOfReferral = new MyDatePicker () { HorizontalOptions = LayoutOptions.FillAndExpand };
+			var DateOfInitialEvaluation = new MyDatePicker (){ HorizontalOptions = LayoutOptions.FillAndExpand };
 			var Diagnosis = new EntryCell (){ Label = "Diagnosis: "};
 
-			ViewCell patienttypecell = new ViewCell{View = new StackLayout(){
+			ViewCell patienttypecell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
 					Children = {
-						new Label (){ FontSize = 20, Text = "Patient Type: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
-						new ContentView { Content = patientTypePicker, HorizontalOptions = LayoutOptions.FillAndExpand },
+						new Label (){ FontSize = 20, Text = "Patient Type: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
+						patientTypePicker,
 						PatientType
 					},
+					Padding = new Thickness(5,1,1,1),
+					HorizontalOptions = LayoutOptions.Fill,
 					Orientation = StackOrientation.Horizontal
 				}
 			};
@@ -343,47 +359,67 @@ namespace PTAndroidApp
 					PatientType.Text = patientTypePicker.Items[patientTypePicker.SelectedIndex];
 			};
 
-			ViewCell DateOfAdmissionCell = new ViewCell{View = new StackLayout(){
+			ViewCell DateOfAdmissionCell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
 					Children = {
-						new Label (){ FontSize = 20, Text = "Date Of Admission: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
-						new ContentView { Content = DateOfAdmission, HorizontalOptions = LayoutOptions.FillAndExpand }
+						new Label (){ FontSize = 20, Text = "Date Of Admission: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
+						DateOfAdmission
 					},
+					Padding = new Thickness(5,1,1,1),
+					HorizontalOptions = LayoutOptions.Fill,
 					Orientation = StackOrientation.Horizontal
 				}
 			};
 
-			ViewCell DateOfConsultationCell = new ViewCell{View = new StackLayout(){
+			ViewCell DateOfConsultationCell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
 					Children = {
-						new Label (){ FontSize = 20, Text = "Date Of Consultation: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
-						new ContentView { Content = DateOfConsultation, HorizontalOptions = LayoutOptions.FillAndExpand }
+						new Label (){ FontSize = 20, Text = "Date Of Consultation: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
+						DateOfConsultation
 					},
+					Padding = new Thickness(5,1,1,1),
+					HorizontalOptions = LayoutOptions.Fill,
 					Orientation = StackOrientation.Horizontal
 				}
 			};
 
-			ViewCell DateOfSurgeryCell = new ViewCell{View = new StackLayout(){
+			ViewCell DateOfSurgeryCell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
 					Children = {
-						new Label (){ FontSize = 20, Text = "Date Of Surgery: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
-						new ContentView { Content = DateOfSurgery, HorizontalOptions = LayoutOptions.FillAndExpand }
+						new Label (){ FontSize = 20, Text = "Date Of Surgery: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
+						DateOfSurgery
 					},
+					Padding = new Thickness(5,1,1,1),
+					HorizontalOptions = LayoutOptions.Fill,
 					Orientation = StackOrientation.Horizontal
 				}
 			};
 
-			ViewCell DateOfReferralCell = new ViewCell{View = new StackLayout(){
+			ViewCell DateOfReferralCell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
 					Children = {
-						new Label (){ FontSize = 20, Text = "Date Of Referral: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
-						new ContentView { Content = DateOfReferral, HorizontalOptions = LayoutOptions.FillAndExpand }
+						new Label (){ FontSize = 20, Text = "Date Of Referral: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
+						DateOfReferral
 					},
+					Padding = new Thickness(5,1,1,1),
+					HorizontalOptions = LayoutOptions.Fill,
 					Orientation = StackOrientation.Horizontal
 				}
 			};
 
-			ViewCell DateOfInitialEvaluationCell = new ViewCell{View = new StackLayout(){
+			ViewCell DateOfInitialEvaluationCell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
 					Children = {
-						new Label (){ FontSize = 20, Text = "Date Of IE: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
-						new ContentView { Content = DateOfInitialEvaluation, HorizontalOptions = LayoutOptions.FillAndExpand }
+						new Label (){ FontSize = 20, Text = "Date Of IE: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
+						DateOfInitialEvaluation
 					},
+					Padding = new Thickness(5,1,1,1),
+					HorizontalOptions = LayoutOptions.Fill,
 					Orientation = StackOrientation.Horizontal
 				}
 			};
