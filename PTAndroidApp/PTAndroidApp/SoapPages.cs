@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using System.Collections.Generic;
 using PTAndroidApp.Models;
+using PTAndroidApp.Controls;
 
 namespace PTAndroidApp
 {
@@ -146,6 +147,7 @@ namespace PTAndroidApp
 		}
 
 		public SoapPage(int patientId){
+			Title = "Add SOAP";
 			DisplayAlert ("Carousel Page Main", "Constructor", "OK");
 			PatientManager patientMgr = new PatientManager ();
 			SoapManager soapMgr = new SoapManager ();
@@ -169,6 +171,7 @@ namespace PTAndroidApp
 			BindingContext = soap;
 
 			Children.Add (new PatientGeneralInfoPage ());
+			Children.Add (new AdmissiontInfoPage ());
 		}
 			
 	}
@@ -176,78 +179,243 @@ namespace PTAndroidApp
 	public class PatientGeneralInfoPage:ContentPage
 	{
 		public PatientGeneralInfoPage(){
-
-
-			TableView tblForm = CreateTable ();	
-			var btnSave = new Button (){Text = "Save"};
-
-
-
-//			btnSave.Clicked += delegate {
-//				soapMgr.Add(soap);
-//			};
-
+			Title = "General Info";
+			TableView tblForm = CreateTable ();
 
 			Content = new StackLayout{ 
 				Children = { 
-					tblForm,
-					btnSave
+					tblForm
 				}
 			};
 		}
 
 		static TableView CreateTable(){
-			var txtPatientVisitId = new EntryCell (){ Label = "Patient Visit Id: ", Keyboard = Keyboard.Numeric };
-			var txtPatientId = new EntryCell (){ Label = "Patient Id: ", Keyboard= Keyboard.Numeric };
-			var txtFirstName = new EntryCell (){ Label = "First Name: "};
-			var txtLastName = new EntryCell (){ Label = "Last Name: "};
-			var txtAge = new EntryCell (){ Label = "Age: ", Keyboard = Keyboard.Numeric };
-			var lblGender = new Label (){ FontSize = 24, Text = "Gender: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40,WidthRequest = 100};
+			var PatientVisitId = new EntryCell (){ Label = "Patient Visit Id: ", Keyboard = Keyboard.Numeric };
+			var PatientId = new EntryCell (){ Label = "Patient Id: ", Keyboard= Keyboard.Numeric };
+			var FirstName = new EntryCell (){ Label = "First Name: "};
+			var LastName = new EntryCell (){ Label = "Last Name: "};
+			var Age = new EntryCell (){ Label = "Age: ", Keyboard = Keyboard.Numeric };
 			var genderPicker = new Picker (){ Items = { "M", "F" }, Title = "Gender" };
-			var txtGender = new Entry (){ IsVisible = false  };
-			var txtAddress = new EntryCell(){ Label = "Address: " };
+			var Gender = new Entry (){ IsVisible = false  };
+			var Address = new EntryCell (){ Label = "Address: " };
+			var CityTown = new EntryCell (){ Label = "City/Town: "};
+			var Province = new EntryCell (){ Label = "Province: "};
+			var civilStatusPicker = new Picker (){ Items = { "Single", "Married", "Divorced", "Widowed" }, Title = "Civil Status" };
+			var CivilStatus = new Entry (){ IsVisible = false };
+			var handedNessPicker = new Picker (){ Items = { "Right","Left" }, Title = "Handedness" };
+			var HandedNess = new Entry (){ IsVisible = false };
+			var Occupation = new EntryCell (){ Label = "Occupation: "};
+			var Religion = new EntryCell (){ Label = "Religion: "};
+
 			ViewCell gendercell = new ViewCell{View = new StackLayout(){
 					Children = {
-						lblGender,
+						new Label (){ FontSize = 20, Text = "Gender: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
 						new ContentView { Content = genderPicker, HorizontalOptions = LayoutOptions.FillAndExpand },
-						txtGender
+						Gender
 					},
 					Orientation = StackOrientation.Horizontal
 				}
 			};
 
-			txtPatientVisitId.SetBinding(EntryCell.TextProperty,"PatientVisitId");
-			txtPatientId.SetBinding(EntryCell.TextProperty,"PatientId");
-			txtFirstName.SetBinding (EntryCell.TextProperty, "FirstName");
-			txtLastName.SetBinding (EntryCell.TextProperty, "LastName");
-			txtAge.SetBinding (EntryCell.TextProperty, "Age");
-			txtGender.SetBinding (Picker.SelectedIndexProperty, "Sex");
-			txtAddress.SetBinding (EntryCell.TextProperty, "Address");
 			genderPicker.SelectedIndexChanged += delegate(object sender, EventArgs e) {
 				if (genderPicker.SelectedIndex == -1)
-				{
-					txtGender.Text = "";
-				}
+					Gender.Text = null;
 				else
-				{
-					txtGender.Text = genderPicker.Items[genderPicker.SelectedIndex];
+					Gender.Text = genderPicker.Items[genderPicker.SelectedIndex];
+			};
+
+			ViewCell civilstatuscell = new ViewCell{View = new StackLayout(){
+					Children = {
+						new Label (){ FontSize = 20, Text = "Civil Status: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
+						new ContentView { Content = civilStatusPicker, HorizontalOptions = LayoutOptions.FillAndExpand },
+						CivilStatus
+					},
+					Orientation = StackOrientation.Horizontal
 				}
 			};
+
+			civilStatusPicker.SelectedIndexChanged += delegate(object sender, EventArgs e) {
+				if (civilStatusPicker.SelectedIndex == -1)
+					CivilStatus.Text = null;
+				else
+					CivilStatus.Text = civilStatusPicker.Items [civilStatusPicker.SelectedIndex];
+			};
+
+			ViewCell handednesscell = new ViewCell{View = new StackLayout(){
+					Children = {
+						new Label (){ FontSize = 20, Text = "Handedness: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
+						new ContentView { Content = handedNessPicker, HorizontalOptions = LayoutOptions.FillAndExpand },
+						HandedNess
+					},
+					Orientation = StackOrientation.Horizontal
+				}
+			};
+
+			handedNessPicker.SelectedIndexChanged += delegate(object sender, EventArgs e) {
+				if (handedNessPicker.SelectedIndex == -1)
+					HandedNess.Text = null;
+				else
+					HandedNess.Text = handedNessPicker.Items[handedNessPicker.SelectedIndex];
+			};
+
+			PatientVisitId.SetBinding(EntryCell.TextProperty,"PatientVisitId");
+			PatientId.SetBinding(EntryCell.TextProperty,"PatientId");
+			FirstName.SetBinding (EntryCell.TextProperty, "FirstName");
+			LastName.SetBinding (EntryCell.TextProperty, "LastName");
+			Age.SetBinding (EntryCell.TextProperty, "Age");
+			Gender.SetBinding (Entry.TextProperty, "Sex");
+			Address.SetBinding (EntryCell.TextProperty, "Address");
+			CityTown.SetBinding (EntryCell.TextProperty, "CityTown");
+			Province.SetBinding (EntryCell.TextProperty, "Province");
+			CivilStatus.SetBinding (Entry.TextProperty, "CivilStatus");
+			HandedNess.SetBinding (Entry.TextProperty, "HandedNess");
+			Occupation.SetBinding (EntryCell.TextProperty, "Occupation");
+			Religion.SetBinding (EntryCell.TextProperty, "Religion");
 
 			return new TableView () {
 				Intent = TableIntent.Form,
 				Root = new TableRoot () {
 					new TableSection () {
-						txtPatientVisitId,
-						txtPatientId,
-						txtFirstName,
-						txtLastName,
-						txtAge,
+						PatientVisitId,
+						PatientId,
+						FirstName,
+						LastName,
+						Age,
 						gendercell,
-						txtAddress,
+						Address,
+						CityTown,
+						Province,
+						civilstatuscell,
+						handednesscell,
+						Occupation,
+						Religion
 					}
 				}
 			};
+		}
+	}
+	public class AdmissiontInfoPage:ContentPage
+	{
+		public AdmissiontInfoPage(){
+			Title = "Admission Info";
+			TableView tblForm = CreateTable ();
+
+			Content = new StackLayout{ 
+				Children = { 
+					tblForm
+				}
+			};
+		}
+
+		static TableView CreateTable(){
+			var patientTypePicker = new Picker (){ Items = { "In-Patient","Out-Patient" }, Title = "Patient Type" };
+			var PatientType = new Entry (){ IsVisible = false };
+			var DateOfAdmission = new MyDatePicker ();
+			var DateOfConsultation = new MyDatePicker ();
+			var Surgeon = new EntryCell (){ Label = "Surgeon: "};
+			var DateOfSurgery = new MyDatePicker ();
+			var GeneralPhysician = new EntryCell (){ Label = "General Physician: "};
+			var Orthopedic = new EntryCell (){ Label = "Orthopedic: "};
+			var Neurologist = new EntryCell (){ Label = "Neurologist: "};
+			var Cardiologist = new EntryCell (){ Label = "Cardiologist: "};
+			var Opthalmologoist = new EntryCell (){ Label = "Opthalmologoist: "};
+			var Pulmonologist = new EntryCell (){ Label = "Pulmonologist: "};
+			var OtherDoctor = new EntryCell (){ Label = "OtherDoctor: "};
+			var ReferringDoctor = new EntryCell (){ Label = "Referring Doctor: "};
+			var DateOfReferral = new MyDatePicker ();
+			var DateOfInitialEvaluation = new MyDatePicker ();
+			var Diagnosis = new EntryCell (){ Label = "Diagnosis: "};
+
+			ViewCell patienttypecell = new ViewCell{View = new StackLayout(){
+					Children = {
+						new Label (){ FontSize = 20, Text = "Patient Type: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
+						new ContentView { Content = patientTypePicker, HorizontalOptions = LayoutOptions.FillAndExpand },
+						PatientType
+					},
+					Orientation = StackOrientation.Horizontal
+				}
+			};
+
+			patientTypePicker.SelectedIndexChanged += delegate(object sender, EventArgs e) {
+				if (patientTypePicker.SelectedIndex == -1)
+					PatientType.Text = null;
+				else
+					PatientType.Text = patientTypePicker.Items[patientTypePicker.SelectedIndex];
+			};
+
+			ViewCell DateOfAdmissionCell = new ViewCell{View = new StackLayout(){
+					Children = {
+						new Label (){ FontSize = 20, Text = "Date Of Admission: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
+						new ContentView { Content = DateOfAdmission, HorizontalOptions = LayoutOptions.FillAndExpand }
+					},
+					Orientation = StackOrientation.Horizontal
+				}
+			};
+
+			ViewCell DateOfConsultationCell = new ViewCell{View = new StackLayout(){
+					Children = {
+						new Label (){ FontSize = 20, Text = "Date Of Consultation: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
+						new ContentView { Content = DateOfConsultation, HorizontalOptions = LayoutOptions.FillAndExpand }
+					},
+					Orientation = StackOrientation.Horizontal
+				}
+			};
+
+			ViewCell DateOfSurgeryCell = new ViewCell{View = new StackLayout(){
+					Children = {
+						new Label (){ FontSize = 20, Text = "Date Of Surgery: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
+						new ContentView { Content = DateOfSurgery, HorizontalOptions = LayoutOptions.FillAndExpand }
+					},
+					Orientation = StackOrientation.Horizontal
+				}
+			};
+
+			ViewCell DateOfReferralCell = new ViewCell{View = new StackLayout(){
+					Children = {
+						new Label (){ FontSize = 20, Text = "Date Of Referral: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
+						new ContentView { Content = DateOfReferral, HorizontalOptions = LayoutOptions.FillAndExpand }
+					},
+					Orientation = StackOrientation.Horizontal
+				}
+			};
+
+			ViewCell DateOfInitialEvaluationCell = new ViewCell{View = new StackLayout(){
+					Children = {
+						new Label (){ FontSize = 20, Text = "Date Of IE: ",HorizontalOptions = LayoutOptions.Start, HeightRequest = 40 },
+						new ContentView { Content = DateOfInitialEvaluation, HorizontalOptions = LayoutOptions.FillAndExpand }
+					},
+					Orientation = StackOrientation.Horizontal
+				}
+			};
+
+			PatientType.SetBinding (Entry.TextProperty, "PatientType");
+			DateOfAdmission.SetBinding (MyDatePicker.NullableDateProperty, "DateOfAdmission");
+			DateOfConsultation.SetBinding (MyDatePicker.NullableDateProperty, "DateOfConsultation");
+
+			return new TableView () {
+				Intent = TableIntent.Form,
+				Root = new TableRoot () {
+					new TableSection () {
+						patienttypecell,
+						DateOfAdmissionCell,
+						DateOfConsultationCell,
+						Surgeon,
+						DateOfSurgeryCell,
+						GeneralPhysician,
+						Orthopedic,
+						Neurologist,
+						Cardiologist,
+						Opthalmologoist,
+						Pulmonologist,
+						OtherDoctor,
+						ReferringDoctor,
+						DateOfReferralCell,
+						DateOfInitialEvaluationCell,
+						Diagnosis
+					}
+				}
+			};
+
 		}
 	}
 }

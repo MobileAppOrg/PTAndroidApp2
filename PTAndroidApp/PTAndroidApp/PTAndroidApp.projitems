@@ -16,9 +16,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)PatientPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SoapModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomControls.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
     <Folder Include="$(MSBuildThisFileDirectory)DAL\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
   </ItemGroup>
 </Project>
