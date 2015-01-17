@@ -180,7 +180,7 @@ namespace PTAndroidApp
 				
 			var HandedNess = new Entry (){ IsVisible = false };
 			var pckHandedNess = new Picker (){ Items = { "Right", "Left",}, 
-				Title = "Civil Status", 
+				Title = "Handedness", 
 				HorizontalOptions = LayoutOptions.FillAndExpand };
 				
 			var Gender = new Entry (){ IsVisible = false  };
@@ -203,7 +203,13 @@ namespace PTAndroidApp
 			var txtProvince = new Entry { Placeholder = "Province",TextColor = Color.Black, };
 			txtProvince.SetBinding (Entry.TextProperty, "Province");
 
+			CivilStatus.SetBinding (Entry.TextProperty, "CivilStatus");
+			HandedNess.SetBinding (Entry.TextProperty, "HandedNess");
+			Gender.SetBinding (Entry.TextProperty, "Gender");
 
+			//civilStatusPicker.Items =  
+			//pckHandedNess
+			//pckGender
 			civilStatusPicker.SelectedIndexChanged += delegate(object sender, EventArgs e) {
 				if (civilStatusPicker.SelectedIndex == -1)
 					CivilStatus.Text = null;
@@ -217,7 +223,7 @@ namespace PTAndroidApp
 				else
 					HandedNess.Text = pckHandedNess.Items[pckHandedNess.SelectedIndex];
 			};
-				
+
 			pckGender.SelectedIndexChanged += delegate(object sender, EventArgs e) {
 				if (pckGender.SelectedIndex == -1)
 					Gender.Text = null;
@@ -225,9 +231,7 @@ namespace PTAndroidApp
 					Gender.Text = pckGender.Items[pckGender.SelectedIndex];
 			};
 				
-			CivilStatus.SetBinding (Entry.TextProperty, "CivilStatus");
-			HandedNess.SetBinding (Entry.TextProperty, "HandedNess");
-			Gender.SetBinding (Entry.TextProperty, "Gender");
+
 
 			var btnSave = new Button { Text = "Save",TextColor = Color.Black,
 				BackgroundColor = Color.Silver,
