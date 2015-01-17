@@ -34,7 +34,7 @@ namespace PTAndroidApp
 
 			ToolbarItem t2 = new ToolbarItem();
 			t2.Text = "Add";
-			t2.Icon = "ic_action_new.png";
+			t2.Icon = "ic_action_refresh.png";
 
 
 			var SrchbarPatient = new SearchBar {
@@ -68,8 +68,10 @@ namespace PTAndroidApp
 				//Navigation.PopAsync();
 			};
 
-			ToolbarItems.Add (t1);
+
 			ToolbarItems.Add (t2);
+			ToolbarItems.Add (t1);
+
 
 			//content of the page
 			Content = new StackLayout {
