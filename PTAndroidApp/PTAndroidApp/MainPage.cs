@@ -7,44 +7,42 @@ namespace PTAndroidApp
 	{
 		public MainPage()
 		{
-
-			BackgroundColor = Color.White; 
-			Title = "SOAP APPLICATION";
 			//set date to display
-
-			DateTime dtToday = DateTime.Now;
+			DateTime dtToday = DateTime.Today;
 			string tt = "";
-			tt = dtToday.ToString ("tt");
 
-				if( tt == "AM")
+			if(dtToday .ToString ("tt") == "AM")
 				tt = "Good Morning!";
 			else
 				tt= "Good Afternoon!";
 
 			//control/views
+			var lblspace = new Label {
+				HeightRequest = 26
+			};
+
+			var lblspace2 = new Label {
+				HeightRequest = 20
+			};
+
 			var lblHeader = new Label {
 				Text = tt + "\n" + dtToday.ToString ("yy-MMM-dd ddd"),
-				BackgroundColor = Color.Transparent,
 				Font = Font.SystemFontOfSize (20),
-				TextColor = Color.Black ,
-				HorizontalOptions = LayoutOptions.Center,
-				VerticalOptions = LayoutOptions.CenterAndExpand,
+				TextColor = Color.Blue ,
+				HorizontalOptions = LayoutOptions.CenterAndExpand,
 			};
 
 		    var btnPatient = new Button {
 				Text = "List Of Patients",
 				TextColor = Color.Black ,
-				HorizontalOptions = LayoutOptions.Center,
-				//VerticalOptions = LayoutOptions.Center,
-				BackgroundColor = Color.Silver ,
+				BackgroundColor = Color.Silver 
 			};
-			 
+
 			var btnSoap = new Button {
 				Text = "List Of SOAPs",
 				TextColor = Color.Black ,
-				HorizontalOptions = LayoutOptions.Center,
-				VerticalOptions = LayoutOptions.CenterAndExpand,
-				BackgroundColor = Color.Silver,
+				//Text = TextAlignment .Center 
+				BackgroundColor = Color.Silver
 			};
 
 			btnPatient.Clicked += delegate {
@@ -58,7 +56,9 @@ namespace PTAndroidApp
 			Content = new StackLayout {
 
 				Children = {
+					lblspace,
 					lblHeader,
+					lblspace2,
 					btnPatient,
 					btnSoap
 				},
@@ -66,4 +66,3 @@ namespace PTAndroidApp
 		}
 	}
 }
-
