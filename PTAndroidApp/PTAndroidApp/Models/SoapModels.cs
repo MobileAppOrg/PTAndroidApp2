@@ -177,7 +177,7 @@ namespace PTAndroidApp
 	public class SoapListItemModel
 	{
 		public int PatientVisitId { get; set; }
-		public string Date { get; set; }
+		public DateTime Date { get; set; }
 	}
 }
 

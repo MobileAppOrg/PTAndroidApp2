@@ -173,6 +173,12 @@ namespace PTAndroidApp
 
 			Children.Add (new PatientGeneralInfoPage ());
 			Children.Add (new AdmissiontInfoPage ());
+
+			ToolbarItems.Add (new ToolbarItem(){
+				Icon = "",
+				Text = "Save",
+				Command = new Command(()=>new SoapManager().Add(soap))
+			});
 		}
 			
 	}
@@ -271,19 +277,19 @@ namespace PTAndroidApp
 					HandedNess.Text = handedNessPicker.Items[handedNessPicker.SelectedIndex];
 			};
 
-			PatientVisitId.SetBinding(EntryCell.TextProperty,"PatientVisitId");
-			PatientId.SetBinding(EntryCell.TextProperty,"PatientId");
-			FirstName.SetBinding (EntryCell.TextProperty, "FirstName");
-			LastName.SetBinding (EntryCell.TextProperty, "LastName");
-			Age.SetBinding (EntryCell.TextProperty, "Age");
-			Gender.SetBinding (Entry.TextProperty, "Sex");
-			Address.SetBinding (EntryCell.TextProperty, "Address");
-			CityTown.SetBinding (EntryCell.TextProperty, "CityTown");
-			Province.SetBinding (EntryCell.TextProperty, "Province");
-			CivilStatus.SetBinding (Entry.TextProperty, "CivilStatus");
-			HandedNess.SetBinding (Entry.TextProperty, "HandedNess");
-			Occupation.SetBinding (EntryCell.TextProperty, "Occupation");
-			Religion.SetBinding (EntryCell.TextProperty, "Religion");
+			PatientVisitId.SetBinding(EntryCell.TextProperty,"PatientVisitId", BindingMode.TwoWay);
+			PatientId.SetBinding(EntryCell.TextProperty,"PatientId", BindingMode.TwoWay);
+			FirstName.SetBinding (EntryCell.TextProperty, "FirstName", BindingMode.TwoWay);
+			LastName.SetBinding (EntryCell.TextProperty, "LastName", BindingMode.TwoWay);
+			Age.SetBinding (EntryCell.TextProperty, "Age", BindingMode.TwoWay);
+			Gender.SetBinding (Entry.TextProperty, "Sex", BindingMode.TwoWay);
+			Address.SetBinding (EntryCell.TextProperty, "Address", BindingMode.TwoWay);
+			CityTown.SetBinding (EntryCell.TextProperty, "CityTown", BindingMode.TwoWay);
+			Province.SetBinding (EntryCell.TextProperty, "Province", BindingMode.TwoWay);
+			CivilStatus.SetBinding (Entry.TextProperty, "CivilStatus", BindingMode.TwoWay);
+			HandedNess.SetBinding (Entry.TextProperty, "HandedNess", BindingMode.TwoWay);
+			Occupation.SetBinding (EntryCell.TextProperty, "Occupation", BindingMode.TwoWay);
+			Religion.SetBinding (EntryCell.TextProperty, "Religion", BindingMode.TwoWay);
 
 			return new TableView () {
 				Intent = TableIntent.Form,
@@ -323,10 +329,10 @@ namespace PTAndroidApp
 		static TableView CreateTable(){
 			var patientTypePicker = new Picker (){ Items = { "In-Patient","Out-Patient" }, Title = "Patient Type", HorizontalOptions = LayoutOptions.FillAndExpand };
 			var PatientType = new Entry (){ IsVisible = false };
-			var DateOfAdmission = new MyDatePicker (){ HorizontalOptions = LayoutOptions.FillAndExpand };
-			var DateOfConsultation = new MyDatePicker (){ HorizontalOptions = LayoutOptions.FillAndExpand };
+			var DateOfAdmission = new  DatePickerButton(){ HorizontalOptions = LayoutOptions.FillAndExpand };
+			var DateOfConsultation = new DatePickerButton (){ HorizontalOptions = LayoutOptions.FillAndExpand };
 			var Surgeon = new EntryCell (){ Label = "Surgeon: "};
-			var DateOfSurgery = new MyDatePicker (){ HorizontalOptions = LayoutOptions.FillAndExpand };
+			var DateOfSurgery = new DatePickerButton (){ HorizontalOptions = LayoutOptions.FillAndExpand };
 			var GeneralPhysician = new EntryCell (){ Label = "General Physician: "};
 			var Orthopedic = new EntryCell (){ Label = "Orthopedic: "};
 			var Neurologist = new EntryCell (){ Label = "Neurologist: "};
@@ -335,8 +341,8 @@ namespace PTAndroidApp
 			var Pulmonologist = new EntryCell (){ Label = "Pulmonologist: "};
 			var OtherDoctor = new EntryCell (){ Label = "OtherDoctor: "};
 			var ReferringDoctor = new EntryCell (){ Label = "Referring Doctor: "};
-			var DateOfReferral = new MyDatePicker () { HorizontalOptions = LayoutOptions.FillAndExpand };
-			var DateOfInitialEvaluation = new MyDatePicker (){ HorizontalOptions = LayoutOptions.FillAndExpand };
+			var DateOfReferral = new DatePickerButton () { HorizontalOptions = LayoutOptions.FillAndExpand };
+			var DateOfInitialEvaluation = new DatePickerButton (){ HorizontalOptions = LayoutOptions.FillAndExpand };
 			var Diagnosis = new EntryCell (){ Label = "Diagnosis: "};
 
 			ViewCell patienttypecell = new ViewCell{
@@ -425,9 +431,22 @@ namespace PTAndroidApp
 				}
 			};
 
-			PatientType.SetBinding (Entry.TextProperty, "PatientType");
-			DateOfAdmission.SetBinding (MyDatePicker.NullableDateProperty, "DateOfAdmission");
-			DateOfConsultation.SetBinding (MyDatePicker.NullableDateProperty, "DateOfConsultation");
+			PatientType.SetBinding (Entry.TextProperty, "PatientType", BindingMode.TwoWay);
+			DateOfAdmission.SetBinding (DatePickerButton.DateProperty, "DateOfAdmission", BindingMode.TwoWay);
+			DateOfConsultation.SetBinding (DatePickerButton.DateProperty, "DateOfConsultation", BindingMode.TwoWay);
+			Surgeon.SetBinding (EntryCell.TextProperty, "Surgeon", BindingMode.TwoWay);
+			DateOfSurgery.SetBinding (DatePickerButton.DateProperty, "DateOfSurgery", BindingMode.TwoWay);
+			GeneralPhysician.SetBinding (EntryCell.TextProperty, "GeneralPhysician", BindingMode.TwoWay);
+			Orthopedic.SetBinding (EntryCell.TextProperty, "Orthopedic", BindingMode.TwoWay);
+			Neurologist.SetBinding (EntryCell.TextProperty, "Neurologist", BindingMode.TwoWay);
+			Cardiologist.SetBinding (EntryCell.TextProperty, "Cardiologist", BindingMode.TwoWay);
+			Opthalmologoist.SetBinding (EntryCell.TextProperty, "Opthalmologoist", BindingMode.TwoWay);
+			Pulmonologist.SetBinding (EntryCell.TextProperty, "Pulmonologist", BindingMode.TwoWay);
+			OtherDoctor.SetBinding (EntryCell.TextProperty, "OtherDoctor", BindingMode.TwoWay);
+			ReferringDoctor.SetBinding (EntryCell.TextProperty, "ReferringDoctor", BindingMode.TwoWay);
+			DateOfReferral.SetBinding (DatePickerButton.DateProperty, "DateOfReferral", BindingMode.TwoWay);
+			DateOfInitialEvaluation.SetBinding (DatePickerButton.DateProperty, "DateOfInitialEvaluation", BindingMode.TwoWay);
+			Diagnosis.SetBinding (EntryCell.TextProperty, "Diagnosis", BindingMode.TwoWay);
 
 			return new TableView () {
 				Intent = TableIntent.Form,
