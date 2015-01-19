@@ -28,9 +28,7 @@ namespace PTAndroidApp
 			ToolbarItem t1 = new ToolbarItem();
 			t1.Text = "Add";
 			t1.Icon = "ic_action_new.png";
-			t1.Clicked += delegate {
-				Navigation.PushAsync(new AddPatients  ("Add"));
-			};
+
 
 			ToolbarItem t2 = new ToolbarItem();
 			t2.Text = "Add";
@@ -57,15 +55,15 @@ namespace PTAndroidApp
 			PatientListItemModel selectedItem = (PatientListItemModel)e.SelectedItem;
 			var ID = selectedItem.PatientId;
 			Navigation.PushAsync  (new AddPatients  ("Edit",ID));
+			};
 
-
+			t1.Clicked += delegate {
+				Navigation.PushAsync(new AddPatients  ("Add"));
 			};
 
 			t2.Clicked += delegate {
-
 				SrchbarPatient .Text = "";
 				lstpatient.ItemsSource = plist.Where(patient => patient.DisplayName.ToLower().Contains(SrchbarPatient.Text .ToLower())).ToList();
-				//Navigation.PopAsync();
 			};
 
 
@@ -83,7 +81,6 @@ namespace PTAndroidApp
 				};
 			}
 
-	
 		//list view data template type
 		public class PatientView:ViewCell 
 		{
@@ -152,7 +149,9 @@ namespace PTAndroidApp
 				patient = pmgr.GetPatient (patientId);
 
 				BindingContext = patient;
+
 			var pstControlLayout = lstPatientControls (mode);
+
 			Content = new StackLayout {
 				Children = {pstControlLayout }
 			};
@@ -174,16 +173,24 @@ namespace PTAndroidApp
 			DtOfBirth.SetBinding (DatePicker.DateProperty, "DateOfBirth");
 
 			var CivilStatus = new Entry (){ IsVisible = false };
+			CivilStatus.SetBinding (Entry.TextProperty, "CivilStatus");
+
 			var civilStatusPicker = new Picker (){ Items = { "Single", "Married", "Divorced", "Widowed" }, 
 				Title = "Civil Status", 
 				HorizontalOptions = LayoutOptions.FillAndExpand };
-				
+
+	
+
 			var HandedNess = new Entry (){ IsVisible = false };
+			HandedNess.SetBinding (Entry.TextProperty, "HandedNess");
+
 			var pckHandedNess = new Picker (){ Items = { "Right", "Left",}, 
 				Title = "Handedness", 
 				HorizontalOptions = LayoutOptions.FillAndExpand };
 				
 			var Gender = new Entry (){ IsVisible = false  };
+			Gender.SetBinding (Entry.TextProperty, "Gender");
+
 			var pckGender = new Picker (){ Items = { "Male", "Female",}, 
 				Title = "Gender", 
 				HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -203,13 +210,21 @@ namespace PTAndroidApp
 			var txtProvince = new Entry { Placeholder = "Province",TextColor = Color.Black, };
 			txtProvince.SetBinding (Entry.TextProperty, "Province");
 
-			CivilStatus.SetBinding (Entry.TextProperty, "CivilStatus");
-			HandedNess.SetBinding (Entry.TextProperty, "HandedNess");
-			Gender.SetBinding (Entry.TextProperty, "Gender");
+			var btnSave = new Button { Text = "Save",TextColor = Color.Black,
+				BackgroundColor = Color.Silver,
+				VerticalOptions = LayoutOptions.StartAndExpand ,
+			};
 
-			//civilStatusPicker.Items =  
-			//pckHandedNess
-			//pckGender
+
+			if (mode == "Edit") {
+				//CivilStatus
+				//HandedNess
+				//Gender
+
+			}
+
+
+
 			civilStatusPicker.SelectedIndexChanged += delegate(object sender, EventArgs e) {
 				if (civilStatusPicker.SelectedIndex == -1)
 					CivilStatus.Text = null;
@@ -231,14 +246,6 @@ namespace PTAndroidApp
 					Gender.Text = pckGender.Items[pckGender.SelectedIndex];
 			};
 				
-
-
-			var btnSave = new Button { Text = "Save",TextColor = Color.Black,
-				BackgroundColor = Color.Silver,
-				VerticalOptions = LayoutOptions.StartAndExpand ,
-				//HorizontalOptions = LayoutOptions.CenterAndExpand
-			};
-
 			var btnDel = new Button { Text = "Delete", 
 				TextColor = Color.Black,
 				BackgroundColor = Color.Silver,
@@ -284,14 +291,14 @@ namespace PTAndroidApp
 				VerticalOptions = LayoutOptions.FillAndExpand,
 				Content = new StackLayout {
 					Children = {
-						txtFName, txtLName, DtOfBirth, civilStatusPicker,
-						pckHandedNess, pckGender, txtOccupation,
-						txtAddress,txtProvince,txtCityTown,
-						txtReligion,btnSave,btnDel
+						txtFName, txtLName, DtOfBirth,civilStatusPicker,
+						CivilStatus,HandedNess, Gender,pckHandedNess,
+						pckGender, txtOccupation,txtAddress,
+						txtProvince,txtCityTown,txtReligion,btnSave,btnDel
 					}
 				}
 			};
-		
+
 			return pstControlsLayout;
 		}
 	}
