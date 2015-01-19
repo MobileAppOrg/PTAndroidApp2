@@ -156,6 +156,7 @@ namespace PTAndroidApp
 
 
 			patient = patientMgr.GetPatient (patientId);
+			soap.PatientId = patient.PatientId;
 			soap.FirstName = patient.FirstName;
 			soap.LastName = patient.LastName;
 			soap.Age =  DateTime.Now.Year - patient.DateOfBirth.Year;
