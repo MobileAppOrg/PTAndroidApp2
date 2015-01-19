@@ -84,7 +84,8 @@ namespace PTAndroidApp
 				FontAttributes = FontAttributes.Bold,
 				FontSize = 30,
 				FontFamily = "",	
-				TextColor = Color.Black,
+				TextColor = Color.Navy,
+
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
 				XAlign = TextAlignment.Center,
 				YAlign = TextAlignment.Center

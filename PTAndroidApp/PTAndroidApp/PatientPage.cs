@@ -143,6 +143,7 @@ namespace PTAndroidApp
 			pmgr = new PatientManager ();
 			patient = new Patient ();
 
+
 			Title = "Add Patient";
 
 			if (mode=="Edit")
@@ -159,6 +160,12 @@ namespace PTAndroidApp
 		
 		public ScrollView  lstPatientControls (string mode) 
 		{
+
+			int Index;
+
+
+
+
 			var txtPatientId = new Entry {TextColor = Color.Black,};
 			txtPatientId.SetBinding (Entry.TextProperty, "PatientId");
 
@@ -178,9 +185,7 @@ namespace PTAndroidApp
 			var civilStatusPicker = new Picker (){ Items = { "Single", "Married", "Divorced", "Widowed" }, 
 				Title = "Civil Status", 
 				HorizontalOptions = LayoutOptions.FillAndExpand };
-
-	
-
+				
 			var HandedNess = new Entry (){ IsVisible = false };
 			HandedNess.SetBinding (Entry.TextProperty, "HandedNess");
 
@@ -215,16 +220,20 @@ namespace PTAndroidApp
 				VerticalOptions = LayoutOptions.StartAndExpand ,
 			};
 
-
 			if (mode == "Edit") {
-				//CivilStatus
-				//HandedNess
-				//Gender
+
+				Index = pckHandedNess.Items.IndexOf (patient.HandedNess  );
+				pckHandedNess.SelectedIndex  = Index;
+
+				Index = pckGender.Items.IndexOf (patient.Gender);
+				pckGender.SelectedIndex  = Index;
+
+				Index = civilStatusPicker.Items.IndexOf (patient.CivilStatus);
+				civilStatusPicker.SelectedIndex  = Index;
+
 
 			}
-
-
-
+				
 			civilStatusPicker.SelectedIndexChanged += delegate(object sender, EventArgs e) {
 				if (civilStatusPicker.SelectedIndex == -1)
 					CivilStatus.Text = null;
