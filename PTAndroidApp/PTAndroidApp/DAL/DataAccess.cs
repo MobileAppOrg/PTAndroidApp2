@@ -3,6 +3,7 @@ using RestSharp;
 using System.Collections.Generic;
 using RestSharp.Deserializers;
 using PTAndroidApp.Models;
+using Newtonsoft.Json;
 
 namespace PTAndroidApp
 {
@@ -178,7 +179,15 @@ namespace PTAndroidApp
 			var request = new RestRequest("api/PatientVisits", Method.POST );
 
 			// add parameters for all properties on an object
-			request.AddObject(soap);
+			string json = JsonConvert.SerializeObject (
+				soap, 
+				new JsonSerializerSettings (){ 
+					DateFormatHandling = DateFormatHandling.IsoDateFormat,
+					NullValueHandling = NullValueHandling.Include 
+				});
+
+			//request.AddObject(soap);
+			request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
 			request.RequestFormat = DataFormat.Json;
 
 			// send request

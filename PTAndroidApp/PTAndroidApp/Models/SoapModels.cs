@@ -74,6 +74,7 @@ namespace PTAndroidApp
 
 		public PMHx PMHx { get; set; }
 		public FMHx FMHx { get; set; }
+		public PSEHx PSEHx { get; set; }
 
 
 		// Navigation Properties and Foreign Keys
@@ -178,6 +179,25 @@ namespace PTAndroidApp
 	{
 		public int PatientVisitId { get; set; }
 		public DateTime Date { get; set; }
+	}
+
+	public class PSEHx
+	{
+		public string FinancialStatus { get; set; }
+		public string PersonalityType { get; set; }
+		public string LifeStyle { get; set; }
+		public string EducationalAttainment { get; set; }
+		public string LivesWith { get; set; }
+		public int NumberOfOffspring { get; set; }
+		public string Relatives {get;set;}
+		public string OtherLivesWith { get; set; }
+		public string Hobbies { get; set; }
+		public string Sports { get; set; }
+		public string OtherHobbies { get; set; }
+		public bool CigaretteSmoker { get; set; }
+		public bool AlcoholDrinker { get; set; }
+		public string TypeOfHouse { get; set; }
+		public string OtherTypeOfHouse { get; set; }
 	}
 }
 
