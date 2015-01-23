@@ -9,13 +9,14 @@ using Android.Widget;
 using Android.OS;
 
 using Xamarin.Forms.Platform.Android;
+using Xamarin.Forms.Labs.Droid;
 
 
 namespace PTAndroidApp.Android
 {
 	[Activity (Label = "PTAndroidApp.Android.Android", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, Theme = "@android:style/Theme.Holo.Light")]
 
-	public class MainActivity : AndroidActivity  
+	public class MainActivity : XFormsApplicationDroid  
 
 	{
 

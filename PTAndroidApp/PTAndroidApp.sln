@@ -16,7 +16,4 @@ Global
 		{D983C67B-486F-466B-B09D-02012BB1211B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D983C67B-486F-466B-B09D-02012BB1211B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Android\PTAndroidApp.Android.csproj
-	EndGlobalSection
 EndGlobal
