@@ -173,6 +173,7 @@ namespace PTAndroidApp
 
 			Children.Add (new PatientGeneralInfoPage ());
 			Children.Add (new AdmissiontInfoPage ());
+			Children.Add (new DrugHxPage ());
 
 			ToolbarItems.Add (new ToolbarItem(){
 				Icon = "",
