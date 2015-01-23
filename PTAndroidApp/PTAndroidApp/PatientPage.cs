@@ -59,7 +59,7 @@ namespace PTAndroidApp
 
 			t1.Clicked += delegate {
 				//Navigation.PushAsync(new AddPatients  ("Add"));
-				Navigation.PushAsync(new ANCILLARYPage  ());
+				//Navigation.PushAsync(new ANCILLARYPage  ());
 
 			};
 

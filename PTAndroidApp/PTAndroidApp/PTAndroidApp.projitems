@@ -17,25 +17,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\SoapModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomControls.cs" />
-<<<<<<< HEAD
-    <Compile Include="$(MSBuildThisFileDirectory)ANCILLARYPage.xaml.cs">
-      <DependentUpon>ANCILLARYPage.xaml</DependentUpon>
-=======
-    <Compile Include="$(MSBuildThisFileDirectory)XAML\DrugHxPage.xaml.cs">
-      <DependentUpon>DrugHxPage.xaml</DependentUpon>
->>>>>>> origin/master
-    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)SoapDrugsPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
     <Folder Include="$(MSBuildThisFileDirectory)DAL\" />
     <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
     <Folder Include="$(MSBuildThisFileDirectory)XAML\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)XAML\DrugHxPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)ANCILLARYPage.xaml">
