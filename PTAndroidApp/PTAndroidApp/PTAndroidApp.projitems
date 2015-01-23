@@ -17,10 +17,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\SoapModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomControls.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ANCILLARYPage.xaml.cs">
+      <DependentUpon>ANCILLARYPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
     <Folder Include="$(MSBuildThisFileDirectory)DAL\" />
     <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)ANCILLARYPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

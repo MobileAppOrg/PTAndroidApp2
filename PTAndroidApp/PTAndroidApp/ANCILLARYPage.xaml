@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns:android="http://schemas.android.com/apk/res/android" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PTAndroidApp.ANCILLARYPage">
+	<ContentPage.Content>
+
+
+
+
+   
+  <StackLayout>
+
+  		<Switch
+/>
+
+    <Slider VerticalOptions="CenterAndExpand" />
+
+    <Label Text="A simple Label"
+           Font="Large"
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />
+
+    <Button Text="Click Me!"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand" />
+
+  </StackLayout>
+
+	</ContentPage.Content>
+</ContentPage>

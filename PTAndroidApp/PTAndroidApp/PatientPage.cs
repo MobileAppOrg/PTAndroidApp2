@@ -58,12 +58,15 @@ namespace PTAndroidApp
 			};
 
 			t1.Clicked += delegate {
-				Navigation.PushAsync(new AddPatients  ("Add"));
+				//Navigation.PushAsync(new AddPatients  ("Add"));
+				Navigation.PushAsync(new ANCILLARYPage  ());
+
 			};
 
 			t2.Clicked += delegate {
 				SrchbarPatient .Text = "";
 				lstpatient.ItemsSource = plist.Where(patient => patient.DisplayName.ToLower().Contains(SrchbarPatient.Text .ToLower())).ToList();
+				Navigation.PushAsync( new pmhxpage());
 			};
 
 
@@ -75,9 +78,7 @@ namespace PTAndroidApp
 			Content = new StackLayout {
 				Children = {
 					SrchbarPatient,
-					lstpatient, 
-
-					}
+					lstpatient}
 				};
 			}
 
@@ -143,7 +144,6 @@ namespace PTAndroidApp
 			pmgr = new PatientManager ();
 			patient = new Patient ();
 
-
 			Title = "Add Patient";
 
 			if (mode=="Edit")
@@ -162,9 +162,6 @@ namespace PTAndroidApp
 		{
 
 			int Index;
-
-
-
 
 			var txtPatientId = new Entry {TextColor = Color.Black,};
 			txtPatientId.SetBinding (Entry.TextProperty, "PatientId");
@@ -217,9 +214,17 @@ namespace PTAndroidApp
 
 			var btnSave = new Button { Text = "Save",TextColor = Color.Black,
 				BackgroundColor = Color.Silver,
-				VerticalOptions = LayoutOptions.StartAndExpand ,
-			};
+				HorizontalOptions = LayoutOptions.FillAndExpand };
 
+			var btnDel = new Button { Text = "Delete", 
+				TextColor = Color.Black,
+				BackgroundColor = Color.Silver,
+				HorizontalOptions = LayoutOptions .FillAndExpand };
+
+			var buttons = new StackLayout {
+				Children = {btnDel,btnSave},
+				Orientation = StackOrientation .Horizontal };
+				
 			if (mode == "Edit") {
 
 				Index = pckHandedNess.Items.IndexOf (patient.HandedNess  );
@@ -229,10 +234,7 @@ namespace PTAndroidApp
 				pckGender.SelectedIndex  = Index;
 
 				Index = civilStatusPicker.Items.IndexOf (patient.CivilStatus);
-				civilStatusPicker.SelectedIndex  = Index;
-
-
-			}
+				civilStatusPicker.SelectedIndex  = Index;}
 				
 			civilStatusPicker.SelectedIndexChanged += delegate(object sender, EventArgs e) {
 				if (civilStatusPicker.SelectedIndex == -1)
@@ -255,13 +257,6 @@ namespace PTAndroidApp
 					Gender.Text = pckGender.Items[pckGender.SelectedIndex];
 			};
 				
-			var btnDel = new Button { Text = "Delete", 
-				TextColor = Color.Black,
-				BackgroundColor = Color.Silver,
-				VerticalOptions = LayoutOptions.EndAndExpand  ,
-				//HorizontalOptions  = LayoutOptions.CenterAndExpand
-				};
-				
 			btnSave.Clicked  += async (sender, e) => {
 				if (mode=="Add")
 				{
@@ -277,7 +272,6 @@ namespace PTAndroidApp
 					Navigation.PopAsync();
 					Navigation.PushAsync (new SearchPatientPage());
 				}
-					
 			};
 				
 			var btn = new bool ();
@@ -303,8 +297,7 @@ namespace PTAndroidApp
 						txtFName, txtLName, DtOfBirth,civilStatusPicker,
 						CivilStatus,HandedNess, Gender,pckHandedNess,
 						pckGender, txtOccupation,txtAddress,
-						txtProvince,txtCityTown,txtReligion,btnSave,btnDel
-					}
+						txtProvince,txtCityTown,txtReligion,buttons}
 				}
 			};
 
