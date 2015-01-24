@@ -55,7 +55,6 @@ namespace PTAndroidApp
 				Console.WriteLine (response.Content);
 			});
 
-
 			return true;
 		}
 
@@ -215,6 +214,25 @@ namespace PTAndroidApp
 			return true;
 		}
 
+		public bool Edit(int id,PatientVisit patientVisit){
+			// Put code to communicate to web service here
+			var client = new RestClient (clientUrl);
+			var request = new RestRequest("api/PatientVisits/{id}", Method.PUT );
+
+			request.RequestFormat = DataFormat.Json;
+
+			// edit parameters for all properties on an object
+			request.Parameters.Clear();
+			request.AddUrlSegment ("id", id.ToString());
+			request.AddBody (patientVisit);
+
+			client.ExecuteAsync (request, response => {
+				Console.WriteLine (response.Content);
+			});
+
+			return true;
+		}
+
 		public bool Delete(int PatientVisitId){
 			// Put code to communicate to web service here
 			var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
@@ -222,7 +240,7 @@ namespace PTAndroidApp
 			var request = new RestRequest("api/PatientVisits/{id}", Method.DELETE  );
 
 
-			request.AddParameter("id",PatientVisitId);
+			request.AddUrlSegment("id",PatientVisitId.ToString());
 			RestSharp.Deserializers.JsonDeserializer deserial= new JsonDeserializer();
 
 			// send request
