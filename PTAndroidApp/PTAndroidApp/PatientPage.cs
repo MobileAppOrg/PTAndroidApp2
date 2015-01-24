@@ -254,13 +254,9 @@ namespace PTAndroidApp
 				{
 					pmgr.Add(patient);
 					await DisplayAlert ( txtFName.Text  + " " + txtLName.Text , "has been added!", "Ok");
+				//Navigation.PushAsync (new SearchPatientPage());
 					await Navigation.PopAsync();
-<<<<<<< HEAD
 
-
-=======
-					//Navigation.PushAsync (new SearchPatientPage());
->>>>>>> origin/master
 				}
 				else
 				{
@@ -268,8 +264,6 @@ namespace PTAndroidApp
 					await DisplayAlert ( txtFName.Text  + " " + txtLName.Text , "has been updated!", "Ok");
 					await Navigation.PopAsync();
 
-
-				
 				}
 			};
 				
