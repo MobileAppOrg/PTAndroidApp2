@@ -70,12 +70,9 @@ namespace PTAndroidApp
 			};
 
 			t2.Clicked += delegate {
-				//SrchbarPatient .Text = "";
-				//lstpatient.ItemsSource = plist.Where(patient => patient.DisplayName.ToLower().Contains(SrchbarPatient.Text .ToLower())).ToList();
-
-				RefreshData refData = new RefreshData ();
-				lstpatient.ItemsSource = refData.RefData() ;
-
+				plist = pmgr.getPatientsList ();
+				lstpatient.ItemsSource = plist ;
+				//Navigation.PushAsync  (new AncillaryPage());
 			};
 				
 			ToolbarItems.Add (t2);
@@ -88,8 +85,6 @@ namespace PTAndroidApp
 					lstpatient}
 				};
 			}
-
-
 
 		//list view data template type
 		public class PatientView:ViewCell 
@@ -134,19 +129,9 @@ namespace PTAndroidApp
 				return nameLayout;
 			}
 		};
-
 			
 	}
 		
-	public class RefreshData {
-
-		public List <PatientListItemModel> RefData ()
-		{	
-			PatientManager pmgr = new PatientManager ();
-			List <PatientListItemModel> plist = pmgr.getPatientsList ();
-			return plist;
-		}
-	}
 
 
 	public class AddPatients: ContentPage 
