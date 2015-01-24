@@ -119,7 +119,8 @@ namespace PTAndroidApp
 
 			lstsoap.ItemSelected += async (sender, e) => {
 				SoapListItemModel selectedItem = (SoapListItemModel)e.SelectedItem;
-				await DisplayAlert("Tapped!", selectedItem.PatientVisitId + " was tapped.", "OK");
+				//await DisplayAlert("Tapped!", selectedItem.PatientVisitId + " was tapped.", "OK");
+				Navigation.PushAsync(new SoapPage(selectedItem.PatientVisitId,"Edit"));
 			};
 
 			ToolbarItems.Add (t1);
@@ -162,7 +163,7 @@ namespace PTAndroidApp
 			//DisplayAlert ("Carousel Page Main", "OnAppearing", "OK");
 		}
 
-		public SoapPage(int patientId){
+		public SoapPage(int id, string mode = "Add"){
 			Title = "Add SOAP";
 			//DisplayAlert ("Carousel Page Main", "Constructor", "OK");
 			PatientManager patientMgr = new PatientManager ();
@@ -170,19 +171,23 @@ namespace PTAndroidApp
 			PatientVisit soap = new PatientVisit ();
 			Patient patient = new Patient ();
 
-			patient = patientMgr.GetPatient (patientId);
-			soap.PatientId = patient.PatientId;
-			soap.FirstName = patient.FirstName;
-			soap.LastName = patient.LastName;
-			soap.Age =  DateTime.Now.Year - patient.DateOfBirth.Year;
-			soap.Address = patient.Address;
-			soap.CityTown = patient.CityTown;
-			soap.Province = patient.Province;
-			soap.CivilStatus = patient.CivilStatus;
-			soap.HandedNess = patient.HandedNess;
-			soap.Sex = patient.Gender;
-			soap.Occupation = patient.Occupation;
-			soap.Religion = patient.Religion;
+			if (mode == "Add") {
+				patient = patientMgr.GetPatient (id);
+				soap.PatientId = patient.PatientId;
+				soap.FirstName = patient.FirstName;
+				soap.LastName = patient.LastName;
+				soap.Age = DateTime.Now.Year - patient.DateOfBirth.Year;
+				soap.Address = patient.Address;
+				soap.CityTown = patient.CityTown;
+				soap.Province = patient.Province;
+				soap.CivilStatus = patient.CivilStatus;
+				soap.HandedNess = patient.HandedNess;
+				soap.Sex = patient.Gender;
+				soap.Occupation = patient.Occupation;
+				soap.Religion = patient.Religion;
+			} else {
+				soap = soapMgr.GetSoap (id);
+			}
 
 			BindingContext = soap;
 
@@ -195,6 +200,15 @@ namespace PTAndroidApp
 				Text = "Save",
 				Command = new Command(()=>new SoapManager().Add(soap))
 			});
+
+			if (mode != "Add") {
+				ToolbarItems.Add (new ToolbarItem () {
+					Icon="",
+					Text="Delete",
+					Order=ToolbarItemOrder.Secondary,
+					Command = new Command(()=>new SoapManager().Delete(soap.PatientVisitId))
+				});
+			}
 		}
 			
 	}

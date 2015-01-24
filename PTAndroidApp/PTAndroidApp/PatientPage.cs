@@ -62,7 +62,7 @@ namespace PTAndroidApp
 			lstpatient.ItemSelected += async (sender, e) => {
 				PatientListItemModel selectedItem = (PatientListItemModel)e.SelectedItem;
 				var ID = selectedItem.PatientId;
-				Navigation.PushAsync  (new AddPatients  ("Edit",ID));
+				await Navigation.PushAsync  (new AddPatients  ("Edit",ID));
 			};
 
 			t1.Clicked += delegate {
@@ -70,12 +70,7 @@ namespace PTAndroidApp
 			};
 
 			t2.Clicked += delegate {
-				//SrchbarPatient .Text = "";
-				//lstpatient.ItemsSource = plist.Where(patient => patient.DisplayName.ToLower().Contains(SrchbarPatient.Text .ToLower())).ToList();
-
-				RefreshData refData = new RefreshData ();
-				lstpatient.ItemsSource = refData.RefData() ;
-
+				RefreshList();
 			};
 				
 			ToolbarItems.Add (t2);
@@ -136,16 +131,6 @@ namespace PTAndroidApp
 		};
 
 			
-	}
-		
-	public class RefreshData {
-
-		public List <PatientListItemModel> RefData ()
-		{	
-			PatientManager pmgr = new PatientManager ();
-			List <PatientListItemModel> plist = pmgr.getPatientsList ();
-			return plist;
-		}
 	}
 
 

@@ -159,6 +159,20 @@ namespace PTAndroidApp
 		//string clientUrl = "https://localhost:44301";
 		//string clientUrl = "localhost:57131";
 
+		public PatientVisit GetSoap(int PatientVisitId){
+			// Put code to communicate to web service here
+			var client = new RestClient (clientUrl);
+			var request = new RestRequest("api/PatientVisits/{id}", Method.GET);
+			request.AddParameter("id",PatientVisitId);
+
+			RestSharp.Deserializers.JsonDeserializer deserial= new JsonDeserializer();
+
+			// send request
+			var soap = deserial.Deserialize<PatientVisit> (client.Execute (request));
+
+			return soap;
+		}
+
 		public List<SoapListItemModel> GetSoapList(int PatientId){
 			// Put code to communicate to web service here
 			var client = new RestClient (clientUrl);
@@ -197,6 +211,22 @@ namespace PTAndroidApp
 				// Notify user if error
 				 Console.WriteLine (response.Content);
 			});
+
+			return true;
+		}
+
+		public bool Delete(int PatientVisitId){
+			// Put code to communicate to web service here
+			var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
+			// 
+			var request = new RestRequest("api/PatientVisits/{id}", Method.DELETE  );
+
+
+			request.AddParameter("id",PatientVisitId);
+			RestSharp.Deserializers.JsonDeserializer deserial= new JsonDeserializer();
+
+			// send request
+			var soap = deserial.Deserialize<PatientVisit> (client.Execute (request));
 
 			return true;
 		}
