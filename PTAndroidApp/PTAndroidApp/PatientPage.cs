@@ -84,8 +84,6 @@ namespace PTAndroidApp
 				};
 			}
 
-
-
 		//list view data template type
 		public class PatientView:ViewCell 
 		{
@@ -129,7 +127,6 @@ namespace PTAndroidApp
 				return nameLayout;
 			}
 		};
-
 			
 	}
 
