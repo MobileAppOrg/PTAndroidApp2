@@ -29,11 +29,9 @@ namespace PTAndroidApp
 			t1.Text = "Add";
 			t1.Icon = "ic_action_new.png";
 
-
 			ToolbarItem t2 = new ToolbarItem();
 			t2.Text = "Add";
 			t2.Icon = "ic_action_refresh.png";
-
 
 			var SrchbarPatient = new SearchBar {
 				Placeholder = "Search Patient",
@@ -58,21 +56,17 @@ namespace PTAndroidApp
 			};
 
 			t1.Clicked += delegate {
-				//Navigation.PushAsync(new AddPatients  ("Add"));
-				//Navigation.PushAsync(new ANCILLARYPage  ());
-
+				Navigation.PushAsync(new AddPatients  ("Add"));
 			};
 
 			t2.Clicked += delegate {
 				SrchbarPatient .Text = "";
 				lstpatient.ItemsSource = plist.Where(patient => patient.DisplayName.ToLower().Contains(SrchbarPatient.Text .ToLower())).ToList();
-				Navigation.PushAsync( new pmhxpage());
+				Navigation.PushAsync( new AncillaryPage());
 			};
-
-
+				
 			ToolbarItems.Add (t2);
 			ToolbarItems.Add (t1);
-
 
 			//content of the page
 			Content = new StackLayout {
@@ -124,20 +118,16 @@ namespace PTAndroidApp
 				};	
 				return nameLayout;
 			}
-
 		};
 
 			
 	}
 		
-
 	public class AddPatients: ContentPage 
 	{
 
 		static Patient patient;
 		static PatientManager pmgr;
-
-
 
 		public AddPatients(string mode,int patientId=0) 
 		{

@@ -1,8 +1,8 @@
 ﻿using System;
-using Xamarin.Forms;
 using System.Collections.Generic;
-using PTAndroidApp.Models;
 using PTAndroidApp.Controls;
+using PTAndroidApp.Models;
+using Xamarin.Forms;
 
 namespace PTAndroidApp
 {
@@ -11,7 +11,6 @@ namespace PTAndroidApp
 		// Search Patient Page for SOAP
 		public SearchSoapPatientPage()
 		{
-
 			PatientManager pmgr = new PatientManager ();
 			List<PatientListItemModel> pList = pmgr.getPatientsList ();
 			ListView lstpatient = new ListView { RowHeight = 40 };
@@ -24,7 +23,6 @@ namespace PTAndroidApp
 				await Navigation.PushAsync(new PatientSoapPage(selectedItem.PatientId));
 				//await DisplayAlert("Tapped!", selectedItem.PatientId + " was tapped.", "OK");
 			};
-
 			Content = lstpatient;	//content of the page
 		}
 	}
@@ -42,9 +40,8 @@ namespace PTAndroidApp
 			var nameLayout = CreateNameLayout();
 
 			var viewLayout = new StackLayout()
-			{
-				Orientation = StackOrientation.Horizontal,
-				Children = { nameLabel, nameLayout }
+			{Orientation = StackOrientation.Horizontal,
+			Children = { nameLabel, nameLayout }
 			};
 			View = viewLayout;
 		}
@@ -90,8 +87,7 @@ namespace PTAndroidApp
 			t1.Clicked += delegate {
 				Navigation.PushAsync(new SoapPage(id));
 			};
-
-
+				
 			SoapManager smgr = new SoapManager ();
 			List<SoapListItemModel> sList = smgr.GetSoapList (id);
 
@@ -106,7 +102,6 @@ namespace PTAndroidApp
 			};
 
 			ToolbarItems.Add (t1);
-
 			//content of the page
 			Content = lstsoap;
 		}
@@ -119,7 +114,6 @@ namespace PTAndroidApp
 			var lblId = new Label { IsVisible = false };
 
 			lblId.SetBinding(Label.TextProperty, "PatientVisitId");
-
 
 			var lblDate = new Label { HorizontalOptions= LayoutOptions.FillAndExpand };
 
@@ -153,7 +147,6 @@ namespace PTAndroidApp
 			SoapManager soapMgr = new SoapManager ();
 			PatientVisit soap = new PatientVisit ();
 			Patient patient = new Patient ();
-
 
 			patient = patientMgr.GetPatient (patientId);
 			soap.PatientId = patient.PatientId;
@@ -497,16 +490,15 @@ namespace PTAndroidApp
 			var cancer = Cancer ();
 			var others = Others ();
 
-			var pmhscontrols = new ScrollView {
+			var pmhxcontrols = new ScrollView {
 				Content = new StackLayout {
 					Children = { trauma, athritis, dm, allergies, surgery, surgery2,
 						hospitalization, hospitalization2, cardiovascularDisease,
-						pulmonaryCondition, neurologyCondition, cancer, others
-					}
+						pulmonaryCondition, neurologyCondition, cancer, others}
 				}
 			};
 			Content = new StackLayout {
-				Children = { pmhscontrols }
+				Children = { pmhxcontrols }
 			};
 		}
 
@@ -550,8 +542,7 @@ namespace PTAndroidApp
 					
 			return ArthritisRow;
 		}
-
-
+			
 		static StackLayout DM()
 		{
 			var pckDM = new Picker () { Items = { "IDDM", "NIDDM", }, 
@@ -566,8 +557,7 @@ namespace PTAndroidApp
 			};
 			return DMrow;
 		}
-
-
+			
 		static StackLayout Allergies ()
 		{
 			var lblallergies = new Label {
@@ -610,7 +600,7 @@ namespace PTAndroidApp
 			var SurgerysRow= new StackLayout () {
 				HorizontalOptions = LayoutOptions.FillAndExpand ,
 				Orientation = StackOrientation.Horizontal,
-				Children = { txtSurgery}
+				Children = {txtSurgery}
 			};
 			return SurgerysRow;
 		}
@@ -731,6 +721,68 @@ namespace PTAndroidApp
 
 			return OthersRow;
 		}
+
+	}
+
+	public class AncillaryPage:ContentPage 
+	{
+		Grid gr = new Grid ();
+	//	RowDefinition row = new RowDefinition(){ Height = GridLength.Auto };
+	//	ColumnDefinition col = new ColumnDefinition(){Width = new GridLength(1, GridUnitType.Star)};
+
+		public AncillaryPage ()
+		{
+			var lblAncillaryProc = new Label {
+				Text = "Ancillary Procedure", FontSize = 17,
+				VerticalOptions = LayoutOptions .EndAndExpand,
+				HorizontalOptions = LayoutOptions .Center };
+
+			var pckAncillary = new Picker () { Items = { "XRAY", "MRI", "Blood Test","NCV","EMG","CT SCAN"}, 
+				Title = "List of Procedure", 
+				HorizontalOptions = LayoutOptions.StartAndExpand
+			};
+
+			var txtAncillary = new Entry {
+				Placeholder = "Other Procedures",
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+			};
+			var dtAncillary = new DatePicker {
+				Format = "D",
+
+			};
+			var btnAdd = new Button {
+				Text = "Add Ancillary",
+				HorizontalOptions = LayoutOptions.FillAndExpand
+			};
+
+			var AncillaryControls = new StackLayout () {
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				Orientation = StackOrientation.Vertical ,
+				Children = {  lblAncillaryProc, pckAncillary, txtAncillary,
+					dtAncillary, btnAdd }
+			};
+					
+
+			btnAdd.Clicked += delegate {
+				int i = gr.Children.Count;
+				gr.Children.Add(new Label{Text = pckAncillary.Items [pckAncillary .SelectedIndex ], FontSize= 15, VerticalOptions = LayoutOptions.Start , HorizontalOptions = LayoutOptions .CenterAndExpand },0,i);
+				gr.Children.Add(new Label{Text = dtAncillary .Date .ToString (), FontSize = 15, VerticalOptions = LayoutOptions.Start , HorizontalOptions = LayoutOptions .CenterAndExpand },1,i);
+				gr.Children.Add(new Label{Text = txtAncillary.Text,FontSize = 15, VerticalOptions = LayoutOptions.Start , HorizontalOptions = LayoutOptions.CenterAndExpand  },2,i);
+			}; 
+
+
+			var AncillaryList = new ScrollView {
+				Content = new StackLayout {
+					Children = {gr}
+				}
+
+			};
+
+			Content = new StackLayout {
+				Children = { AncillaryControls, AncillaryList }
+			};
+		}
+
 
 	}
 }
