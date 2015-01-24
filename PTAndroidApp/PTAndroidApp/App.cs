@@ -11,9 +11,9 @@ namespace PTAndroidApp
 		}
 
 
-		public static Page SearchPatientPage ()
+		public static Page AncillaryPage ()
 		{
-			return new NavigationPage(new SearchPatientPage());
+			return new NavigationPage(new AncillaryPage());
 
 		}
 

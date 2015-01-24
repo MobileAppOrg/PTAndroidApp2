@@ -19,6 +19,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomControls.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ValueConverters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\SoapDrugsPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\AncillaryPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PMHxPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
