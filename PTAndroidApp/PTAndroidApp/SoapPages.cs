@@ -731,9 +731,7 @@ namespace PTAndroidApp
 	public class AncillaryPage:ContentPage 
 	{
 		Grid gr = new Grid ();
-	//	RowDefinition row = new RowDefinition(){ Height = GridLength.Auto };
-	//	ColumnDefinition col = new ColumnDefinition(){Width = new GridLength(1, GridUnitType.Star)};
-
+	
 		public AncillaryPage ()
 		{
 			var lblAncillaryProc = new Label {

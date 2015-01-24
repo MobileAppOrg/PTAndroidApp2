@@ -21,7 +21,7 @@ namespace PTAndroidApp
 
 	public class SearchPatientPage : ContentPage   
 
-	{
+	{		
 			public SearchPatientPage()
 		{		
 			Title = "List of Patients";
@@ -61,9 +61,12 @@ namespace PTAndroidApp
 			};
 
 			t2.Clicked += delegate {
-				SrchbarPatient .Text = "";
-				lstpatient.ItemsSource = plist.Where(patient => patient.DisplayName.ToLower().Contains(SrchbarPatient.Text .ToLower())).ToList();
-				Navigation.PushAsync( new AncillaryPage());
+				//SrchbarPatient .Text = "";
+				//lstpatient.ItemsSource = plist.Where(patient => patient.DisplayName.ToLower().Contains(SrchbarPatient.Text .ToLower())).ToList();
+
+				RefreshData refData = new RefreshData ();
+				lstpatient.ItemsSource = refData.RefData() ;
+
 			};
 				
 			ToolbarItems.Add (t2);
@@ -76,6 +79,8 @@ namespace PTAndroidApp
 					lstpatient}
 				};
 			}
+
+
 
 		//list view data template type
 		public class PatientView:ViewCell 
@@ -124,6 +129,17 @@ namespace PTAndroidApp
 			
 	}
 		
+	public class RefreshData {
+
+		public List <PatientListItemModel> RefData ()
+		{	
+			PatientManager pmgr = new PatientManager ();
+			List <PatientListItemModel> plist = pmgr.getPatientsList ();
+			return plist;
+		}
+	}
+
+
 	public class AddPatients: ContentPage 
 	{
 
@@ -224,14 +240,17 @@ namespace PTAndroidApp
 					pmgr.Add(patient);
 					DisplayAlert ( txtFName.Text  + " " + txtLName.Text , "has been added!", "Ok");
 					await Navigation.PopAsync();
-					Navigation.PushAsync (new SearchPatientPage());
+
+
 				}
 				else
 				{
 					pmgr.Edit(patient.PatientId,patient);
 					await DisplayAlert ( txtFName.Text  + " " + txtLName.Text , "has been updated!", "Ok");
 					await Navigation.PopAsync();
-					//Navigation.PushAsync (new SearchPatientPage());
+
+
+				
 				}
 			};
 				
@@ -247,8 +266,7 @@ namespace PTAndroidApp
 								pmgr.Delete(patient.PatientId);
 								DisplayAlert ( txtFName.Text  + " " + txtLName.Text , "has been deleted!", "Ok");
 								await Navigation.PopAsync();
-								//Navigation.PushAsync (new SearchPatientPage());
-							}
+								}
 			};
 
 			var pstControlsLayout = new ScrollView {
