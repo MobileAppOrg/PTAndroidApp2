@@ -22,8 +22,27 @@ namespace PTAndroidApp
 	public class SearchPatientPage : ContentPage   
 
 	{
-			public SearchPatientPage()
+		protected override void OnAppearing ()
+		{
+			//DisplayAlert ("Appearing", "Appearing", "OK");
+			RefreshList ();
+		}
+
+		public static void RefreshList(){
+			plist = pmgr.getPatientsList ();
+			lstpatient.RowHeight = 40;
+			lstpatient.ItemsSource = plist;
+			lstpatient.ItemTemplate = new DataTemplate(typeof(PatientView));
+			//DisplayAlert ("SearchPage", "Refreshed", "OK");
+		}
+			
+		private static List<PatientListItemModel> plist = new List<PatientListItemModel> ();
+		private static ListView lstpatient = new ListView();
+		private static PatientManager pmgr  = new PatientManager();
+
+		public SearchPatientPage()
 		{		
+			//DisplayAlert ("Constructor", "Constructor", "OK");
 			Title = "List of Patients";
 
 			ToolbarItem t1 = new ToolbarItem();
@@ -31,29 +50,23 @@ namespace PTAndroidApp
 			t1.Icon = "ic_action_new.png";
 
 			ToolbarItem t2 = new ToolbarItem();
-			t2.Text = "Add";
+			t2.Text = "Refresh";
 			t2.Icon = "ic_action_refresh.png";
 
 			var SrchbarPatient = new SearchBar {
 				Placeholder = "Search Patient",
 			};
 
-			PatientManager pmgr = new PatientManager ();
-			List <PatientListItemModel> plist = pmgr.getPatientsList ();
-
-			ListView lstpatient = new ListView { RowHeight = 40 };
-
-			lstpatient.ItemsSource = plist;
-			lstpatient.ItemTemplate = new DataTemplate(typeof(PatientView));
+			//RefreshList ();
 		
 			SrchbarPatient.TextChanged += async (sender, e) => {
 				lstpatient.ItemsSource = plist.Where(patient => patient.DisplayName.ToLower().Contains(SrchbarPatient.Text .ToLower())).ToList();
 			};
 
 			lstpatient.ItemSelected += async (sender, e) => {
-			PatientListItemModel selectedItem = (PatientListItemModel)e.SelectedItem;
-			var ID = selectedItem.PatientId;
-			Navigation.PushAsync  (new AddPatients  ("Edit",ID));
+				PatientListItemModel selectedItem = (PatientListItemModel)e.SelectedItem;
+				var ID = selectedItem.PatientId;
+				Navigation.PushAsync  (new AddPatients  ("Edit",ID));
 			};
 
 			t1.Clicked += delegate {
@@ -157,17 +170,17 @@ namespace PTAndroidApp
 			List<string> listGender = new List<string> (){ "M", "F" };
 
 			var txtPatientId = new Entry {TextColor = Color.Black,};
-			txtPatientId.SetBinding (Entry.TextProperty, "PatientId");
+			txtPatientId.SetBinding (Entry.TextProperty, "PatientId", BindingMode.TwoWay);
 
 			var txtFName = new Entry { Placeholder = "First Name" ,
 			TextColor = Color.Black,};
-			txtFName.SetBinding (Entry.TextProperty, "FirstName");
+			txtFName.SetBinding (Entry.TextProperty, "FirstName", BindingMode.TwoWay);
 
 			var txtLName = new Entry { Placeholder = "Last Name",TextColor = Color.Black, };
-			txtLName.SetBinding (Entry.TextProperty, "LastName");
+			txtLName.SetBinding (Entry.TextProperty, "LastName", BindingMode.TwoWay);
 
 			var DtOfBirth = new DatePicker { Format = "D", };
-			DtOfBirth.SetBinding (DatePicker.DateProperty, "DateOfBirth");
+			DtOfBirth.SetBinding (DatePicker.DateProperty, "DateOfBirth", BindingMode.TwoWay);
 
 			var civilStatusPicker = new Picker (){ Items = { "Single", "Married", "Divorced", "Widowed" }, 
 				Title = "Civil Status", 
@@ -191,19 +204,19 @@ namespace PTAndroidApp
 				BindingMode.TwoWay, new IndexToGenericListConverter(){ItemList = listGender});
 				
 			var txtOccupation = new Entry { Placeholder = "Occupation",TextColor = Color.Black, };
-			txtOccupation.SetBinding (Entry.TextProperty, "Occupation");
+			txtOccupation.SetBinding (Entry.TextProperty, "Occupation", BindingMode.TwoWay);
 
 			var txtAddress = new Entry { Placeholder = "Address",TextColor = Color.Black, };
-			txtAddress.SetBinding (Entry.TextProperty, "Address");
+			txtAddress.SetBinding (Entry.TextProperty, "Address", BindingMode.TwoWay);
 
 			var txtReligion = new Entry { Placeholder = "Religion",TextColor = Color.Black, };
-			txtReligion.SetBinding (Entry.TextProperty, "Religion");
+			txtReligion.SetBinding (Entry.TextProperty, "Religion", BindingMode.TwoWay);
 
 			var txtCityTown = new Entry { Placeholder = "City Town",TextColor = Color.Black, };
-			txtCityTown.SetBinding (Entry.TextProperty, "CityTown");
+			txtCityTown.SetBinding (Entry.TextProperty, "CityTown", BindingMode.TwoWay);
 
 			var txtProvince = new Entry { Placeholder = "Province",TextColor = Color.Black, };
-			txtProvince.SetBinding (Entry.TextProperty, "Province");
+			txtProvince.SetBinding (Entry.TextProperty, "Province", BindingMode.TwoWay);
 
 			var btnSave = new Button { Text = "Save",TextColor = Color.Black,
 				BackgroundColor = Color.Silver,
@@ -222,9 +235,9 @@ namespace PTAndroidApp
 				if (mode=="Add")
 				{
 					pmgr.Add(patient);
-					DisplayAlert ( txtFName.Text  + " " + txtLName.Text , "has been added!", "Ok");
+					await DisplayAlert ( txtFName.Text  + " " + txtLName.Text , "has been added!", "Ok");
 					await Navigation.PopAsync();
-					Navigation.PushAsync (new SearchPatientPage());
+					//Navigation.PushAsync (new SearchPatientPage());
 				}
 				else
 				{
@@ -245,7 +258,7 @@ namespace PTAndroidApp
 							if (btn)
 							{
 								pmgr.Delete(patient.PatientId);
-								DisplayAlert ( txtFName.Text  + " " + txtLName.Text , "has been deleted!", "Ok");
+								await DisplayAlert ( txtFName.Text  + " " + txtLName.Text , "has been deleted!", "Ok");
 								await Navigation.PopAsync();
 								//Navigation.PushAsync (new SearchPatientPage());
 							}
