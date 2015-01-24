@@ -198,7 +198,12 @@ namespace PTAndroidApp
 			ToolbarItems.Add (new ToolbarItem(){
 				Icon = "",
 				Text = "Save",
-				Command = new Command(()=>new SoapManager().Add(soap))
+				Command = new Command(()=> {
+					if (mode!="Add")
+						soapMgr.Edit(soap.PatientVisitId,soap);
+					else
+						soapMgr.Add(soap);
+				})
 			});
 
 			if (mode != "Add") {
