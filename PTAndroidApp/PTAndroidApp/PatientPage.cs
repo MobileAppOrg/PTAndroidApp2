@@ -20,11 +20,9 @@ namespace PTAndroidApp
 
 
 	public class SearchPatientPage : ContentPage   
-
 	{
 		protected override void OnAppearing ()
 		{
-			//DisplayAlert ("Appearing", "Appearing", "OK");
 			RefreshList ();
 		}
 
@@ -33,7 +31,6 @@ namespace PTAndroidApp
 			lstpatient.RowHeight = 40;
 			lstpatient.ItemsSource = plist;
 			lstpatient.ItemTemplate = new DataTemplate(typeof(PatientView));
-			//DisplayAlert ("SearchPage", "Refreshed", "OK");
 		}
 			
 		private static List<PatientListItemModel> plist = new List<PatientListItemModel> ();
@@ -41,8 +38,7 @@ namespace PTAndroidApp
 		private static PatientManager pmgr  = new PatientManager();
 
 		public SearchPatientPage()
-		{		
-			//DisplayAlert ("Constructor", "Constructor", "OK");
+		{
 			Title = "List of Patients";
 
 			ToolbarItem t1 = new ToolbarItem();

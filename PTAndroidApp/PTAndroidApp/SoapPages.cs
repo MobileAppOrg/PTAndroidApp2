@@ -9,21 +9,30 @@ namespace PTAndroidApp
 {
 	public class SearchSoapPatientPage : ContentPage   
 	{
+		protected override void OnAppearing ()
+		{
+			RefreshList ();
+		}
+
+		public static void RefreshList(){
+			plist = pmgr.getPatientsList ();
+			lstpatient.RowHeight = 40;
+			lstpatient.ItemsSource = plist;
+			lstpatient.ItemTemplate = new DataTemplate(typeof(PatientCell));
+		}
+
+		private static List<PatientListItemModel> plist = new List<PatientListItemModel> ();
+		private static ListView lstpatient = new ListView();
+		private static PatientManager pmgr  = new PatientManager();
+
 		// Search Patient Page for SOAP
 		public SearchSoapPatientPage()
 		{
-			PatientManager pmgr = new PatientManager ();
-			List<PatientListItemModel> pList = pmgr.getPatientsList ();
-			ListView lstpatient = new ListView { RowHeight = 40 };
-
-			lstpatient.ItemsSource = pList;
-			lstpatient.ItemTemplate = new DataTemplate(typeof(PatientCell));
-
 			lstpatient.ItemSelected += async (sender, e) => {
 				PatientListItemModel selectedItem = (PatientListItemModel)e.SelectedItem;
 				await Navigation.PushAsync(new PatientSoapPage(selectedItem.PatientId));
-				//await DisplayAlert("Tapped!", selectedItem.PatientId + " was tapped.", "OK");
 			};
+
 			Content = lstpatient;	//content of the page
 		}
 	}
@@ -80,22 +89,33 @@ namespace PTAndroidApp
 	// SOAP List Page of a given Patient
 	public class PatientSoapPage: ContentPage
 	{
+		protected override void OnAppearing ()
+		{
+			RefreshList ();
+		}
+
+		private static void RefreshList(){
+			sList = smgr.GetSoapList (_patientId);
+			lstsoap.RowHeight = 40;
+			lstsoap.ItemsSource = sList;
+			lstsoap.ItemTemplate = new DataTemplate(typeof(SoapCell));
+		}
+
+		private static List<SoapListItemModel> sList = new List<SoapListItemModel> ();
+		private static ListView lstsoap = new ListView();
+		private static SoapManager smgr  = new SoapManager();
+		private static int _patientId;
+
 		public PatientSoapPage(int id)
 		{
+			_patientId = id;
+
 			ToolbarItem t1 = new ToolbarItem();
 			t1.Text = "Add";
 			t1.Icon = "ic_action_new.png";
 			t1.Clicked += delegate {
 				Navigation.PushAsync(new SoapPage(id));
 			};
-				
-			SoapManager smgr = new SoapManager ();
-			List<SoapListItemModel> sList = smgr.GetSoapList (id);
-
-			ListView lstsoap = new ListView { RowHeight = 40 };
-
-			lstsoap.ItemsSource = sList;
-			lstsoap.ItemTemplate = new DataTemplate(typeof(SoapCell));
 
 			lstsoap.ItemSelected += async (sender, e) => {
 				SoapListItemModel selectedItem = (SoapListItemModel)e.SelectedItem;
@@ -103,6 +123,7 @@ namespace PTAndroidApp
 			};
 
 			ToolbarItems.Add (t1);
+
 			//content of the page
 			Content = lstsoap;
 		}

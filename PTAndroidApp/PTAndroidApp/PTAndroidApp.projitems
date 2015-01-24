@@ -17,13 +17,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\SoapModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomControls.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SoapDrugsPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ValueConverters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\SoapDrugsPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
     <Folder Include="$(MSBuildThisFileDirectory)DAL\" />
     <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
     <Folder Include="$(MSBuildThisFileDirectory)XAML\" />
+    <Folder Include="$(MSBuildThisFileDirectory)SoapPages\" />
   </ItemGroup>
 </Project>
