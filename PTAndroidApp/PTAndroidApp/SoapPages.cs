@@ -323,7 +323,9 @@ namespace PTAndroidApp
 		static TableView CreateTable(){
 			var patientTypePicker = new Picker (){ Items = { "In-Patient","Out-Patient" }, Title = "Patient Type", HorizontalOptions = LayoutOptions.FillAndExpand };
 			var PatientType = new Entry (){ IsVisible = false };
-			var DateOfAdmission = new  DatePickerButton(){ HorizontalOptions = LayoutOptions.FillAndExpand };
+			//var DateOfAdmission = new  DatePickerButton(){ HorizontalOptions = LayoutOptions.FillAndExpand };
+			var DateOfAdmission = new Entry (){ IsVisible = false };
+			var DateOfAdmissionPicker = new DatePicker (){ HorizontalOptions = LayoutOptions.FillAndExpand };
 			var DateOfConsultation = new DatePickerButton (){ HorizontalOptions = LayoutOptions.FillAndExpand };
 			var Surgeon = new EntryCell (){ Label = "Surgeon: "};
 			var DateOfSurgery = new DatePickerButton (){ HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -365,7 +367,8 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label (){ FontSize = 20, Text = "Date Of Admission: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
-						DateOfAdmission
+						DateOfAdmission,
+						DateOfAdmissionPicker
 					},
 					Padding = new Thickness(5,1,1,1),
 					HorizontalOptions = LayoutOptions.Fill,
@@ -426,7 +429,8 @@ namespace PTAndroidApp
 			};
 
 			PatientType.SetBinding (Entry.TextProperty, "PatientType", BindingMode.TwoWay);
-			DateOfAdmission.SetBinding (DatePickerButton.DateProperty, "DateOfAdmission", BindingMode.TwoWay);
+			//DateOfAdmission.SetBinding (DatePickerButton.DateProperty, "DateOfAdmission", BindingMode.TwoWay);
+			DateOfAdmission.SetBinding (Entry.TextProperty, "DateOfAdmission", BindingMode.TwoWay);
 			DateOfConsultation.SetBinding (DatePickerButton.DateProperty, "DateOfConsultation", BindingMode.TwoWay);
 			Surgeon.SetBinding (EntryCell.TextProperty, "Surgeon", BindingMode.TwoWay);
 			DateOfSurgery.SetBinding (DatePickerButton.DateProperty, "DateOfSurgery", BindingMode.TwoWay);
