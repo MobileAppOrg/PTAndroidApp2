@@ -9,6 +9,7 @@ namespace PTAndroidApp
 		public PatientVisit(){
 			PMHx = new PMHx();
 			FMHx = new FMHx();
+			PSEHx = new PSEHx ();
 		}
 
 		//[Key]
