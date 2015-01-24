@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using PTAndroidApp.Controls;
 using PTAndroidApp.Models;
 using Xamarin.Forms;
+using PTAndroidApp.ValueConverters;
 
 namespace PTAndroidApp
 {
@@ -191,17 +192,16 @@ namespace PTAndroidApp
 		}
 
 		static TableView CreateTable(){
-			var PatientVisitId = new EntryCell (){ Label = "Patient Visit Id: ", Keyboard = Keyboard.Numeric };
+			var PatientVisitId = new EntryCell (){ Label = "Patient Visit Id: ", Keyboard = Keyboard.Telephone };
 			var PatientId = new EntryCell (){ Label = "Patient Id: ", Keyboard= Keyboard.Numeric };
 			var FirstName = new EntryCell (){ Label = "First Name: "};
 			var LastName = new EntryCell (){ Label = "Last Name: "};
 			var Age = new EntryCell (){ Label = "Age: ", Keyboard = Keyboard.Numeric };
-			var genderPicker = new Picker (){ Items = { "M", "F" }, Title = "Gender", HorizontalOptions = LayoutOptions.FillAndExpand };
-			var Gender = new Entry (){ IsVisible = false  };
+			var GenderPicker = new Picker (){ Items = { "M", "F" }, Title = "Gender", HorizontalOptions = LayoutOptions.FillAndExpand };
 			var Address = new EntryCell (){ Label = "Address: " };
 			var CityTown = new EntryCell (){ Label = "City/Town: "};
 			var Province = new EntryCell (){ Label = "Province: "};
-			var civilStatusPicker = new Picker (){ Items = { "Single", "Married", "Divorced", "Widowed" }, Title = "Civil Status", HorizontalOptions = LayoutOptions.FillAndExpand };
+			var CivilStatusPicker = new Picker (){ Items = { "Single", "Married", "Divorced", "Widowed" }, Title = "Civil Status", HorizontalOptions = LayoutOptions.FillAndExpand };
 			var CivilStatus = new Entry (){ IsVisible = false };
 			var handedNessPicker = new Picker (){ Items = { "Right","Left" }, Title = "Handedness", HorizontalOptions = LayoutOptions.FillAndExpand };
 			var HandedNess = new Entry (){ IsVisible = false };
@@ -213,20 +213,12 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label (){ FontSize = 22, Text = "Gender: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
-						genderPicker,
-						Gender
+						GenderPicker
 					},
 					Padding = new Thickness(5,1,1,1),
 					HorizontalOptions = LayoutOptions.Fill,
 					Orientation = StackOrientation.Horizontal
 				}
-			};
-
-			genderPicker.SelectedIndexChanged += delegate(object sender, EventArgs e) {
-				if (genderPicker.SelectedIndex == -1)
-					Gender.Text = null;
-				else
-					Gender.Text = genderPicker.Items[genderPicker.SelectedIndex];
 			};
 
 			ViewCell civilstatuscell = new ViewCell{
@@ -234,8 +226,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label (){ FontSize = 20, Text = "Civil Status: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
-						civilStatusPicker,
-						CivilStatus
+						CivilStatusPicker
 					},
 					Padding = new Thickness(5,1,1,1),
 					HorizontalOptions = LayoutOptions.Fill,
@@ -243,12 +234,12 @@ namespace PTAndroidApp
 				}
 			};
 
-			civilStatusPicker.SelectedIndexChanged += delegate(object sender, EventArgs e) {
-				if (civilStatusPicker.SelectedIndex == -1)
-					CivilStatus.Text = null;
-				else
-					CivilStatus.Text = civilStatusPicker.Items [civilStatusPicker.SelectedIndex];
-			};
+//			civilStatusPicker.SelectedIndexChanged += delegate(object sender, EventArgs e) {
+//				if (civilStatusPicker.SelectedIndex == -1)
+//					CivilStatus.Text = null;
+//				else
+//					CivilStatus.Text = civilStatusPicker.Items [civilStatusPicker.SelectedIndex];
+//			};
 
 			ViewCell handednesscell = new ViewCell{
 				Height = 100,
@@ -276,11 +267,11 @@ namespace PTAndroidApp
 			FirstName.SetBinding (EntryCell.TextProperty, "FirstName", BindingMode.TwoWay);
 			LastName.SetBinding (EntryCell.TextProperty, "LastName", BindingMode.TwoWay);
 			Age.SetBinding (EntryCell.TextProperty, "Age", BindingMode.TwoWay);
-			Gender.SetBinding (Entry.TextProperty, "Sex", BindingMode.TwoWay);
+			GenderPicker.SetBinding (Picker.SelectedIndexProperty, "Sex", BindingMode.TwoWay,new IndexToGenderConverter());
 			Address.SetBinding (EntryCell.TextProperty, "Address", BindingMode.TwoWay);
 			CityTown.SetBinding (EntryCell.TextProperty, "CityTown", BindingMode.TwoWay);
 			Province.SetBinding (EntryCell.TextProperty, "Province", BindingMode.TwoWay);
-			CivilStatus.SetBinding (Entry.TextProperty, "CivilStatus", BindingMode.TwoWay);
+			CivilStatusPicker.SetBinding(Picker.SelectedIndexProperty, "CivilStatus", BindingMode.TwoWay, new IndexToGenericListConverter(){ ItemList = new List<string>(){ "Single", "Married", "Divorced", "Widowed" }});
 			HandedNess.SetBinding (Entry.TextProperty, "HandedNess", BindingMode.TwoWay);
 			Occupation.SetBinding (EntryCell.TextProperty, "Occupation", BindingMode.TwoWay);
 			Religion.SetBinding (EntryCell.TextProperty, "Religion", BindingMode.TwoWay);
@@ -324,21 +315,24 @@ namespace PTAndroidApp
 			var patientTypePicker = new Picker (){ Items = { "In-Patient","Out-Patient" }, Title = "Patient Type", HorizontalOptions = LayoutOptions.FillAndExpand };
 			var PatientType = new Entry (){ IsVisible = false };
 			//var DateOfAdmission = new  DatePickerButton(){ HorizontalOptions = LayoutOptions.FillAndExpand };
-			var DateOfAdmission = new Entry (){ IsVisible = false };
-			var DateOfAdmissionPicker = new DatePicker (){ HorizontalOptions = LayoutOptions.FillAndExpand };
-			var DateOfConsultation = new DatePickerButton (){ HorizontalOptions = LayoutOptions.FillAndExpand };
-			var Surgeon = new EntryCell (){ Label = "Surgeon: "};
-			var DateOfSurgery = new DatePickerButton (){ HorizontalOptions = LayoutOptions.FillAndExpand };
+			var DateOfAdmission = new EntryCell (){ Label = "Admission Date: " };
+			//var DateOfConsultation = new DatePickerButton (){ HorizontalOptions = LayoutOptions.FillAndExpand };
+			var DateOfConsultation = new EntryCell (){ Label = "Consultation Date: " };
+			var Surgeon = new EntryCell (){ Label = "Surgeon: " };
+			//var DateOfSurgery = new DatePickerButton (){ HorizontalOptions = LayoutOptions.FillAndExpand };
+			var DateOfSurgery = new EntryCell (){ Label = "Surgery Date: " };
 			var GeneralPhysician = new EntryCell (){ Label = "General Physician: "};
 			var Orthopedic = new EntryCell (){ Label = "Orthopedic: "};
 			var Neurologist = new EntryCell (){ Label = "Neurologist: "};
 			var Cardiologist = new EntryCell (){ Label = "Cardiologist: "};
 			var Opthalmologoist = new EntryCell (){ Label = "Opthalmologoist: "};
 			var Pulmonologist = new EntryCell (){ Label = "Pulmonologist: "};
-			var OtherDoctor = new EntryCell (){ Label = "OtherDoctor: "};
-			var ReferringDoctor = new EntryCell (){ Label = "Referring Doctor: "};
-			var DateOfReferral = new DatePickerButton () { HorizontalOptions = LayoutOptions.FillAndExpand };
-			var DateOfInitialEvaluation = new DatePickerButton (){ HorizontalOptions = LayoutOptions.FillAndExpand };
+			var OtherDoctor = new EntryCell (){ Label = "Other Doctor: "};
+			var ReferringDoctor = new EntryCell (){ Label = "Referring Doctor: " };
+			//var DateOfReferral = new DatePickerButton () { HorizontalOptions = LayoutOptions.FillAndExpand };
+			var DateOfReferral = new EntryCell () { Label = "Date Of Referral: " };
+			//var DateOfInitialEvaluation = new DatePickerButton (){ HorizontalOptions = LayoutOptions.FillAndExpand };
+			var DateOfInitialEvaluation = new EntryCell (){ Label = "Date Of IE: " };
 			var Diagnosis = new EntryCell (){ Label = "Diagnosis: "};
 
 			ViewCell patienttypecell = new ViewCell{
@@ -362,78 +356,84 @@ namespace PTAndroidApp
 					PatientType.Text = patientTypePicker.Items[patientTypePicker.SelectedIndex];
 			};
 
-			ViewCell DateOfAdmissionCell = new ViewCell{
-				Height = 100,
-				View = new StackLayout(){
-					Children = {
-						new Label (){ FontSize = 20, Text = "Date Of Admission: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
-						DateOfAdmission,
-						DateOfAdmissionPicker
-					},
-					Padding = new Thickness(5,1,1,1),
-					HorizontalOptions = LayoutOptions.Fill,
-					Orientation = StackOrientation.Horizontal
-				}
-			};
+			#region Commented Date Cells
+//			ViewCell DateOfAdmissionCell = new ViewCell{
+//				Height = 100,
+//				View = new StackLayout(){
+//					Children = {
+//						new Label (){ FontSize = 20, Text = "Date Of Admission: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
+//						DateOfAdmission,
+//						//DateOfAdmissionPicker
+//					},
+//					Padding = new Thickness(5,1,1,1),
+//					HorizontalOptions = LayoutOptions.Fill,
+//					Orientation = StackOrientation.Horizontal
+//				}
+//			};
 
-			ViewCell DateOfConsultationCell = new ViewCell{
-				Height = 100,
-				View = new StackLayout(){
-					Children = {
-						new Label (){ FontSize = 20, Text = "Date Of Consultation: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
-						DateOfConsultation
-					},
-					Padding = new Thickness(5,1,1,1),
-					HorizontalOptions = LayoutOptions.Fill,
-					Orientation = StackOrientation.Horizontal
-				}
-			};
+//			ViewCell DateOfConsultationCell = new ViewCell{
+//				Height = 100,
+//				View = new StackLayout(){
+//					Children = {
+//						new Label (){ FontSize = 20, Text = "Date Of Consultation: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
+//						DateOfConsultation
+//					},
+//					Padding = new Thickness(5,1,1,1),
+//					HorizontalOptions = LayoutOptions.Fill,
+//					Orientation = StackOrientation.Horizontal
+//				}
+//			};
 
-			ViewCell DateOfSurgeryCell = new ViewCell{
-				Height = 100,
-				View = new StackLayout(){
-					Children = {
-						new Label (){ FontSize = 20, Text = "Date Of Surgery: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
-						DateOfSurgery
-					},
-					Padding = new Thickness(5,1,1,1),
-					HorizontalOptions = LayoutOptions.Fill,
-					Orientation = StackOrientation.Horizontal
-				}
-			};
+//			ViewCell DateOfSurgeryCell = new ViewCell{
+//				Height = 100,
+//				View = new StackLayout(){
+//					Children = {
+//						new Label (){ FontSize = 20, Text = "Date Of Surgery: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
+//						DateOfSurgery
+//					},
+//					Padding = new Thickness(5,1,1,1),
+//					HorizontalOptions = LayoutOptions.Fill,
+//					Orientation = StackOrientation.Horizontal
+//				}
+//			};
 
-			ViewCell DateOfReferralCell = new ViewCell{
-				Height = 100,
-				View = new StackLayout(){
-					Children = {
-						new Label (){ FontSize = 20, Text = "Date Of Referral: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
-						DateOfReferral
-					},
-					Padding = new Thickness(5,1,1,1),
-					HorizontalOptions = LayoutOptions.Fill,
-					Orientation = StackOrientation.Horizontal
-				}
-			};
+//			ViewCell DateOfReferralCell = new ViewCell{
+//				Height = 100,
+//				View = new StackLayout(){
+//					Children = {
+//						new Label (){ FontSize = 20, Text = "Date Of Referral: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
+//						DateOfReferral
+//					},
+//					Padding = new Thickness(5,1,1,1),
+//					HorizontalOptions = LayoutOptions.Fill,
+//					Orientation = StackOrientation.Horizontal
+//				}
+//			};
 
-			ViewCell DateOfInitialEvaluationCell = new ViewCell{
-				Height = 100,
-				View = new StackLayout(){
-					Children = {
-						new Label (){ FontSize = 20, Text = "Date Of IE: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
-						DateOfInitialEvaluation
-					},
-					Padding = new Thickness(5,1,1,1),
-					HorizontalOptions = LayoutOptions.Fill,
-					Orientation = StackOrientation.Horizontal
-				}
-			};
+//			ViewCell DateOfInitialEvaluationCell = new ViewCell{
+//				Height = 100,
+//				View = new StackLayout(){
+//					Children = {
+//						new Label (){ FontSize = 20, Text = "Date Of IE: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
+//						DateOfInitialEvaluation
+//					},
+//					Padding = new Thickness(5,1,1,1),
+//					HorizontalOptions = LayoutOptions.Fill,
+//					Orientation = StackOrientation.Horizontal
+//				}
+//			};
+
+//			DateOfAdmissionPicker.DateSelected += async (object sender, DateChangedEventArgs e) => {
+//				Console.WriteLine(sender);
+//				Console.WriteLine(e);
+//			};
+			#endregion
 
 			PatientType.SetBinding (Entry.TextProperty, "PatientType", BindingMode.TwoWay);
-			//DateOfAdmission.SetBinding (DatePickerButton.DateProperty, "DateOfAdmission", BindingMode.TwoWay);
-			DateOfAdmission.SetBinding (Entry.TextProperty, "DateOfAdmission", BindingMode.TwoWay);
-			DateOfConsultation.SetBinding (DatePickerButton.DateProperty, "DateOfConsultation", BindingMode.TwoWay);
+			DateOfAdmission.SetBinding (EntryCell.TextProperty, "DateOfAdmission", BindingMode.TwoWay,new StringToNullDateTimeConverter());
+			DateOfConsultation.SetBinding (EntryCell.TextProperty, "DateOfConsultation", BindingMode.TwoWay,new StringToNullDateTimeConverter());
 			Surgeon.SetBinding (EntryCell.TextProperty, "Surgeon", BindingMode.TwoWay);
-			DateOfSurgery.SetBinding (DatePickerButton.DateProperty, "DateOfSurgery", BindingMode.TwoWay);
+			DateOfSurgery.SetBinding (EntryCell.TextProperty, "DateOfSurgery", BindingMode.TwoWay,new StringToNullDateTimeConverter());
 			GeneralPhysician.SetBinding (EntryCell.TextProperty, "GeneralPhysician", BindingMode.TwoWay);
 			Orthopedic.SetBinding (EntryCell.TextProperty, "Orthopedic", BindingMode.TwoWay);
 			Neurologist.SetBinding (EntryCell.TextProperty, "Neurologist", BindingMode.TwoWay);
@@ -442,8 +442,8 @@ namespace PTAndroidApp
 			Pulmonologist.SetBinding (EntryCell.TextProperty, "Pulmonologist", BindingMode.TwoWay);
 			OtherDoctor.SetBinding (EntryCell.TextProperty, "OtherDoctor", BindingMode.TwoWay);
 			ReferringDoctor.SetBinding (EntryCell.TextProperty, "ReferringDoctor", BindingMode.TwoWay);
-			DateOfReferral.SetBinding (DatePickerButton.DateProperty, "DateOfReferral", BindingMode.TwoWay);
-			DateOfInitialEvaluation.SetBinding (DatePickerButton.DateProperty, "DateOfInitialEvaluation", BindingMode.TwoWay);
+			DateOfReferral.SetBinding (EntryCell.TextProperty, "DateOfReferral", BindingMode.TwoWay,new StringToNullDateTimeConverter());
+			DateOfInitialEvaluation.SetBinding (EntryCell.TextProperty, "DateOfInitialEvaluation", BindingMode.TwoWay,new StringToNullDateTimeConverter());
 			Diagnosis.SetBinding (EntryCell.TextProperty, "Diagnosis", BindingMode.TwoWay);
 
 			return new TableView () {
@@ -451,10 +451,10 @@ namespace PTAndroidApp
 				Root = new TableRoot () {
 					new TableSection () {
 						patienttypecell,
-						DateOfAdmissionCell,
-						DateOfConsultationCell,
+						DateOfAdmission,
+						DateOfConsultation,
 						Surgeon,
-						DateOfSurgeryCell,
+						DateOfSurgery,
 						GeneralPhysician,
 						Orthopedic,
 						Neurologist,
@@ -463,8 +463,8 @@ namespace PTAndroidApp
 						Pulmonologist,
 						OtherDoctor,
 						ReferringDoctor,
-						DateOfReferralCell,
-						DateOfInitialEvaluationCell,
+						DateOfReferral,
+						DateOfInitialEvaluation,
 						Diagnosis
 					}
 				}

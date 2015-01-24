@@ -11,6 +11,7 @@ using Android.Views;
 using Android.OS;
 using System .Linq ;
 using Android.Provider;
+using PTAndroidApp.ValueConverters;
 
 
 
@@ -150,8 +151,10 @@ namespace PTAndroidApp
 		
 		public ScrollView  lstPatientControls (string mode) 
 		{
-
-			int Index;
+			// Picker Choices
+			List<string> listCivilStatus = new List<string> (){ "Single", "Married", "Divorced", "Widowed" };
+			List<string> listHandedness = new List<string> (){ "Right", "Left" };
+			List<string> listGender = new List<string> (){ "M", "F" };
 
 			var txtPatientId = new Entry {TextColor = Color.Black,};
 			txtPatientId.SetBinding (Entry.TextProperty, "PatientId");
@@ -166,26 +169,26 @@ namespace PTAndroidApp
 			var DtOfBirth = new DatePicker { Format = "D", };
 			DtOfBirth.SetBinding (DatePicker.DateProperty, "DateOfBirth");
 
-			var CivilStatus = new Entry (){ IsVisible = false };
-			CivilStatus.SetBinding (Entry.TextProperty, "CivilStatus");
-
 			var civilStatusPicker = new Picker (){ Items = { "Single", "Married", "Divorced", "Widowed" }, 
 				Title = "Civil Status", 
 				HorizontalOptions = LayoutOptions.FillAndExpand };
-				
-			var HandedNess = new Entry (){ IsVisible = false };
-			HandedNess.SetBinding (Entry.TextProperty, "HandedNess");
 
-			var pckHandedNess = new Picker (){ Items = { "Right", "Left",}, 
+			civilStatusPicker.SetBinding (Picker.SelectedIndexProperty, "CivilStatus", 
+				BindingMode.TwoWay, new IndexToGenericListConverter(){ItemList = listCivilStatus});
+
+			var pckHandedNess = new Picker (){ Items = { "Right", "Left" }, 
 				Title = "Handedness", 
 				HorizontalOptions = LayoutOptions.FillAndExpand };
-				
-			var Gender = new Entry (){ IsVisible = false  };
-			Gender.SetBinding (Entry.TextProperty, "Gender");
 
-			var pckGender = new Picker (){ Items = { "Male", "Female",}, 
+			pckHandedNess.SetBinding (Picker.SelectedIndexProperty, "HandedNess", 
+				BindingMode.TwoWay, new IndexToGenericListConverter(){ItemList = listHandedness});
+
+			var pckGender = new Picker (){ Items = { "M", "F" }, 
 				Title = "Gender", 
 				HorizontalOptions = LayoutOptions.FillAndExpand };
+
+			pckGender.SetBinding (Picker.SelectedIndexProperty, "Gender", 
+				BindingMode.TwoWay, new IndexToGenericListConverter(){ItemList = listGender});
 				
 			var txtOccupation = new Entry { Placeholder = "Occupation",TextColor = Color.Black, };
 			txtOccupation.SetBinding (Entry.TextProperty, "Occupation");
@@ -215,52 +218,20 @@ namespace PTAndroidApp
 				Children = {btnDel,btnSave},
 				Orientation = StackOrientation .Horizontal };
 				
-			if (mode == "Edit") {
-
-				Index = pckHandedNess.Items.IndexOf (patient.HandedNess  );
-				pckHandedNess.SelectedIndex  = Index;
-
-				Index = pckGender.Items.IndexOf (patient.Gender);
-				pckGender.SelectedIndex  = Index;
-
-				Index = civilStatusPicker.Items.IndexOf (patient.CivilStatus);
-				civilStatusPicker.SelectedIndex  = Index;}
-				
-			civilStatusPicker.SelectedIndexChanged += delegate(object sender, EventArgs e) {
-				if (civilStatusPicker.SelectedIndex == -1)
-					CivilStatus.Text = null;
-				else
-					CivilStatus.Text = civilStatusPicker.Items [civilStatusPicker.SelectedIndex];
-			};
-
-			pckHandedNess.SelectedIndexChanged += delegate(object sender, EventArgs e) {
-				if (pckHandedNess.SelectedIndex == -1)
-					HandedNess.Text = null;
-				else
-					HandedNess.Text = pckHandedNess.Items[pckHandedNess.SelectedIndex];
-			};
-
-			pckGender.SelectedIndexChanged += delegate(object sender, EventArgs e) {
-				if (pckGender.SelectedIndex == -1)
-					Gender.Text = null;
-				else
-					Gender.Text = pckGender.Items[pckGender.SelectedIndex];
-			};
-				
 			btnSave.Clicked  += async (sender, e) => {
 				if (mode=="Add")
 				{
 					pmgr.Add(patient);
-					await DisplayAlert ( txtFName.Text  + " " + txtLName.Text , "has been added!", "Ok");
-					Navigation.PopAsync();
+					DisplayAlert ( txtFName.Text  + " " + txtLName.Text , "has been added!", "Ok");
+					await Navigation.PopAsync();
 					Navigation.PushAsync (new SearchPatientPage());
 				}
 				else
 				{
 					pmgr.Edit(patient.PatientId,patient);
 					await DisplayAlert ( txtFName.Text  + " " + txtLName.Text , "has been updated!", "Ok");
-					Navigation.PopAsync();
-					Navigation.PushAsync (new SearchPatientPage());
+					await Navigation.PopAsync();
+					//Navigation.PushAsync (new SearchPatientPage());
 				}
 			};
 				
@@ -274,9 +245,9 @@ namespace PTAndroidApp
 							if (btn)
 							{
 								pmgr.Delete(patient.PatientId);
-								await DisplayAlert ( txtFName.Text  + " " + txtLName.Text , "has been deleted!", "Ok");
-								Navigation.PopAsync();
-								Navigation.PushAsync (new SearchPatientPage());
+								DisplayAlert ( txtFName.Text  + " " + txtLName.Text , "has been deleted!", "Ok");
+								await Navigation.PopAsync();
+								//Navigation.PushAsync (new SearchPatientPage());
 							}
 			};
 
@@ -284,9 +255,9 @@ namespace PTAndroidApp
 				VerticalOptions = LayoutOptions.FillAndExpand,
 				Content = new StackLayout {
 					Children = {
-						txtFName, txtLName, DtOfBirth,civilStatusPicker,
-						CivilStatus,HandedNess, Gender,pckHandedNess,
-						pckGender, txtOccupation,txtAddress,
+						txtFName, txtLName, DtOfBirth,
+						civilStatusPicker,pckHandedNess,pckGender,
+						txtOccupation,txtAddress,
 						txtProvince,txtCityTown,txtReligion,buttons}
 				}
 			};
