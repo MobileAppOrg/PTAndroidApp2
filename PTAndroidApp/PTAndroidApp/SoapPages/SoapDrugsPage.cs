@@ -16,9 +16,32 @@ namespace PTAndroidApp
 
 		static ContentView CreateFooter(){
 			//var btnEdit = new Button{ };
-			var btnDelete = new Button{ HorizontalOptions = LayoutOptions.FillAndExpand };
+			var btnDelete = new Button{ 
+				Text = "Delete",
+				TextColor = Color.Red,
+				HorizontalOptions = LayoutOptions.FillAndExpand 
+			};
+
+			btnDelete.Clicked += delegate {
+				DrugHistory item;
+				if(ls.SelectedItem==null)
+					return;
+
+				item = (DrugHistory)ls.SelectedItem;
+				ls.SelectedItem = null;
+
+				List<DrugHistory> source;
+				source = ((List<DrugHistory>)ls.ItemsSource==null?new List<DrugHistory>():(List<DrugHistory>)ls.ItemsSource);
+				source.Remove(item);
+				ls.ItemsSource = source;
+				ls.ItemTemplate = new DataTemplate(typeof(DrugCell));
+			};
+
 			return new ContentView {
-				Content = { btnDelete }
+
+				VerticalOptions = LayoutOptions.End,
+				Content = btnDelete
+
 			};
 		}
 
@@ -88,24 +111,28 @@ namespace PTAndroidApp
 			ls.ItemTemplate = new DataTemplate(typeof(DrugCell));
 			ls.SetBinding (ListView.ItemsSourceProperty, "DrugHistory",BindingMode.TwoWay);
 
-			ls.ItemTapped += async (object sender, ItemTappedEventArgs e) => {
-				((ListView)sender).SelectedItem=null;
-				DrugHistory selItem = (DrugHistory)e.Item;
-				var action = await DisplayActionSheet ("Delete?", "Cancel", "Delete");
-				if (action=="Delete"){
-					List<DrugHistory> source;
-					source = ((List<DrugHistory>)ls.ItemsSource==null?new List<DrugHistory>():(List<DrugHistory>)ls.ItemsSource);
-					ls.ItemsSource = source;
-					ls.ItemTemplate = new DataTemplate(typeof(DrugCell));
-				}
-				//Debug.WriteLine("Action: " + action); // writes the selected button label to the console
-			};
+//			ls.ItemTapped += async (object sender, ItemTappedEventArgs e) => {
+//				((ListView)sender).SelectedItem=null;
+//				DrugHistory selItem = (DrugHistory)e.Item;
+//				var action = await DisplayActionSheet ("Delete?", "Cancel", "Delete");
+//				if (action=="Delete"){
+//					List<DrugHistory> source;
+//					source = ((List<DrugHistory>)ls.ItemsSource==null?new List<DrugHistory>():(List<DrugHistory>)ls.ItemsSource);
+//					ls.ItemsSource = source;
+//					ls.ItemTemplate = new DataTemplate(typeof(DrugCell));
+//				}
+//				//Debug.WriteLine("Action: " + action); // writes the selected button label to the console
+//			};
+
+			ContentView footerButtons = CreateFooter ();
 
 			Content = new StackLayout {
 				Spacing = 0,
 				Padding = 0,
 				Children = {
-					form,ls
+					form,
+					ls,
+					footerButtons
 				}
 			};
 		}
