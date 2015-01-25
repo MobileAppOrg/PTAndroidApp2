@@ -29,7 +29,7 @@ namespace PTAndroidApp.Android
 
 			Xamarin.Forms.Forms.Init (this, bundle);
 			 
-			SetPage (App.AncillaryPage  ());
+			SetPage (App.GetMainPage());
 
 		}
 
