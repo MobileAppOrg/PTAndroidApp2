@@ -11,9 +11,9 @@ namespace PTAndroidApp
 		}
 
 
-		public static Page AncillaryPage ()
+		public static Page PMHxPage ()
 		{
-			return new NavigationPage(new AncillaryPage());
+			return new NavigationPage(new PMHxPage());
 
 		}
 

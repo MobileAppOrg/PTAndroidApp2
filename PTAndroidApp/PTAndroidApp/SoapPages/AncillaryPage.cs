@@ -56,7 +56,7 @@ namespace PTAndroidApp
 				Title = "Procedures"};
 
 			var txtAncillary = new Entry {
-				Placeholder = "Other Procedures"};
+				Placeholder = "Other Procedures", IsVisible = false};
 			var AncillaryProcedure = txtAncillary.Text ;
 
 			EntryCell txtResult = new EntryCell {
@@ -141,7 +141,7 @@ namespace PTAndroidApp
 				HeightRequest = 260,
 				Intent = TableIntent.Form,
 				Root = new TableRoot () {
-					new TableSection ("DRUGHx") {
+					new TableSection ("Ancillary Procedures") {
 						AncillaryCell,
 						dateCell,
 						txtResult,
@@ -151,8 +151,6 @@ namespace PTAndroidApp
 			};
 
 		}
-
-
 		public AncillaryPage ()
 		{
 			var form = CreateTable ();

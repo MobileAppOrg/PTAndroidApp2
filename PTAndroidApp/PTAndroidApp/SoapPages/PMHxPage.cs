@@ -1,260 +1,224 @@
 ﻿using System;
-
 using Xamarin.Forms;
+using PTAndroidApp.ValueConverters;
+using System.Collections.Generic;
+
 
 namespace PTAndroidApp
 {
-	public class PMHxPage : ContentPage
+	public class PMHxPage:ContentPage
 	{
-		public PMHxPage ()
-		{
-			var trauma = traumas ();
-			var athritis = Arthritis ();
-			var dm = DM ();
-			var allergies = Allergies ();
-			var surgery = Surgery ();
-			var surgery2 = Surgery2 ();
-			var hospitalization = Hospitalization ();
-			var hospitalization2 = Hospitalization2 ();
-			var cardiovascularDisease = CardiovascularDisease ();
-			var pulmonaryCondition = PulmonaryCondition ();
-			var neurologyCondition = NeurologyCondition ();
-			var cancer = Cancer ();
-			var others = Others ();
+		public PMHxPage(){
+			TableView tblForm = CreateTable ();
 
-			var pmhxcontrols = new ScrollView {
-				Content = new StackLayout {
-					Children = { trauma, athritis, dm, allergies, surgery, surgery2,
-						hospitalization, hospitalization2, cardiovascularDisease,
-						pulmonaryCondition, neurologyCondition, cancer, others}
+			Content = new StackLayout{ 
+				Children = { 
+					tblForm
 				}
 			};
-			Content = new StackLayout {
-				Children = { pmhxcontrols }
-			};
 		}
 
-		static StackLayout traumas ()
-		{
-			var lbltrauma = new Label {
-				Text = "Trauma", FontSize = 17,
-				VerticalOptions = LayoutOptions .EndAndExpand };
+		static TableView CreateTable(){
 
-			var switchTrauma = new Switch {
-				VerticalOptions = LayoutOptions .EndAndExpand,
+			Entry txtPatientVisitId = new Entry (){ IsVisible = false };
+			txtPatientVisitId.SetBinding (Entry.TextProperty,"PatientVisitId", BindingMode.TwoWay);
+
+			var Trauma = new Label (){FontSize = 18, Text  = "Trauma", VerticalOptions = LayoutOptions .EndAndExpand };
+			var switchTrauma = new Switch {VerticalOptions = LayoutOptions .EndAndExpand,};
+			var txttrauma = new EntryCell  {Placeholder = "Trauma", IsEnabled = false};
+
+			var lblArthritis = new Label {FontSize = 18,Text = "Arthritis", VerticalOptions = LayoutOptions .EndAndExpand};
+			var switchArthritis = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			List<string> ArthritisType = new List<string> (){ "RA","OA" };
+			var ArthritisTypepicker = new Picker (){ Items = { "RA","OA" }, 
+				Title = "Arthritis Type", IsVisible = false, HorizontalOptions = LayoutOptions.FillAndExpand };
+
+			List<string> DM = new List<string> (){ "IDDM","NIDDM" };
+			var DMpicker = new Picker (){ Items = { "IDDM","NIDDM" }, 
+				Title = "Select DM", HorizontalOptions = LayoutOptions.FillAndExpand };
+
+			var lblallergies = new Label {FontSize = 18, Text = "Allergies", VerticalOptions = LayoutOptions .EndAndExpand};
+			var switchAllergies = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+
+			var lblAsthma  = new Label { Text  = "Asthma", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand};
+			var switchAsthma = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var dtAsthma = new DatePicker {IsEnabled = false, Format = "D", HorizontalOptions = LayoutOptions .FillAndExpand };
+
+			var lblHPN = new Label {FontSize = 18, Text = "HPN", VerticalOptions = LayoutOptions .EndAndExpand};
+			var switchHPN = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+
+			var lblSurgery  = new Label { Text  = "Surgery", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand};
+			var switchSurgery = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var txtSurgery = new EntryCell  {IsEnabled = false, Placeholder = "Surgical Procedure"};
+			var dtSurgery = new DatePicker  {IsEnabled = false, Format = "D", HorizontalOptions = LayoutOptions .FillAndExpand };
+
+			var lblHospitalization  = new Label { Text  = "Hopitalization", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand};
+			var switchHospitalization = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var txtHospitalization = new EntryCell  {IsEnabled = false,Placeholder = "Specification of Disease"};
+			var dtHospitalization = new DatePicker  {IsEnabled = false,Format = "D", HorizontalOptions = LayoutOptions .FillAndExpand };
+
+			var txtCardiovascularDisease = new EntryCell (){Height = 50,Placeholder  = "Cardiovascular Disease" };
+			var txtPulmonaryCondition = new EntryCell (){Height = 50, Placeholder = "Pulmonary Condition" };
+			var txtNeurologyCondition = new EntryCell (){ Height = 50,Placeholder = "Neurology Condition" };
+			var txtCancer = new EntryCell (){Height = 50, Placeholder = "Cancer" };
+			var txtOthers = new EntryCell (){Height = 50, Placeholder = "Others" };
+
+			ViewCell TraumaCell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
+					Children = {Trauma, switchTrauma},
+					Orientation = StackOrientation.Horizontal  ,
+					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
+
+			ViewCell ArthritisCell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
+					Children = {lblArthritis,switchArthritis,ArthritisTypepicker},
+					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
+					
+			ViewCell DMCell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
+					Children = {DMpicker},
+					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
+
+			ViewCell AllergiesCell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
+					Children = {lblallergies,switchAllergies},
+					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
+
+			ViewCell AsthmaCell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
+					Children = {lblAsthma,switchAsthma},
+					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
+
+			ViewCell AsthmaCell2 = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
+					Children = {//new Label (){Text  = "Date", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand},
+						dtAsthma},
+					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
+
+			ViewCell HPNCell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
+					Children = {lblHPN,switchHPN},
+					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
+
+			ViewCell SurgeryCell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
+					Children = {lblSurgery,switchSurgery},
+					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
+
+			ViewCell SurgeryCell2 = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
+					Children = {dtSurgery},
+					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
+
+			ViewCell HospitalizationCell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
+					Children = {lblHospitalization,switchHospitalization},
+					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
+
+			ViewCell HospitalizationCell2 = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
+					Children = {dtHospitalization},
+					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
+
+
+			switchTrauma.Toggled += delegate 
+			{	txttrauma .Text = "";
+				if (switchTrauma.IsToggled)
+				{txttrauma .IsEnabled = true;}
+				else
+				{txttrauma .IsEnabled = false ;}
 			};
 
-			var txttrauma = new Entry {
-				Placeholder = "Trauma",
-				HorizontalOptions = LayoutOptions.FillAndExpand,
+
+			switchArthritis.Toggled += delegate 
+			{	txttrauma .Text = "";
+				if (switchArthritis.IsToggled)
+				{ArthritisTypepicker.IsVisible  = true;}
+				else 
+				{ArthritisTypepicker.IsVisible  = false ;}
 			};
 
-			var traumaRow = new StackLayout () {
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				Orientation = StackOrientation.Horizontal,
-				Children = {  lbltrauma, switchTrauma, txttrauma }
-			};
-			return traumaRow;
-		}
-
-
-		static StackLayout Arthritis  ()
-		{
-			var lblAthritis = new Label {
-				Text = "Arthritis"
-			};
-			var switchAthritis = new Switch {
+			bool Allergies = false;
+			switchAllergies.Toggled += delegate 
+			{	
+				Allergies= true;
 			};
 
-			var ArthritisRow = new StackLayout () {
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				Orientation = StackOrientation.Horizontal  ,
-				Children = { lblAthritis, switchAthritis  }
+			switchAsthma.Toggled += delegate 
+			{
+				if (switchAsthma.IsToggled)
+				{dtAsthma.IsEnabled   = true;}
+				else 
+				{dtAsthma.IsEnabled  = false ;}
 			};
 
-			return ArthritisRow;
-		}
-
-		static StackLayout DM()
-		{
-			var pckDM = new Picker () { Items = { "IDDM", "NIDDM", }, 
-				Title = "Select DM", 
-				HorizontalOptions = LayoutOptions.StartAndExpand
+			switchHPN.Toggled += delegate 
+			{	
 			};
 
-			var DMrow = new StackLayout () {
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				Orientation = StackOrientation.Horizontal,
-				Children = {pckDM}
-			};
-			return DMrow;
-		}
-
-		static StackLayout Allergies ()
-		{
-			var lblallergies = new Label {
-				Text = "Allergies"};
-			var switchAllergies = new Switch {
-			};
-			var AllergiesRow = new StackLayout () {
-				HorizontalOptions = LayoutOptions.FillAndExpand ,
-				Orientation = StackOrientation.Horizontal,
-				Children = { lblallergies, switchAllergies }
+			switchSurgery.Toggled += delegate 
+			{	
+				if (switchSurgery.IsToggled)
+				{	dtSurgery.IsEnabled   = true;
+					txtSurgery.IsEnabled = true;}
+				else 
+				{	dtSurgery.IsEnabled   = false ;
+					txtSurgery.IsEnabled = false ;}
 			};
 
-			return AllergiesRow;
-		}
-
-		static StackLayout Surgery ()
-		{
-			var lblSurgery = new Label {
-				Text = "Surgery"};
-
-			var dtSurgery = new DatePicker {
-				Format = "D",
-
-			};
-			var SurgerysRow = new StackLayout () {
-				HorizontalOptions = LayoutOptions.FillAndExpand ,
-				Orientation = StackOrientation.Horizontal,
-				Children = { lblSurgery,dtSurgery,}
-			};
-			return SurgerysRow;
-		}
-
-		static StackLayout Surgery2 ()
-		{
-			var txtSurgery = new Entry {
-				Placeholder = "Surgical Procedure",
-				HorizontalOptions = LayoutOptions.FillAndExpand
+			switchHospitalization.Toggled += delegate 
+			{	
+				if (switchHospitalization.IsToggled)
+				{	txtHospitalization.IsEnabled   = true;
+					dtHospitalization.IsEnabled = true;}
+				else 
+				{	txtHospitalization.IsEnabled   = false ;
+					dtHospitalization.IsEnabled = false ;}
 			};
 
-			var SurgerysRow= new StackLayout () {
-				HorizontalOptions = LayoutOptions.FillAndExpand ,
-				Orientation = StackOrientation.Horizontal,
-				Children = {txtSurgery}
-			};
-			return SurgerysRow;
-		}
 
-		static StackLayout Hospitalization ()
-		{
-			var lblHospitalization = new Label {
-				Text = "Hospitalization"};
+			//bind
+			txttrauma.SetBinding (EntryCell.TextProperty, "Trauma", BindingMode.TwoWay);
+			ArthritisTypepicker.SetBinding (Picker.SelectedIndexProperty, "Arthritis", 
+				BindingMode.TwoWay, new IndexToGenericListConverter(){ ItemList = ArthritisType  });
+			DMpicker .SetBinding (Picker.SelectedIndexProperty, "DM", 
+				BindingMode.TwoWay, new IndexToGenericListConverter(){ ItemList = DM   });
 
-			var dtHospitalization = new DatePicker {
-				Format = "D",
-			};
-			var HospitalizationRow = new StackLayout () {
-				HorizontalOptions = LayoutOptions.FillAndExpand ,
-				Orientation = StackOrientation.Horizontal,
-				Children = { lblHospitalization,dtHospitalization,}
-			};
-			return HospitalizationRow;
-		}
 
-		static StackLayout Hospitalization2 ()
-		{
-			var txtHospitalization = new Entry {
-				Placeholder = "Specification of disease",
-				HorizontalOptions = LayoutOptions.FillAndExpand
-			};
 
-			var Hospitalization2Row= new StackLayout () {
-				HorizontalOptions = LayoutOptions.FillAndExpand ,
-				Orientation = StackOrientation.Horizontal,
-				Children = { txtHospitalization}
-			};
-			return Hospitalization2Row;
-		}
-
-		static StackLayout CardiovascularDisease ()
-		{
-			var lblCardiovascularDisease = new Label {
-				Text = "Cardiovascular Disease"};
-
-			var txtCardiovascularDisease = new Entry  {
-				Placeholder = "Cardiovascular Disease"
+			return new TableView () {
+				Intent = TableIntent.Form,
+				Root = new TableRoot () {
+					new TableSection ("PMHx") {
+						TraumaCell,txttrauma,
+						ArthritisCell,
+						AsthmaCell,AsthmaCell2,
+						HPNCell,
+						DMCell,
+						AllergiesCell,
+						SurgeryCell,txtSurgery,SurgeryCell2,
+						HospitalizationCell,txtHospitalization,HospitalizationCell2,
+						txtCardiovascularDisease,
+						txtPulmonaryCondition,
+						txtNeurologyCondition,
+						txtCancer,
+						txtOthers
+					}
+				}
 			};
 
-			var CardiovascularDiseaseRow = new StackLayout () {
-				HorizontalOptions = LayoutOptions.FillAndExpand ,
-				Orientation = StackOrientation.Horizontal,
-				Children = { lblCardiovascularDisease,txtCardiovascularDisease}
-			};
-			return CardiovascularDiseaseRow;
-		}
-
-		static StackLayout PulmonaryCondition ()
-		{
-			var lblPulmonaryCondition = new Label {
-				Text = "Pulmonary Condition"};
-
-			var txtPulmonaryCondition = new Entry  {
-				Placeholder = "Pulmonary Condition"
-			};
-
-			var PulmonaryConditionRow = new StackLayout () {
-				HorizontalOptions = LayoutOptions.FillAndExpand ,
-				Orientation = StackOrientation.Horizontal,
-				Children = { lblPulmonaryCondition,txtPulmonaryCondition}
-			};
-			return PulmonaryConditionRow;
-		}
-
-		static StackLayout NeurologyCondition ()
-		{
-			var lblNeurologyCondition = new Label {
-				Text = "Neurology Condition"};
-
-			var txtNeurologyCondition = new Entry  {
-				Placeholder = "Neurology Condition"
-			};
-
-			var NeurologyConditionRow = new StackLayout () {
-				HorizontalOptions = LayoutOptions.FillAndExpand ,
-				Orientation = StackOrientation.Horizontal,
-				Children = { lblNeurologyCondition,txtNeurologyCondition}
-			};
-			return NeurologyConditionRow;
-		}
-
-		static StackLayout Cancer  ()
-		{
-			var lblCancer = new Label {
-				Text = "Cancer"
-			};
-			var switchCancer = new Switch {
-			};
-
-			var CancerRow = new StackLayout () {
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				Orientation = StackOrientation.Horizontal  ,
-				Children = { lblCancer, switchCancer  }
-			};
-			return CancerRow;
-		}
-
-		static StackLayout Others  ()
-		{
-			var lblOthers = new Label {
-				Text = "Others"
-			};
-			var txtOthers = new Entry  {
-				Placeholder = "Specify others",
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-			};
-
-			var OthersRow = new StackLayout () {
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				Orientation = StackOrientation.Horizontal  ,
-				Children = { lblOthers, txtOthers  }
-			};
-
-			return OthersRow;
-		
 		}
 	}
 }
-
 
