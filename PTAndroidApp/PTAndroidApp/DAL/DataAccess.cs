@@ -205,26 +205,32 @@ namespace PTAndroidApp
 
 			// send request
 			client.ExecuteAsync (request, response => {
-				// we need to handle errors here
-				// if server encountered an error while adding patient record it will be indicated in the content
-				// Notify user if error
 				 Console.WriteLine (response.Content);
 			});
 
 			return true;
 		}
 
-		public bool Edit(int id,PatientVisit patientVisit){
+		public bool Edit(int id,PatientVisit soap){
 			// Put code to communicate to web service here
 			var client = new RestClient (clientUrl);
 			var request = new RestRequest("api/PatientVisits/{id}", Method.PUT );
 
 			request.RequestFormat = DataFormat.Json;
 
+			// add parameters for all properties on an object
+			string json = JsonConvert.SerializeObject (
+				soap, 
+				new JsonSerializerSettings (){ 
+					DateFormatHandling = DateFormatHandling.IsoDateFormat,
+					NullValueHandling = NullValueHandling.Include 
+				});
+
 			// edit parameters for all properties on an object
 			request.Parameters.Clear();
 			request.AddUrlSegment ("id", id.ToString());
-			request.AddBody (patientVisit);
+			request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+			request.RequestFormat = DataFormat.Json;
 
 			client.ExecuteAsync (request, response => {
 				Console.WriteLine (response.Content);
