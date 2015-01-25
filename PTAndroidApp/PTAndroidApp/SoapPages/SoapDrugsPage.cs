@@ -18,11 +18,12 @@ namespace PTAndroidApp
 			//var btnEdit = new Button{ };
 			var btnDelete = new Button{ HorizontalOptions = LayoutOptions.FillAndExpand };
 			return new ContentView {
-			//	Content = { btnDelete }
+				Content = { btnDelete }
 			};
 		}
 
 		static TableView CreateTable(){
+
 			Entry txtPatientVisitId = new Entry (){ IsVisible = false };
 			txtPatientVisitId.SetBinding (Entry.TextProperty,"PatientVisitId", BindingMode.TwoWay);
 			EntryCell txtDrug = new EntryCell { Label="Drug: " };
