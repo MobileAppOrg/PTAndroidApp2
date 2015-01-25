@@ -2,44 +2,103 @@
 
 using Xamarin.Forms;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace PTAndroidApp
 {
-	public class  AncillaryPage:ContentPage 
+	public class AncillaryPage  : ContentPage
 	{
-		Grid gr = new Grid ();
-		RowDefinition row = new RowDefinition(){ Height = GridLength.Auto };
-		ColumnDefinition col = new ColumnDefinition(){Width = new GridLength(1, GridUnitType.Star)};
-		ListView ls = new ListView (){RowHeight=60};
-		//Label patientId = new Label();
+		private static ListView ls = new ListView (){
+			//			HorizontalOptions = LayoutOptions.FillAndExpand,
+			//			VerticalOptions = LayoutOptions.StartAndExpand,
+			RowHeight=60
+		};
 
-
-		public AncillaryPage ()
-		{
-			var pckAncillary = new Picker () { Items = { "XRAY", "MRI", "Blood Test","NCV","EMG","CT SCAN", "Others"}, 
-				Title = "Procedures", 
-				HorizontalOptions = LayoutOptions.StartAndExpand
+		static ContentView CreateFooter(){
+			//var btnEdit = new Button{ };
+			var btnDelete = new Button{ 
+				Text = "Delete",
+				TextColor = Color.Red,
+				HorizontalOptions = LayoutOptions.FillAndExpand 
 			};
+
+			btnDelete.Clicked += delegate {
+				AncillaryProcedure item;
+				if(ls.SelectedItem==null)
+					return;
+
+				item = (AncillaryProcedure)ls.SelectedItem;
+				ls.SelectedItem = null;
+
+				List<AncillaryProcedure> source;
+				source = ((List<AncillaryProcedure>)ls.ItemsSource==null?new List<AncillaryProcedure>():(List<AncillaryProcedure>)ls.ItemsSource);
+				source.Remove(item);
+				ls.ItemsSource = source;
+				ls.ItemTemplate = new DataTemplate(typeof(AncillaryCell));
+			};
+
+			return new ContentView {
+
+				VerticalOptions = LayoutOptions.End,
+				Content = btnDelete
+
+			};
+		}
+
+		static TableView CreateTable(){
+
+			Entry txtPatientVisitId = new Entry (){ IsVisible = false };
+			txtPatientVisitId.SetBinding (Entry.TextProperty,"PatientVisitId", BindingMode.TwoWay);
+			EntryCell txtAncillaryProcOther = new EntryCell { Label="Drug: " };
+			//EntryCell txtDate = new EntryCell { Label="Date: " };
+			
+			var pckAncillary = new Picker () { Items = { "XRAY", "MRI", "Blood Test","NCV","EMG","CT SCAN", "Others"}, 
+				Title = "Procedures"};
 
 			var txtAncillary = new Entry {
-				Placeholder = "Other Procedures",
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-			};
-
-			var txtResult = new Entry {
-				Placeholder = "Result",
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-
-			};
-			var dtAncillary = new DatePicker {
-				Format = "D",
-			};
-			var btnAdd = new Button {
-				Text = "Add Ancillary",
-				HorizontalOptions = LayoutOptions.FillAndExpand
-			};
+				Placeholder = "Other Procedures"};
 			var AncillaryProcedure = txtAncillary.Text ;
 
+			EntryCell txtResult = new EntryCell {
+				Label = "Result"};
+
+			var datePicker = new DatePicker {
+				Format = "D"};
+
+			var btnAdd = new Button {
+				Text = "Add Ancillary",
+				HorizontalOptions = LayoutOptions.FillAndExpand};
+
+			var AncillaryNameCell = new StackLayout {
+				Children = { pckAncillary, txtAncillary },
+				Orientation = StackOrientation.Horizontal  
+			};
+
+			ViewCell AncillaryCell = new ViewCell {
+				View = new StackLayout () {
+					Children = { AncillaryNameCell},
+					VerticalOptions = LayoutOptions .FillAndExpand 
+				}
+			};
+				ViewCell btnCell = new ViewCell {
+				View = new StackLayout () {
+					Children = { btnAdd, txtPatientVisitId }
+				}
+
+			};
+					
+			ViewCell dateCell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
+					Children = {
+						new Label (){ FontSize = 20, Text = "Date: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center },
+						datePicker
+					},
+					Padding = new Thickness(5,1,1,1),
+					HorizontalOptions = LayoutOptions.Fill,
+					Orientation = StackOrientation.Horizontal
+				}
+			};
 
 			txtAncillary.TextChanged += delegate {
 				AncillaryProcedure = txtAncillary.Text;
@@ -60,73 +119,89 @@ namespace PTAndroidApp
 				}
 
 			};
-
+				
 			btnAdd.Clicked += delegate {
+				if (string.IsNullOrEmpty(AncillaryProcedure))
+					return;
 				List<AncillaryProcedure> source;
-
 				source = ((List<AncillaryProcedure>)ls.ItemsSource==null?new List<AncillaryProcedure>():(List<AncillaryProcedure>)ls.ItemsSource);
-
 				source.Add(new AncillaryProcedure(){
 					ProcedureName = AncillaryProcedure,
-					ProcedureDate = dtAncillary .Date ,
+					ProcedureDate = datePicker.Date,
 					Result = txtResult.Text,
-
+					PatientVisitId = Convert.ToInt32(txtPatientVisitId.Text)
 				});
 				ls.ItemsSource = source;
+				ls.ItemTemplate = new DataTemplate(typeof(AncillaryCell));
 			};
 
-			StackLayout form = new StackLayout{
-				Children = {
-					pckAncillary,
-					txtAncillary,
-					txtResult,
-					dtAncillary,
-					btnAdd
+			TableSection ts = new TableSection ();
+			return new TableView () {
+				VerticalOptions = LayoutOptions.Start,
+				HeightRequest = 260,
+				Intent = TableIntent.Form,
+				Root = new TableRoot () {
+					new TableSection ("DRUGHx") {
+						AncillaryCell,
+						dateCell,
+						txtResult,
+						btnCell,	
+					}
 				}
 			};
 
-			gr.RowDefinitions.Add (row);
-			gr.ColumnDefinitions.Add (col);
-			gr.Children.Add (new Label{Text="Drug"},0,0);
-			gr.Children.Add (new Label{Text="Date"},1,0);
-			gr.Children.Add (new Label{Text="Result"},2,0);
+		}
 
+
+		public AncillaryPage ()
+		{
+			var form = CreateTable ();
+			//ls.ItemsSource = source;
+			ls.ItemTemplate = new DataTemplate(typeof(DrugCell));
 			ls.SetBinding (ListView.ItemsSourceProperty, "AncillaryProcedure",BindingMode.TwoWay);
-			ls.ItemTemplate = new DataTemplate(typeof(AncillaryPageCell));
+			ContentView footerButtons = CreateFooter ();
 
-			Content = new StackLayout { 
+			Content = new StackLayout {
+				Spacing = 0,
+				Padding = 0,
 				Children = {
 					form,
-					ls
+					ls,
+					footerButtons
 				}
 			};
 		}
-
 	}
 
-	public class AncillaryPageCell : ViewCell
+
+
+	public class AncillaryCell : ViewCell
 	{
-		public AncillaryPageCell()
+		public AncillaryCell()
 		{
 			var idLabel = new Label {
 				IsVisible = false //false
 			};
+			idLabel.SetBinding (Label.TextProperty, "RowId");
 
-			idLabel.SetBinding (Label.TextProperty, "RowId", BindingMode.TwoWay);
+			var patientVisitIdLabel = new Label {
+				IsVisible = false //false
+			};
+			patientVisitIdLabel.SetBinding (Label.TextProperty, "PatientVisitId");
 
 			var nameLabel = new Label
 			{
 				FontSize = 20,
 				HorizontalOptions= LayoutOptions.FillAndExpand
 			};
-			nameLabel.SetBinding(Label.TextProperty, "ProcedureName", BindingMode.TwoWay);
+			nameLabel.SetBinding(Label.TextProperty, "ProcedureName");
 
 			var nameLayout = CreateNameLayout();
 
 			var viewLayout = new StackLayout()
 			{
 				Orientation = StackOrientation.Vertical,
-				Children = { idLabel,nameLabel, nameLayout }
+				Children = { idLabel,patientVisitIdLabel,nameLabel, nameLayout }
 			};
 			View = viewLayout;
 		}
@@ -137,15 +212,15 @@ namespace PTAndroidApp
 			var dateLabel = new Label
 			{
 				FontSize = 12,
-				HorizontalOptions = LayoutOptions.FillAndExpand
+				HorizontalOptions = LayoutOptions.FillAndExpand,
 			};
-			dateLabel.SetBinding(Label.TextProperty, "ProcedureDate", BindingMode.TwoWay);
+			dateLabel.SetBinding(Label.TextProperty, new Binding(path: "ProcedureDate", stringFormat: "Date: {0:D}"));
 
 			var resultLabel = new Label {
 				FontSize = 12,
 				HorizontalOptions = LayoutOptions.FillAndExpand
 			};
-			resultLabel.SetBinding (Label.TextProperty, "Result", BindingMode.TwoWay);
+			resultLabel.SetBinding (Label.TextProperty, new Binding(path: "Result",stringFormat: "Result: {0}"));
 
 			var nameLayout = new StackLayout()
 			{
@@ -156,8 +231,6 @@ namespace PTAndroidApp
 			return nameLayout;
 		}
 	}
-
-
 }
 
 

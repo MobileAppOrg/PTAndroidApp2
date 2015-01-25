@@ -101,7 +101,7 @@ namespace PTAndroidApp
 		public string Result { get; set; }
 
 		//[ForeignKey("PatientVisit")]
-		//public int PatientVisitId { get; set; }
+		public int PatientVisitId { get; set; }
 		//public PatientVisit PatientVisit { get; set; }
 	}
 
