@@ -8,7 +8,10 @@ namespace PTAndroidApp
 {
 	public class PMHxPage:ContentPage
 	{
+
 		public PMHxPage(){
+
+			Title = "PMHx";
 			TableView tblForm = CreateTable ();
 
 			Content = new StackLayout{ 
@@ -19,13 +22,13 @@ namespace PTAndroidApp
 		}
 
 		static TableView CreateTable(){
-
+		
 			Entry txtPatientVisitId = new Entry (){ IsVisible = false };
 			txtPatientVisitId.SetBinding (Entry.TextProperty,"PatientVisitId", BindingMode.TwoWay);
 
 			var Trauma = new Label (){FontSize = 18, Text  = "Trauma", VerticalOptions = LayoutOptions .EndAndExpand };
 			var switchTrauma = new Switch {VerticalOptions = LayoutOptions .EndAndExpand,};
-			var txttrauma = new EntryCell  {Placeholder = "Trauma", IsEnabled = false};
+			var txttrauma = new EntryCell  {Placeholder = "Trauma"};
 
 			var lblArthritis = new Label {FontSize = 18,Text = "Arthritis", VerticalOptions = LayoutOptions .EndAndExpand};
 			var switchArthritis = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
@@ -60,7 +63,12 @@ namespace PTAndroidApp
 			var txtCardiovascularDisease = new EntryCell (){Height = 50,Placeholder  = "Cardiovascular Disease" };
 			var txtPulmonaryCondition = new EntryCell (){Height = 50, Placeholder = "Pulmonary Condition" };
 			var txtNeurologyCondition = new EntryCell (){ Height = 50,Placeholder = "Neurology Condition" };
-			var txtCancer = new EntryCell (){Height = 50, Placeholder = "Cancer" };
+			//var txtCancer = new EntryCell (){Height = 50, Placeholder = "Cancer" };
+
+			var lblCancer = new Label {FontSize = 18, Text = "Cancer", VerticalOptions = LayoutOptions .EndAndExpand};
+			var switchCancer = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+
+
 			var txtOthers = new EntryCell (){Height = 50, Placeholder = "Others" };
 
 			ViewCell TraumaCell = new ViewCell{
@@ -132,6 +140,12 @@ namespace PTAndroidApp
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
 
 
+			ViewCell CancerCell = new ViewCell{
+				Height = 100,
+				View = new StackLayout(){
+					Children = {lblCancer,switchCancer},
+					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
+
 			switchTrauma.Toggled += delegate 
 			{	txttrauma .Text = "";
 				if (switchTrauma.IsToggled)
@@ -149,10 +163,10 @@ namespace PTAndroidApp
 				{ArthritisTypepicker.IsVisible  = false ;}
 			};
 
-			bool Allergies = false;
+
 			switchAllergies.Toggled += delegate 
 			{	
-				Allergies= true;
+
 			};
 
 			switchAsthma.Toggled += delegate 
@@ -194,8 +208,24 @@ namespace PTAndroidApp
 				BindingMode.TwoWay, new IndexToGenericListConverter(){ ItemList = ArthritisType  });
 			DMpicker .SetBinding (Picker.SelectedIndexProperty, "DM", 
 				BindingMode.TwoWay, new IndexToGenericListConverter(){ ItemList = DM   });
+			//??
+			switchAllergies.SetBinding (Switch.IsToggledProperty, "Allergies", BindingMode.TwoWay);
+			dtAsthma.SetBinding (DatePicker.DateProperty, "Asthma", BindingMode.TwoWay);
 
+			//??
+			switchHPN.SetBinding (Switch.IsToggledProperty, "HPN", BindingMode.TwoWay);
 
+			txtSurgery.SetBinding (EntryCell.TextProperty, "Surgery", BindingMode.TwoWay);
+			dtSurgery .SetBinding (DatePicker.DateProperty, "SurgeryDate", BindingMode.TwoWay);
+			txtHospitalization .SetBinding (EntryCell.TextProperty, "Hopitalization", BindingMode.TwoWay);
+			dtHospitalization  .SetBinding (DatePicker.DateProperty, "HopitalizationDate", BindingMode.TwoWay);
+			txtCardiovascularDisease .SetBinding (EntryCell.TextProperty, "CardiovascularDisease", BindingMode.TwoWay);
+			txtPulmonaryCondition .SetBinding (EntryCell.TextProperty, "PulmonaryCondition", BindingMode.TwoWay);
+			txtNeurologyCondition .SetBinding (EntryCell.TextProperty, "NeurologyCondition", BindingMode.TwoWay);
+			//??
+			switchCancer.SetBinding (Switch.IsToggledProperty, "Cancer", BindingMode.TwoWay);
+
+			txtOthers  .SetBinding (EntryCell.TextProperty, "Others", BindingMode.TwoWay);
 
 			return new TableView () {
 				Intent = TableIntent.Form,
@@ -212,7 +242,7 @@ namespace PTAndroidApp
 						txtCardiovascularDisease,
 						txtPulmonaryCondition,
 						txtNeurologyCondition,
-						txtCancer,
+						CancerCell,
 						txtOthers
 					}
 				}
