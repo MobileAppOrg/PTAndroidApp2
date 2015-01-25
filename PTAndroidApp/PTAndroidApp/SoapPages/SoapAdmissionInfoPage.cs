@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using PTAndroidApp.ValueConverters;
 using System.Collections.Generic;
 
+
 namespace PTAndroidApp
 {
 	public class AdmissiontInfoPage:ContentPage

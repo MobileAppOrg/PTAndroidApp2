@@ -44,6 +44,7 @@ namespace PTAndroidApp
 			Children.Add (new PatientGeneralInfoPage ());
 			Children.Add (new AdmissiontInfoPage ());
 			Children.Add (new DrugHxPage ());
+			Children.Add (new AncillaryPage ());
 
 			ToolbarItems.Add (new ToolbarItem(){
 				Icon = "",

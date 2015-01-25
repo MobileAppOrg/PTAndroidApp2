@@ -1,32 +1,31 @@
 ﻿using System;
 
 using Xamarin.Forms;
+using System.Collections.Generic;
 
 namespace PTAndroidApp
 {
-	public class AncillaryPage:ContentPage 
+	public class  AncillaryPage:ContentPage 
 	{
 		Grid gr = new Grid ();
+		RowDefinition row = new RowDefinition(){ Height = GridLength.Auto };
+		ColumnDefinition col = new ColumnDefinition(){Width = new GridLength(1, GridUnitType.Star)};
+		ListView ls = new ListView (){RowHeight=60};
+		//Label patientId = new Label();
+
 
 		public AncillaryPage ()
 		{
-
-
-			var lblAncillaryProc = new Label {
-				Text = "Ancillary Procedure", FontSize = 17,
-				VerticalOptions = LayoutOptions .EndAndExpand,
-				HorizontalOptions = LayoutOptions .Center };
-
 			var pckAncillary = new Picker () { Items = { "XRAY", "MRI", "Blood Test","NCV","EMG","CT SCAN", "Others"}, 
-				Title = "List of Procedure", 
+				Title = "Procedures", 
 				HorizontalOptions = LayoutOptions.StartAndExpand
 			};
 
 			var txtAncillary = new Entry {
 				Placeholder = "Other Procedures",
 				HorizontalOptions = LayoutOptions.FillAndExpand,
-
 			};
+
 			var txtResult = new Entry {
 				Placeholder = "Result",
 				HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -34,20 +33,11 @@ namespace PTAndroidApp
 			};
 			var dtAncillary = new DatePicker {
 				Format = "D",
-
 			};
 			var btnAdd = new Button {
 				Text = "Add Ancillary",
 				HorizontalOptions = LayoutOptions.FillAndExpand
 			};
-
-			var AncillaryControls = new StackLayout () {
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				Orientation = StackOrientation.Vertical ,
-				Children = {  lblAncillaryProc, pckAncillary, txtAncillary,txtResult,
-					dtAncillary,  btnAdd }
-			};
-
 			var AncillaryProcedure = txtAncillary.Text ;
 
 
@@ -61,6 +51,7 @@ namespace PTAndroidApp
 				{
 					txtAncillary.IsVisible = true;
 					AncillaryProcedure = txtAncillary.Text;
+					txtAncillary.Focus ();
 				}
 				else 
 				{
@@ -70,35 +61,103 @@ namespace PTAndroidApp
 
 			};
 
-
 			btnAdd.Clicked += delegate {
-				int i = gr.Children.Count;
-				gr.Children.Add(new Label{Text = AncillaryProcedure , FontSize= 15, VerticalOptions = LayoutOptions.Start , HorizontalOptions = LayoutOptions .CenterAndExpand },0,i);
-				gr.Children.Add(new Label{Text = dtAncillary .Date .ToString (), FontSize = 15, VerticalOptions = LayoutOptions.Start , HorizontalOptions = LayoutOptions .CenterAndExpand },1,i);
-				gr.Children.Add(new Label{Text = txtResult .Text,FontSize = 15, VerticalOptions = LayoutOptions.Start , HorizontalOptions = LayoutOptions.CenterAndExpand  },2,i);
-			}; 
+				List<AncillaryProcedure> source;
 
+				source = ((List<AncillaryProcedure>)ls.ItemsSource==null?new List<AncillaryProcedure>():(List<AncillaryProcedure>)ls.ItemsSource);
 
+				source.Add(new AncillaryProcedure(){
+					ProcedureName = AncillaryProcedure,
+					ProcedureDate = dtAncillary .Date ,
+					Result = txtResult.Text,
 
-			var AncillaryList = new ScrollView {
-				Content = new StackLayout {
-					Children = {gr}
+				});
+				ls.ItemsSource = source;
+			};
+
+			StackLayout form = new StackLayout{
+				Children = {
+					pckAncillary,
+					txtAncillary,
+					txtResult,
+					dtAncillary,
+					btnAdd
 				}
-
 			};
 
-			Content = new StackLayout {
-				Children = { AncillaryControls, AncillaryList }
+			gr.RowDefinitions.Add (row);
+			gr.ColumnDefinitions.Add (col);
+			gr.Children.Add (new Label{Text="Drug"},0,0);
+			gr.Children.Add (new Label{Text="Date"},1,0);
+			gr.Children.Add (new Label{Text="Result"},2,0);
+
+			ls.SetBinding (ListView.ItemsSourceProperty, "AncillaryProcedure",BindingMode.TwoWay);
+			ls.ItemTemplate = new DataTemplate(typeof(AncillaryPageCell));
+
+			Content = new StackLayout { 
+				Children = {
+					form,
+					ls
+				}
 			};
-
-
-
 		}
 
-	
-
-
 	}
+
+	public class AncillaryPageCell : ViewCell
+	{
+		public AncillaryPageCell()
+		{
+			var idLabel = new Label {
+				IsVisible = false //false
+			};
+
+			idLabel.SetBinding (Label.TextProperty, "RowId", BindingMode.TwoWay);
+
+			var nameLabel = new Label
+			{
+				FontSize = 20,
+				HorizontalOptions= LayoutOptions.FillAndExpand
+			};
+			nameLabel.SetBinding(Label.TextProperty, "ProcedureName", BindingMode.TwoWay);
+
+			var nameLayout = CreateNameLayout();
+
+			var viewLayout = new StackLayout()
+			{
+				Orientation = StackOrientation.Vertical,
+				Children = { idLabel,nameLabel, nameLayout }
+			};
+			View = viewLayout;
+		}
+
+		static StackLayout CreateNameLayout()
+		{
+
+			var dateLabel = new Label
+			{
+				FontSize = 12,
+				HorizontalOptions = LayoutOptions.FillAndExpand
+			};
+			dateLabel.SetBinding(Label.TextProperty, "ProcedureDate", BindingMode.TwoWay);
+
+			var resultLabel = new Label {
+				FontSize = 12,
+				HorizontalOptions = LayoutOptions.FillAndExpand
+			};
+			resultLabel.SetBinding (Label.TextProperty, "Result", BindingMode.TwoWay);
+
+			var nameLayout = new StackLayout()
+			{
+				HorizontalOptions = LayoutOptions.StartAndExpand,
+				Orientation = StackOrientation.Horizontal,
+				Children = { dateLabel, resultLabel }
+			};
+			return nameLayout;
+		}
+	}
+
+
 }
 
 
