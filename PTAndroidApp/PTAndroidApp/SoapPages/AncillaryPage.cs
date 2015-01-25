@@ -49,7 +49,7 @@ namespace PTAndroidApp
 
 			Entry txtPatientVisitId = new Entry (){ IsVisible = false };
 			txtPatientVisitId.SetBinding (Entry.TextProperty,"PatientVisitId", BindingMode.TwoWay);
-			EntryCell txtAncillaryProcOther = new EntryCell { Label="Drug: " };
+			//EntryCell txtAncillaryProcOther = new EntryCell { Label="" };
 			//EntryCell txtDate = new EntryCell { Label="Date: " };
 			
 			var pckAncillary = new Picker () { Items = { "XRAY", "MRI", "Blood Test","NCV","EMG","CT SCAN", "Others"}, 
@@ -155,7 +155,7 @@ namespace PTAndroidApp
 		{
 			var form = CreateTable ();
 			//ls.ItemsSource = source;
-			ls.ItemTemplate = new DataTemplate(typeof(DrugCell));
+			ls.ItemTemplate = new DataTemplate(typeof(AncillaryCell));
 			ls.SetBinding (ListView.ItemsSourceProperty, "AncillaryProcedure",BindingMode.TwoWay);
 			ContentView footerButtons = CreateFooter ();
 

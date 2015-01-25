@@ -202,7 +202,7 @@ namespace PTAndroidApp
 			};
 
 
-			//bind
+			//bind 
 			txttrauma.SetBinding (EntryCell.TextProperty, "Trauma", BindingMode.TwoWay);
 			ArthritisTypepicker.SetBinding (Picker.SelectedIndexProperty, "Arthritis", 
 				BindingMode.TwoWay, new IndexToGenericListConverter(){ ItemList = ArthritisType  });
