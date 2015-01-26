@@ -16,7 +16,7 @@ namespace PTAndroidApp
 
 		public static void RefreshList(){
 			plist = pmgr.getPatientsList ();
-			lstpatient.RowHeight = 40;
+			lstpatient.RowHeight = 70;
 			lstpatient.ItemsSource = plist;
 			lstpatient.ItemTemplate = new DataTemplate(typeof(PatientCell));
 		}
@@ -42,47 +42,26 @@ namespace PTAndroidApp
 	{
 		public PatientCell()
 		{
-			var nameLabel = new Label { HorizontalOptions= LayoutOptions.FillAndExpand };
-
+			var nameLabel = new Label { FontSize = 20, HorizontalOptions= LayoutOptions.FillAndExpand };
 			nameLabel.SetBinding(Label.TextProperty, "DisplayName");
-			nameLabel.HeightRequest = 40;
 
-			var nameLayout = CreateNameLayout();
+			var patientId = new Label { FontSize = 12, HorizontalOptions= LayoutOptions.Start };
+			patientId.SetBinding(Label.TextProperty, new Binding(path:"PatientId",stringFormat:"ID: {0}"));
+
+			var addressLabel = new Label { FontSize = 12, HorizontalOptions = LayoutOptions.FillAndExpand };
+			addressLabel.SetBinding(Label.TextProperty, new Binding(path:"Address",stringFormat:"Address: {0}"));
 
 			var viewLayout = new StackLayout()
-			{Orientation = StackOrientation.Horizontal,
-			Children = { nameLabel, nameLayout }
+			{
+				Orientation = StackOrientation.Vertical,
+				Children = { nameLabel, 
+					new StackLayout {
+						Orientation = StackOrientation.Horizontal,
+						Children = {patientId , addressLabel }
+					} 
+				}
 			};
 			View = viewLayout;
-		}
-
-		static StackLayout CreateNameLayout()
-		{
-			var patientId = new Label {
-				IsVisible = false,
-			};
-
-			patientId.SetBinding(Label.TextProperty, "PatientId");
-
-			var lastVisit = new Label {
-				HorizontalOptions= LayoutOptions.FillAndExpand
-			};
-
-			lastVisit.SetBinding(Label.TextProperty, "LastVisit");
-
-			var addressLabel = new Label
-			{
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-			};
-			addressLabel.SetBinding(Label.TextProperty, "Address");
-
-			var nameLayout = new StackLayout()
-			{
-				HorizontalOptions = LayoutOptions.StartAndExpand,
-				Orientation = StackOrientation.Vertical,
-				Children = { patientId, addressLabel }
-			};
-			return nameLayout;
 		}
 	}
 
@@ -96,7 +75,7 @@ namespace PTAndroidApp
 
 		private static void RefreshList(){
 			sList = smgr.GetSoapList (_patientId);
-			lstsoap.RowHeight = 40;
+			lstsoap.RowHeight = 60;
 			lstsoap.ItemsSource = sList;
 			lstsoap.ItemTemplate = new DataTemplate(typeof(SoapCell));
 		}
@@ -119,8 +98,7 @@ namespace PTAndroidApp
 
 			lstsoap.ItemSelected += async (sender, e) => {
 				SoapListItemModel selectedItem = (SoapListItemModel)e.SelectedItem;
-				//await DisplayAlert("Tapped!", selectedItem.PatientVisitId + " was tapped.", "OK");
-				Navigation.PushAsync(new SoapPage(selectedItem.PatientVisitId,"Edit"));
+				await Navigation.PushAsync(new SoapPage(selectedItem.PatientVisitId,"Edit"));
 			};
 
 			ToolbarItems.Add (t1);
@@ -134,18 +112,14 @@ namespace PTAndroidApp
 	{
 		public SoapCell()
 		{
-			var lblId = new Label { IsVisible = false };
+			var lblId = new Label { FontSize = 20, HorizontalOptions = LayoutOptions.FillAndExpand };
+			lblId.SetBinding(Label.TextProperty, new Binding(path:"PatientVisitId",stringFormat:"SOAP ID: {0}"));
 
-			lblId.SetBinding(Label.TextProperty, "PatientVisitId");
-
-			var lblDate = new Label { HorizontalOptions= LayoutOptions.FillAndExpand };
-
-			lblDate.SetBinding(Label.TextProperty, "Date");
-			lblDate.HeightRequest = 40;
+			var lblDate = new Label { FontSize = 12, HorizontalOptions= LayoutOptions.FillAndExpand };
+			lblDate.SetBinding(Label.TextProperty, new Binding(path: "Date",stringFormat:"Date of Admission: {0:D}"));
 
 			var viewLayout = new StackLayout()
 			{
-				Orientation = StackOrientation.Horizontal,
 				Children = { lblId, lblDate }
 			};
 

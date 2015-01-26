@@ -44,10 +44,17 @@ namespace PTAndroidApp
 			Children.Add (new PatientGeneralInfoPage ());
 			Children.Add (new AdmissiontInfoPage ());
 			Children.Add (new DrugHxPage ());
+
 			Children.Add (new HPIpage ());
 			Children.Add (new AncillaryPage ());
 			Children.Add (new PMHxPage ());
 			Children.Add (new PSEHxPage ());
+
+//			Children.Add (new HPIpage ());
+//			Children.Add (new AncillaryPage ());
+//			Children.Add (new PMHxPage ());
+//
+
 
 
 			ToolbarItems.Add (new ToolbarItem(){
