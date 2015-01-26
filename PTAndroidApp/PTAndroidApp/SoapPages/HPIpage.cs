@@ -4,48 +4,49 @@ using Xamarin.Forms;
 
 namespace PTAndroidApp
 {
-	public class HPIpage : ContentPage
-	{
-		public HPIpage ()
+		public class HPIpage : ContentPage
 		{
+			public HPIpage ()
+			{
+
+			TableView tblForm = CreateTable ();
+				Content = new StackLayout{ 
+					Children = { 
+						tblForm
+					}
+				};
+			}
+
+		static TableView CreateTable(){
+
+			var HPIentry = new Editor  { };
+			var CellView = new ViewCell {
+				View = new StackLayout {
+						Children = { HPIentry }
+					}
+			};
+
+			HPIentry.SetBinding (Editor.TextProperty, "HPI", BindingMode.TwoWay);
+				return new TableView () {
+				HasUnevenRows = true,
+				Intent = TableIntent.Form , 
+					Root = new TableRoot () {
+					new TableSection ("HPI") {CellView}
+				}
+			};
+
+		}
+
+		
+	}
+}
+
+
 
 	
-
-			var HPIviews = HPIview ();
-
-			Content = new StackLayout{ 
-				Children = { 
-					HPIviews
-				}
-			};
-		
-
-
-		 
-		}
+	
 
 
 
-		public ScrollView  HPIview () 
-		{
-			var header = new Label { FontSize = 25, Text = "HPI", HorizontalOptions = LayoutOptions.CenterAndExpand };
-			var HPIentry = new Editor  {VerticalOptions = LayoutOptions .FillAndExpand, 
-				HorizontalOptions = LayoutOptions .FillAndExpand, };
-			var HPIviews = new ScrollView {
-				VerticalOptions = LayoutOptions.FillAndExpand ,
-				Content = new StackLayout {
-					Children = {header,HPIentry}
-				}
-			};
-
-			return HPIviews;
-		}
-	}
-
-
-
-
-
-}
 
 

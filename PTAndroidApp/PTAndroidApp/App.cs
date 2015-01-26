@@ -13,7 +13,7 @@ namespace PTAndroidApp
 
 		public static Page PMHxPage ()
 		{
-			return new NavigationPage(new HPIpage());
+			return new NavigationPage(new PMHxPage());
 
 		}
 

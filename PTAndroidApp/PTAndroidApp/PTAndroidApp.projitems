@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\SoapAdmissionInfoPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\SoapCarouselPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\HPIpage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PSEHxPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
