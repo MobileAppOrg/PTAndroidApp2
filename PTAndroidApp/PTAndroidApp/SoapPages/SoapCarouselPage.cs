@@ -50,11 +50,6 @@ namespace PTAndroidApp
 			Children.Add (new PMHxPage ());
 			//Children.Add (new PSEHxPage ());
 
-//			Children.Add (new HPIpage ());
-//			Children.Add (new AncillaryPage ());
-//			Children.Add (new PMHxPage ());
-//
-
 
 
 			ToolbarItems.Add (new ToolbarItem(){

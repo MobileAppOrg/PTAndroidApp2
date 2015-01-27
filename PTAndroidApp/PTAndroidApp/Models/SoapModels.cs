@@ -145,8 +145,8 @@ namespace PTAndroidApp
 		public DateTime? SurgeryDate { get; set; }
 		//[MaxLength(50)]
 		public bool Hospitalization { get; set; }
-		public string HopitalizationText { get; set; }
-		public DateTime? HopitalizationDate { get; set; }
+		public string HospitalizationText { get; set; }
+		public DateTime? HospitalizationDate { get; set; }
 		//[MaxLength(50)]
 		public bool CardiovascularDisease { get; set; }
 		public string CardiovascularDiseaseText { get; set; }
