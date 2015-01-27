@@ -140,7 +140,7 @@ namespace PTAndroidApp
 		public string DMText { get; set; }
 		public bool Allergies { get; set; }
 		//[MaxLength(50)]
-		public bool Surgery
+		public bool Surgery { get; set; }
 		public string SurgeryText { get; set; }
 		public DateTime? SurgeryDate { get; set; }
 		//[MaxLength(50)]

@@ -127,7 +127,7 @@ namespace PTAndroidApp
 
 			// send request
 			client.ExecuteAsync (request, response => {
-				if ()
+				//if ()
 				Console.WriteLine (response.Content);
 			});
 
