@@ -26,6 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\HPIpage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DAL\PatientManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DAL\SoapManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
