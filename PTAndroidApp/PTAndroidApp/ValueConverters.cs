@@ -147,5 +147,36 @@ namespace PTAndroidApp.ValueConverters
 			return (DateTime?)null;
 		}
 	}
+		
+
+	public class IndexToBoolConverter:IValueConverter
+	{
+		public object Convert (
+			object value,
+			Type targetType,
+			object parameter,
+			CultureInfo culture)
+		{
+			bool boolVal = (bool)value;
+			if (boolVal)
+				return 1;
+
+			return 0;
+		}
+
+		public object ConvertBack (
+			object value,
+			Type targetType,
+			object parameter,
+			CultureInfo culture)
+		{
+			int intVal = (int)value;
+
+			if (intVal == 1)
+				return true;
+
+			return false;
+		}
+	}
 }
 

@@ -8,11 +8,9 @@ namespace PTAndroidApp
 {
 	public class DrugHxPage : ContentPage
 	{
-		private static ListView ls = new ListView (){
-//			HorizontalOptions = LayoutOptions.FillAndExpand,
-//			VerticalOptions = LayoutOptions.StartAndExpand,
-			RowHeight=60
-		};
+		private static ListView ls = new ListView (){ RowHeight=60 };
+		private static Entry txtPatientVisitId = new Entry (){ IsVisible = false };
+		private static SoapManager soapMgr = new SoapManager();
 
 		static ContentView CreateFooter(){
 			//var btnEdit = new Button{ };
@@ -28,6 +26,10 @@ namespace PTAndroidApp
 					return;
 
 				item = (DrugHistory)ls.SelectedItem;
+
+				if(txtPatientVisitId.Text != "0") // delete in database if edit mode
+					soapMgr.DeleteDrugHistory(item.RowId);
+
 				ls.SelectedItem = null;
 
 				List<DrugHistory> source;
@@ -46,8 +48,6 @@ namespace PTAndroidApp
 		}
 
 		static TableView CreateTable(){
-
-			Entry txtPatientVisitId = new Entry (){ IsVisible = false };
 			txtPatientVisitId.SetBinding (Entry.TextProperty,"PatientVisitId", BindingMode.TwoWay);
 			EntryCell txtDrug = new EntryCell { Label="Drug: " };
 			//EntryCell txtDate = new EntryCell { Label="Date: " };
@@ -75,14 +75,22 @@ namespace PTAndroidApp
 			btnAdd.Clicked += delegate {
 				if (string.IsNullOrEmpty(txtDrug.Text))
 					return;
+
+				DrugHistory d = new DrugHistory();
+
+				if(txtPatientVisitId.Text != "0") // add to db if edit mode
+				{
+					d.RowId = 0;
+					d.DrugName = txtDrug.Text;
+					d.DrugDate = datePicker.Date;
+					d.Result = txtResult.Text;
+					d.PatientVisitId = Convert.ToInt32(txtPatientVisitId.Text);
+					d = soapMgr.AddDrugHistory(d);
+				}
+
 				List<DrugHistory> source;
 				source = ((List<DrugHistory>)ls.ItemsSource==null?new List<DrugHistory>():(List<DrugHistory>)ls.ItemsSource);
-				source.Add(new DrugHistory(){
-					DrugName = txtDrug.Text,
-					DrugDate = datePicker.Date,
-					Result = txtResult.Text,
-					PatientVisitId = Convert.ToInt32(txtPatientVisitId.Text)
-				});
+				source.Add(d);
 				ls.ItemsSource = source;
 				ls.ItemTemplate = new DataTemplate(typeof(DrugCell));
 			};
