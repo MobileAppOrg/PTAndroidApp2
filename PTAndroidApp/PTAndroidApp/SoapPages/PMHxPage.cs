@@ -40,11 +40,11 @@ namespace PTAndroidApp
 			var DMpicker = new Picker (){ Items = { "IDDM","NIDDM" }, 
 				Title = "Select DM", HorizontalOptions = LayoutOptions.FillAndExpand };
 
-			var lblallergies = new Label {FontSize = 18, Text = "Allergies", VerticalOptions = LayoutOptions .EndAndExpand};
+			var lblallergies = new Label {FontSize = 18, Text = "Allergies", VerticalOptions = LayoutOptions.End};
 			var switchAllergies = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
 
 			var lblAsthma  = new Label { Text  = "Asthma", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand};
-			var switchAsthma = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var switchAsthma = new Switch {VerticalOptions = LayoutOptions .EndAndExpand };
 			var dtAsthma = new DatePicker {IsEnabled = false, Format = "D", HorizontalOptions = LayoutOptions .FillAndExpand };
 
 			var lblHPN = new Label {FontSize = 18, Text = "HPN", VerticalOptions = LayoutOptions .EndAndExpand};
@@ -96,18 +96,16 @@ namespace PTAndroidApp
 					Children = {lblallergies,switchAllergies},
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
 
-			ViewCell AsthmaCell = new ViewCell{
-				Height = 100,
-				View = new StackLayout(){
-					Children = {lblAsthma,switchAsthma},
-					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
-
-			ViewCell AsthmaCell2 = new ViewCell{
-				Height = 100,
-				View = new StackLayout(){
-					Children = {//new Label (){Text  = "Date", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand},
-						dtAsthma},
-					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
+//			ViewCell AsthmaCell = new ViewCell{
+//				Height = 200,
+//				View = new StackLayout(){
+//
+//					Orientation = StackOrientation.Vertical,
+//					Children = {lblAsthma,switchAsthma,
+//						new StackLayout {Children = {dtAsthma}} 
+//					},
+//					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
+//					
 
 			ViewCell HPNCell = new ViewCell{
 				Height = 100,
@@ -147,7 +145,7 @@ namespace PTAndroidApp
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
 
 			switchTrauma.Toggled += delegate 
-			{	txttrauma .Text = "";
+			{	
 				if (switchTrauma.IsToggled)
 				{txttrauma .IsEnabled = true;}
 				else
@@ -203,37 +201,42 @@ namespace PTAndroidApp
 
 
 			//bind 
-			txttrauma.SetBinding (EntryCell.TextProperty, "Trauma", BindingMode.TwoWay);
+			switchTrauma.SetBinding (Switch.IsToggledProperty, "Trauma", BindingMode.TwoWay);
+			txttrauma.SetBinding (EntryCell.TextProperty, "TraumaText", BindingMode.TwoWay);
+
 			ArthritisTypepicker.SetBinding (Picker.SelectedIndexProperty, "Arthritis", 
 				BindingMode.TwoWay, new IndexToGenericListConverter(){ ItemList = ArthritisType  });
+
 			DMpicker .SetBinding (Picker.SelectedIndexProperty, "DM", 
 				BindingMode.TwoWay, new IndexToGenericListConverter(){ ItemList = DM   });
+//			
 			//??
-			switchAllergies.SetBinding (Switch.IsToggledProperty, "Allergies", BindingMode.TwoWay);
-			dtAsthma.SetBinding (DatePicker.DateProperty, "Asthma", BindingMode.TwoWay);
-
-			//??
-			switchHPN.SetBinding (Switch.IsToggledProperty, "HPN", BindingMode.TwoWay);
-
-			txtSurgery.SetBinding (EntryCell.TextProperty, "Surgery", BindingMode.TwoWay);
-			dtSurgery .SetBinding (DatePicker.DateProperty, "SurgeryDate", BindingMode.TwoWay);
-			txtHospitalization .SetBinding (EntryCell.TextProperty, "Hopitalization", BindingMode.TwoWay);
-			dtHospitalization  .SetBinding (DatePicker.DateProperty, "HopitalizationDate", BindingMode.TwoWay);
-			txtCardiovascularDisease .SetBinding (EntryCell.TextProperty, "CardiovascularDisease", BindingMode.TwoWay);
-			txtPulmonaryCondition .SetBinding (EntryCell.TextProperty, "PulmonaryCondition", BindingMode.TwoWay);
-			txtNeurologyCondition .SetBinding (EntryCell.TextProperty, "NeurologyCondition", BindingMode.TwoWay);
-			//??
-			switchCancer.SetBinding (Switch.IsToggledProperty, "Cancer", BindingMode.TwoWay);
-
-			txtOthers  .SetBinding (EntryCell.TextProperty, "Others", BindingMode.TwoWay);
+//			switchAllergies.SetBinding (Switch.IsToggledProperty, "Allergies", BindingMode.TwoWay);
+//			dtAsthma.SetBinding (DatePicker.DateProperty, "Asthma", BindingMode.TwoWay);
+//
+//			//??
+//			switchHPN.SetBinding (Switch.IsToggledProperty, "HPN", BindingMode.TwoWay);
+//
+//			txtSurgery.SetBinding (EntryCell.TextProperty, "Surgery", BindingMode.TwoWay);
+//			dtSurgery .SetBinding (DatePicker.DateProperty, "SurgeryDate", BindingMode.TwoWay);
+//			txtHospitalization .SetBinding (EntryCell.TextProperty, "Hopitalization", BindingMode.TwoWay);
+//			dtHospitalization  .SetBinding (DatePicker.DateProperty, "HopitalizationDate", BindingMode.TwoWay);
+//			txtCardiovascularDisease .SetBinding (EntryCell.TextProperty, "CardiovascularDisease", BindingMode.TwoWay);
+//			txtPulmonaryCondition .SetBinding (EntryCell.TextProperty, "PulmonaryCondition", BindingMode.TwoWay);
+//			txtNeurologyCondition .SetBinding (EntryCell.TextProperty, "NeurologyCondition", BindingMode.TwoWay);
+//			//??
+//			switchCancer.SetBinding (Switch.IsToggledProperty, "Cancer", BindingMode.TwoWay);
+//
+//			txtOthers  .SetBinding (EntryCell.TextProperty, "Others", BindingMode.TwoWay);
 
 			return new TableView () {
+				//HasUnevenRows = true,
 				Intent = TableIntent.Form,
 				Root = new TableRoot () {
 					new TableSection ("PMHx") {
 						TraumaCell,txttrauma,
 						ArthritisCell,
-						AsthmaCell,AsthmaCell2,
+						AsthmaCell,
 						HPNCell,
 						DMCell,
 						AllergiesCell,

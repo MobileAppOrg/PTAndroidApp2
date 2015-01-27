@@ -28,7 +28,7 @@ namespace PTAndroidApp
 
 		public static void RefreshList(){
 			plist = pmgr.getPatientsList ();
-			lstpatient.RowHeight = 40;
+			lstpatient.RowHeight = 60;
 			lstpatient.ItemsSource = plist;
 			lstpatient.ItemTemplate = new DataTemplate(typeof(PatientView));
 		}
@@ -89,21 +89,15 @@ namespace PTAndroidApp
 		{
 			public PatientView()
 			{
-
 				var DisplayName = new Label   {
-					TextColor = Color.Black ,
-					Font = Font.SystemFontOfSize (16),
-					HorizontalOptions = LayoutOptions.Center
+					FontSize = 20,
+					HorizontalOptions = LayoutOptions.StartAndExpand 
 				};
-
 				DisplayName.SetBinding(Label.TextProperty, "DisplayName");
-				DisplayName.HeightRequest = 30;
-
-
 				var FieldData = CreateNameLayout();
 				var DataView = new StackLayout()
 				{
-					Orientation = StackOrientation.Horizontal,
+					Orientation = StackOrientation.Vertical,
 					Children = { DisplayName,FieldData}
 				};
 				View = DataView ;
@@ -115,14 +109,15 @@ namespace PTAndroidApp
 				var patientId = new Label {
 					IsVisible =false,
 				};
-
+				var patientAddress = new Label {
+					FontSize = 12
+				};
 				patientId.SetBinding(Label.TextProperty, "PatientId");
-
+				patientAddress.SetBinding( Label.TextProperty, "Address");
 				var nameLayout = new StackLayout()
 				{
-					HorizontalOptions = LayoutOptions.StartAndExpand,
 					Orientation = StackOrientation.Horizontal  ,
-					Children = { patientId}
+					Children = { patientId,patientAddress}
 				};	
 				return nameLayout;
 			}
@@ -133,7 +128,6 @@ namespace PTAndroidApp
 
 	public class AddPatients: ContentPage 
 	{
-
 		static Patient patient;
 		static PatientManager pmgr;
 
@@ -163,14 +157,13 @@ namespace PTAndroidApp
 			List<string> listHandedness = new List<string> (){ "Right", "Left" };
 			List<string> listGender = new List<string> (){ "M", "F" };
 
-			var txtPatientId = new Entry {TextColor = Color.Black,};
+			var txtPatientId = new Entry {};
 			txtPatientId.SetBinding (Entry.TextProperty, "PatientId", BindingMode.TwoWay);
 
-			var txtFName = new Entry { Placeholder = "First Name" ,
-			TextColor = Color.Black,};
+			var txtFName = new Entry { Placeholder = "First Name" };
 			txtFName.SetBinding (Entry.TextProperty, "FirstName", BindingMode.TwoWay);
 
-			var txtLName = new Entry { Placeholder = "Last Name",TextColor = Color.Black, };
+			var txtLName = new Entry { Placeholder = "Last Name" };
 			txtLName.SetBinding (Entry.TextProperty, "LastName", BindingMode.TwoWay);
 
 			var DtOfBirth = new DatePicker { Format = "D", };
@@ -194,22 +187,22 @@ namespace PTAndroidApp
 				Title = "Gender", 
 				HorizontalOptions = LayoutOptions.FillAndExpand };
 
-			pckGender.SetBinding (Picker.SelectedIndexProperty, "Gender", 
+			pckGender.SetBinding (Picker.SelectedIndexProperty, "Gender",
 				BindingMode.TwoWay, new IndexToGenericListConverter(){ItemList = listGender});
 				
-			var txtOccupation = new Entry { Placeholder = "Occupation",TextColor = Color.Black, };
+			var txtOccupation = new Entry { Placeholder = "Occupation"};
 			txtOccupation.SetBinding (Entry.TextProperty, "Occupation", BindingMode.TwoWay);
 
-			var txtAddress = new Entry { Placeholder = "Address",TextColor = Color.Black, };
+			var txtAddress = new Entry { Placeholder = "Address" };
 			txtAddress.SetBinding (Entry.TextProperty, "Address", BindingMode.TwoWay);
 
-			var txtReligion = new Entry { Placeholder = "Religion",TextColor = Color.Black, };
+			var txtReligion = new Entry { Placeholder = "Religion"};
 			txtReligion.SetBinding (Entry.TextProperty, "Religion", BindingMode.TwoWay);
 
-			var txtCityTown = new Entry { Placeholder = "City Town",TextColor = Color.Black, };
+			var txtCityTown = new Entry { Placeholder = "City Town" };
 			txtCityTown.SetBinding (Entry.TextProperty, "CityTown", BindingMode.TwoWay);
 
-			var txtProvince = new Entry { Placeholder = "Province",TextColor = Color.Black, };
+			var txtProvince = new Entry { Placeholder = "Province"};
 			txtProvince.SetBinding (Entry.TextProperty, "Province", BindingMode.TwoWay);
 
 			var btnSave = new Button { Text = "Save",TextColor = Color.Black,
