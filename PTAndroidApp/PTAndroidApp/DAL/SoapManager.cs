@@ -108,6 +108,31 @@ namespace PTAndroidApp
 
 			return true;
 		}
+
+		public bool AddDrugHx(DrugHistory DrugHx){
+			var client = new RestClient (clientUrl);							// domain
+			var request = new RestRequest("api/DrugHistories", Method.POST );	// request
+
+			// serialize object to pass as parameter
+			string json = JsonConvert.SerializeObject (							
+				DrugHx, 
+				new JsonSerializerSettings (){ 
+					DateFormatHandling = DateFormatHandling.IsoDateFormat,
+					NullValueHandling = NullValueHandling.Include 
+				});
+
+			// add parameters to request
+			request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+			request.RequestFormat = DataFormat.Json;
+
+			// send request
+			client.ExecuteAsync (request, response => {
+				if ()
+				Console.WriteLine (response.Content);
+			});
+
+			return true;
+		}
 	}
 }
 

@@ -130,25 +130,32 @@ namespace PTAndroidApp
 	//[ComplexType]
 	public class PMHx {
 		//[MaxLength(50)]
-		public string Trauma { get; set; }
+		public bool Trauma { get; set; }
+		public string TraumaText { get; set; }
 		public bool Arthritis { get; set; }
 		public DateTime? Asthma { get; set; }
 		public bool HPN { get; set; }
 		//[MaxLength(50)]
-		public string DM { get; set; }
+		public bool DM { get; set; }
+		public string DMText { get; set; }
 		public bool Allergies { get; set; }
 		//[MaxLength(50)]
-		public string Surgery { get; set; }
+		public bool Surgery
+		public string SurgeryText { get; set; }
 		public DateTime? SurgeryDate { get; set; }
 		//[MaxLength(50)]
-		public string Hopitalization { get; set; }
+		public bool Hospitalization { get; set; }
+		public string HopitalizationText { get; set; }
 		public DateTime? HopitalizationDate { get; set; }
 		//[MaxLength(50)]
-		public string CardiovascularDisease { get; set; }
+		public bool CardiovascularDisease { get; set; }
+		public string CardiovascularDiseaseText { get; set; }
 		//[MaxLength(50)]
-		public string PulmonaryCondition { get; set; }
+		public bool PulmonaryCondition { get; set; }
+		public string PulmonaryConditionText { get; set; }
 		//[MaxLength(50)]
-		public string NeurologyCondition { get; set; }
+		public bool NeurologyCondition { get; set; }
+		public string NeurologyConditionText { get; set; }
 		public bool Cancer { get; set; }
 		//[MaxLength(50)]
 		public string Others { get; set; }
