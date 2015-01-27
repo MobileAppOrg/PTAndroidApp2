@@ -164,23 +164,23 @@ namespace PTAndroidApp
 	//[ComplexType]
 	public class FMHx
 	{
-		public bool? HypertensionF { get; set; }
-		public bool? HypertensionM { get; set; }
-		public bool? ArthritisF { get; set; }
-		public bool? ArthritisM { get; set; }
-		public bool? DiabetesMellitusF { get; set; }
-		public bool? DiabetesMellitusM { get; set; }
-		public bool? CancerF { get; set; }
-		public bool? CancerM { get; set; }
-		public bool? AsthmaF { get; set; }
-		public bool? AsthmaM { get; set; }
-		public bool? AllergiesF { get; set; }
-		public bool? AllergiesM { get; set; }
-		public bool? NeurologicConditionF { get; set; }
-		public bool? NeurologicConditionM { get; set; }
+		public bool HypertensionF { get; set; }
+		public bool HypertensionM { get; set; }
+		public bool ArthritisF { get; set; }
+		public bool ArthritisM { get; set; }
+		public bool DiabetesMellitusF { get; set; }
+		public bool DiabetesMellitusM { get; set; }
+		public bool CancerF { get; set; }
+		public bool CancerM { get; set; }
+		public bool AsthmaF { get; set; }
+		public bool AsthmaM { get; set; }
+		public bool AllergiesF { get; set; }
+		public bool AllergiesM { get; set; }
+		public bool NeurologicConditionF { get; set; }
+		public bool NeurologicConditionM { get; set; }
 		public string Others { get; set; }
-		public bool? OthersF { get; set; }
-		public bool? OthersM { get; set; }
+		public bool OthersF { get; set; }
+		public bool OthersM { get; set; }
 	}
 
 	public class SoapListItemModel
