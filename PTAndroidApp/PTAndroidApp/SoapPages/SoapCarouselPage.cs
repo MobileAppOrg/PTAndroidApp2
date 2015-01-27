@@ -45,6 +45,7 @@ namespace PTAndroidApp
 			Children.Add (new AdmissiontInfoPage ());
 			Children.Add (new DrugHxPage ());
 			Children.Add (new FMHxPage ());
+			Children.Add (new SubjObjPage ());
 //
 //			Children.Add (new HPIpage ());
 //			Children.Add (new AncillaryPage ());

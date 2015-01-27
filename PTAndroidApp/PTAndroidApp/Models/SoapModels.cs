@@ -10,6 +10,7 @@ namespace PTAndroidApp
 			PMHx = new PMHx();
 			FMHx = new FMHx();
 			PSEHx = new PSEHx ();
+			SubjectiveObjective = new SubjectiveObjective ();
 		}
 
 		//[Key]
@@ -76,6 +77,7 @@ namespace PTAndroidApp
 		public PMHx PMHx { get; set; }
 		public FMHx FMHx { get; set; }
 		public PSEHx PSEHx { get; set; }
+		public SubjectiveObjective SubjectiveObjective { get; set; }
 
 
 		// Navigation Properties and Foreign Keys
@@ -206,6 +208,22 @@ namespace PTAndroidApp
 		public bool AlcoholDrinker { get; set; }
 		public string TypeOfHouse { get; set; }
 		public string OtherTypeOfHouse { get; set; }
+	}
+
+	public class SubjectiveObjective
+	{
+		public string ChiefComplaint { get; set; }
+		public string PtTranslation {get;set;}
+		public string BPBefore { get; set; }
+		public string BPAfter { get; set; }
+		public string RRBefore { get; set; }
+		public string RRAfter { get; set; }
+		public string PRBefore { get; set; }
+		public string PRAfter { get; set; }
+		public string TBefore { get; set; }
+		public string TAfter { get; set; }
+		public string Findings {get;set;}
+		public string Significance {get;set;}
 	}
 }
 

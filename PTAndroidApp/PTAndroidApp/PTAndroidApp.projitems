@@ -28,6 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DAL\SoapManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\FMHxPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\SubjObjPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />

@@ -7,11 +7,9 @@ namespace PTAndroidApp
 {
 	public class FMHxPage: ContentPage
 	{
-		private static Entry txtPatientVisitId = new Entry (){ IsVisible = false };
 		private static List<string> lstChoices = new List<string>(){"-","+"};
 
 		static TableView CreateTable(){
-			txtPatientVisitId.SetBinding (Entry.TextProperty,"PatientVisitId", BindingMode.TwoWay);
 			var HypertensionCell = new FMHxCell ();
 			HypertensionCell.pickerF.SetBinding (Picker.SelectedIndexProperty, new Binding("FMHx.HypertensionF", BindingMode.TwoWay, 
 				new IndexToBoolConverter()));
@@ -74,7 +72,7 @@ namespace PTAndroidApp
 						ArthritisCell,
 						new ViewCell {View = new Label{ Text = "Diabetes Mellitus", FontAttributes = FontAttributes.Bold, YAlign = TextAlignment.Center, XAlign = TextAlignment.Center }},
 						DiabetesMellitusCell,
-						new ViewCell {View = new Label{ Text = "Cell", FontAttributes = FontAttributes.Bold, YAlign = TextAlignment.Center, XAlign = TextAlignment.Center }},
+						new ViewCell {View = new Label{ Text = "Cancer", FontAttributes = FontAttributes.Bold, YAlign = TextAlignment.Center, XAlign = TextAlignment.Center }},
 						CancerCell,
 						new ViewCell {View = new Label{ Text = "Asthma", FontAttributes = FontAttributes.Bold, YAlign = TextAlignment.Center, XAlign = TextAlignment.Center }},
 						AsthmaCell,
