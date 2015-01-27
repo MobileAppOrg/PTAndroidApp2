@@ -25,9 +25,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\SoapCarouselPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\HPIpage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DAL\PatientManager.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+</ItemGroup>
+ <ItemGroup>
+<Folder Include="$(MSBuildThisFileDirectory)Models\" />
     <Folder Include="$(MSBuildThisFileDirectory)DAL\" />
     <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
     <Folder Include="$(MSBuildThisFileDirectory)XAML\" />
