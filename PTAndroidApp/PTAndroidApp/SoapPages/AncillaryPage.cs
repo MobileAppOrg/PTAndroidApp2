@@ -8,11 +8,9 @@ namespace PTAndroidApp
 {
 	public class AncillaryPage  : ContentPage
 	{
-		private static ListView ls = new ListView (){
-			//			HorizontalOptions = LayoutOptions.FillAndExpand,
-			//			VerticalOptions = LayoutOptions.StartAndExpand,
-			RowHeight=60
-		};
+		private static Entry txtPatientVisitId = new Entry (){ IsVisible = false };
+		private static SoapManager soapMgr = new SoapManager();
+		private static ListView ls = new ListView (){RowHeight=60};
 
 		static ContentView CreateFooter(){
 			//var btnEdit = new Button{ };
@@ -22,12 +20,17 @@ namespace PTAndroidApp
 				HorizontalOptions = LayoutOptions.FillAndExpand 
 			};
 
-			btnDelete.Clicked += delegate {
+		
+				btnDelete.Clicked += delegate {
 				AncillaryProcedure item;
-				if(ls.SelectedItem==null)
-					return;
+					if(ls.SelectedItem==null)
+						return;
 
 				item = (AncillaryProcedure)ls.SelectedItem;
+
+				if(txtPatientVisitId.Text != "0") // delete in database if edit mode
+					soapMgr.DeleteAncillaryProcedurey(item.RowId);
+
 				ls.SelectedItem = null;
 
 				List<AncillaryProcedure> source;
@@ -123,14 +126,23 @@ namespace PTAndroidApp
 			btnAdd.Clicked += delegate {
 				if (string.IsNullOrEmpty(AncillaryProcedure))
 					return;
+
+				AncillaryProcedure Ap = new AncillaryProcedure();
+
+				if(txtPatientVisitId.Text != "0") // add to db if edit mode
+				{
+					Ap.RowId = 0;
+					Ap.ProcedureName = AncillaryProcedure;
+					Ap.ProcedureDate = datePicker.Date;
+					Ap.Result = txtResult.Text;
+					Ap.PatientVisitId = Convert.ToInt32(txtPatientVisitId.Text);
+					Ap = soapMgr.AddAncillary(Ap);
+				}
+					
+
 				List<AncillaryProcedure> source;
 				source = ((List<AncillaryProcedure>)ls.ItemsSource==null?new List<AncillaryProcedure>():(List<AncillaryProcedure>)ls.ItemsSource);
-				source.Add(new AncillaryProcedure(){
-					ProcedureName = AncillaryProcedure,
-					ProcedureDate = datePicker.Date,
-					Result = txtResult.Text,
-					PatientVisitId = Convert.ToInt32(txtPatientVisitId.Text)
-				});
+				source.Add(Ap);
 				ls.ItemsSource = source;
 				ls.ItemTemplate = new DataTemplate(typeof(AncillaryCell));
 			};

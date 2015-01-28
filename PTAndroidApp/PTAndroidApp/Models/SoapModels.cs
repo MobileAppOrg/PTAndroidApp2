@@ -85,7 +85,7 @@ namespace PTAndroidApp
 		public int PatientId { get; set; }
 		//public Patient Patient { get; set; }
 
-		public List<AncillaryProcedure> AncillayrProcedures { get; set; }
+		public List<AncillaryProcedure> AncillayrProcedure { get; set; }
 		public List<DrugHistory> DrugHistory { get; set; }
 
 	}
@@ -133,11 +133,17 @@ namespace PTAndroidApp
 		public bool Trauma { get; set; }
 		public string TraumaText { get; set; }
 		public bool Arthritis { get; set; }
-		public DateTime? Asthma { get; set; }
+		//additional
+		public string ArthritisText { get; set; }
+		public bool Asthma { get; set; }
+		public DateTime? AsthmaDate { get; set; }
 		public bool HPN { get; set; }
 		//[MaxLength(50)]
+		// DM bool?
 		public bool DM { get; set; }
+		//additional
 		public string DMText { get; set; }
+
 		public bool Allergies { get; set; }
 		//[MaxLength(50)]
 		public bool Surgery { get; set; }

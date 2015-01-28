@@ -169,6 +169,51 @@ namespace PTAndroidApp
 			return response;
 		}
 
+		public AncillaryProcedure AddAncillary(AncillaryProcedure AncillaryProc){
+			// Put code to communicate to web service here
+			var client = new RestClient (clientUrl);
+			var request = new RestRequest("api/", Method.POST );
+
+			// serialize object to pass in request
+			string json = JsonConvert.SerializeObject (
+				AncillaryProc, 
+				new JsonSerializerSettings (){ 
+					DateFormatHandling = DateFormatHandling.IsoDateFormat,
+					NullValueHandling = NullValueHandling.Include 
+				});
+
+			// add request parameters
+			request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+			request.RequestFormat = DataFormat.Json;
+
+			var response = Execute<AncillaryProcedure> (request);
+
+			return response;
+		}
+
+
+
+		public AncillaryProcedure DeleteAncillaryProcedurey(int rowId){
+			// Put code to communicate to web service here
+			var client = new RestClient (clientUrl);
+			var request = new RestRequest("api/", Method.DELETE );
+
+			// add request parameters
+			request.AddUrlSegment ("id", rowId.ToString ());
+
+			var response =  Execute<AncillaryProcedure> (request);
+
+			return response;
+		}
+
+
+
+
+
+
+
+
+
 		static T Execute<T>(RestRequest request) where T: new()
 		{
 			var client = new RestClient(clientUrl);

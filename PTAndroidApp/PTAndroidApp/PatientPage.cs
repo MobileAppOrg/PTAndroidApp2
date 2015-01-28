@@ -64,6 +64,8 @@ namespace PTAndroidApp
 				var ID = selectedItem.PatientId;
 				await Navigation.PushAsync  (new AddPatients  ("Edit",ID));
 			};
+			ToolbarItems.Add (t2);
+			ToolbarItems.Add (t1);
 
 			t1.Clicked += delegate {
 				Navigation.PushAsync(new AddPatients  ("Add"));
@@ -73,9 +75,6 @@ namespace PTAndroidApp
 				RefreshList();
 			};
 				
-			ToolbarItems.Add (t2);
-			ToolbarItems.Add (t1);
-
 			//content of the page
 			Content = new StackLayout {
 				Children = {
