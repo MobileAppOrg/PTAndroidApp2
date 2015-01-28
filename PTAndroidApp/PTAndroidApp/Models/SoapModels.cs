@@ -10,6 +10,9 @@ namespace PTAndroidApp
 			PMHx = new PMHx();
 			FMHx = new FMHx();
 			PSEHx = new PSEHx ();
+			SubjectiveObjective = new SubjectiveObjective ();
+			OcularInspection = new OcularInspection ();
+			Palpation = new Palpation ();
 		}
 
 		//[Key]
@@ -76,6 +79,10 @@ namespace PTAndroidApp
 		public PMHx PMHx { get; set; }
 		public FMHx FMHx { get; set; }
 		public PSEHx PSEHx { get; set; }
+		public SubjectiveObjective SubjectiveObjective { get; set; }
+		public OcularInspection OcularInspection { get; set; }
+		public Palpation Palpation {get;set;}
+
 
 
 		// Navigation Properties and Foreign Keys
@@ -212,6 +219,61 @@ namespace PTAndroidApp
 		public bool AlcoholDrinker { get; set; }
 		public string TypeOfHouse { get; set; }
 		public string OtherTypeOfHouse { get; set; }
+	}
+
+	public class SubjectiveObjective
+	{
+		public string ChiefComplaint { get; set; }
+		public string PtTranslation {get;set;}
+		public string BPBefore { get; set; }
+		public string BPAfter { get; set; }
+		public string RRBefore { get; set; }
+		public string RRAfter { get; set; }
+		public string PRBefore { get; set; }
+		public string PRAfter { get; set; }
+		public string TBefore { get; set; }
+		public string TAfter { get; set; }
+		public string Findings {get;set;}
+		public string Significance {get;set;}
+	}
+
+	public class OcularInspection
+	{
+		public bool Ambulation { get; set; }
+		public bool TADWheelChair { get; set; }
+		public string TADCruches {get;set;}
+		public string TADCane {get;set;}
+		public string TADWalker {get;set;}
+		public bool Alert {get;set;}
+		public bool Coherent {get;set;}
+		public bool Cooperative { get; set; }
+		public string BodyType { get; set; }
+		public string Atrophy {get;set;}
+		public string Swelling {get;set;}
+		public string Redness {get;set;}
+		public string Ecchymosis {get;set;}
+		public string Deformity {get;set;}
+		public string Wounds {get;set;}
+		public string Scar { get; set; }
+		public string PressureSore {get;set;}
+		public bool GaitDeviation {get;set;}
+		public string Incision {get;set;}
+		public bool ShortnessOfBreathing {get;set;}
+		public string Others {get;set;}
+	}
+
+	public class Palpation
+	{
+		public string BodyTemperature {get;set;}
+		public string MuscleTone {get;set;}
+		public string Edema {get;set;}
+		public string Tenderness {get;set;}
+		public string Location {get;set;}
+		public string Deformity {get;set;}
+		public bool MuscleGuarding {get;set;}
+		public bool MuscleSpasm {get;set;}
+		public string Subluxation {get;set;}
+		public string Dislocation{ get; set; }
 	}
 }
 

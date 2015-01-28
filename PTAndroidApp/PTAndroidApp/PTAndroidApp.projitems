@@ -25,18 +25,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\SoapCarouselPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\HPIpage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DAL\PatientManager.cs" />
-	<Compile Include="$(MSBuildThisFileDirectory)SoapPages\PSEHxPage.cs" />	
+	
+<Compile Include="$(MSBuildThisFileDirectory)SoapPages\PSEHxPage.cs" />	
 
-<Compile Include="$(MSBuildThisFileDirectory)DAL\SoapManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomRenderer.cs" />
+
+	<Compile Include="$(MSBuildThisFileDirectory)DAL\SoapManager.cs" />
+  <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\FMHxPage.cs" />
-
-
- </ItemGroup>
-
+   
+ <Compile Include="$(MSBuildThisFileDirectory)SoapPages\SubjObjPage.cs" />
+  </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
-<Folder Include="$(MSBuildThisFileDirectory)DAL\" />
+	<Folder Include="$(MSBuildThisFileDirectory)DAL\" />
     <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
     <Folder Include="$(MSBuildThisFileDirectory)XAML\" />
     <Folder Include="$(MSBuildThisFileDirectory)SoapPages\" />

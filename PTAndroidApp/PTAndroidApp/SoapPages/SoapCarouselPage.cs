@@ -52,7 +52,6 @@ namespace PTAndroidApp
 			Children.Add (new PSEHxPage ());
 
 
-
 			ToolbarItems.Add (new ToolbarItem(){
 				Icon = "",
 				Text = "Save",
