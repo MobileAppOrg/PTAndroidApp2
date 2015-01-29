@@ -80,7 +80,7 @@ namespace PTAndroidApp
 			var switchIncision = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtIncision = new EntryCell {IsEnabled = false, Placeholder = "Incision" };
 			var switchShortnessOfBreathing = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
-			var txtOthers = new EntryCell {IsEnabled = false, Placeholder = "Others" };
+			var txtOthers = new EntryCell { Placeholder = "Others" };
 
 			ViewCell AmbulationCell = new ViewCell{
 				Height = 100,
@@ -213,7 +213,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Wounds", VerticalOptions = LayoutOptions .End },
-						switchDeformity},
+						switchWounds},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -297,6 +297,7 @@ namespace PTAndroidApp
 						txtAthrophy.IsEnabled = false ;
 					}
 				};
+
 				switchSwelling .Toggled += delegate {
 					txtSwelling .Text = "";
 					if (switchSwelling .IsToggled ){
@@ -306,6 +307,7 @@ namespace PTAndroidApp
 						txtSwelling.IsEnabled = false ;
 					}
 				};
+
 				switchRedness  .Toggled += delegate {
 					txtRedness  .Text = "";
 					if (switchRedness  .IsToggled ){
@@ -315,6 +317,7 @@ namespace PTAndroidApp
 						txtRedness .IsEnabled = false ;
 					}
 				};
+
 				switchEcchymosis   .Toggled += delegate {
 					txtEcchymosis   .Text = "";
 					if (switchEcchymosis   .IsToggled ){
@@ -324,24 +327,27 @@ namespace PTAndroidApp
 						txtEcchymosis  .IsEnabled = false ;
 					}
 				};
+
 				switchDeformity    .Toggled += delegate {
 					txtDeformity   .Text = "";
-					if (switchDeformity    .IsToggled ){
+					if (switchDeformity .IsToggled ){
 						txtDeformity  .IsEnabled = true;
 					}
 					else{
 						txtDeformity  .IsEnabled = false ;
 					}
 				};
-				switchWounds     .Toggled += delegate {
-					txtWounds    .Text = "";
-					if (switchWounds     .IsToggled ){
+
+				switchWounds.Toggled += delegate {
+					txtWounds .Text = "";
+					if (switchWounds .IsToggled ){
 						txtWounds   .IsEnabled = true;
 					}
 					else{
 						txtWounds   .IsEnabled = false ;
 					}
 				};
+
 				switchScar.Toggled += delegate {
 					txtScar     .Text = "";
 					if (switchScar      .IsToggled ){
@@ -351,6 +357,7 @@ namespace PTAndroidApp
 						txtScar    .IsEnabled = false ;
 					}
 				};
+
 				switchPSore .Toggled += delegate {
 					txtPSore      .Text = "";
 					if (switchPSore       .IsToggled ){
@@ -360,6 +367,7 @@ namespace PTAndroidApp
 						txtPSore     .IsEnabled = false ;
 					}
 				};
+
 				switchIncision  .Toggled += delegate {
 					txtIncision       .Text = "";
 					if (switchIncision        .IsToggled ){
