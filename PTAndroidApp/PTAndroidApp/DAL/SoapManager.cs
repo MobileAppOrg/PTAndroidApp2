@@ -172,7 +172,7 @@ namespace PTAndroidApp
 		public AncillaryProcedure AddAncillary(AncillaryProcedure AncillaryProc){
 			// Put code to communicate to web service here
 			var client = new RestClient (clientUrl);
-			var request = new RestRequest("api/", Method.POST );
+			var request = new RestRequest("api/AncillaryProcedures", Method.POST );
 
 			// serialize object to pass in request
 			string json = JsonConvert.SerializeObject (
@@ -191,12 +191,10 @@ namespace PTAndroidApp
 			return response;
 		}
 
-
-
 		public AncillaryProcedure DeleteAncillaryProcedurey(int rowId){
 			// Put code to communicate to web service here
 			var client = new RestClient (clientUrl);
-			var request = new RestRequest("api/", Method.DELETE );
+			var request = new RestRequest("api/AncillaryProcedures/{id}", Method.DELETE );
 
 			// add request parameters
 			request.AddUrlSegment ("id", rowId.ToString ());
@@ -205,14 +203,6 @@ namespace PTAndroidApp
 
 			return response;
 		}
-
-
-
-
-
-
-
-
 
 		static T Execute<T>(RestRequest request) where T: new()
 		{

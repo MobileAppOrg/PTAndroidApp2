@@ -92,7 +92,7 @@ namespace PTAndroidApp
 		public int PatientId { get; set; }
 		//public Patient Patient { get; set; }
 
-		public List<AncillaryProcedure> AncillayrProcedure { get; set; }
+		public List<AncillaryProcedure> AncillaryProcedure { get; set; }
 		public List<DrugHistory> DrugHistory { get; set; }
 
 	}
@@ -272,8 +272,8 @@ namespace PTAndroidApp
 		public string Deformity {get;set;}
 		public bool MuscleGuarding {get;set;}
 		public bool MuscleSpasm {get;set;}
-		public string Subluxation {get;set;}
-		public string Dislocation{ get; set; }
+		public bool Subluxation {get;set;}
+		public bool Dislocation{ get; set; }
 	}
 }
 
