@@ -60,7 +60,7 @@ namespace PTAndroidApp
 
 			var txtAncillary = new Entry {
 				Placeholder = "Other Procedures", IsVisible = false};
-			var AncillaryProcedure = txtAncillary.Text ;
+			var AncillaryProcedures = "";
 
 			EntryCell txtResult = new EntryCell {
 				Label = "Result"};
@@ -104,7 +104,7 @@ namespace PTAndroidApp
 			};
 
 			txtAncillary.TextChanged += delegate {
-				AncillaryProcedure = txtAncillary.Text;
+				AncillaryProcedures = txtAncillary.Text;
 			};
 
 			pckAncillary.SelectedIndexChanged   += delegate  {
@@ -112,19 +112,19 @@ namespace PTAndroidApp
 				if (pckAncillary .SelectedIndex  == -1 || pckAncillary.SelectedIndex   == 6 )
 				{
 					txtAncillary.IsVisible = true;
-					AncillaryProcedure = txtAncillary.Text;
+					AncillaryProcedures = txtAncillary.Text;
 					txtAncillary.Focus ();
 				}
 				else 
 				{
-					AncillaryProcedure =  pckAncillary.Items [pckAncillary .SelectedIndex ];
+					AncillaryProcedures =  pckAncillary.Items [pckAncillary .SelectedIndex ];
 					txtAncillary.IsVisible = false ;
 				}
 
 			};
 				
 			btnAdd.Clicked += delegate {
-				if (string.IsNullOrEmpty(AncillaryProcedure))
+				if (string.IsNullOrEmpty(AncillaryProcedures))
 					return;
 
 				AncillaryProcedure Ap = new AncillaryProcedure();
@@ -132,7 +132,7 @@ namespace PTAndroidApp
 				if(txtPatientVisitId.Text != "0") // add to db if edit mode
 				{
 					Ap.RowId = 0;
-					Ap.ProcedureName = AncillaryProcedure;
+					Ap.ProcedureName = AncillaryProcedures;
 					Ap.ProcedureDate = datePicker.Date;
 					Ap.Result = txtResult.Text;
 					Ap.PatientVisitId = Convert.ToInt32(txtPatientVisitId.Text);
@@ -204,7 +204,7 @@ namespace PTAndroidApp
 				FontSize = 20,
 				HorizontalOptions= LayoutOptions.FillAndExpand
 			};
-			nameLabel.SetBinding(Label.TextProperty, "ProcedureName");
+			nameLabel.SetBinding(Label.TextProperty, new Binding(path: "ProcedureDate", stringFormat: ""));
 
 			var nameLayout = CreateNameLayout();
 
