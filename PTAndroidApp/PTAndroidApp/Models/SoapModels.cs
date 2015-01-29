@@ -94,7 +94,7 @@ namespace PTAndroidApp
 
 		public List<AncillaryProcedure> AncillaryProcedures { get; set; }
 		public List<DrugHistory> DrugHistory { get; set; }
-
+		public List<ROM> ROMs { get; set; }
 	}
 
 	public class AncillaryProcedure
@@ -275,5 +275,28 @@ namespace PTAndroidApp
 		public bool Subluxation {get;set;}
 		public bool Dislocation{ get; set; }
 	}
+
+	public class ROM
+	{
+		public string Motion { get; set; }
+		public decimal Arom { get; set; }
+		public decimal Prom { get; set; }
+		public decimal NormalValue { get; set; }
+		public decimal Difference { get; set;}
+		public string EndFeel { get; set; }
+	}
+
+
+//	ROM: checklist
+//	Note:
+//	•	Motion: list box
+//	•	AROM, PROM, DEFERENCE (P) and (A): text box pero may degrees sign na ka-input ng number
+//	•	ENDFEEL: Combo box
+//	o	Soft
+//	o	Hard
+//	o	Firm
+//	o	Empty
+//	o	Boggy 
+//
 }
 
