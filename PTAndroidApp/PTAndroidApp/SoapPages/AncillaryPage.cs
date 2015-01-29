@@ -9,7 +9,7 @@ namespace PTAndroidApp
 	public class AncillaryPage  : ContentPage
 	{
 		private static Entry txtPatientVisitId = new Entry (){ IsVisible = false };
-		private static SoapManager soapMgr = new SoapManager();
+		//private static SoapManager soapMgr = new SoapManager();
 		private static ListView ls = new ListView (){RowHeight=60};
 
 		static ContentView CreateFooter(){
@@ -29,7 +29,7 @@ namespace PTAndroidApp
 				item = (AncillaryProcedure)ls.SelectedItem;
 
 				if(txtPatientVisitId.Text != "0") // delete in database if edit mode
-					soapMgr.DeleteAncillaryProcedurey(item.RowId);
+					SoapManager.DeleteEntity<AncillaryProcedure>(item.RowId,"api/AncillaryProcedures/{id}");
 
 				ls.SelectedItem = null;
 
@@ -114,7 +114,7 @@ namespace PTAndroidApp
 				if(txtPatientVisitId.Text != "0") // add to db if edit mode
 				{
 					Ap.PatientVisitId = Convert.ToInt32(txtPatientVisitId.Text);
-					Ap = soapMgr.AddAncillary(Ap);
+					Ap = SoapManager.AddEntity<AncillaryProcedure>(Ap,"api/AncillaryProcedures");
 				}
 					
 
@@ -182,7 +182,7 @@ namespace PTAndroidApp
 				FontSize = 20,
 				HorizontalOptions= LayoutOptions.FillAndExpand
 			};
-			nameLabel.SetBinding(Label.TextProperty, new Binding(path: "ProcedureDate", stringFormat: ""));
+			nameLabel.SetBinding(Label.TextProperty, new Binding(path: "ProcedureName", stringFormat: "Procedure: {0}"));
 
 			var nameLayout = CreateNameLayout();
 

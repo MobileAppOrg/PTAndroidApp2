@@ -10,7 +10,7 @@ namespace PTAndroidApp
 	{
 		private static ListView ls = new ListView (){ RowHeight=60 };
 		private static Entry txtPatientVisitId = new Entry (){ IsVisible = false };
-		private static SoapManager soapMgr = new SoapManager();
+		//private static SoapManager soapMgr = new SoapManager();
 
 		static ContentView CreateFooter(){
 			//var btnEdit = new Button{ };
@@ -28,7 +28,7 @@ namespace PTAndroidApp
 				item = (DrugHistory)ls.SelectedItem;
 
 				if(txtPatientVisitId.Text != "0") // delete in database if edit mode
-					soapMgr.DeleteDrugHistory(item.RowId);
+					SoapManager.DeleteEntity<DrugHistory>(item.RowId,"api/DrugHistories/{id}");
 
 				ls.SelectedItem = null;
 
@@ -86,7 +86,7 @@ namespace PTAndroidApp
 				if(txtPatientVisitId.Text != "0") // add to db if edit mode
 				{
 					d.PatientVisitId = Convert.ToInt32(txtPatientVisitId.Text);
-					d = soapMgr.AddDrugHistory(d);
+					d = SoapManager.AddEntity<DrugHistory>(d,"api/DrugHistories");
 				}
 
 				List<DrugHistory> source;

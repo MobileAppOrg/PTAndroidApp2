@@ -109,39 +109,15 @@ namespace PTAndroidApp
 			return true;
 		}
 
-		public bool AddDrugHx(DrugHistory DrugHx){
-			var client = new RestClient (clientUrl);							// domain
-			var request = new RestRequest("api/DrugHistories", Method.POST );	// request
-
-			// serialize object to pass as parameter
-			string json = JsonConvert.SerializeObject (							
-				DrugHx, 
-				new JsonSerializerSettings (){ 
-					DateFormatHandling = DateFormatHandling.IsoDateFormat,
-					NullValueHandling = NullValueHandling.Include 
-				});
-
-			// add parameters to request
-			request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
-			request.RequestFormat = DataFormat.Json;
-
-			// send request
-			client.ExecuteAsync (request, response => {
-				//if ()
-				Console.WriteLine (response.Content);
-			});
-
-			return true;
-		}
-
-		public DrugHistory AddDrugHistory(DrugHistory DrugHx){
+		public static T AddEntity<T>(T entity, string requestPath)  where T: new()
+		{
 			// Put code to communicate to web service here
 			var client = new RestClient (clientUrl);
-			var request = new RestRequest("api/DrugHistories", Method.POST );
+			var request = new RestRequest(requestPath, Method.POST );
 
 			// serialize object to pass in request
 			string json = JsonConvert.SerializeObject (
-				DrugHx, 
+				entity, 
 				new JsonSerializerSettings (){ 
 					DateFormatHandling = DateFormatHandling.IsoDateFormat,
 					NullValueHandling = NullValueHandling.Include 
@@ -151,55 +127,21 @@ namespace PTAndroidApp
 			request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
 			request.RequestFormat = DataFormat.Json;
 
-			var response = Execute<DrugHistory> (request);
+			var response =  Execute<T> (request);
 
 			return response;
 		}
 
-		public DrugHistory DeleteDrugHistory(int rowId){
+		public static T DeleteEntity<T>(int rowId, string requestPath) where T: new()
+		{
 			// Put code to communicate to web service here
 			var client = new RestClient (clientUrl);
-			var request = new RestRequest("api/DrugHistories/{id}", Method.DELETE );
+			var request = new RestRequest(requestPath, Method.DELETE );
 
 			// add request parameters
 			request.AddUrlSegment ("id", rowId.ToString ());
 
-			var response =  Execute<DrugHistory> (request);
-
-			return response;
-		}
-
-		public AncillaryProcedure AddAncillary(AncillaryProcedure AncillaryProc){
-			// Put code to communicate to web service here
-			var client = new RestClient (clientUrl);
-			var request = new RestRequest("api/AncillaryProcedures", Method.POST );
-
-			// serialize object to pass in request
-			string json = JsonConvert.SerializeObject (
-				AncillaryProc, 
-				new JsonSerializerSettings (){ 
-					DateFormatHandling = DateFormatHandling.IsoDateFormat,
-					NullValueHandling = NullValueHandling.Include 
-				});
-
-			// add request parameters
-			request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
-			request.RequestFormat = DataFormat.Json;
-
-			var response = Execute<AncillaryProcedure> (request);
-
-			return response;
-		}
-
-		public AncillaryProcedure DeleteAncillaryProcedurey(int rowId){
-			// Put code to communicate to web service here
-			var client = new RestClient (clientUrl);
-			var request = new RestRequest("api/AncillaryProcedures/{id}", Method.DELETE );
-
-			// add request parameters
-			request.AddUrlSegment ("id", rowId.ToString ());
-
-			var response =  Execute<AncillaryProcedure> (request);
+			var response =  Execute<T> (request);
 
 			return response;
 		}
@@ -219,5 +161,100 @@ namespace PTAndroidApp
 			return response.Data;
 		}
 	}
+
+//		public bool AddDrugHx(DrugHistory DrugHx){
+//			var client = new RestClient (clientUrl);							// domain
+//			var request = new RestRequest("api/DrugHistories", Method.POST );	// request
+//
+//			// serialize object to pass as parameter
+//			string json = JsonConvert.SerializeObject (							
+//				DrugHx, 
+//				new JsonSerializerSettings (){ 
+//					DateFormatHandling = DateFormatHandling.IsoDateFormat,
+//					NullValueHandling = NullValueHandling.Include 
+//				});
+//
+//			// add parameters to request
+//			request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+//			request.RequestFormat = DataFormat.Json;
+//
+//			// send request
+//			client.ExecuteAsync (request, response => {
+//				//if ()
+//				Console.WriteLine (response.Content);
+//			});
+//
+//			return true;
+//		}
+//
+//		public DrugHistory AddDrugHistory(DrugHistory DrugHx){
+//			// Put code to communicate to web service here
+//			var client = new RestClient (clientUrl);
+//			var request = new RestRequest("api/DrugHistories", Method.POST );
+//
+//			// serialize object to pass in request
+//			string json = JsonConvert.SerializeObject (
+//				DrugHx, 
+//				new JsonSerializerSettings (){ 
+//					DateFormatHandling = DateFormatHandling.IsoDateFormat,
+//					NullValueHandling = NullValueHandling.Include 
+//				});
+//
+//			// add request parameters
+//			request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+//			request.RequestFormat = DataFormat.Json;
+//
+//			var response = Execute<DrugHistory> (request);
+//
+//			return response;
+//		}
+//
+//		public DrugHistory DeleteDrugHistory(int rowId){
+//			// Put code to communicate to web service here
+//			var client = new RestClient (clientUrl);
+//			var request = new RestRequest("api/DrugHistories/{id}", Method.DELETE );
+//
+//			// add request parameters
+//			request.AddUrlSegment ("id", rowId.ToString ());
+//
+//			var response =  Execute<DrugHistory> (request);
+//
+//			return response;
+//		}
+//
+//		public AncillaryProcedure AddAncillary(AncillaryProcedure AncillaryProc){
+//			// Put code to communicate to web service here
+//			var client = new RestClient (clientUrl);
+//			var request = new RestRequest("api/AncillaryProcedures", Method.POST );
+//
+//			// serialize object to pass in request
+//			string json = JsonConvert.SerializeObject (
+//				AncillaryProc, 
+//				new JsonSerializerSettings (){ 
+//					DateFormatHandling = DateFormatHandling.IsoDateFormat,
+//					NullValueHandling = NullValueHandling.Include 
+//				});
+//
+//			// add request parameters
+//			request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+//			request.RequestFormat = DataFormat.Json;
+//
+//			var response = Execute<AncillaryProcedure> (request);
+//
+//			return response;
+//		}
+//
+//		public AncillaryProcedure DeleteAncillaryProcedurey(int rowId){
+//			// Put code to communicate to web service here
+//			var client = new RestClient (clientUrl);
+//			var request = new RestRequest("api/AncillaryProcedures/{id}", Method.DELETE );
+//
+//			// add request parameters
+//			request.AddUrlSegment ("id", rowId.ToString ());
+//
+//			var response =  Execute<AncillaryProcedure> (request);
+//
+//			return response;
+//		}
 }
 
