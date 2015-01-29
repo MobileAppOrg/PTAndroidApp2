@@ -78,12 +78,13 @@ namespace PTAndroidApp
 
 				DrugHistory d = new DrugHistory();
 
+				d.RowId = 0;
+				d.DrugName = txtDrug.Text;
+				d.DrugDate = datePicker.Date;
+				d.Result = txtResult.Text;
+
 				if(txtPatientVisitId.Text != "0") // add to db if edit mode
 				{
-					d.RowId = 0;
-					d.DrugName = txtDrug.Text;
-					d.DrugDate = datePicker.Date;
-					d.Result = txtResult.Text;
 					d.PatientVisitId = Convert.ToInt32(txtPatientVisitId.Text);
 					d = soapMgr.AddDrugHistory(d);
 				}

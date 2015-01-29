@@ -54,13 +54,10 @@ namespace PTAndroidApp
 			txtPatientVisitId.SetBinding (Entry.TextProperty,"PatientVisitId", BindingMode.TwoWay);
 			//EntryCell txtAncillaryProcOther = new EntryCell { Label="" };
 			//EntryCell txtDate = new EntryCell { Label="Date: " };
-			
+
+			var lblAncillary = new Label { Text="Procedure: "};
 			var pckAncillary = new Picker () { Items = { "XRAY", "MRI", "Blood Test","NCV","EMG","CT SCAN", "Others"}, 
 				Title = "Procedures"};
-
-			var txtAncillary = new Entry {
-				Placeholder = "Other Procedures", IsVisible = false};
-			var AncillaryProcedure = txtAncillary.Text ;
 
 			EntryCell txtResult = new EntryCell {
 				Label = "Result"};
@@ -73,7 +70,7 @@ namespace PTAndroidApp
 				HorizontalOptions = LayoutOptions.FillAndExpand};
 
 			var AncillaryNameCell = new StackLayout {
-				Children = { pckAncillary, txtAncillary },
+				Children = { lblAncillary, pckAncillary },
 				Orientation = StackOrientation.Horizontal  
 			};
 
@@ -102,39 +99,20 @@ namespace PTAndroidApp
 					Orientation = StackOrientation.Horizontal
 				}
 			};
-
-			txtAncillary.TextChanged += delegate {
-				AncillaryProcedure = txtAncillary.Text;
-			};
-
-			pckAncillary.SelectedIndexChanged   += delegate  {
-
-				if (pckAncillary .SelectedIndex  == -1 || pckAncillary.SelectedIndex   == 6 )
-				{
-					txtAncillary.IsVisible = true;
-					AncillaryProcedure = txtAncillary.Text;
-					txtAncillary.Focus ();
-				}
-				else 
-				{
-					AncillaryProcedure =  pckAncillary.Items [pckAncillary .SelectedIndex ];
-					txtAncillary.IsVisible = false ;
-				}
-
-			};
 				
 			btnAdd.Clicked += delegate {
-				if (string.IsNullOrEmpty(AncillaryProcedure))
+				if (pckAncillary.SelectedIndex < 0) // no item selected in picker; exit event pre-maturely
 					return;
 
 				AncillaryProcedure Ap = new AncillaryProcedure();
 
+				Ap.RowId = 0;
+				Ap.ProcedureName = pckAncillary.Items[pckAncillary.SelectedIndex];
+				Ap.ProcedureDate = datePicker.Date;
+				Ap.Result = txtResult.Text;
+
 				if(txtPatientVisitId.Text != "0") // add to db if edit mode
 				{
-					Ap.RowId = 0;
-					Ap.ProcedureName = AncillaryProcedure;
-					Ap.ProcedureDate = datePicker.Date;
-					Ap.Result = txtResult.Text;
 					Ap.PatientVisitId = Convert.ToInt32(txtPatientVisitId.Text);
 					Ap = soapMgr.AddAncillary(Ap);
 				}
@@ -168,7 +146,7 @@ namespace PTAndroidApp
 			var form = CreateTable ();
 			//ls.ItemsSource = source;
 			ls.ItemTemplate = new DataTemplate(typeof(AncillaryCell));
-			ls.SetBinding (ListView.ItemsSourceProperty, "AncillaryProcedure",BindingMode.TwoWay);
+			ls.SetBinding (ListView.ItemsSourceProperty,"AncillaryProcedures",BindingMode.TwoWay);
 			ContentView footerButtons = CreateFooter ();
 
 			Content = new StackLayout {

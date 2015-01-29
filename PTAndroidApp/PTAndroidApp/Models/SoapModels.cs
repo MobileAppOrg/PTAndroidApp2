@@ -92,7 +92,7 @@ namespace PTAndroidApp
 		public int PatientId { get; set; }
 		//public Patient Patient { get; set; }
 
-		public List<AncillaryProcedure> AncillaryProcedure { get; set; }
+		public List<AncillaryProcedure> AncillaryProcedures { get; set; }
 		public List<DrugHistory> DrugHistory { get; set; }
 
 	}
