@@ -95,6 +95,7 @@ namespace PTAndroidApp
 		public List<AncillaryProcedure> AncillaryProcedures { get; set; }
 		public List<DrugHistory> DrugHistory { get; set; }
 		public List<ROM> ROMs { get; set; }
+		public List<ROM2> ROM2s { get; set; }
 	}
 
 	public class AncillaryProcedure
@@ -278,6 +279,7 @@ namespace PTAndroidApp
 
 	public class ROM
 	{
+		public int RowId { get; set; }
 		public string Motion { get; set; }
 		public decimal Arom { get; set; }
 		public decimal Prom { get; set; }
@@ -285,6 +287,21 @@ namespace PTAndroidApp
 		public decimal Difference { get; set;}
 		public string EndFeel { get; set; }
 	}
+
+	public class ROM2
+	{
+		public int RowId { get; set; }
+		public string Motion { get; set; }
+		public decimal AromR { get; set; }
+		public decimal AromL { get; set; }
+		public decimal PromR { get; set; }
+		public decimal PromL { get; set; }
+		public decimal NormalValue { get; set; }
+		public decimal DifferenceR { get; set;}
+		public decimal DifferenceL { get; set;}
+		public string EndFeel { get; set; }
+	}
+
 
 
 //	ROM: checklist
