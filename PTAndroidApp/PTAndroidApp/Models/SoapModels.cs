@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using PTAndroidApp.Models;
 
@@ -76,12 +77,21 @@ namespace PTAndroidApp
 
 		public string HPI { get; set; }
 
+		public string RomFindings { get; set; }
+		public string RomSignificance { get; set; }
+
+		public string MmtFindings { get; set; }
+		public string MmtSignificance { get; set; }
+
+		public string SensoryFindings { get; set; }
+		public string SensorySignificance { get; set; }
+
 		public PMHx PMHx { get; set; }
 		public FMHx FMHx { get; set; }
 		public PSEHx PSEHx { get; set; }
 		public SubjectiveObjective SubjectiveObjective { get; set; }
 		public OcularInspection OcularInspection { get; set; }
-		public Palpation Palpation {get;set;}
+		public Palpation Palpation { get; set; }
 
 
 
@@ -96,6 +106,8 @@ namespace PTAndroidApp
 		public List<DrugHistory> DrugHistory { get; set; }
 		public List<ROM> ROMs { get; set; }
 		public List<ROM2> ROM2s { get; set; }
+		public List<MMT> MMTs { get; set; }
+		public List<SensoryAx> SensoryAxs{ get; set; }
 	}
 
 	public class AncillaryProcedure
@@ -302,18 +314,20 @@ namespace PTAndroidApp
 		public string EndFeel { get; set; }
 	}
 
+	public class MMT
+	{
+		public int RowId { get; set; }
+		public string Motion { get; set; }
+		public decimal GradeR { get; set; }
+		public decimal GraderL { get; set; }
+	}
 
-
-//	ROM: checklist
-//	Note:
-//	•	Motion: list box
-//	•	AROM, PROM, DEFERENCE (P) and (A): text box pero may degrees sign na ka-input ng number
-//	•	ENDFEEL: Combo box
-//	o	Soft
-//	o	Hard
-//	o	Firm
-//	o	Empty
-//	o	Boggy 
-//
+	public class SensoryAx
+	{
+		public int RowId { get; set; }
+		public string MaterialUsed { get; set; }
+		public string Landmarks { get; set; }
+		public string Result { get; set; }
+	}
 }
 
