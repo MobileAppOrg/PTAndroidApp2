@@ -26,22 +26,22 @@ namespace PTAndroidApp
 			var switchWheelChair = new Switch {IsEnabled =false,VerticalOptions = LayoutOptions .EndAndExpand};
 			//var switchCruches = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
 
-			List<string> TADCruches = new List<string> (){ "Axillary","Lofstrand", "Forearm", "Others" };
+			List<string> TADCruches = new List<string> (){ "Axillary","Lofstrand", "Forearm" };
 
-			var TADCruchesPicker = new Picker (){IsEnabled =false, Items = { "Axillary","Lofstrand", "Forearm", "Others" }, 
-				Title = "Crutches", HorizontalOptions = LayoutOptions.Fill };
-			var txtOtherCrunches = new Entry{HorizontalOptions = LayoutOptions .FillAndExpand , IsEnabled = false, Placeholder = "Other Type" };
+			var TADCruchesPicker = new Picker (){IsEnabled =false, Items = { "Axillary","Lofstrand", "Forearm" }, 
+				Title = "Crutches", HorizontalOptions = LayoutOptions.FillAndExpand  };
+			//var txtOtherCrunches = new Entry{HorizontalOptions = LayoutOptions .FillAndExpand , IsEnabled = false, Placeholder = "Other Type" };
 
 
-			List<string> TADCane = new List<string> (){ "Standard","Quad", "Crook", "Others" };
-			var TADCanePicker = new Picker (){IsEnabled =false, Items = { "Standard","Quad", "Crook", "Others" }, 
-				Title = "Cane", HorizontalOptions = LayoutOptions.Fill  };
-			var txtothersCane = new Entry{HorizontalOptions = LayoutOptions .FillAndExpand ,IsEnabled = false, Placeholder = "Other Type" };
+			List<string> TADCane = new List<string> (){ "Standard","Quad", "Crook" };
+			var TADCanePicker = new Picker (){IsEnabled =false, Items = { "Standard","Quad", "Crook" }, 
+				Title = "Cane", HorizontalOptions = LayoutOptions.FillAndExpand  };
+			//var txtothersCane = new Entry{HorizontalOptions = LayoutOptions .FillAndExpand ,IsEnabled = false, Placeholder = "Other Type" };
 
-			List<string> TADWalker = new List<string> (){ "Standard","Rolling", "Others" };
-			var TADWalkerPicker = new Picker (){IsEnabled =false, Items = { "Standard","Rolling", "Others" }, 
-				Title = "Walker", HorizontalOptions = LayoutOptions.Fill  };
-			var txtotherWalker = new Entry{HorizontalOptions = LayoutOptions .FillAndExpand ,IsEnabled = false, Placeholder = "Other Type" };
+			List<string> TADWalker = new List<string> (){ "Standard","Rolling" };
+			var TADWalkerPicker = new Picker (){IsEnabled =false, Items = { "Standard","Rolling" }, 
+				Title = "Walker", HorizontalOptions = LayoutOptions.FillAndExpand  };
+			//var txtotherWalker = new Entry{HorizontalOptions = LayoutOptions .FillAndExpand ,IsEnabled = false, Placeholder = "Other Type" };
 
 			var switchAlert = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
 			var switchCoherent = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
@@ -96,7 +96,7 @@ namespace PTAndroidApp
 				Height = 100,
 				View = new StackLayout(){
 					Children = {
-						new Label () {FontSize = 17, Text = "   Wheel Chair", VerticalOptions = LayoutOptions .End },
+						new Label () {FontSize = 17, Text = "   Wheel Chair:", VerticalOptions = LayoutOptions .End },
 						switchWheelChair},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
@@ -104,14 +104,16 @@ namespace PTAndroidApp
 			ViewCell CruchesCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {TADCruchesPicker, txtOtherCrunches},
+					Children = {new Label () {FontSize = 17, Text = "   Crutches:", VerticalOptions = LayoutOptions .End },
+						TADCruchesPicker},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 		
 			ViewCell CaneCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {TADCanePicker, txtothersCane},
+					Children = {new Label () {FontSize = 17, Text = "   Cane:", VerticalOptions = LayoutOptions .End },
+						TADCanePicker},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -119,7 +121,8 @@ namespace PTAndroidApp
 			ViewCell WalkerCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {TADWalkerPicker, txtotherWalker},
+					Children = {new Label () {FontSize = 17, Text = "   Walker:", VerticalOptions = LayoutOptions .End },
+						TADWalkerPicker},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -261,26 +264,26 @@ namespace PTAndroidApp
 					
 
 			switchAmbulation .Toggled += delegate   {
-					txtOtherCrunches .Text = "";
-					txtothersCane  .Text = "";
-					txtotherWalker  .Text = "";
+					//txtOtherCrunches .Text = "";
+					//txtothersCane  .Text = "";
+					//txtotherWalker  .Text = "";
 
 					if (switchAmbulation .IsToggled ){
 					TADCruchesPicker .IsEnabled = true;
-					txtOtherCrunches .IsEnabled = true;
+					//txtOtherCrunches .IsEnabled = true;
 					TADCanePicker  .IsEnabled = true;
-					txtothersCane  .IsEnabled = true;
+					//txtothersCane  .IsEnabled = true;
 					TADWalkerPicker  .IsEnabled = true;
-					txtotherWalker  .IsEnabled = true;
+					//txtotherWalker  .IsEnabled = true;
 					switchWheelChair  .IsEnabled = true;
 					}
 					else{
 					TADCruchesPicker .IsEnabled = false;
-					txtOtherCrunches .IsEnabled = false;
+					//txtOtherCrunches .IsEnabled = false;
 					TADCanePicker  .IsEnabled = false;
-					txtothersCane  .IsEnabled = false;
+					//txtothersCane  .IsEnabled = false;
 					TADWalkerPicker  .IsEnabled = false;
-					txtotherWalker  .IsEnabled = false;
+					//txtotherWalker  .IsEnabled = false;
 					switchWheelChair  .IsEnabled = false;
 					}
 				};
@@ -371,41 +374,53 @@ namespace PTAndroidApp
 			switchAmbulation.SetBinding (Switch.IsToggledProperty, "OcularInspection.Ambulation", BindingMode.TwoWay);
 			switchWheelChair .SetBinding (Switch.IsToggledProperty, "OcularInspection.TADWheelChair", BindingMode.TwoWay);
 			//need to add other cruches on model?
-			TADCruchesPicker.SelectedIndexChanged += delegate {
-			if (TADCruchesPicker.SelectedIndex == 3) {
-				txtOtherCrunches.IsEnabled = true;
-				txtOtherCrunches.SetBinding (EntryCell.TextProperty, "OcularInspection.TADCruches", BindingMode.TwoWay);
-			}
-			else {
-						txtOtherCrunches.IsEnabled = false ;
-						TADCruchesPicker.SetBinding (Picker.SelectedIndexProperty, "OcularInspection.TADCruches", 
-						BindingMode.TwoWay, new IndexToGenericListConverter (){ ItemList = TADCruches  });
-			}
-			};
+//			TADCruchesPicker.SelectedIndexChanged += delegate {
+//			if (TADCruchesPicker.SelectedIndex == 3) {
+//				txtOtherCrunches.IsEnabled = true;
+//				txtOtherCrunches.SetBinding (EntryCell.TextProperty, "OcularInspection.TADCruches", BindingMode.TwoWay);
+//			}
+//			else {
+//						txtOtherCrunches.IsEnabled = false ;
+//						TADCruchesPicker.SetBinding (Picker.SelectedIndexProperty, "OcularInspection.TADCruches", 
+//						BindingMode.TwoWay, new IndexToGenericListConverter (){ ItemList = TADCruches  });
+//			}
+//			};
+//
+//
+//
+//		}
+//			TADCanePicker .SelectedIndexChanged += delegate {
+//				if (TADCanePicker .SelectedIndex == 3) {
+//					txtothersCane .IsEnabled = true;
+//					txtothersCane.SetBinding (EntryCell.TextProperty, "OcularInspection.TADCane", BindingMode.TwoWay);
+//				}
+//				else {
+//					txtothersCane .IsEnabled = false ;
+//					TADCanePicker.SetBinding (Picker.SelectedIndexProperty, "OcularInspection.TADCane", 
+//						BindingMode.TwoWay, new IndexToGenericListConverter (){ ItemList = TADCane  });
+//				}
+//			};
+//			TADWalkerPicker  .SelectedIndexChanged += delegate {
+//				if (TADWalkerPicker  .SelectedIndex == 3) {
+//					txtotherWalker  .IsEnabled = true;
+//					txtotherWalker .SetBinding (EntryCell.TextProperty, "OcularInspection.TADWalker", BindingMode.TwoWay);
+//				}
+//				else {
+//					txtotherWalker  .IsEnabled = false ;
+//					TADWalkerPicker.SetBinding (Picker.SelectedIndexProperty, "OcularInspection.TADWalker", 
+//						BindingMode.TwoWay, new IndexToGenericListConverter (){ ItemList = TADWalker  });
+//				}
+//			};
 
-			TADCanePicker .SelectedIndexChanged += delegate {
-				if (TADCanePicker .SelectedIndex == 3) {
-					txtothersCane .IsEnabled = true;
-					txtothersCane.SetBinding (EntryCell.TextProperty, "OcularInspection.TADCane", BindingMode.TwoWay);
-				}
-				else {
-					txtothersCane .IsEnabled = false ;
-					TADCanePicker.SetBinding (Picker.SelectedIndexProperty, "OcularInspection.TADCane", 
-						BindingMode.TwoWay, new IndexToGenericListConverter (){ ItemList = TADCane  });
-				}
-			};
-			TADWalkerPicker  .SelectedIndexChanged += delegate {
-				if (TADWalkerPicker  .SelectedIndex == 3) {
-					txtotherWalker  .IsEnabled = true;
-					txtotherWalker .SetBinding (EntryCell.TextProperty, "OcularInspection.TADWalker", BindingMode.TwoWay);
-				}
-				else {
-					txtotherWalker  .IsEnabled = false ;
-					TADWalkerPicker.SetBinding (Picker.SelectedIndexProperty, "OcularInspection.TADWalker", 
-						BindingMode.TwoWay, new IndexToGenericListConverter (){ ItemList = TADWalker  });
-				}
-			};
-		
+			TADCruchesPicker.SetBinding (Picker.SelectedIndexProperty, "OcularInspection.TADCruches", 
+				BindingMode.TwoWay, new IndexToGenericListConverter (){ ItemList = TADCruches  });
+			TADCanePicker.SetBinding (Picker.SelectedIndexProperty, "OcularInspection.TADCane", 
+				BindingMode.TwoWay, new IndexToGenericListConverter (){ ItemList = TADCane  });
+			TADCanePicker.SetBinding (Picker.SelectedIndexProperty, "OcularInspection.TADCane", 
+				BindingMode.TwoWay, new IndexToGenericListConverter (){ ItemList = TADCane  });
+			TADWalkerPicker.SetBinding (Picker.SelectedIndexProperty, "OcularInspection.TADWalker", 
+				BindingMode.TwoWay, new IndexToGenericListConverter (){ ItemList = TADWalker  });
+
 			switchAlert  .SetBinding (Switch.IsToggledProperty, "OcularInspection.Alert", BindingMode.TwoWay);
 			switchCoherent   .SetBinding (Switch.IsToggledProperty, "OcularInspection.Coherent", BindingMode.TwoWay);
 			switchCooperative    .SetBinding (Switch.IsToggledProperty, "OcularInspection.Cooperative", BindingMode.TwoWay);
