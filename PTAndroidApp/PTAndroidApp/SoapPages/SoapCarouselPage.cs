@@ -50,7 +50,7 @@ namespace PTAndroidApp
 			Children.Add (new AncillaryPage ());
 			Children.Add (new PMHxPage ());
 			Children.Add (new PSEHxPage ());
-
+			Children.Add (new OcularInspectionPage  ());
 
 			ToolbarItems.Add (new ToolbarItem(){
 				Icon = "",

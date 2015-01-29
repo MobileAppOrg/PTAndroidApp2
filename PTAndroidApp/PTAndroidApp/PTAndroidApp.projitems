@@ -31,6 +31,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\FMHxPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\SubjObjPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\OcularInspectionPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PalpationPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />

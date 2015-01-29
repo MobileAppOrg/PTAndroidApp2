@@ -99,7 +99,7 @@ namespace PTAndroidApp
 					Orientation = StackOrientation.Horizontal
 				}
 			};
-				
+
 			btnAdd.Clicked += delegate {
 				if (pckAncillary.SelectedIndex < 0) // no item selected in picker; exit event pre-maturely
 					return;
@@ -182,7 +182,7 @@ namespace PTAndroidApp
 				FontSize = 20,
 				HorizontalOptions= LayoutOptions.FillAndExpand
 			};
-			nameLabel.SetBinding(Label.TextProperty, "ProcedureName");
+			nameLabel.SetBinding(Label.TextProperty, new Binding(path: "ProcedureDate", stringFormat: ""));
 
 			var nameLayout = CreateNameLayout();
 
