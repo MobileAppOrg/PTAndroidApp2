@@ -51,7 +51,11 @@ namespace PTAndroidApp
 			Children.Add (new PMHxPage ());
 			Children.Add (new PSEHxPage ());
 			Children.Add (new OcularInspectionPage  ());
+
 			Children.Add (new PalpationPage  ());
+
+			Children.Add (new Rom2Page  ());
+
 
 			ToolbarItems.Add (new ToolbarItem(){
 				Icon = "",

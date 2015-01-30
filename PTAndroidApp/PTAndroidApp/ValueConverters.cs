@@ -39,6 +39,36 @@ namespace PTAndroidApp.ValueConverters
 			return 0;
 		}
 	}
+
+	public class StringToDecimal : IValueConverter
+	{
+		public object Convert (
+			object value,
+			Type targetType,
+			object parameter,
+			CultureInfo culture)
+		{
+			int theInt = (int)value;
+			return theInt.ToString ();
+		}
+
+		public object ConvertBack (
+			object value,
+			Type targetType,
+			object parameter,
+			CultureInfo culture)
+		{
+			string strValue = value as string;
+			if (string.IsNullOrEmpty (strValue))
+				return 0;
+			int resultInt;
+			if (int.TryParse (strValue, out resultInt)) {
+				return resultInt;
+			}
+			return 0;
+		}
+	}
+
 	//Items = { "Single", "Married", "Divorced", "Widowed" }
 	public class IndexToGenericListConverter:IValueConverter
 	{
