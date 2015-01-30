@@ -7,7 +7,7 @@ namespace PTAndroidApp
 	public class Rom2Page : ContentPage
 	{
 		private static Entry txtPatientVisitId = new Entry (){ IsVisible = false };
-		private static ListView ls = new ListView (){ RowHeight=60 };
+		private static ListView ls = new ListView (){ RowHeight=80 };
 		private static List<string> lstEndFeel = new List<string> (){ "Soft", "Hard", "Firm", "Empty", "Boggy" };
 		private static List<string> lstMotions = new List<string>()
 		{
@@ -115,9 +115,10 @@ namespace PTAndroidApp
 			Entry txtPatientVisitId = new Entry (){ IsVisible = false };
 			txtPatientVisitId.SetBinding (Entry.TextProperty,"PatientVisitId", BindingMode.TwoWay);
 
-			var lblROM2 = new Label { Text="Motion: "};
+			var lblROM2 = new Label { Text="Motion: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center };
 			var Motions = new Picker () { 
 				Title = "Procedures",
+				HorizontalOptions = LayoutOptions.FillAndExpand,
 				Items = {
 					"Shoulder Flexion",
 					"Shoulder Extension",
@@ -183,44 +184,61 @@ namespace PTAndroidApp
 					"DIP EXTENSION"
 				}};
 
-			var AromR = new EntryCell { Label = "AromR(°)" };
-			var AromL = new EntryCell { Label = "AromL(°)" };
-			var PromR = new EntryCell { Label = "PromR(°)" };
-			var PromL = new EntryCell { Label = "PromL(°)" };
-			var NormalValue = new EntryCell { Label = "NormalValue(°)" };
-			var DifferenceR = new EntryCell { Label = "DifferenceR(°)" };
-			var DifferenceL = new EntryCell { Label = "DifferenceL(°)" };
-			var lblEndFeel = new Label { Text = "End Feel: " };
+			var lblAromR = new Label { Text = "AromR(°): ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center };
+			var AromR = new Entry { HorizontalOptions = LayoutOptions.FillAndExpand, Keyboard = Keyboard.Numeric };
+			var lblAromL = new Label { Text = "AromL(°): ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center };
+			var AromL = new Entry { HorizontalOptions = LayoutOptions.FillAndExpand, Keyboard = Keyboard.Numeric  };
+			var lblPromR = new Label { Text = "PromR(°): ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center };
+			var PromR = new Entry { HorizontalOptions = LayoutOptions.FillAndExpand, Keyboard = Keyboard.Numeric  };
+			var lblPromL = new Label { Text = "PromL(°): ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center };
+			var PromL = new Entry { HorizontalOptions = LayoutOptions.FillAndExpand, Keyboard = Keyboard.Numeric  };
+			var lblNormalValue = new Label { Text = "NormalValue(°): ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center };
+			var NormalValue = new Entry { HorizontalOptions = LayoutOptions.FillAndExpand, Keyboard = Keyboard.Numeric  };
+			var lblDifferenceR = new Label { Text = "DifferenceR(°): ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center };
+			var DifferenceR = new Entry { HorizontalOptions = LayoutOptions.FillAndExpand, Keyboard = Keyboard.Numeric  };
+			var lblDifferenceL = new Label { Text = "DifferenceL(°): ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center };
+			var DifferenceL = new Entry { HorizontalOptions = LayoutOptions.FillAndExpand, Keyboard = Keyboard.Numeric  };
+			var lblEndFeel = new Label { Text = "End Feel: ",HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center };
 			var EndFeel = new Picker () { 
 				Title = "End Feel",
+				HorizontalOptions = LayoutOptions.FillAndExpand,
 				Items = { "Soft", "Hard", "Firm", "Empty", "Boggy" }
 			};
 
-			var btnAdd = new Button {
-				Text = "Add ROM",
-				HorizontalOptions = LayoutOptions.FillAndExpand};
-
-			var NameLayout = new StackLayout {
-				Children = { lblROM2, Motions },
-				Orientation = StackOrientation.Horizontal  
-			};
+			var btnAdd = new Button { Text = "Add ROM", HorizontalOptions = LayoutOptions.FillAndExpand };
 
 			var NameCell = new ViewCell {
-				View = new StackLayout () {
-					Children = { NameLayout },
-					VerticalOptions = LayoutOptions .FillAndExpand 
+				View = new StackLayout {
+					Children = { lblROM2, Motions },
+					Orientation = StackOrientation.Horizontal  
 				}
 			};
 
-			var EndFeelLayout = new StackLayout {
-				Children = { lblEndFeel, EndFeel },
-				Orientation = StackOrientation.Horizontal  
+			var AromCell = new ViewCell {
+				View = new StackLayout () {
+					Children = { lblAromR, AromR, lblAromL, AromL },
+					Orientation = StackOrientation.Horizontal
+				}
+			};
+
+			var PromCell = new ViewCell {
+				View = new StackLayout () {
+					Children = { lblPromR, PromR, lblPromL, PromL },
+					Orientation = StackOrientation.Horizontal
+				}
+			};
+
+			var DifferenceCell = new ViewCell {
+				View = new StackLayout () {
+					Children = { lblDifferenceR, DifferenceR, lblDifferenceL, DifferenceL },
+					Orientation = StackOrientation.Horizontal
+				}
 			};
 
 			var EndFeelCell = new ViewCell {
-				View = new StackLayout () {
-					Children = { EndFeelLayout },
-					VerticalOptions = LayoutOptions .FillAndExpand 
+				View = new StackLayout {
+					Children = { lblNormalValue, NormalValue, lblEndFeel, EndFeel },
+					Orientation = StackOrientation.Horizontal  
 				}
 			};
 
@@ -264,18 +282,14 @@ namespace PTAndroidApp
 			TableSection ts = new TableSection ();
 			return new TableView () {
 				VerticalOptions = LayoutOptions.Start,
-				HeightRequest = 260,
+				HeightRequest = 300,
 				Intent = TableIntent.Form,
 				Root = new TableRoot () {
 					new TableSection ("ROM (continued)") {
 						NameCell,
-						AromR,
-						AromL,
-						PromR,
-						PromL,
-						NormalValue,
-						DifferenceR,
-						DifferenceL,
+						AromCell,
+						PromCell,
+						DifferenceCell,
 						EndFeelCell,
 						btnCell	
 					}
@@ -337,35 +351,30 @@ namespace PTAndroidApp
 				FontSize = 12,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 			};
-			lblAromR.SetBinding(Label.TextProperty, new Binding(path: "AromR", stringFormat: "0 °"));
+			lblAromR.SetBinding(Label.TextProperty, new Binding(path: "AromR", stringFormat: "Arom(R): {0}°"));
 
 			var lblAromL = new Label {
 				FontSize = 12,
 				HorizontalOptions = LayoutOptions.FillAndExpand
 			};
-			lblAromL.SetBinding (Label.TextProperty, new Binding(path: "AromL",stringFormat: "0 °"));
-
-			var aromLayout = new StackLayout (){ 
-				Orientation = StackOrientation.Horizontal,
-				Children = { lblAromR, lblAromL }
-			};
+			lblAromL.SetBinding (Label.TextProperty, new Binding(path: "AromL",stringFormat: "Arom(L): {0}°"));
 
 			var lblPromR = new Label
 			{
 				FontSize = 12,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 			};
-			lblPromR.SetBinding(Label.TextProperty, new Binding(path: "PromR", stringFormat: "0 °"));
+			lblPromR.SetBinding(Label.TextProperty, new Binding(path: "PromR", stringFormat: "Prom(R): {0}°"));
 
 			var lblPromL = new Label {
 				FontSize = 12,
 				HorizontalOptions = LayoutOptions.FillAndExpand
 			};
-			lblPromL.SetBinding (Label.TextProperty, new Binding(path: "PromL",stringFormat: "0 °"));
+			lblPromL.SetBinding (Label.TextProperty, new Binding(path: "PromL",stringFormat: "Prom(L): {0}°"));
 
-			var promLayout = new StackLayout (){ 
+			var FirstLayout = new StackLayout (){ 
 				Orientation = StackOrientation.Horizontal,
-				Children = { lblPromR, lblPromL }
+				Children = { lblAromR, lblAromL, lblPromR, lblPromL }
 			};
 
 			var lblDifferenceR = new Label
@@ -373,25 +382,20 @@ namespace PTAndroidApp
 				FontSize = 12,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 			};
-			lblDifferenceR.SetBinding(Label.TextProperty, new Binding(path: "DifferenceR", stringFormat: "0 °"));
+			lblDifferenceR.SetBinding(Label.TextProperty, new Binding(path: "DifferenceR", stringFormat: "Difference(R): {0}°"));
 
 			var lblDifferenceL = new Label {
 				FontSize = 12,
 				HorizontalOptions = LayoutOptions.FillAndExpand
 			};
-			lblDifferenceL.SetBinding (Label.TextProperty, new Binding(path: "DifferenceL",stringFormat: "0 °"));
-
-			var differenceLLayout = new StackLayout (){ 
-				Orientation = StackOrientation.Horizontal,
-				Children = { lblDifferenceR, lblDifferenceL }
-			};
+			lblDifferenceL.SetBinding (Label.TextProperty, new Binding(path: "DifferenceL",stringFormat: "Difference(L): {0}°"));
 
 			var lblNormalValue = new Label
 			{
 				FontSize = 12,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 			};
-			lblNormalValue.SetBinding(Label.TextProperty, new Binding(path: "NormalValue", stringFormat: "0 °"));
+			lblNormalValue.SetBinding(Label.TextProperty, new Binding(path: "NormalValue", stringFormat: "NormalValue: {0}°"));
 
 			var lblEndFeel = new Label {
 				FontSize = 12,
@@ -399,16 +403,15 @@ namespace PTAndroidApp
 			};
 			lblEndFeel.SetBinding (Label.TextProperty, "EndFeel" );
 
-			var endFeelLayout = new StackLayout (){ 
+			var SecondLayout = new StackLayout (){ 
 				Orientation = StackOrientation.Horizontal,
-				Children = { lblNormalValue, lblEndFeel }
+				Children = { lblDifferenceR, lblDifferenceL, lblNormalValue, lblEndFeel }
 			};
 
 			var detailLayout = new StackLayout()
 			{
 				HorizontalOptions = LayoutOptions.StartAndExpand,
-				Orientation = StackOrientation.Horizontal,
-				Children = { aromLayout, promLayout, differenceLLayout, endFeelLayout }
+				Children = { FirstLayout, SecondLayout }
 			};
 			return detailLayout;
 		}
