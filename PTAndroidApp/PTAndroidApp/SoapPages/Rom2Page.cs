@@ -1,12 +1,10 @@
 ﻿using System;
 
 using Xamarin.Forms;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace PTAndroidApp
 {
-	public class DrugHxPage : ContentPage
+	public class Rom2Page : ContentPage
 	{
 		private static ListView ls = new ListView (){ RowHeight=60 };
 		private static Entry txtPatientVisitId = new Entry (){ IsVisible = false };
@@ -111,11 +109,9 @@ namespace PTAndroidApp
 			};
 		}
 
-
-		public DrugHxPage ()
+		public Rom2Page ()
 		{
 			var form = CreateTable ();
-			//ls.ItemsSource = source;
 			ls.ItemTemplate = new DataTemplate(typeof(DrugCell));
 			ls.SetBinding (ListView.ItemsSourceProperty, "DrugHistory",BindingMode.TwoWay);
 
@@ -131,65 +127,60 @@ namespace PTAndroidApp
 				}
 			};
 		}
-	}
 
-
-
-	public class DrugCell : ViewCell
-	{
-		public DrugCell()
+		public class Rom2Cell : ViewCell
 		{
-			var idLabel = new Label {
-				IsVisible = false //false
-			};
-			idLabel.SetBinding (Label.TextProperty, "RowId");
-
-			var patientVisitIdLabel = new Label {
-				IsVisible = false //false
-			};
-			patientVisitIdLabel.SetBinding (Label.TextProperty, "PatientVisitId");
-
-			var nameLabel = new Label
+			public Rom2Cell()
 			{
-				FontSize = 20,
-				HorizontalOptions= LayoutOptions.FillAndExpand
-			};
-			nameLabel.SetBinding(Label.TextProperty, "DrugName");
+				var idLabel = new Label { IsVisible = false };
+				idLabel.SetBinding (Label.TextProperty, "RowId");
 
-			var nameLayout = CreateNameLayout();
+				var patientVisitIdLabel = new Label { IsVisible = false };
+				patientVisitIdLabel.SetBinding (Label.TextProperty, "PatientVisitId");
 
-			var viewLayout = new StackLayout()
+				var nameLabel = new Label
+				{
+					FontSize = 20,
+					HorizontalOptions= LayoutOptions.FillAndExpand
+				};
+				nameLabel.SetBinding(Label.TextProperty, "DrugName");
+
+				var nameLayout = CreateNameLayout();
+
+				var viewLayout = new StackLayout()
+				{
+					Orientation = StackOrientation.Vertical,
+					Children = { idLabel,patientVisitIdLabel,nameLabel, nameLayout }
+				};
+				View = viewLayout;
+			}
+
+			static StackLayout CreateNameLayout()
 			{
-				Orientation = StackOrientation.Vertical,
-				Children = { idLabel,patientVisitIdLabel,nameLabel, nameLayout }
-			};
-			View = viewLayout;
+
+				var dateLabel = new Label
+				{
+					FontSize = 12,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+				};
+				dateLabel.SetBinding(Label.TextProperty, new Binding(path: "DrugDate", stringFormat: "Date: {0:D}"));
+
+				var resultLabel = new Label {
+					FontSize = 12,
+					HorizontalOptions = LayoutOptions.FillAndExpand
+				};
+				resultLabel.SetBinding (Label.TextProperty, new Binding(path: "Result",stringFormat: "Result: {0}"));
+
+				var nameLayout = new StackLayout()
+				{
+					HorizontalOptions = LayoutOptions.StartAndExpand,
+					Orientation = StackOrientation.Horizontal,
+					Children = { dateLabel, resultLabel }
+				};
+				return nameLayout;
+			}
 		}
 
-		static StackLayout CreateNameLayout()
-		{
-
-			var dateLabel = new Label
-			{
-				FontSize = 12,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-			};
-			dateLabel.SetBinding(Label.TextProperty, new Binding(path: "DrugDate", stringFormat: "Date: {0:D}"));
-
-			var resultLabel = new Label {
-				FontSize = 12,
-				HorizontalOptions = LayoutOptions.FillAndExpand
-			};
-			resultLabel.SetBinding (Label.TextProperty, new Binding(path: "Result",stringFormat: "Result: {0}"));
-
-			var nameLayout = new StackLayout()
-			{
-				HorizontalOptions = LayoutOptions.StartAndExpand,
-				Orientation = StackOrientation.Horizontal,
-				Children = { dateLabel, resultLabel }
-			};
-			return nameLayout;
-		}
 	}
 }
 

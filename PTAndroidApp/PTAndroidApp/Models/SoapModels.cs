@@ -298,6 +298,7 @@ namespace PTAndroidApp
 		public decimal NormalValue { get; set; }
 		public decimal Difference { get; set;}
 		public string EndFeel { get; set; }
+		public int PatientVisitId { get; set; }
 	}
 
 	public class ROM2
@@ -312,6 +313,7 @@ namespace PTAndroidApp
 		public decimal DifferenceR { get; set;}
 		public decimal DifferenceL { get; set;}
 		public string EndFeel { get; set; }
+		public int PatientVisitId { get; set; }
 	}
 
 	public class MMT
@@ -320,6 +322,7 @@ namespace PTAndroidApp
 		public string Motion { get; set; }
 		public decimal GradeR { get; set; }
 		public decimal GraderL { get; set; }
+		public int PatientVisitId { get; set; }
 	}
 
 	public class SensoryAx
@@ -328,6 +331,7 @@ namespace PTAndroidApp
 		public string MaterialUsed { get; set; }
 		public string Landmarks { get; set; }
 		public string Result { get; set; }
+		public int PatientVisitId { get; set; }
 	}
 }
 
