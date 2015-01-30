@@ -358,23 +358,23 @@ namespace PTAndroidApp
 					}
 				};
 
-				switchPSore .Toggled += delegate {
-					txtPSore      .Text = "";
-					if (switchPSore       .IsToggled ){
-						txtPSore     .IsEnabled = true;
+				switchPSore.Toggled += delegate {
+					txtPSore.Text = "";
+					if (switchPSore .IsToggled ){
+						txtPSore.IsEnabled = true;
 					}
 					else{
-						txtPSore     .IsEnabled = false ;
+						txtPSore.IsEnabled = false ;
 					}
 				};
 
-				switchIncision  .Toggled += delegate {
-					txtIncision       .Text = "";
-					if (switchIncision        .IsToggled ){
-						txtIncision      .IsEnabled = true;
+				switchIncision.Toggled += delegate {
+					txtIncision.Text = "";
+					if (switchIncision.IsToggled ){
+						txtIncision.IsEnabled = true;
 					}
 					else{
-						txtIncision      .IsEnabled = false ;
+						txtIncision.IsEnabled = false ;
 					}
 				};
 		

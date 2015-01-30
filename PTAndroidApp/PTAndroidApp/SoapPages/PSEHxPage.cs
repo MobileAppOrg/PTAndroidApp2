@@ -90,10 +90,7 @@ namespace PTAndroidApp
 			NumberOfOffspring .ValueChanged += delegate (object sender, ValueChangedEventArgs e) {
 				LblNumberOfOffspring.Text = String.Format("{0:####}", e.NewValue);
 			};
-
-
-
-		
+				
 		LivesWithPicker.SelectedIndexChanged   += delegate  {
 
 
