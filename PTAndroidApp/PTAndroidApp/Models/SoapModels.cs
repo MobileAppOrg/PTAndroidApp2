@@ -14,6 +14,9 @@ namespace PTAndroidApp
 			SubjectiveObjective = new SubjectiveObjective ();
 			OcularInspection = new OcularInspection ();
 			Palpation = new Palpation ();
+			CognitiveAssmt = new CognitiveAssmt ();
+			BalanceTolerance = new BalanceTolerance ();
+			DeepTendonReflex = new DeepTendonReflex ();
 		}
 
 		//[Key]
@@ -86,13 +89,24 @@ namespace PTAndroidApp
 		public string SensoryFindings { get; set; }
 		public string SensorySignificance { get; set; }
 
+		public string CranialNerveAssmtFindings { get; set; }
+		public string CranialNerveAssmtSignificance { get; set; }
+
+		public string CoordinationAssmtFindings { get; set; }
+		public string CoordinationAssmtSignificance { get; set; }
+
+		public string MbmFindings { get; set; }
+		public string MbmSignificance { get; set; }
+
 		public PMHx PMHx { get; set; }
 		public FMHx FMHx { get; set; }
 		public PSEHx PSEHx { get; set; }
 		public SubjectiveObjective SubjectiveObjective { get; set; }
 		public OcularInspection OcularInspection { get; set; }
 		public Palpation Palpation { get; set; }
-
+		public CognitiveAssmt CognitiveAssmt { get; set; }
+		public BalanceTolerance BalanceTolerance { get; set; }
+		public DeepTendonReflex DeepTendonReflex { get; set; }
 
 
 		// Navigation Properties and Foreign Keys
@@ -108,6 +122,9 @@ namespace PTAndroidApp
 		public List<ROM2> ROM2s { get; set; }
 		public List<MMT> MMTs { get; set; }
 		public List<SensoryAx> SensoryAxs{ get; set; }
+		public List<CranialNerveAssmt> CranialNerveAssmts{ get; set; }
+		public List<CoordinationAssmt> CoordinationAssmts { get; set; }
+		public List<MBM> MBMs { get; set; }
 	}
 
 	public class AncillaryProcedure
@@ -332,6 +349,70 @@ namespace PTAndroidApp
 		public string Landmarks { get; set; }
 		public string Result { get; set; }
 		public int PatientVisitId { get; set; }
+	}
+
+	public class CranialNerveAssmt
+	{
+		public int RowId { get; set; }
+		public string CranialNerve { get; set; }
+		public string Right { get; set; }
+		public string Left { get; set; }
+		public string Result { get; set; }
+		public int PatientVisitId { get; set; }
+	}
+
+	public class CognitiveAssmt
+	{
+		public string STQuestion { get; set; }
+		public string STResponse { get; set; }
+		public string LTQuestion { get; set; }
+		public string LTResponse { get; set; }
+		public string Findings { get; set; }
+		public string Significance { get; set; }
+	}
+
+	public class CoordinationAssmt
+	{
+		public int RowId { get; set; }
+		public string CoordinationTest { get; set; }
+		public string Right { get; set; }
+		public string Left { get; set; }
+		public string Result { get; set; }
+		public int PatientVisitId { get; set; }
+	}
+
+	public class BalanceTolerance
+	{
+		public string SittingBalance { get; set; }
+		public string SittingTolerance { get; set; }
+		public string StandingBalance { get; set; }
+		public string StandingTolerance { get; set; }
+		public string Findings { get; set; }
+		public string Significance { get; set; }
+	}
+
+	public class DeepTendonReflex
+	{
+		public string LeftHand { get; set; }
+		public string RightHand { get; set; }
+		public string LeftElbow { get; set; }
+		public string RightElbow { get; set; }
+		public string LeftKnee { get; set; }
+		public string RightKnee { get; set; }
+		public string LeftFoot { get; set; }
+		public string RightFoot { get; set; }
+		public string Findings { get; set; }
+		public string Significance { get; set; }
+	}
+
+	public class MBM
+	{
+		public int RowId { get; set; }
+		public string Location { get; set; }
+		public string Markings { get; set; }
+		public string Right { get; set; }
+		public string Left { get; set; }
+		public string Difference { get; set; }
 	}
 }
 
