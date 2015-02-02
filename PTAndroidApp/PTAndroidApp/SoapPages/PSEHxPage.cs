@@ -46,9 +46,9 @@ namespace PTAndroidApp
 			var LivesWithPicker = new Picker (){ Items = { "Alone","Wife", "Husband", "Offspring", "Relatives", "Friends", "Others" }, 
 				Title = "LivesWith", HorizontalOptions = LayoutOptions.FillAndExpand };
 
-			var LblOffspring = new Label  {HorizontalOptions = LayoutOptions .Start, VerticalOptions = LayoutOptions.End,  FontSize = 17, Text  = "   Offspring:" };
+			var LblOffspring = new Label  {IsVisible  = false, HorizontalOptions = LayoutOptions .Start, VerticalOptions = LayoutOptions.End,  FontSize = 17, Text  = "   Offspring:" };
 			var NumberOfOffspring = new Stepper {IsVisible  = false, Minimum = 0,Maximum = 100,Increment = 1};
-			var LblNumberOfOffspring = new Label  {WidthRequest = 40, HorizontalOptions = LayoutOptions .CenterAndExpand  ,  VerticalOptions = LayoutOptions.End,  FontSize = 20, Text  = "" };
+			var LblNumberOfOffspring = new Label  {IsVisible  = false,WidthRequest = 40, HorizontalOptions = LayoutOptions .CenterAndExpand  ,  VerticalOptions = LayoutOptions.End,  FontSize = 20, Text  = "" };
 
 			List<string> Relatives  = new List<string> (){ "Grandparents", "Uncle", "Auntie", "Cousins" };
 			var RelativesPicker = new Picker (){ IsVisible = false , Items = { "Grandparents", "Uncle", "Auntie", "Cousins" }, 
@@ -57,15 +57,13 @@ namespace PTAndroidApp
 
 
 
-			var txtOthersLivesWith = new EntryCell  {IsEnabled =false , Placeholder = "Others Lives With" };
+			var txtOthersLivesWith = new Entry  {HorizontalOptions = LayoutOptions .FillAndExpand , IsVisible  =false , Placeholder = "Others Lives With" };
 
 			List<string> Hobbies  = new List<string> (){ "Singing","Dancing", "Reading", "Playing Sports", "Others"};
-			var HobbiesPicker = new Picker (){ Items = { "Singing","Dancing", "Reading", "Playing Sports", "Others"}, 
+			var HobbiePicker = new Picker (){ Items = { "Singing","Dancing", "Reading", "Playing Sports", "Others"}, 
 				Title = "Hobbies", HorizontalOptions = LayoutOptions.FillAndExpand };
-			var txtSports = new EntryCell  {IsEnabled = false, Placeholder = "Sports" };
-
-
-			var txtOthersHobbies = new EntryCell  {IsEnabled  =false, Placeholder = "Other Hobbies" };
+			var txtSports = new Entry  {HorizontalOptions = LayoutOptions .FillAndExpand ,IsVisible = false, Placeholder = "Sports" };
+			var txtOthersHobbies = new Entry  {HorizontalOptions = LayoutOptions .FillAndExpand ,IsVisible  =false, Placeholder = "Other Hobbies" };
 
 			//List<string> CigaretteSmoker  = new List<string> (){ "+", "-"};
 			//var CigaretteSmokerPicker = new Picker (){ Items = { "+","-"}, 
@@ -81,10 +79,10 @@ namespace PTAndroidApp
 				//Title = "Alcohol Drinker", HorizontalOptions = LayoutOptions.FillAndExpand };
 
 			List<string> TypeOfHouse  = new List<string> (){ "Nipa Hut","Dormitory", "Apartment", "Bungalow", "Condominium", "Mansion", "Two-Storey House", "Three Storey House", "Others"};
-			var TypeOfHousePicker = new Picker (){ Items = { "Nipa Hut","Dormitory", "Apartment", "Bungalow", "Condominium", "Mansion", "Two-Storey House", "Three Storey House", "Others"}, 
-				Title = "Type Of House", HorizontalOptions = LayoutOptions.FillAndExpand };
+			var TypeOfHousesPicker = new Picker (){ Items = { "Nipa Hut","Dormitory", "Apartment", "Bungalow", "Condominium", "Mansion", "Two-Storey House", "Three Storey House", "Others"}, 
+				Title = "Type Of Houses", HorizontalOptions = LayoutOptions.FillAndExpand };
 
-			var txtOtherTypeOfHouse = new EntryCell  {IsEnabled = false , Placeholder = "Other Type Of House" };
+			var txtOtherTypeOfHouse = new Entry  {HorizontalOptions = LayoutOptions .FillAndExpand ,IsVisible = false , Placeholder = "Other Type Of House" };
 
 
 			NumberOfOffspring .ValueChanged += delegate (object sender, ValueChangedEventArgs e) {
@@ -98,33 +96,41 @@ namespace PTAndroidApp
 			{
 			case 3: //offspring
 					NumberOfOffspring .IsVisible  = true;
+					LblNumberOfOffspring.IsVisible  = true;
+					LblOffspring.IsVisible  = true;
 					RelativesPicker.IsVisible  = false;
 					RelativesPicker.SelectedIndex = -1;
-					txtOthersLivesWith.IsEnabled = false ;
+					txtOthersLivesWith.IsVisible = false ;
 					txtOthersLivesWith.Text  = "";
 				break;
 
 			case 4: //relatives
 					RelativesPicker.IsVisible  = true;
 					LblNumberOfOffspring.Text  = "0";
+					LblNumberOfOffspring.IsVisible  = false;
+					LblOffspring.IsVisible  = false;
 					NumberOfOffspring .IsVisible  = false ;
-					txtOthersLivesWith.IsEnabled = false ;
+					txtOthersLivesWith.IsVisible = false ;
 					txtOthersLivesWith.Text = "";
 				break;
 
 			case 6: //others
 					LblNumberOfOffspring.Text  = "0";
 					NumberOfOffspring .IsVisible  = false ;
-					txtOthersLivesWith.IsEnabled = true;
+					LblNumberOfOffspring.IsVisible  = false;
+					LblOffspring.IsVisible  = false;
+					txtOthersLivesWith.IsVisible = true;
 					RelativesPicker.IsVisible  = false ;
 					RelativesPicker.SelectedIndex = -1;
 					break;
 			default:
 					NumberOfOffspring .IsVisible  = false ;
+					LblNumberOfOffspring.IsVisible  = false;
+					LblOffspring.IsVisible  = false;
 					LblNumberOfOffspring.Text  = "0";
 					RelativesPicker.IsVisible  = false ;
 					RelativesPicker.SelectedIndex = -1;
-					txtOthersLivesWith.IsEnabled = false ;
+					txtOthersLivesWith.IsVisible = false ;
 					txtOthersLivesWith.Text  = "";
 
 				break;
@@ -132,27 +138,27 @@ namespace PTAndroidApp
 
 		};
 
-			HobbiesPicker .SelectedIndexChanged   += delegate  {
+			HobbiePicker .SelectedIndexChanged   += delegate  {
 			
-				switch (HobbiesPicker.SelectedIndex)
+				switch (HobbiePicker.SelectedIndex)
 				{
 				case 3: //sports
-					txtSports .IsEnabled = true;
-					txtOthersHobbies .IsEnabled = false;
+					txtSports .IsVisible = true;
+					txtOthersHobbies .IsVisible = false;
 					txtOthersHobbies .Text = "";
 					txtSports .Text = "";
 					break;
 				case 4://others
-					txtSports .IsEnabled = false;
+					txtSports .IsVisible = false;
 					txtSports .Text = "";
-					txtOthersHobbies .IsEnabled = true;
+					txtOthersHobbies .IsVisible = true;
 					txtOthersHobbies.Text = "";
 					break;
 
 					default:
-					txtSports .IsEnabled = false;
+					txtSports .IsVisible = false;
 					txtSports .Text = "";
-					txtOthersHobbies .IsEnabled = false;
+					txtOthersHobbies .IsVisible = false;
 					txtOthersHobbies .Text = "";
 					break;
 				}
@@ -160,16 +166,16 @@ namespace PTAndroidApp
 
 
 
-			TypeOfHousePicker  .SelectedIndexChanged   += delegate  {
+			TypeOfHousesPicker  .SelectedIndexChanged   += delegate  {
 
-				switch (TypeOfHousePicker.SelectedIndex)
+				switch (TypeOfHousesPicker.SelectedIndex)
 				{
 				case 8: //sports
-					txtOtherTypeOfHouse .IsEnabled = true;
+					txtOtherTypeOfHouse .IsVisible = true;
 					txtOtherTypeOfHouse .Text = "";
 					break;
 				default:
-					txtOtherTypeOfHouse .IsEnabled = false ;
+					txtOtherTypeOfHouse .IsVisible = false ;
 					break;
 				}
 			};
@@ -177,28 +183,28 @@ namespace PTAndroidApp
 
 
 			ViewCell FinanciallStatsCell = new ViewCell{
-				Height = 100,
+				Height = 50,
 				View = new StackLayout(){
 					Children = {FinanciallStatsPicker},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell PersonalityCell = new ViewCell{
-				Height = 100,
+				Height = 50,
 				View = new StackLayout(){
 					Children = {PersonalityPicker},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell LifestyleCell = new ViewCell{
-				Height = 100,
+				Height = 50,
 				View = new StackLayout(){
 					Children = {LifeStylePicker},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell EducationalAttainmentCell = new ViewCell{
-				Height = 100,
+				Height = 50,
 				View = new StackLayout(){
 					Children = {EducationalAttainmentPicker},
 					Orientation = StackOrientation.Horizontal  ,
@@ -207,51 +213,95 @@ namespace PTAndroidApp
 			ViewCell LivesWithCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {LivesWithPicker},
-					Orientation = StackOrientation.Horizontal  ,
+					Children = {LivesWithPicker,
+					
+						new StackLayout(){
+							Children = {LblOffspring,NumberOfOffspring, LblNumberOfOffspring},
+							Orientation = StackOrientation.Horizontal  ,
+							Padding = new Thickness(1,1,1,1),HorizontalOptions = LayoutOptions.Fill},
+						RelativesPicker,txtOthersLivesWith
+				
+				},
+					Orientation = StackOrientation.Vertical,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
-			ViewCell NumberOfOffspringCell = new ViewCell{
-				Height = 100,
-				View = new StackLayout(){
-					Children = {LblOffspring,NumberOfOffspring, LblNumberOfOffspring},
-					Orientation = StackOrientation.Horizontal  ,
-					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
+//			ViewCell NumberOfOffspringCell = new ViewCell{
+//				Height = 100,
+//				View = new StackLayout(){
+//					Children = {LblOffspring,NumberOfOffspring, LblNumberOfOffspring},
+//					Orientation = StackOrientation.Horizontal  ,
+//					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
-			ViewCell RelativesCell = new ViewCell{
-				Height = 100,
-				View = new StackLayout(){
-					Children = {RelativesPicker},
-					Orientation = StackOrientation.Horizontal  ,
-					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
+//			ViewCell RelativesCell = new ViewCell{
+//				Height = 100,
+//				View = new StackLayout(){
+//					Children = {RelativesPicker},
+//					Orientation = StackOrientation.Horizontal  ,
+//					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
+
+//			ViewCell OthersLivesWithCell = new ViewCell{
+//				Height = 100,
+//				View = new StackLayout(){
+//					Children = {txtOthersLivesWith },
+//					Orientation = StackOrientation.Horizontal  ,
+//					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell HobbiesCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {HobbiesPicker},
-					Orientation = StackOrientation.Horizontal  ,
+					Children = {HobbiePicker,
+						txtSports	,
+						txtOthersHobbies,
+
+					
+					},
+					Orientation = StackOrientation.Vertical   ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
+
+//			ViewCell SportsCell = new ViewCell{
+//				Height = 50,
+//				View = new StackLayout(){
+//					Children = {txtSports  },
+//					Orientation = StackOrientation.Horizontal  ,
+//					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
+
+//			ViewCell OthersHobbiesCell = new ViewCell{
+//				Height = 40,
+//				View = new StackLayout(){
+//					Children = {txtOthersHobbies  },
+//					Orientation = StackOrientation.Horizontal  ,
+//					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
+//
+
 			ViewCell CigaretteSmokerPickerCell = new ViewCell{
-				Height = 100,
+				Height = 50,
 				View = new StackLayout(){
-					Children = {lblCigaretteSmoker,CheckBoxCigaretteSmoker },
+					Children = {CheckBoxCigaretteSmoker,lblCigaretteSmoker},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell AlcoholDrinkerCell = new ViewCell{
-				Height = 100,
+				Height = 50,
 				View = new StackLayout(){
-					Children = {lblAlcoholDrinker, CheckBoxAlcoholDrinker},
+					Children = {CheckBoxAlcoholDrinker,lblAlcoholDrinker},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell TypeOfHouseCell = new ViewCell{
-				Height = 100,
+				Height = 50,
 				View = new StackLayout(){
-					Children = {TypeOfHousePicker},
+					Children = {TypeOfHousesPicker},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
+
+			ViewCell OtherTypeOfHouseCell = new ViewCell{
+				Height = 50,
+				View = new StackLayout(){
+					Children = {txtOtherTypeOfHouse  },
+					Orientation = StackOrientation.Horizontal  ,
+					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
+
 
 			FinanciallStatsPicker.SetBinding (Picker.SelectedIndexProperty, "PSEHx.FinancialStatus", 
 				BindingMode.TwoWay, new IndexToGenericListConverter(){ ItemList = FinanciallStatus  });
@@ -276,14 +326,14 @@ namespace PTAndroidApp
 			txtOthersLivesWith.SetBinding ( EntryCell.TextProperty , "PSEHx.OtherLivesWith",  BindingMode.TwoWay);
 
 			txtSports.SetBinding ( EntryCell.TextProperty , "PSEHx.Sports",  BindingMode.TwoWay);
-			HobbiesPicker.SetBinding (Picker.SelectedIndexProperty, "PSEHx.Hobbies", 
+			HobbiePicker.SetBinding (Picker.SelectedIndexProperty, "PSEHx.Hobbies", 
 				BindingMode.TwoWay, new IndexToGenericListConverter(){ ItemList = Hobbies  });
 
 			txtOthersHobbies.SetBinding ( EntryCell.TextProperty , "PSEHx.OtherHobbies",  BindingMode.TwoWay);
 			CheckBoxCigaretteSmoker.SetBinding (CheckBox.CheckedProperty, "PSEHx.CigaretteSmoker", BindingMode.TwoWay);
 			CheckBoxAlcoholDrinker.SetBinding (CheckBox.CheckedProperty, "PSEHx.AlcoholDrinker", BindingMode.TwoWay);
 
-			TypeOfHousePicker.SetBinding (Picker.SelectedIndexProperty, "PSEHx.TypeOfHouse", 
+			TypeOfHousesPicker.SetBinding (Picker.SelectedIndexProperty, "PSEHx.TypeOfHouse", 
 				BindingMode.TwoWay, new IndexToGenericListConverter(){ ItemList = TypeOfHouse  });
 
 			txtOtherTypeOfHouse.SetBinding ( EntryCell.TextProperty , "PSEHx.OtherTypeOfHouse",  BindingMode.TwoWay);
@@ -296,6 +346,7 @@ namespace PTAndroidApp
 
 			return new TableView () {
 				Intent = TableIntent.Form,
+				HasUnevenRows = true,
 				Root = new TableRoot () {
 					new TableSection ("PSEHx") {
 						FinanciallStatsCell,
@@ -303,16 +354,16 @@ namespace PTAndroidApp
 						LifestyleCell,
 						EducationalAttainmentCell,
 						LivesWithCell,
-						NumberOfOffspringCell,
-						RelativesCell,
-						txtOthersLivesWith,
+						//NumberOfOffspringCell,
+						//RelativesCell,
+						//OthersLivesWithCell,
 						HobbiesCell,
-						txtSports,
-						txtOthersHobbies,
+						//SportsCell,
+						//OthersHobbiesCell,
 						CigaretteSmokerPickerCell,
 						AlcoholDrinkerCell,
 						TypeOfHouseCell,
-						txtOtherTypeOfHouse
+						OtherTypeOfHouseCell
 					}
 				}
 			};

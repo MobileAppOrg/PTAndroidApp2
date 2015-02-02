@@ -23,23 +23,23 @@ namespace PTAndroidApp
 		static TableView CreateTable()
 		{
 			var CheckBoxAmbulation = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
-			var CheckBoxWheelChair = new CheckBox {IsEnabled =false,VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxWheelChair = new CheckBox {IsVisible  =false,VerticalOptions = LayoutOptions .EndAndExpand};
 			//var CheckBoxCruches = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 
 			List<string> TADCruches = new List<string> (){ "Axillary","Lofstrand", "Forearm" };
 
-			var TADCruchesPicker = new Picker (){IsEnabled =false, Items = { "Axillary","Lofstrand", "Forearm" }, 
+			var TADCruchesPicker = new Picker (){IsVisible =false, Items = { "Axillary","Lofstrand", "Forearm" }, 
 				Title = "Crutches", HorizontalOptions = LayoutOptions.FillAndExpand  };
 			//var txtOtherCrunches = new Entry{HorizontalOptions = LayoutOptions .FillAndExpand , IsEnabled = false, Placeholder = "Other Type" };
 
 
 			List<string> TADCane = new List<string> (){ "Standard","Quad", "Crook" };
-			var TADCanePicker = new Picker (){IsEnabled =false, Items = { "Standard","Quad", "Crook" }, 
+			var TADCanePicker = new Picker (){IsVisible =false, Items = { "Standard","Quad", "Crook" }, 
 				Title = "Cane", HorizontalOptions = LayoutOptions.FillAndExpand  };
 			//var txtothersCane = new Entry{HorizontalOptions = LayoutOptions .FillAndExpand ,IsEnabled = false, Placeholder = "Other Type" };
 
 			List<string> TADWalker = new List<string> (){ "Standard","Rolling" };
-			var TADWalkerPicker = new Picker (){IsEnabled =false, Items = { "Standard","Rolling" }, 
+			var TADWalkerPicker = new Picker (){IsVisible =false, Items = { "Standard","Rolling" }, 
 				Title = "Walker", HorizontalOptions = LayoutOptions.FillAndExpand  };
 			//var txtotherWalker = new Entry{HorizontalOptions = LayoutOptions .FillAndExpand ,IsEnabled = false, Placeholder = "Other Type" };
 
@@ -52,57 +52,57 @@ namespace PTAndroidApp
 				Title = "Body Type" };
 
 			var CheckBoxAtrophy = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
-			var txtAthrophy = new EntryCell {IsEnabled = false, Placeholder = "Location" };
+			var txtAthrophy = new Entry {IsVisible  = false, Placeholder = "Location" };
 
 			var CheckBoxSwelling = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
-			var txtSwelling = new EntryCell {IsEnabled = false, Placeholder = "Swelling" };
+			var txtSwelling = new Entry {IsVisible = false, Placeholder = "Swelling" };
 
 			var CheckBoxRedness = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
-			var txtRedness = new EntryCell {IsEnabled = false, Placeholder = "Redness" };
+			var txtRedness = new Entry {IsVisible = false, Placeholder = "Redness" };
 
 			var CheckBoxEcchymosis = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
-			var txtEcchymosis = new EntryCell {IsEnabled = false, Placeholder = "Ecchymosis" };
+			var txtEcchymosis = new Entry {IsVisible = false, Placeholder = "Ecchymosis" };
 
 			var CheckBoxDeformity = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
-			var txtDeformity = new EntryCell {IsEnabled = false, Placeholder = "Deformity" };
+			var txtDeformity = new Entry {IsVisible = false, Placeholder = "Deformity" };
 
 			var CheckBoxWounds = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
-			var txtWounds = new EntryCell {IsEnabled = false, Placeholder = "Wounds" };
+			var txtWounds = new Entry {IsVisible = false, Placeholder = "Wounds" };
 
 			var CheckBoxScar = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
-			var txtScar = new EntryCell {IsEnabled = false, Placeholder = "Scar" };
+			var txtScar = new Entry {IsVisible = false, Placeholder = "Scar" };
 
 			var CheckBoxPSore = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
-			var txtPSore = new EntryCell {IsEnabled = false, Placeholder = "Pressure Sore" };
+			var txtPSore = new Entry {IsVisible = false, Placeholder = "Pressure Sore" };
 
 			var CheckBoxGaitDev = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 
 			var CheckBoxIncision = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
-			var txtIncision = new EntryCell {IsEnabled = false, Placeholder = "Incision" };
+			var txtIncision = new Entry {IsVisible = false, Placeholder = "Incision" };
 			var CheckBoxShortnessOfBreathing = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtOthers = new EntryCell { Placeholder = "Others" };
 
 			ViewCell AmbulationCell = new ViewCell{
-				Height = 100,
+				Height = 40,
 				View = new StackLayout(){
 					Children = {
-						new Label () {FontSize = 17, Text = "   Ambulation", VerticalOptions = LayoutOptions .End },
-						CheckBoxAmbulation},
+						CheckBoxAmbulation,new Label () {FontSize = 17, Text = "   Ambulation", VerticalOptions = LayoutOptions .End },
+						},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 
 			ViewCell WheelChairCell = new ViewCell{
-				Height = 100,
+				Height = 40,
 				View = new StackLayout(){
 					Children = {
-						new Label () {FontSize = 17, Text = "   Wheel Chair:", VerticalOptions = LayoutOptions .End },
-						CheckBoxWheelChair},
+						CheckBoxWheelChair,new Label () {FontSize = 17, Text = "   Wheel Chair:", VerticalOptions = LayoutOptions .End },
+						},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell CruchesCell = new ViewCell{
-				Height = 100,
+				Height = 40,
 				View = new StackLayout(){
 					Children = {new Label () {FontSize = 17, Text = "   Crutches:", VerticalOptions = LayoutOptions .End },
 						TADCruchesPicker},
@@ -110,7 +110,7 @@ namespace PTAndroidApp
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 		
 			ViewCell CaneCell = new ViewCell{
-				Height = 100,
+				Height = 40,
 				View = new StackLayout(){
 					Children = {new Label () {FontSize = 17, Text = "   Cane:", VerticalOptions = LayoutOptions .End },
 						TADCanePicker},
@@ -119,7 +119,7 @@ namespace PTAndroidApp
 
 
 			ViewCell WalkerCell = new ViewCell{
-				Height = 100,
+				Height = 40,
 				View = new StackLayout(){
 					Children = {new Label () {FontSize = 17, Text = "   Walker:", VerticalOptions = LayoutOptions .End },
 						TADWalkerPicker},
@@ -128,34 +128,34 @@ namespace PTAndroidApp
 
 
 			ViewCell AlertCell = new ViewCell{
-				Height = 100,
+				Height = 40,
 				View = new StackLayout(){
 					Children = {
-						new Label () {FontSize = 17, Text = "   Alert", VerticalOptions = LayoutOptions .End },
-						CheckBoxAlert},
+						CheckBoxAlert,new Label () {FontSize = 17, Text = "   Alert", VerticalOptions = LayoutOptions .End },
+						},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell CoherentCell = new ViewCell{
-				Height = 100,
+				Height = 40,
 				View = new StackLayout(){
 					Children = {
-						new Label () {FontSize = 17, Text = "   Coherent", VerticalOptions = LayoutOptions .End },
-						CheckBoxCoherent},
+						CheckBoxCoherent,new Label () {FontSize = 17, Text = "   Coherent", VerticalOptions = LayoutOptions .End },
+						},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell CooperativeCell = new ViewCell{
-				Height = 100,
+				Height = 40,
 				View = new StackLayout(){
 					Children = {
-						new Label () {FontSize = 17, Text = "   Cooperative", VerticalOptions = LayoutOptions .End },
-						CheckBoxCooperative},
+						CheckBoxCooperative,new Label () {FontSize = 17, Text = "   Cooperative", VerticalOptions = LayoutOptions .End },
+						},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell BodyTypeCell = new ViewCell{
-				Height = 100,
+				Height = 40,
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Body Type", VerticalOptions = LayoutOptions .End },
@@ -163,102 +163,203 @@ namespace PTAndroidApp
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
+
 			ViewCell AtrophyCell = new ViewCell{
-				Height = 100,
+				Height = 80,
 				View = new StackLayout(){
 					Children = {
-						new Label () {FontSize = 17, Text = "   Atrophy", VerticalOptions = LayoutOptions .End },
-						CheckBoxAtrophy},
-					Orientation = StackOrientation.Horizontal  ,
+
+					
+						new StackLayout(){
+							Children = {
+								CheckBoxAtrophy,new Label () {FontSize = 17, Text = "   Atrophy", VerticalOptions = LayoutOptions .End },
+								},
+							Orientation = StackOrientation.Horizontal  ,
+							Padding = new Thickness(1,1,1,1),HorizontalOptions = LayoutOptions.Fill},
+						txtAthrophy
+
+					},
+					Orientation = StackOrientation.Vertical  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
+
+
+
 
 			ViewCell SwellingCell = new ViewCell{
-				Height = 100,
+				Height = 80,
 				View = new StackLayout(){
+
 					Children = {
-						new Label () {FontSize = 17, Text = "   Swelling", VerticalOptions = LayoutOptions .End },
-						CheckBoxSwelling},
-					Orientation = StackOrientation.Horizontal  ,
+						new StackLayout(){
+							Children = {
+								CheckBoxSwelling,new Label () {FontSize = 17, Text = "   Swelling", VerticalOptions = LayoutOptions .End },
+								},
+							Orientation = StackOrientation.Horizontal  ,
+							Padding = new Thickness(1,1,1,1),HorizontalOptions = LayoutOptions.Fill},
+						txtSwelling},
+					Orientation = StackOrientation.Vertical ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
+
+
+
 
 			ViewCell RednessCell = new ViewCell{
-				Height = 100,
+				Height = 80,
 				View = new StackLayout(){
 					Children = {
-						new Label () {FontSize = 17, Text = "   Redness", VerticalOptions = LayoutOptions .End },
-						CheckBoxRedness},
-					Orientation = StackOrientation.Horizontal  ,
+
+
+						new StackLayout(){
+							Children = {
+								CheckBoxRedness,new Label () {FontSize = 17, Text = "   Redness", VerticalOptions = LayoutOptions .End },
+								},
+							Orientation = StackOrientation.Horizontal  ,
+							Padding = new Thickness(1,1,1,1),HorizontalOptions = LayoutOptions.Fill},
+						txtRedness},
+
+					Orientation = StackOrientation.Vertical  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
+
+
+
+
 
 			ViewCell EcchymosisCell = new ViewCell{
-				Height = 100,
+				Height = 80,
 				View = new StackLayout(){
 					Children = {
-						new Label () {FontSize = 17, Text = "   Ecchymosis", VerticalOptions = LayoutOptions .End },
-						CheckBoxEcchymosis},
-					Orientation = StackOrientation.Horizontal  ,
+
+						new StackLayout(){
+							Children = {
+								CheckBoxEcchymosis,new Label () {FontSize = 17, Text = "   Ecchymosis", VerticalOptions = LayoutOptions .End },
+								},
+							Orientation = StackOrientation.Horizontal  ,
+							Padding = new Thickness(1,1,1,1),HorizontalOptions = LayoutOptions.Fill},
+						txtEcchymosis},
+			
+					Orientation = StackOrientation.Vertical  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
+
+
+
+
 			ViewCell DeformityCell = new ViewCell{
-				Height = 100,
+				Height = 80,
 				View = new StackLayout(){
 					Children = {
-						new Label () {FontSize = 17, Text = "   Deformity", VerticalOptions = LayoutOptions .End },
-						CheckBoxDeformity},
-					Orientation = StackOrientation.Horizontal  ,
+
+
+						new StackLayout(){
+							Children = {
+								CheckBoxDeformity, new Label () {FontSize = 17, Text = "   Deformity", VerticalOptions = LayoutOptions .End },
+							},
+
+							Orientation = StackOrientation.Horizontal  ,
+							Padding = new Thickness(1,1,1,1),HorizontalOptions = LayoutOptions.Fill},
+						txtDeformity
+						},
+					Orientation = StackOrientation.Vertical   ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell WoundsCell = new ViewCell{
-				Height = 100,
+				Height = 80,
 				View = new StackLayout(){
 					Children = {
-						new Label () {FontSize = 17, Text = "   Wounds", VerticalOptions = LayoutOptions .End },
-						CheckBoxWounds},
-					Orientation = StackOrientation.Horizontal  ,
+
+						new StackLayout(){
+							Children = {
+								CheckBoxWounds,new Label () {FontSize = 17, Text = "   Wounds", VerticalOptions = LayoutOptions .End },
+							},
+
+							Orientation = StackOrientation.Horizontal  ,
+							Padding = new Thickness(1,1,1,1),HorizontalOptions = LayoutOptions.Fill},
+
+						txtWounds
+						},
+					Orientation = StackOrientation.Vertical   ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
+
+
+
 
 			ViewCell ScarCell = new ViewCell{
-				Height = 100,
+				Height = 80,
 				View = new StackLayout(){
 					Children = {
-						new Label () {FontSize = 17, Text = "   Scar", VerticalOptions = LayoutOptions .End },
-						CheckBoxScar},
-					Orientation = StackOrientation.Horizontal  ,
+
+						new StackLayout(){
+							Children = {
+							CheckBoxScar,
+							new Label () {FontSize = 17, Text = "   Scar", VerticalOptions = LayoutOptions .End },
+							},
+
+							Orientation = StackOrientation.Horizontal  ,
+							Padding = new Thickness(1,1,1,1),HorizontalOptions = LayoutOptions.Fill},
+
+						txtScar
+						},
+					Orientation = StackOrientation.Vertical  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
+
+
 			ViewCell PSoreCell = new ViewCell{
-				Height = 100,
+				Height = 80,
 				View = new StackLayout(){
 					Children = {
-						new Label () {FontSize = 17, Text = "   Pressure Sore", VerticalOptions = LayoutOptions .End },
-						CheckBoxPSore},
-					Orientation = StackOrientation.Horizontal  ,
+
+
+						new StackLayout(){
+							Children = {
+								CheckBoxPSore,
+								new Label () {FontSize = 17, Text = "   Pressure Sore", VerticalOptions = LayoutOptions .End },
+							},
+
+							Orientation = StackOrientation.Horizontal  ,
+							Padding = new Thickness(1,1,1,1),HorizontalOptions = LayoutOptions.Fill},
+
+						txtPSore
+
+
+						},
+					Orientation = StackOrientation.Vertical   ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell GaitDevCell = new ViewCell{
-				Height = 100,
+				Height = 40,
 				View = new StackLayout(){
 					Children = {
-						new Label () {FontSize = 17, Text = "   Gait Deviation", VerticalOptions = LayoutOptions .End },
-						CheckBoxGaitDev},
+						CheckBoxGaitDev,new Label () {FontSize = 17, Text = "   Gait Deviation", VerticalOptions = LayoutOptions .End },
+						},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell IncisionCell = new ViewCell{
-				Height = 100,
+				Height = 80,
 				View = new StackLayout(){
 					Children = {
-						new Label () {FontSize = 17, Text = "   Incision", VerticalOptions = LayoutOptions .End },
-						CheckBoxIncision},
-					Orientation = StackOrientation.Horizontal  ,
+
+						new StackLayout(){
+							Children = {
+								CheckBoxIncision,new Label () {FontSize = 17, Text = "   Incision", VerticalOptions = LayoutOptions .End },
+							},
+
+							Orientation = StackOrientation.Horizontal  ,
+							Padding = new Thickness(1,1,1,1),HorizontalOptions = LayoutOptions.Fill},
+							txtIncision
+
+
+								},
+					Orientation = StackOrientation.Vertical   ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell ShortnessOfBreathingCell = new ViewCell{
-				Height = 100,
+				Height = 40,
 				View = new StackLayout(){
 					Children = {
-						new Label () {FontSize = 17, Text = "   Shortness Of Breathing", VerticalOptions = LayoutOptions .End },
-						CheckBoxShortnessOfBreathing},
+						CheckBoxShortnessOfBreathing, new Label () {FontSize = 17, Text = "   Shortness Of Breathing", VerticalOptions = LayoutOptions .End },
+						},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 					
@@ -269,82 +370,82 @@ namespace PTAndroidApp
 					//txtotherWalker  .Text = "";
 
 					if (CheckBoxAmbulation .Checked ){
-					TADCruchesPicker .IsEnabled = true;
+					TADCruchesPicker .IsVisible = true;
 					//txtOtherCrunches .IsEnabled = true;
-					TADCanePicker  .IsEnabled = true;
+					TADCanePicker  .IsVisible = true;
 					//txtothersCane  .IsEnabled = true;
-					TADWalkerPicker  .IsEnabled = true;
+					TADWalkerPicker  .IsVisible = true;
 					//txtotherWalker  .IsEnabled = true;
-					CheckBoxWheelChair  .IsEnabled = true;
+					CheckBoxWheelChair  .IsVisible = true;
 					}
 					else{
-					TADCruchesPicker .IsEnabled = false;
+					TADCruchesPicker .IsVisible = false;
 					//txtOtherCrunches .IsEnabled = false;
-					TADCanePicker  .IsEnabled = false;
+					TADCanePicker  .IsVisible = false;
 					//txtothersCane  .IsEnabled = false;
-					TADWalkerPicker  .IsEnabled = false;
+					TADWalkerPicker  .IsVisible = false;
 					//txtotherWalker  .IsEnabled = false;
-					CheckBoxWheelChair  .IsEnabled = false;
+					CheckBoxWheelChair  .IsVisible = false;
 					}
 				};
 
 			CheckBoxAtrophy.CheckedChanged += delegate {
 					txtAthrophy .Text = "";
 					if (CheckBoxAtrophy.Checked ){
-						txtAthrophy.IsEnabled = true;
+					txtAthrophy.IsVisible = true;
 					}
 					else{
-						txtAthrophy.IsEnabled = false ;
+					txtAthrophy.IsVisible = false ;
 					}
 				};
 
 			CheckBoxSwelling .CheckedChanged += delegate {
 					txtSwelling .Text = "";
 				if (CheckBoxSwelling .Checked ){
-						txtSwelling.IsEnabled = true;
+					txtSwelling.IsVisible = true;
 					}
 					else{
-						txtSwelling.IsEnabled = false ;
+					txtSwelling.IsVisible = false ;
 					}
 				};
 
 			CheckBoxRedness  .CheckedChanged += delegate {
 					txtRedness  .Text = "";
 				if (CheckBoxRedness  .Checked ){
-						txtRedness .IsEnabled = true;
+					txtRedness .IsVisible = true;
 					}
 					else{
-						txtRedness .IsEnabled = false ;
+					txtRedness .IsVisible = false ;
 					}
 				};
 
 			CheckBoxEcchymosis   .CheckedChanged += delegate {
 					txtEcchymosis   .Text = "";
 				if (CheckBoxEcchymosis   .Checked ){
-						txtEcchymosis  .IsEnabled = true;
+					txtEcchymosis  .IsVisible = true;
 					}
 					else{
-						txtEcchymosis  .IsEnabled = false ;
+					txtEcchymosis  .IsVisible = false ;
 					}
 				};
 
 			CheckBoxDeformity    .CheckedChanged += delegate {
 					txtDeformity   .Text = "";
 				if (CheckBoxDeformity .Checked ){
-						txtDeformity  .IsEnabled = true;
+					txtDeformity  .IsVisible = true;
 					}
 					else{
-						txtDeformity  .IsEnabled = false ;
+					txtDeformity  .IsVisible = false ;
 					}
 				};
 
 			CheckBoxWounds.CheckedChanged += delegate {
 					txtWounds .Text = "";
 				if (CheckBoxWounds .Checked ){
-						txtWounds   .IsEnabled = true;
+					txtWounds   .IsVisible = true;
 					}
 					else{
-						txtWounds   .IsEnabled = false ;
+					txtWounds   .IsVisible = false ;
 					}
 
 				};
@@ -352,30 +453,30 @@ namespace PTAndroidApp
 			CheckBoxScar.CheckedChanged += delegate {
 					txtScar     .Text = "";
 				if (CheckBoxScar      .Checked ){
-						txtScar    .IsEnabled = true;
+					txtScar    .IsVisible = true;
 					}
 					else{
-						txtScar    .IsEnabled = false ;
+					txtScar    .IsVisible = false ;
 					}
 				};
 
 			CheckBoxPSore.CheckedChanged += delegate {
 					txtPSore.Text = "";
 				if (CheckBoxPSore .Checked ){
-						txtPSore.IsEnabled = true;
+					txtPSore.IsVisible = true;
 					}
 					else{
-						txtPSore.IsEnabled = false ;
+					txtPSore.IsVisible = false ;
 					}
 				};
 
 			CheckBoxIncision.CheckedChanged += delegate {
 					txtIncision.Text = "";
 				if (CheckBoxIncision.Checked ){
-						txtIncision.IsEnabled = true;
+					txtIncision.IsVisible = true;
 					}
 					else{
-						txtIncision.IsEnabled = false ;
+					txtIncision.IsVisible = false ;
 					}
 				};
 		
@@ -451,6 +552,7 @@ namespace PTAndroidApp
 
 			return new TableView () {
 			Intent = TableIntent.Form ,
+				HasUnevenRows = true,
 				Root = new TableRoot (){
 					new TableSection ("Ocular Inspection"){
 						AmbulationCell,
@@ -462,16 +564,16 @@ namespace PTAndroidApp
 						CoherentCell,
 						CooperativeCell,
 						BodyTypeCell,
-						AtrophyCell,txtAthrophy,
-						SwellingCell,  txtSwelling,
-						RednessCell, txtRedness,
-						EcchymosisCell, txtEcchymosis,
-						DeformityCell, txtDeformity,
-						WoundsCell, txtWounds,
-						ScarCell, txtScar,
-						PSoreCell, txtPSore,
+						AtrophyCell,
+						SwellingCell, 
+						RednessCell, 
+						EcchymosisCell, 
+						DeformityCell,
+						WoundsCell,
+						ScarCell, 
+						PSoreCell, 
 						GaitDevCell,
-						IncisionCell, txtIncision,
+						IncisionCell, 
 						ShortnessOfBreathingCell,txtOthers
 
 					}
