@@ -33,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\OcularInspectionPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PalpationPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\Rom2Page.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\CranialNervePage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />

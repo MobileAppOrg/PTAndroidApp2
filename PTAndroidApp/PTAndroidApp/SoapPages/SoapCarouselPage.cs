@@ -55,6 +55,7 @@ namespace PTAndroidApp
 			Children.Add (new PalpationPage  ());
 
 			Children.Add (new Rom2Page  ());
+			Children.Add (new CranialNervePage ());
 
 
 			ToolbarItems.Add (new ToolbarItem(){
