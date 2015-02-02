@@ -53,10 +53,11 @@ namespace PTAndroidApp
 			Children.Add (new OcularInspectionPage  ());
 
 			Children.Add (new PalpationPage  ());
-
+			Children.Add (new ROMPage  ());
 			Children.Add (new Rom2Page  ());
 			Children.Add (new CranialNervePage ());
-
+			Children.Add (new MMTPage  ());
+			Children.Add (new SensoryAxPage  ());
 
 			ToolbarItems.Add (new ToolbarItem(){
 				Icon = "",
