@@ -28,11 +28,21 @@ namespace PTAndroidApp
 			};
 
 			btnPatient.Clicked += delegate {
-				Navigation.PushAsync(new SearchPatientPage());
+				DateTime dtToday = DateTime.Today;
+				string tt = "";
+
+				if(dtToday .ToString ("tt") == "AM")
+					tt = "Good Morning!";
+				else
+					tt= "Good Afternoon!";
+
+
+				//Navigation.PushAsync(new SearchPatientPage());
 			};
 
 			btnSoap.Clicked += delegate {
 				Navigation.PushAsync(new SearchSoapPatientPage());
+
 			};
 
 
@@ -70,6 +80,8 @@ namespace PTAndroidApp
 
 		public static RelativeLayout CreateHeader()
 		{
+
+
 			DateTime dtToday = DateTime.Today;
 			string tt = "";
 

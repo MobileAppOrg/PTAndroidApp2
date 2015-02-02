@@ -65,7 +65,7 @@ namespace PTAndroidApp
 			var txtSports = new EntryCell  {IsEnabled = false, Placeholder = "Sports" };
 
 
-			var txtOthersHobbies = new EntryCell  {IsEnabled =false, Placeholder = "Other Hobbies" };
+			var txtOthersHobbies = new EntryCell  {IsEnabled  =false, Placeholder = "Other Hobbies" };
 
 			//List<string> CigaretteSmoker  = new List<string> (){ "+", "-"};
 			//var CigaretteSmokerPicker = new Picker (){ Items = { "+","-"}, 
@@ -140,13 +140,13 @@ namespace PTAndroidApp
 					txtSports .IsEnabled = true;
 					txtOthersHobbies .IsEnabled = false;
 					txtOthersHobbies .Text = "";
+					txtSports .Text = "";
 					break;
-				case 4: //sports
-					RelativesPicker.IsVisible  = true;
-					LblNumberOfOffspring.Text  = "0";
-					NumberOfOffspring .IsVisible  = false ;
-					txtOthersLivesWith.IsEnabled = false ;
-					txtOthersLivesWith.Text = "";
+				case 4://others
+					txtSports .IsEnabled = false;
+					txtSports .Text = "";
+					txtOthersHobbies .IsEnabled = true;
+					txtOthersHobbies.Text = "";
 					break;
 
 					default:
