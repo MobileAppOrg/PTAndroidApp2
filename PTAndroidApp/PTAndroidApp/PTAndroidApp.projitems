@@ -33,6 +33,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\OcularInspectionPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PalpationPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\Rom2Page.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\ROMPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\MMTPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\SensoryAxPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />

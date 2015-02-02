@@ -337,14 +337,18 @@ namespace PTAndroidApp
 	{
 		public int RowId { get; set; }
 		public string Motion { get; set; }
-		public decimal GradeR { get; set; }
-		public decimal GraderL { get; set; }
+		//public decimal GradeR { get; set; }
+		public string GradeR { get; set; }
+		//public decimal GraderL { get; set; }
+		public string GradeL { get; set; }
 		public int PatientVisitId { get; set; }
 	}
 
 	public class SensoryAx
 	{
 		public int RowId { get; set; }
+		//added
+		public string Stimuli { get; set; }
 		public string MaterialUsed { get; set; }
 		public string Landmarks { get; set; }
 		public string Result { get; set; }
