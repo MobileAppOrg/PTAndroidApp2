@@ -41,7 +41,9 @@ namespace PTAndroidApp
 
 			BindingContext = soap;
 
+			Children.Add (new DeepTendonReflexPage ());
 			Children.Add (new ROMFindSignPage ());
+
 			Children.Add (new SensorySigFindPage ());
 			Children.Add (new MMTFindSigPage ());
 			Children.Add (new MBMFinSigPage ());
