@@ -79,8 +79,8 @@ namespace PTAndroidApp
 			var Elbow = new	BalTolCell ();
 			var Knee = new	BalTolCell ();
 			var Foot = new	BalTolCell ();
-			var txtSignificance = new EntryCell { Placeholder = "Significance"};
-			var txtFindings = new EntryCell { Placeholder = "Findings"};
+			var txtSignificance = new Editor { };
+			var txtFindings = new Editor {};
 
 
 
@@ -104,9 +104,9 @@ namespace PTAndroidApp
 			Foot.RIGHT.SetBinding (Picker.SelectedIndexProperty, "DeepTendonReflex.RightFoot", 
 				BindingMode.TwoWay, new IndexToGenericListConverter (){ ItemList = lstGrades  });
 
-			txtSignificance  .SetBinding (EntryCell.TextProperty, "DeepTendonReflex.Significance", BindingMode.TwoWay);
+			txtSignificance  .SetBinding (Editor.TextProperty, "DeepTendonReflex.Significance", BindingMode.TwoWay);
 
-			txtFindings  .SetBinding (EntryCell.TextProperty, "DeepTendonReflex.Findings", BindingMode.TwoWay);
+			txtFindings  .SetBinding (Editor.TextProperty, "DeepTendonReflex.Findings", BindingMode.TwoWay);
 
 
 			ViewCell HandLabel = new ViewCell {
@@ -153,7 +153,26 @@ namespace PTAndroidApp
 				}
 			};
 
-		
+			var FindingsCell = new ViewCell {
+				//Height = 200,
+				View = new StackLayout () {
+					Children = {
+						new Label (){HorizontalOptions = LayoutOptions .Fill, Text = "Findings:"},
+
+						txtFindings },
+					Orientation = StackOrientation.Horizontal
+				}
+			};
+
+			var SignificanceCell = new ViewCell {
+				//Height = 200,
+				View = new StackLayout () {
+					Children = {
+						new Label (){HorizontalOptions = LayoutOptions .Fill, Text = "Significance:"},
+						txtSignificance },
+					Orientation = StackOrientation.Horizontal
+				}
+			};
 
 
 			return new TableView()
@@ -173,8 +192,8 @@ namespace PTAndroidApp
 						Knee,
 						FootLabel,
 						Foot,
-						txtSignificance,
-						txtSignificance
+						FindingsCell,
+						SignificanceCell
 
 					}
 

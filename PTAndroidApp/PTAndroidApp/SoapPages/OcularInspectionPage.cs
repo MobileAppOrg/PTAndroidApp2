@@ -346,6 +346,7 @@ namespace PTAndroidApp
 					else{
 						txtWounds   .IsEnabled = false ;
 					}
+
 				};
 
 			CheckBoxScar.CheckedChanged += delegate {

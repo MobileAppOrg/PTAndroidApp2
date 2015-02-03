@@ -57,7 +57,7 @@ namespace PTAndroidApp
 			var lblCarryingAngle = new Label { Text="Carrying angle (°):", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center};
 			var CarryingAngle = new Entry { HorizontalOptions = LayoutOptions.FillAndExpand };
 			CarryingAngle.SetBinding (Entry.TextProperty,"AnteriorView.CarryingAngle", BindingMode.TwoWay, new StringToDecimal());
-
+			 
 			var lblASISLevel = new Label { Text="ASIS Level:", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center};
 			var ASISLevel = new Entry { HorizontalOptions = LayoutOptions.FillAndExpand };
 			ASISLevel.SetBinding (Entry.TextProperty,"AnteriorView.ASISLevel");

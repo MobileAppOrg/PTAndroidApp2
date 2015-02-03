@@ -592,6 +592,7 @@ namespace PTAndroidApp
 		public string Findings { get; set; }
 		public string Significance { get; set; }
 	}
+		
 
 	public class FigureOfEight
 	{

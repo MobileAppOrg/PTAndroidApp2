@@ -41,6 +41,8 @@ namespace PTAndroidApp
 
 			BindingContext = soap;
 
+			Children.Add (new HandGripStrengthPage ());
+
 			Children.Add (new PatientGeneralInfoPage ());
 			Children.Add (new AdmissiontInfoPage ());
 			Children.Add (new HPIpage ());
