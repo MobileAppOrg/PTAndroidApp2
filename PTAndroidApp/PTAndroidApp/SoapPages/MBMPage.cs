@@ -183,19 +183,19 @@ namespace PTAndroidApp
 				FontSize = 12,
 				HorizontalOptions = LayoutOptions.FillAndExpand 
 			};
-			lblRight.SetBinding (Label.TextProperty, new Binding(path: "Right",stringFormat: "Right: {0}inch"));
+			lblRight.SetBinding (Label.TextProperty, new Binding(path: "Right",stringFormat: "Right: {0} inch"));
 		
 			var lblLeft = new Label {
 				FontSize = 12,
 				HorizontalOptions = LayoutOptions.FillAndExpand
 			};
-			lblLeft.SetBinding (Label.TextProperty, new Binding(path: "Left",stringFormat: "Left: {0}inch"));
+			lblLeft.SetBinding (Label.TextProperty, new Binding(path: "Left",stringFormat: "Left: {0} inch"));
 
 			var lblDifference = new Label {
 				FontSize = 12,
 				HorizontalOptions = LayoutOptions.FillAndExpand
 			};
-			lblDifference.SetBinding (Label.TextProperty, new Binding(path: "Difference",stringFormat: "Difference: {0}inch"));
+			lblDifference.SetBinding (Label.TextProperty, new Binding(path: "Difference",stringFormat: "Difference: {0} inch"));
 
 			var detailLayout = new StackLayout (){ 
 				Orientation = StackOrientation.Horizontal,

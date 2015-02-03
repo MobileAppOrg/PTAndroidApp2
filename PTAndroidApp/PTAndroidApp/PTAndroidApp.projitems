@@ -41,6 +41,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\CognitiveAssmtPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\BalanceAndTolerancePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\MBMPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\ROMFindSignPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\MMTFindSigPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\SensorySigFindPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\CrainialNerveAssmtFindSigPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\CoordinationAssmtFinSigPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\MBMFinSigPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />

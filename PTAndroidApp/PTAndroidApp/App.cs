@@ -13,7 +13,7 @@ namespace PTAndroidApp
 
 		public static Page PMHxPage ()
 		{
-			return new NavigationPage(new MBMPage   ());
+			return new NavigationPage(new ROMFindSignPage   ());
 
 		}
 
