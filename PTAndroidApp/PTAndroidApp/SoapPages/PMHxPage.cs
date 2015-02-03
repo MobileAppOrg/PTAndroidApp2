@@ -73,7 +73,7 @@ namespace PTAndroidApp
 			var lblPulmonaryCondition  = new Label { Text  = "   Pulmonary Condition", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand};
 			var switchPulmonaryCondition = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtPulmonaryCondition = new EntryCell (){Height = 50, Placeholder = "Pulmonary Condition" };
-		
+
 			var lblNeurologyCondition  = new Label { Text  = "   Neurology Condition", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand};
 			var switchNeurologyCondition = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtNeurologyCondition = new EntryCell (){ Height = 50,Placeholder = "Neurology Condition" };

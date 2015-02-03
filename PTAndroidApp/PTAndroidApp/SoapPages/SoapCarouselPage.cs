@@ -58,8 +58,9 @@ namespace PTAndroidApp
 			Children.Add (new Rom2Page  ());
 			Children.Add (new MMTPage  ());
 			Children.Add (new SensoryAxPage  ());
-
-
+			Children.Add (new CognitiveAssmtPage  ());
+			Children.Add (new BalanceAndTolerancePage ());
+		
 			ToolbarItems.Add (new ToolbarItem(){
 				Icon = "",
 				Text = "Save",

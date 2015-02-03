@@ -38,6 +38,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\MMTPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\SensoryAxPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\CoordinationAssmtPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\CognitiveAssmtPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\BalanceAndTolerancePage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
