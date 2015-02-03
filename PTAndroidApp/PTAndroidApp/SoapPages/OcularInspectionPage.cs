@@ -3,7 +3,7 @@
 using Xamarin.Forms;
 using System.Collections.Generic;
 using PTAndroidApp.ValueConverters;
-
+using XLabs.Forms.Controls;
 namespace PTAndroidApp
 {
 	public class OcularInspectionPage : ContentPage
@@ -22,9 +22,9 @@ namespace PTAndroidApp
 
 		static TableView CreateTable()
 		{
-			var switchAmbulation = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
-			var switchWheelChair = new Switch {IsEnabled =false,VerticalOptions = LayoutOptions .EndAndExpand};
-			//var switchCruches = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxAmbulation = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxWheelChair = new CheckBox {IsEnabled =false,VerticalOptions = LayoutOptions .EndAndExpand};
+			//var CheckBoxCruches = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 
 			List<string> TADCruches = new List<string> (){ "Axillary","Lofstrand", "Forearm" };
 
@@ -43,43 +43,43 @@ namespace PTAndroidApp
 				Title = "Walker", HorizontalOptions = LayoutOptions.FillAndExpand  };
 			//var txtotherWalker = new Entry{HorizontalOptions = LayoutOptions .FillAndExpand ,IsEnabled = false, Placeholder = "Other Type" };
 
-			var switchAlert = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
-			var switchCoherent = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
-			var switchCooperative = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxAlert = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxCoherent = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxCooperative = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 
 			List<string> BodyType = new List<string> (){ "Endomorph","Mesomorph", "Ectomorph" };
 			var BodyTypePicker = new Picker (){HorizontalOptions =LayoutOptions .FillAndExpand , Items = {  "Endomorph","Mesomorph", "Ectomorph" }, 
 				Title = "Body Type" };
 
-			var switchAtrophy = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxAtrophy = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtAthrophy = new EntryCell {IsEnabled = false, Placeholder = "Location" };
 
-			var switchSwelling = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxSwelling = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtSwelling = new EntryCell {IsEnabled = false, Placeholder = "Swelling" };
 
-			var switchRedness = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxRedness = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtRedness = new EntryCell {IsEnabled = false, Placeholder = "Redness" };
 
-			var switchEcchymosis = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxEcchymosis = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtEcchymosis = new EntryCell {IsEnabled = false, Placeholder = "Ecchymosis" };
 
-			var switchDeformity = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxDeformity = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtDeformity = new EntryCell {IsEnabled = false, Placeholder = "Deformity" };
 
-			var switchWounds = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxWounds = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtWounds = new EntryCell {IsEnabled = false, Placeholder = "Wounds" };
 
-			var switchScar = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxScar = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtScar = new EntryCell {IsEnabled = false, Placeholder = "Scar" };
 
-			var switchPSore = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxPSore = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtPSore = new EntryCell {IsEnabled = false, Placeholder = "Pressure Sore" };
 
-			var switchGaitDev = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxGaitDev = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 
-			var switchIncision = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxIncision = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtIncision = new EntryCell {IsEnabled = false, Placeholder = "Incision" };
-			var switchShortnessOfBreathing = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxShortnessOfBreathing = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtOthers = new EntryCell { Placeholder = "Others" };
 
 			ViewCell AmbulationCell = new ViewCell{
@@ -87,7 +87,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Ambulation", VerticalOptions = LayoutOptions .End },
-						switchAmbulation},
+						CheckBoxAmbulation},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -97,7 +97,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Wheel Chair:", VerticalOptions = LayoutOptions .End },
-						switchWheelChair},
+						CheckBoxWheelChair},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -132,7 +132,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Alert", VerticalOptions = LayoutOptions .End },
-						switchAlert},
+						CheckBoxAlert},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -141,7 +141,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Coherent", VerticalOptions = LayoutOptions .End },
-						switchCoherent},
+						CheckBoxCoherent},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -150,7 +150,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Cooperative", VerticalOptions = LayoutOptions .End },
-						switchCooperative},
+						CheckBoxCooperative},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -168,7 +168,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Atrophy", VerticalOptions = LayoutOptions .End },
-						switchAtrophy},
+						CheckBoxAtrophy},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -177,7 +177,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Swelling", VerticalOptions = LayoutOptions .End },
-						switchSwelling},
+						CheckBoxSwelling},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -186,7 +186,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Redness", VerticalOptions = LayoutOptions .End },
-						switchRedness},
+						CheckBoxRedness},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -195,7 +195,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Ecchymosis", VerticalOptions = LayoutOptions .End },
-						switchEcchymosis},
+						CheckBoxEcchymosis},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -204,7 +204,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Deformity", VerticalOptions = LayoutOptions .End },
-						switchDeformity},
+						CheckBoxDeformity},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -213,7 +213,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Wounds", VerticalOptions = LayoutOptions .End },
-						switchWounds},
+						CheckBoxWounds},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -222,7 +222,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Scar", VerticalOptions = LayoutOptions .End },
-						switchScar},
+						CheckBoxScar},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -231,7 +231,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Pressure Sore", VerticalOptions = LayoutOptions .End },
-						switchPSore},
+						CheckBoxPSore},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -240,7 +240,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Gait Deviation", VerticalOptions = LayoutOptions .End },
-						switchGaitDev},
+						CheckBoxGaitDev},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -249,7 +249,7 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Incision", VerticalOptions = LayoutOptions .End },
-						switchIncision},
+						CheckBoxIncision},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -258,24 +258,24 @@ namespace PTAndroidApp
 				View = new StackLayout(){
 					Children = {
 						new Label () {FontSize = 17, Text = "   Shortness Of Breathing", VerticalOptions = LayoutOptions .End },
-						switchShortnessOfBreathing},
+						CheckBoxShortnessOfBreathing},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 					
 
-			switchAmbulation .Toggled += delegate   {
+			CheckBoxAmbulation .CheckedChanged += delegate   {
 					//txtOtherCrunches .Text = "";
 					//txtothersCane  .Text = "";
 					//txtotherWalker  .Text = "";
 
-					if (switchAmbulation .IsToggled ){
+					if (CheckBoxAmbulation .Checked ){
 					TADCruchesPicker .IsEnabled = true;
 					//txtOtherCrunches .IsEnabled = true;
 					TADCanePicker  .IsEnabled = true;
 					//txtothersCane  .IsEnabled = true;
 					TADWalkerPicker  .IsEnabled = true;
 					//txtotherWalker  .IsEnabled = true;
-					switchWheelChair  .IsEnabled = true;
+					CheckBoxWheelChair  .IsEnabled = true;
 					}
 					else{
 					TADCruchesPicker .IsEnabled = false;
@@ -284,13 +284,13 @@ namespace PTAndroidApp
 					//txtothersCane  .IsEnabled = false;
 					TADWalkerPicker  .IsEnabled = false;
 					//txtotherWalker  .IsEnabled = false;
-					switchWheelChair  .IsEnabled = false;
+					CheckBoxWheelChair  .IsEnabled = false;
 					}
 				};
 
-			switchAtrophy.Toggled += delegate {
+			CheckBoxAtrophy.CheckedChanged += delegate {
 					txtAthrophy .Text = "";
-					if (switchAtrophy.IsToggled ){
+					if (CheckBoxAtrophy.Checked ){
 						txtAthrophy.IsEnabled = true;
 					}
 					else{
@@ -298,9 +298,9 @@ namespace PTAndroidApp
 					}
 				};
 
-				switchSwelling .Toggled += delegate {
+			CheckBoxSwelling .CheckedChanged += delegate {
 					txtSwelling .Text = "";
-					if (switchSwelling .IsToggled ){
+				if (CheckBoxSwelling .Checked ){
 						txtSwelling.IsEnabled = true;
 					}
 					else{
@@ -308,9 +308,9 @@ namespace PTAndroidApp
 					}
 				};
 
-				switchRedness  .Toggled += delegate {
+			CheckBoxRedness  .CheckedChanged += delegate {
 					txtRedness  .Text = "";
-					if (switchRedness  .IsToggled ){
+				if (CheckBoxRedness  .Checked ){
 						txtRedness .IsEnabled = true;
 					}
 					else{
@@ -318,9 +318,9 @@ namespace PTAndroidApp
 					}
 				};
 
-				switchEcchymosis   .Toggled += delegate {
+			CheckBoxEcchymosis   .CheckedChanged += delegate {
 					txtEcchymosis   .Text = "";
-					if (switchEcchymosis   .IsToggled ){
+				if (CheckBoxEcchymosis   .Checked ){
 						txtEcchymosis  .IsEnabled = true;
 					}
 					else{
@@ -328,9 +328,9 @@ namespace PTAndroidApp
 					}
 				};
 
-				switchDeformity    .Toggled += delegate {
+			CheckBoxDeformity    .CheckedChanged += delegate {
 					txtDeformity   .Text = "";
-					if (switchDeformity .IsToggled ){
+				if (CheckBoxDeformity .Checked ){
 						txtDeformity  .IsEnabled = true;
 					}
 					else{
@@ -338,9 +338,9 @@ namespace PTAndroidApp
 					}
 				};
 
-				switchWounds.Toggled += delegate {
+			CheckBoxWounds.CheckedChanged += delegate {
 					txtWounds .Text = "";
-					if (switchWounds .IsToggled ){
+				if (CheckBoxWounds .Checked ){
 						txtWounds   .IsEnabled = true;
 					}
 					else{
@@ -348,9 +348,9 @@ namespace PTAndroidApp
 					}
 				};
 
-				switchScar.Toggled += delegate {
+			CheckBoxScar.CheckedChanged += delegate {
 					txtScar     .Text = "";
-					if (switchScar      .IsToggled ){
+				if (CheckBoxScar      .Checked ){
 						txtScar    .IsEnabled = true;
 					}
 					else{
@@ -358,9 +358,9 @@ namespace PTAndroidApp
 					}
 				};
 
-				switchPSore.Toggled += delegate {
+			CheckBoxPSore.CheckedChanged += delegate {
 					txtPSore.Text = "";
-					if (switchPSore .IsToggled ){
+				if (CheckBoxPSore .Checked ){
 						txtPSore.IsEnabled = true;
 					}
 					else{
@@ -368,9 +368,9 @@ namespace PTAndroidApp
 					}
 				};
 
-				switchIncision.Toggled += delegate {
+			CheckBoxIncision.CheckedChanged += delegate {
 					txtIncision.Text = "";
-					if (switchIncision.IsToggled ){
+				if (CheckBoxIncision.Checked ){
 						txtIncision.IsEnabled = true;
 					}
 					else{
@@ -379,8 +379,8 @@ namespace PTAndroidApp
 				};
 		
 
-			switchAmbulation.SetBinding (Switch.IsToggledProperty, "OcularInspection.Ambulation", BindingMode.TwoWay);
-			switchWheelChair .SetBinding (Switch.IsToggledProperty, "OcularInspection.TADWheelChair", BindingMode.TwoWay);
+			CheckBoxAmbulation.SetBinding (CheckBox.CheckedProperty, "OcularInspection.Ambulation", BindingMode.TwoWay);
+			CheckBoxWheelChair .SetBinding (CheckBox.CheckedProperty, "OcularInspection.TADWheelChair", BindingMode.TwoWay);
 			//need to add other cruches on model?
 //			TADCruchesPicker.SelectedIndexChanged += delegate {
 //			if (TADCruchesPicker.SelectedIndex == 3) {
@@ -429,9 +429,9 @@ namespace PTAndroidApp
 			TADWalkerPicker.SetBinding (Picker.SelectedIndexProperty, "OcularInspection.TADWalker", 
 				BindingMode.TwoWay, new IndexToGenericListConverter (){ ItemList = TADWalker  });
 
-			switchAlert  .SetBinding (Switch.IsToggledProperty, "OcularInspection.Alert", BindingMode.TwoWay);
-			switchCoherent   .SetBinding (Switch.IsToggledProperty, "OcularInspection.Coherent", BindingMode.TwoWay);
-			switchCooperative    .SetBinding (Switch.IsToggledProperty, "OcularInspection.Cooperative", BindingMode.TwoWay);
+			CheckBoxAlert  .SetBinding (CheckBox.CheckedProperty, "OcularInspection.Alert", BindingMode.TwoWay);
+			CheckBoxCoherent   .SetBinding (CheckBox.CheckedProperty, "OcularInspection.Coherent", BindingMode.TwoWay);
+			CheckBoxCooperative    .SetBinding (CheckBox.CheckedProperty, "OcularInspection.Cooperative", BindingMode.TwoWay);
 			BodyTypePicker .SetBinding (Picker.SelectedIndexProperty, "OcularInspection.BodyType", 
 				BindingMode.TwoWay, new IndexToGenericListConverter (){ ItemList = BodyType  });
 			txtAthrophy  .SetBinding (EntryCell.TextProperty, "OcularInspection.Atrophy", BindingMode.TwoWay);
@@ -442,9 +442,9 @@ namespace PTAndroidApp
 			txtWounds    .SetBinding (EntryCell.TextProperty, "OcularInspection.Wounds", BindingMode.TwoWay);
 			txtScar     .SetBinding (EntryCell.TextProperty, "OcularInspection.Scar", BindingMode.TwoWay);
 			txtPSore      .SetBinding (EntryCell.TextProperty, "OcularInspection.PressureSore", BindingMode.TwoWay);
-			switchGaitDev.SetBinding (Switch.IsToggledProperty, "OcularInspection.GaitDeviation", BindingMode.TwoWay);
+			CheckBoxGaitDev.SetBinding (CheckBox.CheckedProperty, "OcularInspection.GaitDeviation", BindingMode.TwoWay);
 			txtIncision .SetBinding (EntryCell.TextProperty, "OcularInspection.Incision", BindingMode.TwoWay);
-			switchShortnessOfBreathing .SetBinding (Switch.IsToggledProperty, "OcularInspection.ShortnessOfBreathing", BindingMode.TwoWay);
+			CheckBoxShortnessOfBreathing .SetBinding (CheckBox.CheckedProperty, "OcularInspection.ShortnessOfBreathing", BindingMode.TwoWay);
 			txtOthers  .SetBinding (EntryCell.TextProperty, "OcularInspection.Others", BindingMode.TwoWay);
 
 

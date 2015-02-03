@@ -1,5 +1,5 @@
 ﻿using System;
-
+using XLabs.Forms.Controls;
 using Xamarin.Forms;
 using System.Collections.Generic;
 using PTAndroidApp.ValueConverters;
@@ -71,9 +71,9 @@ namespace PTAndroidApp
 			//var CigaretteSmokerPicker = new Picker (){ Items = { "+","-"}, 
 			//	Title = "Cigarette Smoker", HorizontalOptions = LayoutOptions.FillAndExpand };
 			var lblCigaretteSmoker = new Label  { HorizontalOptions = LayoutOptions .StartAndExpand  ,  VerticalOptions = LayoutOptions.End,  FontSize = 18, Text  = "   Cigarette Smoker" };
-			var switchCigaretteSmoker = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxCigaretteSmoker = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 
-			var switchAlcoholDrinker = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxAlcoholDrinker = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var lblAlcoholDrinker = new Label  { HorizontalOptions = LayoutOptions .StartAndExpand  ,  VerticalOptions = LayoutOptions.End,  FontSize = 18, Text  = "   Alcohol Drinker" };
 
 			//List <string> AlcoholDrinker  = new List<string> (){ "+", "-"};
@@ -94,7 +94,7 @@ namespace PTAndroidApp
 		LivesWithPicker.SelectedIndexChanged   += delegate  {
 
 
-			switch (LivesWithPicker.SelectedIndex)
+				switch (LivesWithPicker.SelectedIndex)
 			{
 			case 3: //offspring
 					NumberOfOffspring .IsVisible  = true;
@@ -235,14 +235,14 @@ namespace PTAndroidApp
 			ViewCell CigaretteSmokerPickerCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {lblCigaretteSmoker,switchCigaretteSmoker },
+					Children = {lblCigaretteSmoker,CheckBoxCigaretteSmoker },
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell AlcoholDrinkerCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {lblAlcoholDrinker, switchAlcoholDrinker},
+					Children = {lblAlcoholDrinker, CheckBoxAlcoholDrinker},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
@@ -280,8 +280,8 @@ namespace PTAndroidApp
 				BindingMode.TwoWay, new IndexToGenericListConverter(){ ItemList = Hobbies  });
 
 			txtOthersHobbies.SetBinding ( EntryCell.TextProperty , "PSEHx.OtherHobbies",  BindingMode.TwoWay);
-			switchCigaretteSmoker.SetBinding (Switch.IsToggledProperty, "PSEHx.CigaretteSmoker", BindingMode.TwoWay);
-			switchAlcoholDrinker.SetBinding (Switch.IsToggledProperty, "PSEHx.AlcoholDrinker", BindingMode.TwoWay);
+			CheckBoxCigaretteSmoker.SetBinding (CheckBox.CheckedProperty, "PSEHx.CigaretteSmoker", BindingMode.TwoWay);
+			CheckBoxAlcoholDrinker.SetBinding (CheckBox.CheckedProperty, "PSEHx.AlcoholDrinker", BindingMode.TwoWay);
 
 			TypeOfHousePicker.SetBinding (Picker.SelectedIndexProperty, "PSEHx.TypeOfHouse", 
 				BindingMode.TwoWay, new IndexToGenericListConverter(){ ItemList = TypeOfHouse  });
