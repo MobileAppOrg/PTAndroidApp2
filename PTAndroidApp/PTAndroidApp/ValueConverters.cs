@@ -11,6 +11,7 @@ namespace PTAndroidApp.ValueConverters
 		{
 		}
 	}
+
 	public class IntConverter : IValueConverter
 	{
 		public object Convert (
@@ -48,8 +49,8 @@ namespace PTAndroidApp.ValueConverters
 			object parameter,
 			CultureInfo culture)
 		{
-			int theInt = (int)value;
-			return theInt.ToString ();
+			decimal decVal = (decimal)value;
+			return decVal.ToString ("N");
 		}
 
 		public object ConvertBack (
@@ -61,9 +62,9 @@ namespace PTAndroidApp.ValueConverters
 			string strValue = value as string;
 			if (string.IsNullOrEmpty (strValue))
 				return 0;
-			int resultInt;
-			if (int.TryParse (strValue, out resultInt)) {
-				return resultInt;
+			decimal resultDec;
+			if (decimal.TryParse (strValue, out resultDec)) {
+				return resultDec;
 			}
 			return 0;
 		}

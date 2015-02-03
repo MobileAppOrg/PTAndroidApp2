@@ -289,7 +289,7 @@ namespace PTAndroidApp
 		{
 			var form = CreateTable ();
 			ls.ItemTemplate = new DataTemplate(typeof(MMTCell));
-			ls.SetBinding (ListView.ItemsSourceProperty,"MMT",BindingMode.TwoWay);
+			ls.SetBinding (ListView.ItemsSourceProperty,"MMTs",BindingMode.TwoWay);
 			var footerButtons = CreateFooter ();
 
 			Content = new StackLayout {

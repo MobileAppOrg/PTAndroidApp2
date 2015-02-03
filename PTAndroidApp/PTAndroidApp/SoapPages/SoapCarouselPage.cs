@@ -41,6 +41,7 @@ namespace PTAndroidApp
 
 			BindingContext = soap;
 
+
 			Children.Add (new DeepTendonReflexPage ());
 			Children.Add (new ROMFindSignPage ());
 
@@ -53,6 +54,9 @@ namespace PTAndroidApp
 			Children.Add (new MBMPage ());
 			Children.Add (new CranialNervePage ());
 			Children.Add (new CoordinationAssmtPage ());
+
+			//Children.Add (new MyPage());
+
 			Children.Add (new PatientGeneralInfoPage ());
 			Children.Add (new AdmissiontInfoPage ());
 			Children.Add (new HPIpage ());
@@ -66,10 +70,23 @@ namespace PTAndroidApp
 			Children.Add (new PalpationPage  ());
 			Children.Add (new ROMPage  ());
 			Children.Add (new Rom2Page  ());
+			Children.Add (new ROMFindSignPage ());
 			Children.Add (new MMTPage  ());
+			Children.Add (new MMTFindSigPage ());
 			Children.Add (new SensoryAxPage  ());
+			Children.Add (new SensorySigFindPage ());
+			Children.Add (new CranialNervePage ());
+			Children.Add (new CrainialNerveAssmtFindSigPage ());
 			Children.Add (new CognitiveAssmtPage  ());
+			Children.Add (new CoordinationAssmtPage ());
+			Children.Add (new CoordinationAssmtFinSigPage ());
 			Children.Add (new BalanceAndTolerancePage ());
+			Children.Add (new MBMPage ());
+			Children.Add (new MBMFinSigPage ());
+			Children.Add (new AnteriorViewPage ());
+			Children.Add (new PosteriorViewPage ());
+			Children.Add (new LateralViewPage ());
+			Children.Add (new FunctionalAnalysisPage ());
 		
 			ToolbarItems.Add (new ToolbarItem(){
 				Icon = "",

@@ -7,16 +7,16 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-
 using Xamarin.Forms.Platform.Android;
-//using Xamarin.Forms.Labs.Droid;
+using XLabs.Forms;
+
 
 
 namespace PTAndroidApp.Android
 {
-	[Activity (Label = "PTAndroidApp.Android.Android", MainLauncher = true,ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, Theme = "@android:style/Theme.Holo.Light")]
+	[Activity (Label = "PTAndroidApp.Android.Android", MainLauncher = true,ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, Theme = "@android:style/Theme.Holo.Light", WindowSoftInputMode = SoftInput.AdjustPan)]
 
-	public class MainActivity : AndroidActivity  
+	public class MainActivity : XFormsApplicationDroid  
 
 	{
 
