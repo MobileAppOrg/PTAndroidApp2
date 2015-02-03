@@ -41,8 +41,6 @@ namespace PTAndroidApp
 
 			BindingContext = soap;
 
-			Children.Add (new HandGripStrengthPage ());
-
 			Children.Add (new PatientGeneralInfoPage ());
 			Children.Add (new AdmissiontInfoPage ());
 			Children.Add (new HPIpage ());
@@ -74,13 +72,19 @@ namespace PTAndroidApp
 			Children.Add (new CoordinationAssmtFinSigPage ());
 			Children.Add (new BalanceAndTolerancePage ());
 			Children.Add (new DeepTendonReflexPage ());
+			Children.Add (new HandGripStrengthPage ());
+			Children.Add (new VolMeasPage ());
+			Children.Add (new LandmarksPage ());
 			Children.Add (new MBMPage ());
 			Children.Add (new MBMFinSigPage ());
 			Children.Add (new AnteriorViewPage ());
 			Children.Add (new PosteriorViewPage ());
 			Children.Add (new LateralViewPage ());
+			Children.Add (new GaitAssmentPage ());
 			Children.Add (new FunctionalAnalysisPage ());
-		
+			Children.Add (new AssessmentPage ());
+			Children.Add (new PlanPage ());
+
 			ToolbarItems.Add (new ToolbarItem(){
 				Icon = "",
 				Text = "Save",
