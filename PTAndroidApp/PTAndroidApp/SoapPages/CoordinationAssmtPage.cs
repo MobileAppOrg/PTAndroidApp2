@@ -5,10 +5,10 @@ using System.Collections.Generic;
 
 namespace PTAndroidApp
 {
-	public class CranialNervePage : ContentPage
+	public class CoordinationAssmtPage : ContentPage
 	{
 		private static Entry txtPatientVisitId = new Entry (){ IsVisible = false };
-		private static ListView ls = new ListView (){ RowHeight = 60,  VerticalOptions = LayoutOptions.FillAndExpand  };
+		private static ListView ls = new ListView (){ RowHeight = 80, VerticalOptions = LayoutOptions.FillAndExpand };
 
 		static ContentView CreateFooter(){
 			//var btnEdit = new Button{ };
@@ -20,22 +20,22 @@ namespace PTAndroidApp
 
 
 			btnDelete.Clicked += delegate {
-				CranialNerveAssmt item;
+				CoordinationAssmt item;
 				if(ls.SelectedItem==null)
 					return;
 
-				item = (CranialNerveAssmt)ls.SelectedItem;
+				item = (CoordinationAssmt)ls.SelectedItem;
 
 				if(txtPatientVisitId.Text != "0") // delete in database if edit mode
-					SoapManager.DeleteEntity<CranialNerveAssmt>(item.RowId,"api/CranialNerveAssmts/{id}");
+					SoapManager.DeleteEntity<CoordinationAssmt>(item.RowId,"api/CoordinationAssmts/{id}");
 
 				ls.SelectedItem = null;
 
-				List<CranialNerveAssmt> source;
-				source = ((List<CranialNerveAssmt>)ls.ItemsSource==null?new List<CranialNerveAssmt>():(List<CranialNerveAssmt>)ls.ItemsSource);
+				List<CoordinationAssmt> source;
+				source = ((List<CoordinationAssmt>)ls.ItemsSource==null?new List<CoordinationAssmt>():(List<CoordinationAssmt>)ls.ItemsSource);
 				source.Remove(item);
 				ls.ItemsSource = source;
-				ls.ItemTemplate = new DataTemplate(typeof(CranialNerveCell));
+				ls.ItemTemplate = new DataTemplate(typeof(CoordinationAssmtCell));
 			};
 
 			return new ContentView {
@@ -50,16 +50,52 @@ namespace PTAndroidApp
 			//Entry txtPatientVisitId = new Entry (){ IsVisible = false };
 			txtPatientVisitId.SetBinding (Entry.TextProperty,"PatientVisitId", BindingMode.TwoWay);
 
-			var lblCranialNerve = new Label { Text="Cranial Nerve: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center};
-			var pckCranialNerve = new Picker () { 
+			var lblCoordinationTest = new Label { Text="Coordination Test: ", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center};
+			var pckCoordinationTest = new Picker () { 
 				HorizontalOptions = LayoutOptions.FillAndExpand,
-				Items = { "CN I", "CN II", "CN III", "CN IV", "CN V", "CN VI", "CN VII", "CN VIII", "CN IX", "CN X", "CN XI", "CN XII" } };
+				Items = {
+					"FINGER-TO-NOSE",
+					"FINGER-TOTHERAPIST’S FINGER",
+					"FINGER-TO-FINGER",
+					"ALTERNATE-NOSE-TO-FINGER",
+					"FINGER-OPPOSITION",
+					"MASS-GRASP",
+					"PRONATION-SUPANATION",
+					"REBOUND-PHENOMENON",
+					"TAPPING-HAND",
+					"TAPPING-FOOT",
+					"POINT-AND-PAST-POINTING",
+					"ALTERNATE-HEEL-TO-KNEE",
+					"HEEL-TO-TOE",
+					"TOE-TO-EXAMINERS’S FINGER",
+					"HEEL-ON-SHIN",
+					"DRAWING-A-CIRCLE-USING-HAND",
+					"DRAWING-A-CIRCLE-USING-FOOT",
+					"FIXATION/POSITION HOLDING (UE)",
+					"FIXATION/POSITION HOLDING (LE)"
+				}
+			};
 
 			var lblRight = new Label { Text="Right:", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center };
-			var pckRight = new Picker () { Items = { "N", "AB" }, HorizontalOptions = LayoutOptions.FillAndExpand };
+			var pckRight = new Picker { HorizontalOptions = LayoutOptions.FillAndExpand,
+				Items = {
+					"4 - Normal Performance",
+					"3 - Minimal Impairment", 	// Able to accomplish activity; slightly less than normal control, speed, and steadiness
+					"2 - Moderate Impairment", 	// Able to accomplish activity; movements are slow, awkward, and unsteady
+					"1 -Severe Impairment",		// Able only to initiate activity without completion; movements are slow with significant unsteadiness, oscillations, and/or extraneous movements
+					"0 - Activity Impossible"
+				}
+			};
 
 			var lblLeft = new Label { Text="Left:", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center};
-			var pckLeft= new Picker () { Items = { "N", "AB" }, HorizontalOptions = LayoutOptions.FillAndExpand };
+			var pckLeft= new Picker () { HorizontalOptions = LayoutOptions.FillAndExpand,
+				Items = {
+					"4 - Normal Performance",
+					"3 - Minimal Impairment", 	// Able to accomplish activity; slightly less than normal control, speed, and steadiness
+					"2 - Moderate Impairment", 	// Able to accomplish activity; movements are slow, awkward, and unsteady
+					"1 -Severe Impairment",		// Able only to initiate activity without completion; movements are slow with significant unsteadiness, oscillations, and/or extraneous movements
+				}
+			};
 
 			var lblResult = new Label { Text="Result:", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center};
 			var txtResult = new Entry () { HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -69,13 +105,13 @@ namespace PTAndroidApp
 				HorizontalOptions = LayoutOptions.FillAndExpand};
 
 			btnAdd.Clicked += delegate {
-				if (pckCranialNerve.SelectedIndex < 0) // no item selected in picker; exit event pre-maturely
+				if (pckCoordinationTest.SelectedIndex < 0) // no item selected in picker; exit event pre-maturely
 					return;
 
-				CranialNerveAssmt entity = new CranialNerveAssmt();
+				CoordinationAssmt entity = new CoordinationAssmt();
 
 				entity.RowId = 0;
-				entity.CranialNerve = pckCranialNerve.Items[pckCranialNerve.SelectedIndex];
+				entity.CoordinationTest = pckCoordinationTest.Items[pckCoordinationTest.SelectedIndex];
 				entity.Right = pckRight.Items[pckRight.SelectedIndex];
 				entity.Left = pckLeft.Items[pckLeft.SelectedIndex];
 				entity.Result = txtResult.Text;
@@ -83,34 +119,40 @@ namespace PTAndroidApp
 				if(txtPatientVisitId.Text != "0") // add to db if edit mode
 				{
 					entity.PatientVisitId = Convert.ToInt32(txtPatientVisitId.Text);
-					entity = SoapManager.AddEntity<CranialNerveAssmt>(entity,"api/CranialNerveAssmts");
+					entity = SoapManager.AddEntity<CoordinationAssmt>(entity,"api/CoordinationAssmts");
 				}
 
 
-				List<CranialNerveAssmt> source;
-				source = ((List<CranialNerveAssmt>)ls.ItemsSource==null?new List<CranialNerveAssmt>():(List<CranialNerveAssmt>)ls.ItemsSource);
+				List<CoordinationAssmt> source;
+				source = ((List<CoordinationAssmt>)ls.ItemsSource==null?new List<CoordinationAssmt>():(List<CoordinationAssmt>)ls.ItemsSource);
 				source.Add(entity);
 				ls.ItemsSource = source;
-				ls.ItemTemplate = new DataTemplate(typeof(CranialNerveCell));
+				ls.ItemTemplate = new DataTemplate(typeof(CoordinationAssmtCell));
 			};
 
 			return new TableView () {
-				VerticalOptions = LayoutOptions.StartAndExpand,
-//				HeightRequest = 240,
-//				RowHeight = 40,
+				VerticalOptions = LayoutOptions.Start,
+				HeightRequest = 320,
+				RowHeight = 40,
 				Intent = TableIntent.Form,
 				Root = new TableRoot () {
-					new TableSection ("Cranial Nerve Assessment") {
+					new TableSection ("Coordination Assessment") {
 						new ViewCell {
 							View = new StackLayout {
 								Orientation = StackOrientation.Horizontal,
-								Children = { lblCranialNerve, pckCranialNerve }
+								Children = { lblCoordinationTest, pckCoordinationTest }
 							}
 						},
 						new ViewCell {
 							View = new StackLayout {
 								Orientation = StackOrientation.Horizontal,
-								Children = { lblRight, pckRight, lblLeft, pckLeft }
+								Children = { lblRight, pckRight }
+							}
+						},
+						new ViewCell {
+							View = new StackLayout {
+								Orientation = StackOrientation.Horizontal,
+								Children = { lblLeft, pckLeft }
 							}
 						},
 						new ViewCell {
@@ -130,11 +172,11 @@ namespace PTAndroidApp
 			};
 		}
 
-		public CranialNervePage ()
+		public CoordinationAssmtPage ()
 		{
 			var form = CreateTable ();
-			ls.ItemTemplate = new DataTemplate(typeof(CranialNerveCell));
-			ls.SetBinding (ListView.ItemsSourceProperty,"CranialNerveAssmts",BindingMode.TwoWay);
+			ls.ItemTemplate = new DataTemplate(typeof(CoordinationAssmtCell));
+			ls.SetBinding (ListView.ItemsSourceProperty,"CoordinationAssmts",BindingMode.TwoWay);
 			ContentView footerButtons = CreateFooter ();
 
 			Content = new StackLayout {
@@ -149,9 +191,9 @@ namespace PTAndroidApp
 		}
 	}
 
-	public class CranialNerveCell : ViewCell
+	public class CoordinationAssmtCell : ViewCell
 	{
-		public CranialNerveCell()
+		public CoordinationAssmtCell()
 		{
 			var idLabel = new Label {
 				IsVisible = false //false
@@ -168,7 +210,7 @@ namespace PTAndroidApp
 				FontSize = 20,
 				HorizontalOptions= LayoutOptions.FillAndExpand
 			};
-			nameLabel.SetBinding(Label.TextProperty, new Binding(path: "CranialNerve", stringFormat: "Cranial Nerve: {0}"));
+			nameLabel.SetBinding(Label.TextProperty, new Binding(path: "CoordinationTest", stringFormat: "{0}"));
 
 			var detailLayout = CreateDetailLayout();
 
@@ -205,8 +247,13 @@ namespace PTAndroidApp
 			var nameLayout = new StackLayout()
 			{
 				HorizontalOptions = LayoutOptions.StartAndExpand,
-				Orientation = StackOrientation.Horizontal,
-				Children = { rightLabel, leftLabel, resultLabel }
+				Children = { 
+					new StackLayout {
+						Orientation = StackOrientation.Horizontal,
+						Children = { rightLabel, leftLabel }
+					},
+					resultLabel 
+				}
 			};
 			return nameLayout;
 		}

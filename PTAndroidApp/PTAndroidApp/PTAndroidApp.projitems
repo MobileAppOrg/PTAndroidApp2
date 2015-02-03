@@ -37,6 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\ROMPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\MMTPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\SensoryAxPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\CoordinationAssmtPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />

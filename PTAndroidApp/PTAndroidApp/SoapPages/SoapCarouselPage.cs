@@ -41,23 +41,24 @@ namespace PTAndroidApp
 
 			BindingContext = soap;
 
+			Children.Add (new CranialNervePage ());
+			Children.Add (new CoordinationAssmtPage ());
 			Children.Add (new PatientGeneralInfoPage ());
 			Children.Add (new AdmissiontInfoPage ());
-			Children.Add (new DrugHxPage ());
-			Children.Add (new FMHxPage ());
-
 			Children.Add (new HPIpage ());
 			Children.Add (new AncillaryPage ());
+			Children.Add (new DrugHxPage ());
 			Children.Add (new PMHxPage ());
+			Children.Add (new FMHxPage ());
 			Children.Add (new PSEHxPage ());
+			Children.Add (new SubjObjPage ());
 			Children.Add (new OcularInspectionPage  ());
-
 			Children.Add (new PalpationPage  ());
 			Children.Add (new ROMPage  ());
 			Children.Add (new Rom2Page  ());
-			Children.Add (new CranialNervePage ());
 			Children.Add (new MMTPage  ());
 			Children.Add (new SensoryAxPage  ());
+
 
 			ToolbarItems.Add (new ToolbarItem(){
 				Icon = "",
