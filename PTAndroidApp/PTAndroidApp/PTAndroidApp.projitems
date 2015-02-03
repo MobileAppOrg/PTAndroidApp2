@@ -56,12 +56,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PulmonaryAssmt2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PulmonaryAssmt3.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PulmonaryAssmt4.cs" />
-	<Compile Include="$(MSBuildThisFileDirectory)SoapPages\HandGripStrengthPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\HandGripStrengthPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\VolMeasPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\LandmarksPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\GaitAssmentPage.cs" />
-<Compile Include="$(MSBuildThisFileDirectory)SoapPages\PulmonaryAssmt5.cs" />
- </ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PulmonaryAssmt5.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\AssessmentPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PlanPage.cs" />
+  </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
     <Folder Include="$(MSBuildThisFileDirectory)DAL\" />

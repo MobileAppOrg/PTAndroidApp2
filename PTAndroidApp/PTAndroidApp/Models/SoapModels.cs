@@ -704,6 +704,7 @@ namespace PTAndroidApp
 	public class Assessment {
 		public string Diagnosis { get; set; }
 		public string PTImpression { get; set; }
+
 		public string ProblemList { get; set; }
 		public string LongTermGoals { get; set; }
 		public string ShortTermGoals { get; set; }
