@@ -43,6 +43,7 @@ namespace PTAndroidApp
 			SpmOthers.SetBinding (CheckBox.CheckedProperty, "PulmonaryAssmt.SpmOthers");
 
 			var SpmOthersText = new Entry { HorizontalOptions = LayoutOptions.FillAndExpand, Placeholder = "Others" };
+			SpmOthersText.SetBinding (Entry.TextProperty, "PulmonaryAssmt.SpmOthersText");
 
 			//var lblMdShift = new Label { Text="MediastinalL Shift", HorizontalOptions = LayoutOptions.Fill, YAlign = TextAlignment.Center};
 			var MdShift = new Picker { Title = "Select...",
