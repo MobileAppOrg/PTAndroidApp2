@@ -40,6 +40,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\CoordinationAssmtPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\CognitiveAssmtPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\BalanceAndTolerancePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\MBMPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />

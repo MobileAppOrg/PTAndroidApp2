@@ -41,6 +41,7 @@ namespace PTAndroidApp
 
 			BindingContext = soap;
 
+			Children.Add (new MBMPage ());
 			Children.Add (new CranialNervePage ());
 			Children.Add (new CoordinationAssmtPage ());
 			Children.Add (new PatientGeneralInfoPage ());

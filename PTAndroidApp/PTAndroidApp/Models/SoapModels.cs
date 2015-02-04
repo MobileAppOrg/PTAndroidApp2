@@ -414,9 +414,10 @@ namespace PTAndroidApp
 		public int RowId { get; set; }
 		public string Location { get; set; }
 		public string Markings { get; set; }
-		public string Right { get; set; }
-		public string Left { get; set; }
-		public string Difference { get; set; }
+		public decimal Right { get; set; }
+		public decimal Left { get; set; }
+		public decimal Difference { get; set; }
+		public int PatientVisitId { get; set; }
 	}
 }
 
