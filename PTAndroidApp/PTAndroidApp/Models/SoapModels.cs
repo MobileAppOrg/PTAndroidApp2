@@ -497,7 +497,7 @@ namespace PTAndroidApp
 		public string SpineScapularLevelFindings { get; set; }
 		public bool SpineInMidline { get; set; }
 		public string SpineInMidlineFindings { get; set; }
-		public string WaistLevelAngle { get; set;}
+		public decimal WaistLevelAngle { get; set;}
 		public string ArmPosition { get; set; }
 		public string IliacCrestlevel { get; set; }
 		public string PSISLevel { get; set; }

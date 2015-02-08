@@ -14,7 +14,7 @@ using Xamarin.Forms.Platform.Android;
 
 namespace PTAndroidApp.Android
 {
-	[Activity (Label = "PTAndroidApp.Android.Android", MainLauncher = true,ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, Theme = "@android:style/Theme.Holo.Light")]
+	[Activity (Label = "PTAndroidApp.Android.Android", MainLauncher = true,ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, Theme = "@android:style/Theme.Holo.Light", WindowSoftInputMode = SoftInput.AdjustPan)]
 
 	public class MainActivity : AndroidActivity  
 

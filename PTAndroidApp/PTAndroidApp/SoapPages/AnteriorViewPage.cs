@@ -8,9 +8,6 @@ namespace PTAndroidApp
 {
 	public class AnteriorViewPage : ContentPage
 	{
-		private static Entry txtPatientVisitId = new Entry (){ IsVisible = false };
-
-
 		public AnteriorViewPage ()
 		{
 
