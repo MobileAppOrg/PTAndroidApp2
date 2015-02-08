@@ -17,6 +17,15 @@ namespace PTAndroidApp
 			CognitiveAssmt = new CognitiveAssmt ();
 			BalanceTolerance = new BalanceTolerance ();
 			DeepTendonReflex = new DeepTendonReflex ();
+			HandGripStrength = new HandGripStrength ();
+			VolumetricMeasurement = new VolumetricMeasurement ();
+			AnteriorView = new AnteriorView ();
+			PosteriorView = new PosteriorView ();
+			LateralView = new LateralView ();
+			GaitAssessment = new GaitAssessment ();
+			FunctionalAnalysis = new FunctionalAnalysis ();
+			Assessment = new Assessment ();
+			Plan = new Plan ();
 		}
 
 		//[Key]
@@ -98,6 +107,9 @@ namespace PTAndroidApp
 		public string MbmFindings { get; set; }
 		public string MbmSignificance { get; set; }
 
+		public string PosturalAssmtFindings { get; set; }
+		public string PosturalAssmtSignificance { get; set; }
+
 		public PMHx PMHx { get; set; }
 		public FMHx FMHx { get; set; }
 		public PSEHx PSEHx { get; set; }
@@ -107,7 +119,15 @@ namespace PTAndroidApp
 		public CognitiveAssmt CognitiveAssmt { get; set; }
 		public BalanceTolerance BalanceTolerance { get; set; }
 		public DeepTendonReflex DeepTendonReflex { get; set; }
-
+		public HandGripStrength HandGripStrength { get; set; }
+		public VolumetricMeasurement VolumetricMeasurement { get; set; }
+		public AnteriorView AnteriorView { get; set; }
+		public PosteriorView PosteriorView { get; set; }
+		public LateralView LateralView { get; set; }
+		public GaitAssessment GaitAssessment { get; set; }
+		public FunctionalAnalysis FunctionalAnalysis { get; set; }
+		public Assessment Assessment { get; set; }
+		public Plan Plan { get; set; }
 
 		// Navigation Properties and Foreign Keys
 		//
@@ -418,6 +438,140 @@ namespace PTAndroidApp
 		public decimal Left { get; set; }
 		public decimal Difference { get; set; }
 		public int PatientVisitId { get; set; }
+	}
+
+	public class HandGripStrength
+	{
+		public decimal T1RightHand { get; set; }
+		public decimal T1LeftHand { get; set; }
+		public decimal T2RightHand { get; set; }
+		public decimal T2LeftHand { get; set; }
+		public decimal T3RightHand { get; set; }
+		public decimal T3LeftHand { get; set; }
+		public decimal AveRightHand { get; set; }
+		public decimal AveLeftHand { get; set; }
+		public string Findings { get; set; }
+		public string Significance { get; set; }
+	}
+
+	public class VolumetricMeasurement
+	{
+		public decimal Right { get; set; }
+		public decimal Left { get; set; }
+		public decimal Difference { get; set; }
+		public string Findings { get; set; }
+		public string Significance { get; set; }
+	}
+
+	public class AnteriorView
+	{
+		public bool HeadInMidline { get; set; }
+		public string HeadInMidlineFindings { get; set; }
+		public bool ShouldersInLevel { get; set; }
+		public string ShouldersInLevelFindings { get; set; }
+		public bool Protrusion { get; set; }
+		public string ProtrusionFindings { get; set; }
+		public bool Lateralization { get; set; }
+		public string LateralizationFindings { get; set; }
+		public bool Depression { get; set; }
+		public string DepressionFindings { get; set; }
+		public decimal WaistAngle { get; set; }
+		public string ArmPosition { get; set; }
+		public decimal CarryingAngle { get; set; }
+		public string ASISLevel { get; set; }
+		public string PatellaeAlignment { get; set; }
+		public string KneeAlignment { get; set; }
+		public string MalleoliLevel { get; set; }
+		public string ArchesOfFeet  { get; set; }
+		public bool FeetAngle { get; set; }
+		public string FeetAngleFindings { get; set; }
+	}
+
+	public class PosteriorView
+	{
+		public bool HeadInMidline { get; set; }
+		public string HeadInMidlineFindings { get; set; }
+		public bool ShouldersInLevel { get; set; }
+		public string ShouldersInLevelFindings { get; set; }
+		public bool SpineScapularLevel { get; set; }
+		public string SpineScapularLevelFindings { get; set; }
+		public bool SpineInMidline { get; set; }
+		public string SpineInMidlineFindings { get; set; }
+		public string WaistLevelAngle { get; set;}
+		public string ArmPosition { get; set; }
+		public string IliacCrestlevel { get; set; }
+		public string PSISLevel { get; set; }
+		public string GlutealFoldsLevel { get; set; }
+		public string PoplitealFoassalevel { get; set; }
+		public string HeelsPosition { get; set; }
+	}
+
+	public class LateralView
+	{
+		public bool EarlobeShoulderAlignment { get; set; }
+		public string EarlobeShoulderAlignmentFindings { get; set; }
+		public bool AcromioIliacAlignment { get; set; }
+		public string AcromioIliacAlignmentFindings { get; set; }
+		public string SpinalSegments { get; set; }
+		public string ShoulderAlignment { get; set; }
+		public string PelvicAngle { get; set; }
+		public string KneeAlignment { get; set; }
+		public bool PlumblineAlignment { get; set; }
+		public string PlumblineAlignmentFindings { get; set; }
+		public string ArchesOfFeet { get; set; }
+	}
+
+	public class GaitAssessment
+	{
+		public string Asssessment { get; set; }
+		public bool RInitialLoading { get; set; }
+		public bool LInitialLoading { get; set; }
+		public bool RLoadingResponse { get; set; }
+		public bool LLoadingResponse { get; set; }
+		public bool RMidStance { get; set; }
+		public bool LMidStance { get; set; }
+		public bool RTerminalStance { get; set; }
+		public bool LTerminalStance { get; set; }
+		public bool RPreSwing { get; set; }
+		public bool LPreSwing { get; set; }
+		public bool RInitialSwing { get; set; }
+		public bool LInitialPreSwing { get; set; }
+		public bool RMidSwing { get; set; }
+		public bool LMidPreSwing { get; set; }
+		public bool RTerminalSwing { get; set; }
+		public bool LTerminalSwing { get; set; }
+		public string Findings { get; set; }
+		public string Significance { get; set; }
+	}
+
+	public class FunctionalAnalysis
+	{
+		public bool AdlsAxWriting { get; set; }
+		public bool AdlsAxCleaningHouse { get; set; }
+		public bool AdlsAxCooking { get; set; }
+		public bool AdlsAxEating { get; set; }
+		public bool AdlsAxTurningDoorKnob { get; set; }
+		public bool AdlsAxUsingKeys { get; set; }
+		public bool AdlsAxOpeningBottle { get; set; }
+		public bool AdlsAxBrushingTeeth { get; set; }
+		public bool AdlsAxTyingShoeLace { get; set; }
+		public bool AdlsAxWashingDishes { get; set; }
+		public bool AdlsAxSweepingFloor { get; set; }
+		public bool AdlsAxOthers { get; set; }
+		public bool AdlsAxOthersText { get; set; }
+	}
+
+	public class Assessment {
+		public string Diagnosis { get; set; }
+		public string PTImpression { get; set; }
+		public string ProblemList { get; set; }
+		public string LongTermGoals { get; set; }
+		public string ShortTermGoals { get; set; }
+	}
+
+	public class Plan {
+		public string PTManagement { get; set; }
+		public string HomeInstruction { get; set; }
 	}
 }
 
