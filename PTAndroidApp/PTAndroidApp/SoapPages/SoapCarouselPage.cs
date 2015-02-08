@@ -41,6 +41,7 @@ namespace PTAndroidApp
 
 			BindingContext = soap;
 
+			Children.Add (new LateralViewPage ());
 			Children.Add (new PosteriorViewPage ());
 			Children.Add (new AnteriorViewPage ());
 			Children.Add (new ROMFindSignPage ());

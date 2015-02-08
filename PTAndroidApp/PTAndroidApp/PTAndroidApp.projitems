@@ -49,6 +49,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\MBMFinSigPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\AnteriorViewPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PosteriorViewPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\LateralViewPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />

@@ -10,14 +10,9 @@ namespace PTAndroidApp
 	{
 		public AnteriorViewPage ()
 		{
-
 			var tblLayout = CreateTable ();
 
-			Content = new StackLayout { 
-				Children = {
-					tblLayout
-				}
-			};
+			Content = tblLayout;
 		}
 
 		static TableView CreateTable(){

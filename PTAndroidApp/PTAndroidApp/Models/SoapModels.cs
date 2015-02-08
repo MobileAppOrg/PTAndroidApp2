@@ -514,7 +514,7 @@ namespace PTAndroidApp
 		public string AcromioIliacAlignmentFindings { get; set; }
 		public string SpinalSegments { get; set; }
 		public string ShoulderAlignment { get; set; }
-		public string PelvicAngle { get; set; }
+		public decimal PelvicAngle { get; set; }
 		public string KneeAlignment { get; set; }
 		public bool PlumblineAlignment { get; set; }
 		public string PlumblineAlignmentFindings { get; set; }
