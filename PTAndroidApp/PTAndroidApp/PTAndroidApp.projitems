@@ -47,6 +47,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\CrainialNerveAssmtFindSigPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\CoordinationAssmtFinSigPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\MBMFinSigPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\AnteriorViewPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
