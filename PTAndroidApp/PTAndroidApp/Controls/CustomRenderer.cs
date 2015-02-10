@@ -1,27 +1,19 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using Android.Widget;
-
-[assembly: ExportRenderer(typeof(PTAndroidApp.MyCheckBox), typeof(PTAndroidApp.CheckBoxRenderer))]
 
 namespace PTAndroidApp
 {
-	public class CheckBoxRenderer : ButtonRenderer
+	public class MyCheckBox:Button
 	{
-		protected override void OnElementChanged (ElementChangedEventArgs<Xamarin.Forms.Button> e)
+		public static readonly BindableProperty IsCheckedProperty = 
+			BindableProperty.Create<MyCheckBox,bool> (x => x.IsChecked, false);
+
+		public bool IsChecked
 		{
-			base.OnElementChanged (e);
-
-			var control = new CheckBox(this.Context);
-			this.SetNativeControl(control);
+			get { return (bool)GetValue (IsCheckedProperty); }
+			set { SetValue (IsCheckedProperty, value); }
 		}
-
-	}
-
-	public class MyCheckBox:Xamarin.Forms.Button
-	{
-
 	}
 }
 
