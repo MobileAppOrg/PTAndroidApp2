@@ -14,11 +14,18 @@ namespace PTAndroidApp
 			SubjectiveObjective = new SubjectiveObjective ();
 			OcularInspection = new OcularInspection ();
 			Palpation = new Palpation ();
+			CardioPulmonaryAssmt = new CardioPulmonaryAssmt();
+			PulmonaryAssmt = new PulmonaryAssmt();
+			CMAxilla = new CMAxilla();
+			CMXiphoid = new CMXiphoid();
+			CMLowerCostal = new CMLowerCostal();
+			Auscultation = new Auscultation();
 			CognitiveAssmt = new CognitiveAssmt ();
 			BalanceTolerance = new BalanceTolerance ();
 			DeepTendonReflex = new DeepTendonReflex ();
 			HandGripStrength = new HandGripStrength ();
 			VolumetricMeasurement = new VolumetricMeasurement ();
+			FigureOfEight = new FigureOfEight();
 			AnteriorView = new AnteriorView ();
 			PosteriorView = new PosteriorView ();
 			LateralView = new LateralView ();
@@ -110,17 +117,27 @@ namespace PTAndroidApp
 		public string PosturalAssmtFindings { get; set; }
 		public string PosturalAssmtSignificance { get; set; }
 
+		public string ChestMobilityFindings { get; set; }
+		public string ChestMobilitySignificance { get; set; }
+
 		public PMHx PMHx { get; set; }
 		public FMHx FMHx { get; set; }
 		public PSEHx PSEHx { get; set; }
 		public SubjectiveObjective SubjectiveObjective { get; set; }
 		public OcularInspection OcularInspection { get; set; }
 		public Palpation Palpation { get; set; }
+		public CardioPulmonaryAssmt CardioPulmonaryAssmt { get; set; }
+		public PulmonaryAssmt PulmonaryAssmt { get; set; }
+		public CMAxilla CMAxilla { get; set; }
+		public CMXiphoid CMXiphoid { get; set; }
+		public CMLowerCostal CMLowerCostal { get; set; }
+		public Auscultation Auscultation { get; set; }
 		public CognitiveAssmt CognitiveAssmt { get; set; }
 		public BalanceTolerance BalanceTolerance { get; set; }
 		public DeepTendonReflex DeepTendonReflex { get; set; }
 		public HandGripStrength HandGripStrength { get; set; }
 		public VolumetricMeasurement VolumetricMeasurement { get; set; }
+		public FigureOfEight FigureOfEight { get; set; }
 		public AnteriorView AnteriorView { get; set; }
 		public PosteriorView PosteriorView { get; set; }
 		public LateralView LateralView { get; set; }
@@ -375,6 +392,119 @@ namespace PTAndroidApp
 		public int PatientVisitId { get; set; }
 	}
 
+	public class CardioPulmonaryAssmt
+	{
+		public string BodyType { get; set; }
+		public string ChestShape { get; set; }
+		public string ChestShapeOthers { get; set; }
+	}
+
+	public class PulmonaryAssmt
+	{
+		public bool SpmMucoid { get; set; }
+		public bool SpmFrothy { get; set; }
+		public bool SpmMucopurulent { get; set; }
+		public bool SpmHemoptysis { get; set; }
+		public bool SpmPurulent { get; set; }
+		public bool SpmOthers { get; set; }
+		public string SpmOthersText { get; set; }
+
+		public string MdShift { get; set; }
+		public string MdShiftFindings { get; set; }
+		public string MdShiftSignificance { get; set; }
+
+		public string Fremitus { get; set; }
+		public string FremitusFindings { get; set; }
+		public string FremitusSignificance { get; set; }
+
+		#region Chest Expansion
+		public string ChstExpULE { get; set; }
+		public string ChstExpMLE { get; set; }
+		public string ChstExpLLE { get; set; }
+		public string ChstExpSig { get; set; }
+		#endregion
+
+		public string Percussion { get; set; }
+		public string PercussionOthers { get; set; }
+
+		#region Exercise Testing
+		public bool SixMinWalk { get; set; }
+		public string SixMinWalkFindings { get; set; }
+		public bool StairClimbing { get; set; }
+		public string StairClimbingFindings { get; set; }
+		public bool ShuttleTest { get; set; }
+		public string ShuttleTestFindings { get; set; }
+		public bool OtherTest { get; set; }
+		public string OtherTestFindings { get; set; }
+		#endregion
+	}
+
+	public class CMAxilla
+	{
+		public decimal MaxInsT1 { get; set; }
+		public decimal MaxInsT2 { get; set; }
+		public decimal MaxInsT3 { get; set; }
+		public decimal MaxInsAve { get; set; }
+		public decimal MaxExpT1 { get; set; }
+		public decimal MaxExpT2 { get; set; }
+		public decimal MaxExpT3 { get; set; }
+		public decimal MaxExpAve { get; set; }
+		public decimal DiffT1 { get; set; }
+		public decimal DiffT2 { get; set; }
+		public decimal DiffT3 { get; set; }
+		public decimal DiffAve { get; set; }
+	}
+
+	public class CMXiphoid
+	{
+		public decimal MaxInsT1 { get; set; }
+		public decimal MaxInsT2 { get; set; }
+		public decimal MaxInsT3 { get; set; }
+		public decimal MaxInsAve { get; set; }
+		public decimal MaxExpT1 { get; set; }
+		public decimal MaxExpT2 { get; set; }
+		public decimal MaxExpT3 { get; set; }
+		public decimal MaxExpAve { get; set; }
+		public decimal DiffT1 { get; set; }
+		public decimal DiffT2 { get; set; }
+		public decimal DiffT3 { get; set; }
+		public decimal DiffAve { get; set; }
+	}
+
+	public class CMLowerCostal
+	{
+		public decimal MaxInsT1 { get; set; }
+		public decimal MaxInsT2 { get; set; }
+		public decimal MaxInsT3 { get; set; }
+		public decimal MaxInsAve { get; set; }
+		public decimal MaxExpT1 { get; set; }
+		public decimal MaxExpT2 { get; set; }
+		public decimal MaxExpT3 { get; set; }
+		public decimal MaxExpAve { get; set; }
+		public decimal DiffT1 { get; set; }
+		public decimal DiffT2 { get; set; }
+		public decimal DiffT3 { get; set; }
+		public decimal DiffAve { get; set; }
+	}
+
+	public class Auscultation
+	{
+		public bool Trachael { get; set; }
+		public bool Bronchial { get; set; }
+		public bool Bronchiovesicular { get; set; }
+		public bool Vesicular { get; set; }
+		public bool Crackles { get; set; }
+		public bool DiminishedBreathSounds { get; set; }
+		public bool HighPitchedBronchialBreathing { get; set; }
+		public bool LowPitchedBronchialBreathing { get; set; }
+		public bool PleuralRub { get; set; }
+		public bool Rhonchi { get; set; }
+		public bool Stridor { get; set; }
+		public bool Wheeze { get; set; }
+		public bool Others { get; set; }
+		public string OthersText { get; set; }
+	}
+
 	public class CranialNerveAssmt
 	{
 		public int RowId { get; set; }
@@ -455,6 +585,15 @@ namespace PTAndroidApp
 	}
 
 	public class VolumetricMeasurement
+	{
+		public decimal Right { get; set; }
+		public decimal Left { get; set; }
+		public decimal Difference { get; set; }
+		public string Findings { get; set; }
+		public string Significance { get; set; }
+	}
+
+	public class FigureOfEight
 	{
 		public decimal Right { get; set; }
 		public decimal Left { get; set; }
