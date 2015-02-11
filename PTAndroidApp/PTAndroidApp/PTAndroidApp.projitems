@@ -27,7 +27,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)DAL\PatientManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PSEHxPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DAL\SoapManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\FMHxPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\SubjObjPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\OcularInspectionPage.cs" />

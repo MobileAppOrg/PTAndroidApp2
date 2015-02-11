@@ -3,7 +3,7 @@
 using Xamarin.Forms;
 using System.Collections.Generic;
 using PTAndroidApp.ValueConverters;
-
+using XLabs.Forms.Controls;
 namespace PTAndroidApp
 {
 	public class PalpationPage : ContentPage
@@ -26,58 +26,58 @@ namespace PTAndroidApp
 			List<string> BodyTemperature = new List<string> (){ "Hypothermic","Normothermic","Hyperthermic" };
 			var BodyTemperaturePicker = new Picker (){VerticalOptions = LayoutOptions .End, Items = { "Hypothermic","Normothermic","Hyperthermic" }, 
 				Title = "Body Temperature", IsEnabled = false  , HorizontalOptions = LayoutOptions.FillAndExpand  };
-			var switchBodyTemperature =new Switch { VerticalOptions = LayoutOptions .End};
+			var CheckBoxBodyTemperature =new CheckBox { VerticalOptions = LayoutOptions .End};
 
 			List<string> MuscleTone = new List<string> (){ "Hypotonic","Normotonic","tHypertonic" };
 			var MuscleTonePicker = new Picker (){ VerticalOptions = LayoutOptions .End,Items = { "Hypotonic","Normotonic","tHypertonic" }, 
 				Title = "Muscle Tone", IsEnabled = false  , HorizontalOptions = LayoutOptions.FillAndExpand  };
-			var switchMuscleTone =new Switch { VerticalOptions = LayoutOptions .End};
+			var CheckBoxMuscleTone =new CheckBox { VerticalOptions = LayoutOptions .End};
 
 			List<string> Edema = new List<string> (){ "Non-pitting","Pitting"};
 			var EdemaPicker = new Picker (){VerticalOptions = LayoutOptions .End, Items = { "Non-pitting","Pitting" }, 
 				Title = "Edema", IsEnabled = false  , HorizontalOptions = LayoutOptions.FillAndExpand   };
-			var switchEdema =new Switch{ VerticalOptions = LayoutOptions .End};
+			var CheckBoxEdema =new CheckBox{ VerticalOptions = LayoutOptions .End};
 
 			List<string> Tenderness = new List<string> (){ "Grade 1","Grade 2","Grade 3","Grade 4","Grade 5"};
 			var TendernessPicker = new Picker (){VerticalOptions = LayoutOptions .End, Items = { "Grade 1","Grade 2","Grade 3","Grade 4","Grade 5" }, 
 				Title = "Tenderness", IsEnabled = false  , HorizontalOptions = LayoutOptions.FillAndExpand   };
-			var switchTenderness =new Switch { VerticalOptions = LayoutOptions .End};
+			var CheckBoxTenderness =new CheckBox { VerticalOptions = LayoutOptions .End};
 
 			var txtLocation = new EntryCell {  IsEnabled = true , Placeholder = "Location" };
 
-			var switchDeformity =new  Switch{ VerticalOptions = LayoutOptions .End};
+			var CheckBoxDeformity =new  CheckBox{ VerticalOptions = LayoutOptions .End};
 			var txtDeformity = new EntryCell {IsEnabled = false, Placeholder = "Deformity" };
 
-			var switchMuscleGuarding =new Switch { VerticalOptions = LayoutOptions .End};
-			var switchMuscleSpasm =new Switch { VerticalOptions = LayoutOptions .End};
-			var switchSubluxation =new Switch { VerticalOptions = LayoutOptions .End};
-			var switchDislocation =new Switch { VerticalOptions = LayoutOptions .End};
+			var CheckBoxMuscleGuarding =new CheckBox { VerticalOptions = LayoutOptions .End};
+			var CheckBoxMuscleSpasm =new CheckBox { VerticalOptions = LayoutOptions .End};
+			var CheckBoxSubluxation =new CheckBox { VerticalOptions = LayoutOptions .End};
+			var CheckBoxDislocation =new CheckBox { VerticalOptions = LayoutOptions .End};
 
 			ViewCell BodyTemperatureCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {switchBodyTemperature, BodyTemperaturePicker},
+					Children = {CheckBoxBodyTemperature, BodyTemperaturePicker},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.FillAndExpand }};
 
 			ViewCell MuscleToneCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {switchMuscleTone, MuscleTonePicker},
+					Children = {CheckBoxMuscleTone, MuscleTonePicker},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.FillAndExpand }};
 
 			ViewCell EdemaCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {switchEdema, EdemaPicker},
+					Children = {CheckBoxEdema, EdemaPicker},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.FillAndExpand }};
 
 			ViewCell TendernessCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {switchTenderness,TendernessPicker},
+					Children = {CheckBoxTenderness,TendernessPicker},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.FillAndExpand }};
 
@@ -85,79 +85,79 @@ namespace PTAndroidApp
 				Height = 100,
 				View = new StackLayout(){
 					Children = {new Label (){FontSize = 18, VerticalOptions = LayoutOptions .End , Text = "   Deformity              "},
-							switchDeformity},Orientation = StackOrientation.Horizontal  ,
+							CheckBoxDeformity},Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.FillAndExpand }};
 		
 			ViewCell MuscleGuardingCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
 					Children = {new Label (){HorizontalOptions = LayoutOptions.Fill, FontSize = 18, VerticalOptions = LayoutOptions .End , Text = "   Muscle Guarding"},
-						switchMuscleGuarding},Orientation = StackOrientation.Horizontal  ,
+						CheckBoxMuscleGuarding},Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.FillAndExpand }};
 
 			ViewCell MuscleSpasmCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
 					Children = {new Label (){HorizontalOptions = LayoutOptions.Fill, FontSize = 18, VerticalOptions = LayoutOptions .End , Text = "   Muscle Spasm    "},
-						switchMuscleSpasm},Orientation = StackOrientation.Horizontal  ,
+						CheckBoxMuscleSpasm},Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.FillAndExpand }};
 		
 			ViewCell SubluxationCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
 					Children = {new Label (){HorizontalOptions = LayoutOptions.Fill, FontSize = 18, VerticalOptions = LayoutOptions .End , Text = "   Subluxation          "},
-						switchSubluxation},Orientation = StackOrientation.Horizontal  ,
+						CheckBoxSubluxation},Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.FillAndExpand }};
 
 			ViewCell DislocationCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
 					Children = {new Label (){HorizontalOptions = LayoutOptions.Fill, FontSize = 18, VerticalOptions = LayoutOptions .End , Text = "   Dislocation           "},
-						switchDislocation},Orientation = StackOrientation.Horizontal  ,
+						CheckBoxDislocation},Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.FillAndExpand }};
 
 
 
-			switchBodyTemperature.Toggled += delegate 
+			CheckBoxBodyTemperature.CheckedChanged += delegate 
 			{	
 				BodyTemperaturePicker.SelectedIndex = -1;
-				if (switchBodyTemperature.IsToggled)
+				if (CheckBoxBodyTemperature.Checked)
 				{BodyTemperaturePicker.IsEnabled   = true;}
 				else 
 				{BodyTemperaturePicker.IsEnabled  = false ;}
 			};
 
-			switchMuscleTone.Toggled += delegate 
+			CheckBoxMuscleTone.CheckedChanged += delegate 
 			{	
 				MuscleTonePicker.SelectedIndex = -1;
-				if (switchMuscleTone.IsToggled)
+				if (CheckBoxMuscleTone.Checked)
 				{MuscleTonePicker.IsEnabled   = true;}
 				else 
 				{MuscleTonePicker.IsEnabled  = false ;}
 			};
 
-			switchEdema.Toggled += delegate 
+			CheckBoxEdema.CheckedChanged += delegate 
 			{	
 				EdemaPicker.SelectedIndex = -1;
-				if (switchEdema.IsToggled)
+				if (CheckBoxEdema.Checked)
 				{EdemaPicker.IsEnabled   = true;}
 				else 
 				{EdemaPicker.IsEnabled  = false ;}
 			};
 
-			switchTenderness.Toggled += delegate 
+			CheckBoxTenderness.CheckedChanged += delegate 
 			{	
 				TendernessPicker.SelectedIndex = -1;
-				if (switchTenderness.IsToggled)
+				if (CheckBoxTenderness.Checked)
 				{TendernessPicker.IsEnabled   = true;}
 				else 
 				{TendernessPicker.IsEnabled  = false ;}
 			};
 
-			switchDeformity.Toggled += delegate 
+			CheckBoxDeformity.CheckedChanged += delegate 
 			{	
 				txtDeformity.Text ="";
-				if (switchDeformity.IsToggled)
+				if (CheckBoxDeformity.Checked)
 				{txtDeformity.IsEnabled   = true;}
 				else 
 				{txtDeformity.IsEnabled  = false ;}
@@ -178,10 +178,10 @@ namespace PTAndroidApp
 
 			txtLocation.SetBinding (EntryCell.TextProperty, "Palpation.Location", BindingMode.TwoWay);
 			txtDeformity.SetBinding (EntryCell.TextProperty, "Palpation.Deformity", BindingMode.TwoWay);
-			switchMuscleGuarding.SetBinding (Switch.IsToggledProperty, "Palpation.MuscleGuarding", BindingMode.TwoWay);
-			switchMuscleSpasm.SetBinding (Switch.IsToggledProperty, "Palpation.MuscleSpasm", BindingMode.TwoWay);
-			switchSubluxation.SetBinding (Switch.IsToggledProperty, "Palpation.Subluxation", BindingMode.TwoWay);
-			switchDislocation.SetBinding (Switch.IsToggledProperty, "Palpation.Dislocation", BindingMode.TwoWay);
+			CheckBoxMuscleGuarding.SetBinding (CheckBox.CheckedProperty, "Palpation.MuscleGuarding", BindingMode.TwoWay);
+			CheckBoxMuscleSpasm.SetBinding (CheckBox.CheckedProperty, "Palpation.MuscleSpasm", BindingMode.TwoWay);
+			CheckBoxSubluxation.SetBinding (CheckBox.CheckedProperty, "Palpation.Subluxation", BindingMode.TwoWay);
+			CheckBoxDislocation.SetBinding (CheckBox.CheckedProperty, "Palpation.Dislocation", BindingMode.TwoWay);
 
 
 			return new TableView () {

@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using PTAndroidApp.ValueConverters;
 using System.Collections.Generic;
-
+using XLabs.Forms.Controls;
 
 namespace PTAndroidApp
 {
@@ -27,12 +27,12 @@ namespace PTAndroidApp
 			txtPatientVisitId.SetBinding (Entry.TextProperty,"PatientVisitId", BindingMode.TwoWay);
 
 			var Trauma = new Label (){FontSize = 18, Text  = "   Trauma", VerticalOptions = LayoutOptions .EndAndExpand };
-			var switchTrauma = new Switch {VerticalOptions = LayoutOptions .EndAndExpand,};
-			var txttrauma = new EntryCell  {IsEnabled = false, Placeholder = "Trauma"};
+			var CheckBoxTrauma = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand,};
+			var txttrauma = new EntryCell  { IsEnabled = false, Placeholder = "Trauma" };
 
 			var lblArthritis = new Label {FontSize = 18,Text = "   Arthritis", VerticalOptions = LayoutOptions .EndAndExpand};
-			var switchArthritis =
-				new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxArthritis =
+				new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 
 			List<string> ArthritisType = new List<string> (){ "RA","OA" };
 			var ArthritisTypepicker = new Picker (){ Items = { "RA","OA" }, 
@@ -43,44 +43,44 @@ namespace PTAndroidApp
 				Title = "Select DM", HorizontalOptions = LayoutOptions.FillAndExpand };
 
 			var lblDM = new Label {FontSize = 18,Text = "   DM", VerticalOptions = LayoutOptions .EndAndExpand};
-			var switchDM =new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxDM =new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 
 
 			var lblallergies = new Label {FontSize = 18, Text = "   Allergies", VerticalOptions = LayoutOptions.End};
-			var switchAllergies = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxAllergies = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 
 			var lblAsthma  = new Label { Text  = "   Asthma", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand};
-			var switchAsthma = new Switch {VerticalOptions = LayoutOptions .EndAndExpand };
+			var CheckBoxAsthma = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand };
 			var Asthma = new EntryCell  { IsEnabled = false ,Placeholder  = "Date Ashtma"};
 
 			var lblHPN = new Label {FontSize = 18, Text = "   HPN", VerticalOptions = LayoutOptions .EndAndExpand};
-			var switchHPN = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxHPN = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 
 			var lblSurgery  = new Label { Text  = "   Surgery", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand};
-			var switchSurgery = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxSurgery = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtSurgery = new EntryCell  {IsEnabled = false, Placeholder = "Surgical Procedure"};
 			var dtSurgery = new EntryCell  {IsEnabled = false, Placeholder = "Surgery Date"};
 
 			var lblHospitalization  = new Label { Text  = "   Hopitalization", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand};
-			var switchHospitalization = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxHospitalization = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtHospitalization = new EntryCell  {IsEnabled = false,Placeholder = "Specification of Disease"};
 			var HospitalizationDate = new EntryCell  { IsEnabled = false, Placeholder = "Hospitalization Date" };
 
 			var lblCardiovascularDisease  = new Label { Text  = "   Cardiovascular Disease", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand};
-			var switchCardiovascularDisease = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxCardiovascularDisease = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtCardiovascularDisease = new EntryCell (){Height = 50,Placeholder  = "Cardiovascular Disease" };
 
 			var lblPulmonaryCondition  = new Label { Text  = "   Pulmonary Condition", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand};
-			var switchPulmonaryCondition = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxPulmonaryCondition = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtPulmonaryCondition = new EntryCell (){Height = 50, Placeholder = "Pulmonary Condition" };
 
 			var lblNeurologyCondition  = new Label { Text  = "   Neurology Condition", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand};
-			var switchNeurologyCondition = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxNeurologyCondition = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtNeurologyCondition = new EntryCell (){ Height = 50,Placeholder = "Neurology Condition" };
 			//var txtCancer = new EntryCell (){Height = 50, Placeholder = "Cancer" };
 
 			var lblCancer = new Label {FontSize = 18, Text = "   Cancer", VerticalOptions = LayoutOptions .EndAndExpand};
-			var switchCancer = new Switch {VerticalOptions = LayoutOptions .EndAndExpand};
+			var CheckBoxCancer = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 
 
 			var txtOthers = new EntryCell (){Height = 50, Placeholder = "Others" };
@@ -88,117 +88,117 @@ namespace PTAndroidApp
 			ViewCell TraumaCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {Trauma, switchTrauma},
+					Children = {Trauma, CheckBoxTrauma},
 					Orientation = StackOrientation.Horizontal  ,
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell ArthritisCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {lblArthritis,switchArthritis,ArthritisTypepicker},
+					Children = {lblArthritis,CheckBoxArthritis,ArthritisTypepicker},
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
 					
 			ViewCell DMCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {lblDM,switchDM,DMpicker},
+					Children = {lblDM,CheckBoxDM,DMpicker},
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
 
 			ViewCell AllergiesCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {lblallergies,switchAllergies},
+					Children = {lblallergies,CheckBoxAllergies},
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
 
 			ViewCell AsthmaCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
 					Orientation = StackOrientation.Horizontal ,
-					Children = {lblAsthma,switchAsthma},
+					Children = {lblAsthma,CheckBoxAsthma},
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill}};
 
 			ViewCell HPNCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {lblHPN,switchHPN},
+					Children = {lblHPN,CheckBoxHPN},
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
 
 			ViewCell SurgeryCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {lblSurgery,switchSurgery},
+					Children = {lblSurgery,CheckBoxSurgery},
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
 					
 			ViewCell HospitalizationCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {lblHospitalization,switchHospitalization},
+					Children = {lblHospitalization,CheckBoxHospitalization},
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
 
 			ViewCell CardiovascularDiseaseCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {lblCardiovascularDisease,switchCardiovascularDisease},
+					Children = {lblCardiovascularDisease,CheckBoxCardiovascularDisease},
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
 
 			ViewCell PulmonaryConditionCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {lblPulmonaryCondition,switchPulmonaryCondition},
+					Children = {lblPulmonaryCondition,CheckBoxPulmonaryCondition},
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
 
 			ViewCell NeurologyConditionCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {lblNeurologyCondition,switchNeurologyCondition},
+					Children = {lblNeurologyCondition,CheckBoxNeurologyCondition},
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
 				
 			ViewCell CancerCell = new ViewCell{
 				Height = 100,
 				View = new StackLayout(){
-					Children = {lblCancer,switchCancer},
+					Children = {lblCancer,CheckBoxCancer},
 					Padding = new Thickness(5,1,1,1),HorizontalOptions = LayoutOptions.Fill,Orientation = StackOrientation.Horizontal}};
 
-			switchTrauma.Toggled += delegate 
+			CheckBoxTrauma.CheckedChanged += delegate 
 			{	txttrauma .Text ="";
-				if (switchTrauma.IsToggled)
+				if (CheckBoxTrauma.Checked)
 				{txttrauma .IsEnabled = true;}
 				else
 				{txttrauma .IsEnabled = false ;}
 			};
 
-			switchArthritis.Toggled += delegate 
+			CheckBoxArthritis.CheckedChanged += delegate 
 			{	
 				ArthritisTypepicker.SelectedIndex = -1;
-				if (switchArthritis.IsToggled)
+				if (CheckBoxArthritis.Checked)
 				{ArthritisTypepicker.IsVisible  = true;}
 				else 
 				{ArthritisTypepicker.IsVisible  = false ;}
 			};
 
-			switchDM.Toggled += delegate 
+			CheckBoxDM.CheckedChanged += delegate 
 			{	
 				DMpicker.SelectedIndex = -1;
-				if (switchDM.IsToggled)
+				if (CheckBoxDM.Checked)
 				{DMpicker .IsVisible  = true;}
 				else 
 				{DMpicker.IsVisible  = false ;}
 			};
 				
-			switchAsthma.Toggled += delegate 
+			CheckBoxAsthma.CheckedChanged += delegate 
 			{
 				Asthma.Text = "";
-				if (switchAsthma.IsToggled)
+				if (CheckBoxAsthma.Checked)
 				{Asthma.IsEnabled   = true;}
 				else 
 				{Asthma.IsEnabled  = false ;}
 			};
 				
-			switchSurgery.Toggled += delegate 
+			CheckBoxSurgery.CheckedChanged += delegate 
 			{	
 				dtSurgery .Text = "";
 				txtSurgery .Text = "";
-				if (switchSurgery.IsToggled)
+				if (CheckBoxSurgery.Checked)
 				{	dtSurgery.IsEnabled   = true;
 					txtSurgery.IsEnabled = true;}
 				else 
@@ -206,11 +206,11 @@ namespace PTAndroidApp
 					txtSurgery.IsEnabled = false ;}
 			};
 
-			switchHospitalization.Toggled += delegate 
+			CheckBoxHospitalization.CheckedChanged += delegate 
 			{	
 				txtHospitalization .Text = "";
 				HospitalizationDate .Text = "";
-				if (switchHospitalization.IsToggled)
+				if (CheckBoxHospitalization.Checked)
 				{	txtHospitalization.IsEnabled   = true;
 					HospitalizationDate.IsEnabled = true;}
 				else 
@@ -218,67 +218,67 @@ namespace PTAndroidApp
 					HospitalizationDate.IsEnabled = false ;}
 			};
 
-			switchCardiovascularDisease.Toggled += delegate 
+			CheckBoxCardiovascularDisease.CheckedChanged += delegate 
 			{	
-				if (switchCardiovascularDisease.IsToggled)
+				if (CheckBoxCardiovascularDisease.Checked)
 				{	txtCardiovascularDisease.IsEnabled   = true;}
 				else 
 				{	txtCardiovascularDisease.IsEnabled   = false ;}
 			};
 
-			switchPulmonaryCondition.Toggled += delegate 
+			CheckBoxPulmonaryCondition.CheckedChanged += delegate 
 			{	
 				txtPulmonaryCondition .Text = "";
-				if (switchPulmonaryCondition.IsToggled)
+				if (CheckBoxPulmonaryCondition.Checked)
 				{	txtPulmonaryCondition.IsEnabled   = true;}
 				else 
 				{	txtPulmonaryCondition.IsEnabled   = false ;}
 			};
-			switchNeurologyCondition.Toggled += delegate 
+			CheckBoxNeurologyCondition.CheckedChanged += delegate 
 			{	
 				txtNeurologyCondition .Text = "";
-				if (switchNeurologyCondition.IsToggled)
+				if (CheckBoxNeurologyCondition.Checked)
 				{	txtNeurologyCondition.IsEnabled   = true;}
 				else 
 				{	txtNeurologyCondition.IsEnabled   = false; }
 			};
 			//bind 
-			switchTrauma.SetBinding (Switch.IsToggledProperty, "PMHx.Trauma", BindingMode.TwoWay);
+			CheckBoxTrauma.SetBinding (CheckBox.CheckedProperty, "PMHx.Trauma", BindingMode.TwoWay);
 			txttrauma.SetBinding (EntryCell.TextProperty, "PMHx.TraumaText", BindingMode.TwoWay);
 	
 			ArthritisTypepicker.SetBinding (Picker.SelectedIndexProperty, "PMHx.ArthritisText", 
 			 	BindingMode.TwoWay, new IndexToGenericListConverter(){ ItemList = ArthritisType  });
-			switchArthritis.SetBinding (Switch.IsToggledProperty, "PMHx.Arthritis", BindingMode.TwoWay);
+			CheckBoxArthritis.SetBinding (CheckBox.CheckedProperty, "PMHx.Arthritis", BindingMode.TwoWay);
 
-			switchAsthma.SetBinding (Switch.IsToggledProperty, "PMHx.Asthma", BindingMode.TwoWay);
+			CheckBoxAsthma.SetBinding (CheckBox.CheckedProperty, "PMHx.Asthma", BindingMode.TwoWay);
 			Asthma.SetBinding (EntryCell.TextProperty , "PMHx.AsthmaDate",  BindingMode.TwoWay,new StringToNullDateTimeConverter());
 
-			switchHPN.SetBinding (Switch.IsToggledProperty, "PMHx.HPN", BindingMode.TwoWay);
+			CheckBoxHPN.SetBinding (CheckBox.CheckedProperty, "PMHx.HPN", BindingMode.TwoWay);
 
 			DMpicker .SetBinding (Picker.SelectedIndexProperty, "PMHx.DMText", 
 			BindingMode.TwoWay, new IndexToGenericListConverter(){ ItemList = DM   });
-			switchDM.SetBinding (Switch.IsToggledProperty, "PMHx.DM", BindingMode.TwoWay);
+			CheckBoxDM.SetBinding (CheckBox.CheckedProperty, "PMHx.DM", BindingMode.TwoWay);
 
-			switchAllergies.SetBinding (Switch.IsToggledProperty, "PMHx.Allergies", BindingMode.TwoWay);
+			CheckBoxAllergies.SetBinding (CheckBox.CheckedProperty, "PMHx.Allergies", BindingMode.TwoWay);
 
-			switchSurgery.SetBinding (Switch.IsToggledProperty, "PMHx.Surgery", BindingMode.TwoWay);
+			CheckBoxSurgery.SetBinding (CheckBox.CheckedProperty, "PMHx.Surgery", BindingMode.TwoWay);
 			txtSurgery.SetBinding (EntryCell.TextProperty, "PMHx.SurgeryText", BindingMode.TwoWay);
 			dtSurgery .SetBinding (EntryCell.TextProperty, "PMHx.SurgeryDate",BindingMode.TwoWay,new StringToNullDateTimeConverter());
 
-			switchHospitalization.SetBinding (Switch.IsToggledProperty, "PMHx.Hospitalization", BindingMode.TwoWay);
+			CheckBoxHospitalization.SetBinding (CheckBox.CheckedProperty, "PMHx.Hospitalization", BindingMode.TwoWay);
 			txtHospitalization .SetBinding (EntryCell.TextProperty, "PMHx.HospitalizationText", BindingMode.TwoWay);
 			HospitalizationDate.SetBinding (EntryCell.TextProperty, "PMHx.HospitalizationDate",BindingMode.TwoWay,new StringToNullDateTimeConverter());
 		
-			switchCardiovascularDisease.SetBinding (Switch.IsToggledProperty, "PMHx.CardiovascularDisease", BindingMode.TwoWay);
+			CheckBoxCardiovascularDisease.SetBinding (CheckBox.CheckedProperty, "PMHx.CardiovascularDisease", BindingMode.TwoWay);
 			txtCardiovascularDisease .SetBinding (EntryCell.TextProperty, "PMHx.CardiovascularDiseaseText", BindingMode.TwoWay);
 
-			switchPulmonaryCondition.SetBinding (Switch.IsToggledProperty, "PMHx.PulmonaryCondition", BindingMode.TwoWay);
+			CheckBoxPulmonaryCondition.SetBinding (CheckBox.CheckedProperty, "PMHx.PulmonaryCondition", BindingMode.TwoWay);
 			txtPulmonaryCondition .SetBinding (EntryCell.TextProperty, "PMHx.PulmonaryConditionText", BindingMode.TwoWay);
 
-			switchNeurologyCondition.SetBinding (Switch.IsToggledProperty, "PMHx.NeurologyCondition", BindingMode.TwoWay);
+			CheckBoxNeurologyCondition.SetBinding (CheckBox.CheckedProperty, "PMHx.NeurologyCondition", BindingMode.TwoWay);
 			txtNeurologyCondition .SetBinding (EntryCell.TextProperty, "PMHx.NeurologyConditionText", BindingMode.TwoWay);
 
-			switchCancer.SetBinding (Switch.IsToggledProperty, "PMHx.Cancer", BindingMode.TwoWay);
+			CheckBoxCancer.SetBinding (CheckBox.CheckedProperty, "PMHx.Cancer", BindingMode.TwoWay);
 			txtOthers  .SetBinding (EntryCell.TextProperty, "PMHx.Others", BindingMode.TwoWay);
 
 			return new TableView () {

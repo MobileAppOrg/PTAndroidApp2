@@ -1,5 +1,5 @@
 ﻿using System;
-
+using XLabs.Forms.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace PTAndroidApp
 {
 	public class DeepTendonReflexPage : ContentPage
 	{
-		private static Switch btnLegend = new Switch { HeightRequest = 10, WidthRequest = 47};
+		private static CheckBox btnLegend = new CheckBox { HeightRequest = 10, WidthRequest = 47};
 		private static List<string> lstGrades = new List <string>()
 		{"0",
 			"+",
@@ -46,9 +46,9 @@ namespace PTAndroidApp
 				}
 			};
 
-			btnLegend.Toggled   += delegate {
+			btnLegend.CheckedChanged   += delegate {
 
-				if (btnLegend.IsToggled )
+				if (btnLegend.Checked )
 				{
 				body2.IsVisible = true;
 				form.IsVisible = false;
