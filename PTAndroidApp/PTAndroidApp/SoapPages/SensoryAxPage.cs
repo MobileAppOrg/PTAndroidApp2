@@ -138,7 +138,7 @@ namespace PTAndroidApp
 		{
 			var form = CreateTable ();
 			ls.ItemTemplate = new DataTemplate(typeof(SensoryAxCell));
-			ls.SetBinding (ListView.ItemsSourceProperty,"SensoryAx",BindingMode.TwoWay);
+			ls.SetBinding (ListView.ItemsSourceProperty,"SensoryAxs",BindingMode.TwoWay);
 			var footerButtons = CreateFooter ();
 
 			Content = new StackLayout {

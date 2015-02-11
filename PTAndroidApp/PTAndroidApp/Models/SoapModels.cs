@@ -558,7 +558,7 @@ namespace PTAndroidApp
 		public bool AdlsAxWashingDishes { get; set; }
 		public bool AdlsAxSweepingFloor { get; set; }
 		public bool AdlsAxOthers { get; set; }
-		public bool AdlsAxOthersText { get; set; }
+		public string AdlsAxOthersText { get; set; }
 	}
 
 	public class Assessment {

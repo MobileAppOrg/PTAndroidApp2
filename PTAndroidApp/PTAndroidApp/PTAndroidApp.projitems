@@ -51,9 +51,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PosteriorViewPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\LateralViewPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\FunctionalAnalysisPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\MyPage.xaml.cs">
-      <DependentUpon>MyPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
@@ -61,10 +58,5 @@
     <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
     <Folder Include="$(MSBuildThisFileDirectory)XAML\" />
     <Folder Include="$(MSBuildThisFileDirectory)SoapPages\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)SoapPages\MyPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
 </Project>

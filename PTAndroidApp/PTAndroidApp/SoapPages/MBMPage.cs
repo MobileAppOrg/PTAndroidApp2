@@ -126,7 +126,7 @@ namespace PTAndroidApp
 		{
 			var form = CreateTable ();
 			ls.ItemTemplate = new DataTemplate(typeof(MBMCell));
-			ls.SetBinding (ListView.ItemsSourceProperty,"MBM",BindingMode.TwoWay);
+			ls.SetBinding (ListView.ItemsSourceProperty,"MBMs",BindingMode.TwoWay);
 			var footerButtons = CreateFooter ();
 
 			Content = new StackLayout {
