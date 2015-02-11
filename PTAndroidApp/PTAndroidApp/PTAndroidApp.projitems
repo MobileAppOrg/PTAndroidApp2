@@ -52,6 +52,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\LateralViewPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\FunctionalAnalysisPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\CardioPulmonaryPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PulmonaryAssmt1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PulmonaryAssmt2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PulmonaryAssmt3.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PulmonaryAssmt4.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
