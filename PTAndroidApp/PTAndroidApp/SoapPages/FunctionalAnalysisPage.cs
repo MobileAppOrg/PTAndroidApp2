@@ -1,6 +1,6 @@
 ﻿using System;
-
 using Xamarin.Forms;
+using XLabs.Forms.Controls;
 
 namespace PTAndroidApp
 {
@@ -15,9 +15,9 @@ namespace PTAndroidApp
 
 		static TableView CreateTable()
 		{
-			var AdlsAxWriting = new MyCheckBox{  };
-			AdlsAxWriting.SetBinding (MyCheckBox.IsCheckedProperty, "FunctionalAnalysis.AdlsAxWriting", BindingMode.TwoWay);
-			AdlsAxWriting.IsChecked = true;
+			var AdlsAxWriting = new CheckBox ();
+			AdlsAxWriting.SetBinding (CheckBox.CheckedProperty, "FunctionalAnalysis.AdlsAxWriting");
+			//AdlsAxWriting.IsChecked = true;
 
 			return new TableView () {
 				Intent = TableIntent.Form,
