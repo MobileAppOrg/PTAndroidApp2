@@ -52,7 +52,7 @@ namespace PTAndroidApp
 			//EntryCell txtDate = new EntryCell { Label="Date: " };
 			EntryCell txtResult = new EntryCell { Label="Result: " };
 			Button btnAdd = new Button () { Text = "Add" };
-			var datePicker = new DatePicker (){ Date = DateTime.Now, Format = "D",HorizontalOptions = LayoutOptions.FillAndExpand };
+			var datePicker = new DatePicker (){ Date = DateTime.Now, Format = "MM/dd/yyyy",HorizontalOptions = LayoutOptions.FillAndExpand };
 			ViewCell btnCell = new ViewCell {
 				View = new StackLayout () {
 					Children = { btnAdd, txtPatientVisitId }

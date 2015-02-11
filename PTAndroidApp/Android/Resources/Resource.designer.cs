@@ -173,23 +173,19 @@ namespace PTAndroidApp.Android
 			public const int ic_action_new = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int img2 = 2130837507;
-			
-			// aapt resource value: 0x7f020004
-			public const int mainbg = 2130837508;
-			
-			// aapt resource value: 0x7f020005
-			public const int monoandroidsplash = 2130837509;
 			public const int ic_action_refresh = 2130837507;
 			
 			// aapt resource value: 0x7f020004
 			public const int Icon = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int mainbg = 2130837509;
+			public const int img2 = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int sanfernando = 2130837510;
+			public const int mainbg = 2130837510;
+			
+			// aapt resource value: 0x7f020007
+			public const int sanfernando = 2130837511;
 			
 			static Drawable()
 			{

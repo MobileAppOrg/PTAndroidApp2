@@ -59,6 +59,7 @@ namespace PTAndroidApp
 			Children.Add (new MMTFindSigPage ());
 			Children.Add (new SensoryAxPage  ());
 			Children.Add (new SensorySigFindPage ());
+			Children.Add (new CardioPulmonaryPage ());
 			Children.Add (new CranialNervePage ());
 			Children.Add (new CrainialNerveAssmtFindSigPage ());
 			Children.Add (new CognitiveAssmtPage  ());

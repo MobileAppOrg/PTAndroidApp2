@@ -57,13 +57,13 @@ namespace PTAndroidApp
 
 			var lblAncillary = new Label { Text="Procedure: "};
 			var pckAncillary = new Picker () { Items = { "XRAY", "MRI", "Blood Test","NCV","EMG","CT SCAN", "Others"}, 
-				Title = "Procedures"};
+				Title = "Procedures", HorizontalOptions = LayoutOptions.FillAndExpand};
 
 			EntryCell txtResult = new EntryCell {
 				Label = "Result"};
 
 			var datePicker = new DatePicker {
-				Format = "D"};
+				Format = "MM/dd/yyyy", HorizontalOptions = LayoutOptions.FillAndExpand};
 
 			var btnAdd = new Button {
 				Text = "Add Ancillary",
