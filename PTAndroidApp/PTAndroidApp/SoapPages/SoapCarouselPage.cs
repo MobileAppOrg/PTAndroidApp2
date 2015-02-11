@@ -65,6 +65,7 @@ namespace PTAndroidApp
 			Children.Add (new CoordinationAssmtPage ());
 			Children.Add (new CoordinationAssmtFinSigPage ());
 			Children.Add (new BalanceAndTolerancePage ());
+			Children.Add (new DeepTendonReflexPage ());
 			Children.Add (new MBMPage ());
 			Children.Add (new MBMFinSigPage ());
 			Children.Add (new AnteriorViewPage ());

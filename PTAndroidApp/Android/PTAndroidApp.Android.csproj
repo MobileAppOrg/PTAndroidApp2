@@ -116,6 +116,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_new.png" />
     <AndroidResource Include="Resources\drawable\mainbg.png" />
     <AndroidResource Include="Resources\drawable\sanfernando.jpg" />
+    <AndroidResource Include="Resources\drawable\img2.jpg" />
   </ItemGroup>
   <Import Project="..\PTAndroidApp\PTAndroidApp.projitems" Label="Shared" Condition="Exists('..\PTAndroidApp\PTAndroidApp.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
