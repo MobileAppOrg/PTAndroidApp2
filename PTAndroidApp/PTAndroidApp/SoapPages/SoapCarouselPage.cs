@@ -64,6 +64,7 @@ namespace PTAndroidApp
 			Children.Add (new PulmonaryAssmt2 ());
 			Children.Add (new PulmonaryAssmt3 ());
 			Children.Add (new PulmonaryAssmt4 ());
+			Children.Add (new PulmonaryAssmt5 ());
 			Children.Add (new CranialNervePage ());
 			Children.Add (new CrainialNerveAssmtFindSigPage ());
 			Children.Add (new CognitiveAssmtPage  ());

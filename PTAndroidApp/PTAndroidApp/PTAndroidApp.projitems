@@ -56,6 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PulmonaryAssmt2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PulmonaryAssmt3.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PulmonaryAssmt4.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoapPages\PulmonaryAssmt5.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
