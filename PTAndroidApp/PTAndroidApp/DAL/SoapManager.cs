@@ -8,7 +8,7 @@ namespace PTAndroidApp
 {
 	public class SoapManager {
 		// ADD Patient: Requires new Patient Model without Patient Id
-		private static string clientUrl = "http://ptprojectapi.azurewebsites.net";
+		private static string clientUrl = "http://ptprojectapi2.azurewebsites.net";
 		//string clientUrl = "https://localhost:44301";
 		//string clientUrl = "localhost:57131";
 

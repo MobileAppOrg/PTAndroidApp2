@@ -10,7 +10,7 @@ namespace PTAndroidApp
 	public class PatientManager
 	{
 		// ADD Patient: Requires new Patient Model without Patient Id
-		string clientUrl = "http://ptprojectapi.azurewebsites.net";
+		string clientUrl = "http://ptprojectapi2.azurewebsites.net";
 		//string clientUrl = "https://localhost:44301";
 		//string clientUrl = "localhost:57131";
 
