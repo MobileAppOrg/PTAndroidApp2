@@ -239,6 +239,7 @@ namespace PTAndroidApp
 		public bool Cancer { get; set; }
 		//[MaxLength(50)]
 		public string Others { get; set; }
+		//public string OthersText { get; set; }
 	}
 
 	//[ComplexType]

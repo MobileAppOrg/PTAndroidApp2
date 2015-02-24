@@ -89,10 +89,19 @@ namespace PTAndroidApp
 				Icon = "",
 				Text = "Save",
 				Command = new Command(()=> {
-					if (mode!="Add")
-						soapMgr.Edit(soap.PatientVisitId,soap);
-					else
-						soapMgr.Add(soap);
+					try {
+
+						if (mode!="Add")
+							soapMgr.Edit(soap.PatientVisitId,soap);
+						else
+							soapMgr.Add(soap);
+						DisplayAlert("SOAP", "Saved", "OK");
+						Navigation.PopAsync();
+					}
+					catch (Exception e)
+					{
+						DisplayAlert("Error", e.Message, "OK");
+					}
 				})
 			});
 
@@ -101,7 +110,16 @@ namespace PTAndroidApp
 					Icon="",
 					Text="Delete",
 					Order=ToolbarItemOrder.Secondary,
-					Command = new Command(()=>new SoapManager().Delete(soap.PatientVisitId))
+					Command = new Command(()=> { 
+						try {
+							soapMgr.Delete(soap.PatientVisitId);
+							DisplayAlert("SOAP", "Deleted", "OK");
+							Navigation.PopAsync();
+						}
+						catch (Exception e){
+							DisplayAlert("Error", e.Message, "OK");
+						}
+					})
 				});
 			}
 		}

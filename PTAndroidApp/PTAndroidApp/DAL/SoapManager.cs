@@ -40,7 +40,7 @@ namespace PTAndroidApp
 			return listSoap;
 		}
 
-		public bool Add(PatientVisit soap){
+		public PatientVisit Add(PatientVisit soap){
 			// Put code to communicate to web service here
 			var client = new RestClient (clientUrl);
 			var request = new RestRequest("api/PatientVisits", Method.POST );
@@ -57,15 +57,24 @@ namespace PTAndroidApp
 			request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
 			request.RequestFormat = DataFormat.Json;
 
-			// send request
-			client.ExecuteAsync (request, response => {
-				Console.WriteLine (response.Content);
-			});
+//			// send request
+//			client.ExecuteAsync (request, response => {
+//				Console.WriteLine (response.Content);
+//			});
 
-			return true;
+			var response = client.Execute<PatientVisit>(request);
+
+			if (response.ErrorException != null)
+			{
+				const string message = "Error retrieving response.  Check inner details for more info.";
+				var requestException = new ApplicationException(message, response.ErrorException);
+				throw requestException;
+			}
+
+			return response.Data;
 		}
 
-		public bool Edit(int id,PatientVisit soap){
+		public PatientVisit Edit(int id,PatientVisit soap){
 			// Put code to communicate to web service here
 			var client = new RestClient (clientUrl);
 			var request = new RestRequest("api/PatientVisits/{id}", Method.PUT );
@@ -86,14 +95,25 @@ namespace PTAndroidApp
 			request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
 			request.RequestFormat = DataFormat.Json;
 
-			client.ExecuteAsync (request, response => {
-				Console.WriteLine (response.Content);
-			});
+//			client.ExecuteAsync (request, response => {
+//				Console.WriteLine (response.Content);
+//			});
+//
+			var response = client.Execute<PatientVisit>(request);
 
-			return true;
+			if (response.ErrorException != null)
+			{
+				const string message = "Error retrieving response.  Check inner details for more info.";
+				var requestException = new ApplicationException(message, response.ErrorException);
+				throw requestException;
+			}
+
+			//return response.Data;
+
+			return response.Data;
 		}
 
-		public bool Delete(int PatientVisitId){
+		public PatientVisit Delete(int PatientVisitId){
 			// Put code to communicate to web service here
 			var client = new RestClient ("http://ptprojectapi.azurewebsites.net");
 			// 
@@ -101,12 +121,21 @@ namespace PTAndroidApp
 
 
 			request.AddUrlSegment("id",PatientVisitId.ToString());
-			RestSharp.Deserializers.JsonDeserializer deserial= new JsonDeserializer();
+//			RestSharp.Deserializers.JsonDeserializer deserial= new JsonDeserializer();
+//
+//			// send request
+//			var soap = deserial.Deserialize<PatientVisit> (client.Execute (request));
 
-			// send request
-			var soap = deserial.Deserialize<PatientVisit> (client.Execute (request));
+			var response = client.Execute<PatientVisit>(request);
 
-			return true;
+			if (response.ErrorException != null)
+			{
+				const string message = "Error retrieving response.  Check inner details for more info.";
+				var requestException = new ApplicationException(message, response.ErrorException);
+				throw requestException;
+			}
+
+			return response.Data;
 		}
 
 		public static T AddEntity<T>(T entity, string requestPath)  where T: new()
