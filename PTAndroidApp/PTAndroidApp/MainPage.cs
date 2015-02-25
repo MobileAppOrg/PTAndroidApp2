@@ -28,16 +28,16 @@ namespace PTAndroidApp
 			};
 
 			btnPatient.Clicked += delegate {
-				DateTime dtToday = DateTime.Today;
-				string tt = "";
+//				DateTime dtToday = DateTime.Today;
+//				string tt = "";
+//
+//				if(dtToday .ToString ("tt") == "AM")
+//					tt = "Good Morning!";
+//				else
+//					tt= "Good Afternoon!";
 
-				if(dtToday .ToString ("tt") == "AM")
-					tt = "Good Morning!";
-				else
-					tt= "Good Afternoon!";
 
-
-				//Navigation.PushAsync(new SearchPatientPage());
+				Navigation.PushAsync(new SearchPatientPage());
 			};
 
 			btnSoap.Clicked += delegate {
