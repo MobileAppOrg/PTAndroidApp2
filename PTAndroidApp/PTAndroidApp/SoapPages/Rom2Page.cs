@@ -256,14 +256,22 @@ namespace PTAndroidApp
 
 				entity.RowId = 0;
 				entity.Motion = Motions.Items[Motions.SelectedIndex];
-				entity.AromR = String.IsNullOrEmpty(AromR.Text) ? 0 : Convert.ToDecimal(AromR.Text);
-				entity.AromL = String.IsNullOrEmpty(AromL.Text) ? 0 : Convert.ToDecimal(AromL.Text);
-				entity.PromR = String.IsNullOrEmpty(PromR.Text) ? 0 : Convert.ToDecimal(PromR.Text);
-				entity.PromL = String.IsNullOrEmpty(PromL.Text) ? 0 : Convert.ToDecimal(PromL.Text);
-				entity.NormalValue = String.IsNullOrEmpty(NormalValue.Text) ? 0 : Convert.ToDecimal(NormalValue.Text);
-				entity.DifferenceR = String.IsNullOrEmpty(DifferenceR.Text) ? 0 : Convert.ToDecimal(DifferenceR.Text);
-				entity.DifferenceL = String.IsNullOrEmpty(DifferenceL.Text) ? 0 : Convert.ToDecimal(DifferenceL.Text);
+				entity.AromR = AromR.Text;
+				entity.AromL = AromL.Text;
+				entity.PromR = PromR.Text;
+				entity.PromL = PromL.Text;
+				entity.NormalValue = NormalValue.Text;
+				entity.DifferenceR = DifferenceR.Text;
+				entity.DifferenceL = DifferenceL.Text;
 				entity.EndFeel = EndFeel.Items[EndFeel.SelectedIndex];
+
+//				entity.AromR = String.IsNullOrEmpty(AromR.Text) ? 0 : Convert.ToDecimal(AromR.Text);
+//				entity.AromL = String.IsNullOrEmpty(AromL.Text) ? 0 : Convert.ToDecimal(AromL.Text);
+//				entity.PromR = String.IsNullOrEmpty(PromR.Text) ? 0 : Convert.ToDecimal(PromR.Text);
+//				entity.PromL = String.IsNullOrEmpty(PromL.Text) ? 0 : Convert.ToDecimal(PromL.Text);
+//				entity.NormalValue = String.IsNullOrEmpty(NormalValue.Text) ? 0 : Convert.ToDecimal(NormalValue.Text);
+//				entity.DifferenceR = String.IsNullOrEmpty(DifferenceR.Text) ? 0 : Convert.ToDecimal(DifferenceR.Text);
+//				entity.DifferenceL = String.IsNullOrEmpty(DifferenceL.Text) ? 0 : Convert.ToDecimal(DifferenceL.Text);
 
 				if(txtPatientVisitId.Text != "0") // add to db if edit mode
 				{

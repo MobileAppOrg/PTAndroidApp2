@@ -348,10 +348,10 @@ namespace PTAndroidApp
 	{
 		public int RowId { get; set; }
 		public string Motion { get; set; }
-		public decimal Arom { get; set; }
-		public decimal Prom { get; set; }
-		public decimal NormalValue { get; set; }
-		public decimal Difference { get; set;}
+		public string Arom { get; set; }
+		public string Prom { get; set; }
+		public string NormalValue { get; set; }
+		public string Difference { get; set;}
 		public string EndFeel { get; set; }
 		public int PatientVisitId { get; set; }
 	}
@@ -360,13 +360,13 @@ namespace PTAndroidApp
 	{
 		public int RowId { get; set; }
 		public string Motion { get; set; }
-		public decimal AromR { get; set; }
-		public decimal AromL { get; set; }
-		public decimal PromR { get; set; }
-		public decimal PromL { get; set; }
-		public decimal NormalValue { get; set; }
-		public decimal DifferenceR { get; set;}
-		public decimal DifferenceL { get; set;}
+		public string AromR { get; set; }
+		public string AromL { get; set; }
+		public string PromR { get; set; }
+		public string PromL { get; set; }
+		public string NormalValue { get; set; }
+		public string DifferenceR { get; set;}
+		public string DifferenceL { get; set;}
 		public string EndFeel { get; set; }
 		public int PatientVisitId { get; set; }
 	}

@@ -37,7 +37,7 @@ namespace PTAndroidApp
 				item = (ROM)ls.SelectedItem;
 
 				if(txtPatientVisitId.Text != "0") // delete in database if edit mode
-					SoapManager.DeleteEntity<ROM>(item.RowId,"api/ROM/{id}");
+					SoapManager.DeleteEntity<ROM>(item.RowId,"api/ROMs/{id}");
 
 				ls.SelectedItem = null;
 
@@ -135,16 +135,20 @@ namespace PTAndroidApp
 
 				entity.RowId = 0;
 				entity.Motion = Motions.Items[Motions.SelectedIndex];
-				entity.Arom = String.IsNullOrEmpty(Arom.Text) ? 0 : Convert.ToDecimal(Arom.Text);
-				entity.Prom = String.IsNullOrEmpty(Prom.Text) ? 0 : Convert.ToDecimal(Prom.Text);
-				entity.NormalValue = String.IsNullOrEmpty(NormalValue.Text) ? 0 : Convert.ToDecimal(NormalValue.Text);
-				entity.Difference = String.IsNullOrEmpty(Difference.Text) ? 0 : Convert.ToDecimal(Difference.Text);
+				entity.Arom = Arom.Text;
+				entity.Prom = Prom.Text;
+				entity.NormalValue = NormalValue.Text;
+				entity.Difference = Difference.Text;
 				entity.EndFeel = EndFeel.Items[EndFeel.SelectedIndex];
+//				entity.Arom = String.IsNullOrEmpty(Arom.Text) ? 0 : Convert.ToDecimal(Arom.Text);
+//				entity.Prom = String.IsNullOrEmpty(Prom.Text) ? 0 : Convert.ToDecimal(Prom.Text);
+//				entity.NormalValue = String.IsNullOrEmpty(NormalValue.Text) ? 0 : Convert.ToDecimal(NormalValue.Text);
+//				entity.Difference = String.IsNullOrEmpty(Difference.Text) ? 0 : Convert.ToDecimal(Difference.Text);
 
 				if(txtPatientVisitId.Text != "0") // add to db if edit mode
 				{
 					entity.PatientVisitId = Convert.ToInt32(txtPatientVisitId.Text);
-					entity = SoapManager.AddEntity<ROM>(entity,"api/ROM");
+					entity = SoapManager.AddEntity<ROM>(entity,"api/ROMs");
 				}
 
 				List<ROM> source;
