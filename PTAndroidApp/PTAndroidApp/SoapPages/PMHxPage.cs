@@ -51,7 +51,7 @@ namespace PTAndroidApp
 
 			var lblAsthma  = new Label { Text  = "   Asthma", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand};
 			var CheckBoxAsthma = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand };
-			var Asthma = new Entry { IsVisible  = false ,Placeholder  = "Date Ashtma"};
+			var Asthma = new Entry { IsVisible  = false ,Placeholder  = "Date Ashtma (mm/dd/yyyy)"};
 
 			var lblHPN = new Label {FontSize = 18, Text = "   HPN", VerticalOptions = LayoutOptions .EndAndExpand};
 			var CheckBoxHPN = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
@@ -59,12 +59,12 @@ namespace PTAndroidApp
 			var lblSurgery  = new Label { Text  = "   Surgery", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand};
 			var CheckBoxSurgery = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtSurgery = new Entry{ IsVisible  = false, Placeholder = "Surgical Procedure"};
-			var dtSurgery = new Entry  {IsVisible  = false, Placeholder = "Surgery Date"};
+			var dtSurgery = new Entry  {IsVisible  = false, Placeholder = "Surgery Date (mm/dd/yyyy)"};
 
 			var lblHospitalization  = new Label { Text  = "   Hopitalization", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand};
 			var CheckBoxHospitalization = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
 			var txtHospitalization = new Entry {IsVisible = false,Placeholder = "Specification of Disease"};
-			var HospitalizationDate = new Entry  { IsVisible = false, Placeholder = "Hospitalization Date" };
+			var HospitalizationDate = new Entry  { IsVisible = false, Placeholder = "Hospitalization Date (mm/dd/yyyy)" };
 
 			var lblCardiovascularDisease  = new Label { Text  = "   Cardiovascular Disease", FontSize = 18, VerticalOptions = LayoutOptions .EndAndExpand};
 			var CheckBoxCardiovascularDisease = new CheckBox {VerticalOptions = LayoutOptions .EndAndExpand};
